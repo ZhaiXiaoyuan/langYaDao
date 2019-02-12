@@ -1,0 +1,45 @@
+.home{
+    .banner-panel{
+        width: 100%;
+        height: 320px;
+    /*    background: url("../images/home/banner-bg.jpg") no-repeat center;
+        background-size: cover;*/
+        .el-carousel{
+            height: 100%;
+        }
+        .banner-item-content{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            text-align: center;
+            @keyframes link-tips-ani
+            {
+                0% {transform: scale(1);opacity: 1;}
+                50% {transform: scale(0.95);opacity: 0.95;}
+                100% {transform: scale(1);opacity: 1;}
+            }
+            .link-tips{
+                position: relative;
+                top:75%;
+                display: inline-block;
+                /*position: absolute;*/
+                /*display: flex;
+                align-items: center;*/
+                font-size: 14px;
+                color: #fff;
+              /*  font-family: 'LiSu';*/
+                height: 30px;
+                line-height: 30px;
+                border-radius: 15px;
+                padding: 0px 20px;
+                background: rgba(0,0,0,0.7);
+                text-align: center;
+                animation:link-tips-ani 2s infinite;
+                .icon{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
