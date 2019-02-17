@@ -4,7 +4,7 @@
         <div id="page-content">
             <router-view></router-view>
         </div>
-      <!--  <v-footer></v-footer>-->
+        <v-footer></v-footer>
     </div>
 </template>
 <style lang="less" rel="stylesheet/less">
