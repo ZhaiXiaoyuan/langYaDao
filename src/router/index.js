@@ -10,5 +10,10 @@ export default new Router({
             name:'home',
             component: resolve => require(['../page/Home.vue'], resolve),
         },
+        {
+            path: '/zodiac/hall',
+            name:'zodiacHall',
+            component: resolve => require(['../page/zodiac/Hall.vue'], resolve),
+        },
     ]
 })
