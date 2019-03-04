@@ -142,6 +142,52 @@
             width: 986px;
             height: 360px;
             background-size: cover;
+            .block-bd{
+
+            }
+        }
+        .room-list{
+            margin-top: 28px;
+            text-align: center;
+            >li{
+                display: inline-block;
+                width: 212px;
+                height: 217px;
+                background-size: 100% 100%;
+                cursor: pointer;
+                font-family: 'hytangmeiren';
+                .title{
+                    margin-top: 33px;
+                    font-size: 37px;
+                    color: #fff;
+                }
+                .limit{
+                    margin-top: 15px;
+                    font-size: 14px;
+                }
+                .count{
+                    font-size: 18px;
+                }
+                &+li{
+                    margin-left: 18px;
+                }
+            }
+            .level1{
+                background: url("../images/zodiac/level1-room-entrance.png") no-repeat;
+                color: #317ec0;
+            }
+            .level2{
+                background: url("../images/zodiac/level2-room-entrance.png") no-repeat;
+                color: #21908f;
+            }
+            .level3{
+                background: url("../images/zodiac/level3-room-entrance.png") no-repeat;
+                color: #359633;
+            }
+            .level4{
+                background: url("../images/zodiac/level4-room-entrance.png") no-repeat;
+                color: #a87920;
+            }
         }
     }
 }

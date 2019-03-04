@@ -618,3 +618,46 @@ body {
   height: 360px;
   background-size: cover;
 }
+.zodiac-hall .content-wrap .room-list {
+  margin-top: 28px;
+  text-align: center;
+}
+.zodiac-hall .content-wrap .room-list > li {
+  display: inline-block;
+  width: 212px;
+  height: 217px;
+  background-size: 100% 100%;
+  cursor: pointer;
+  font-family: 'hytangmeiren';
+}
+.zodiac-hall .content-wrap .room-list > li .title {
+  margin-top: 33px;
+  font-size: 37px;
+  color: #fff;
+}
+.zodiac-hall .content-wrap .room-list > li .limit {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.zodiac-hall .content-wrap .room-list > li .count {
+  font-size: 18px;
+}
+.zodiac-hall .content-wrap .room-list > li + li {
+  margin-left: 18px;
+}
+.zodiac-hall .content-wrap .room-list .level1 {
+  background: url("../images/zodiac/level1-room-entrance.png") no-repeat;
+  color: #317ec0;
+}
+.zodiac-hall .content-wrap .room-list .level2 {
+  background: url("../images/zodiac/level2-room-entrance.png") no-repeat;
+  color: #21908f;
+}
+.zodiac-hall .content-wrap .room-list .level3 {
+  background: url("../images/zodiac/level3-room-entrance.png") no-repeat;
+  color: #359633;
+}
+.zodiac-hall .content-wrap .room-list .level4 {
+  background: url("../images/zodiac/level4-room-entrance.png") no-repeat;
+  color: #a87920;
+}
