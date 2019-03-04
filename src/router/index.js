@@ -15,5 +15,10 @@ export default new Router({
             name:'zodiacHall',
             component: resolve => require(['../page/zodiac/Hall.vue'], resolve),
         },
+        {
+            path: '/zodiac/game',
+            name:'zodiacHall',
+            component: resolve => require(['../page/zodiac/Game.vue'], resolve),
+        },
     ]
 })

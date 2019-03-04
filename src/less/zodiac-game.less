@@ -1,0 +1,161 @@
+.zodiac-game{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left: 0px;
+    background: url("../images/zodiac/game-bg.jpg") no-repeat center;
+    background-size: cover;
+    margin-top: 60px;
+    margin-bottom: 70px;
+    .content-wrap{
+        position: relative;
+        width: 1310px;
+        height: 100%;
+        margin: 0px auto;
+    }
+    .panel{
+
+    }
+    .session-panel{
+        float: left;
+        width: 250px;
+        height: 100%;
+        padding-top: 2.5%;
+    }
+    .block{
+        .block-hd{
+            display: flex;
+            height: 38px;
+            align-items: center;
+            justify-content: center;
+            .title{
+                padding-top: 2px;
+                font-size: 20px;
+                color: #fff;
+                font-family: 'hytangmeiren';
+            }
+        }
+    }
+    .nav-block{
+        display: flex;
+        .btn{
+            display: inline-block;
+            font-size: 20px;
+            color: #fff;
+            font-family: 'hytangmeiren';
+            text-align: center;
+            line-height: 39px;
+            text-shadow: #4aaeec 0.1em 0.15em 0.1em;
+        }
+        .exit-btn{
+            background: url("../images/zodiac/exit-btn-bg.png") no-repeat;
+            width: 114px;
+            height: 48px;
+            background-size: 100% 100%;
+        }
+        .home-btn{
+            margin-left: auto;
+            background: url("../images/zodiac/home-btn-bg.png") no-repeat;
+            width: 124px;
+            height: 48px;
+            background-size: 100% 100%;
+            padding-left: 25px;
+            text-shadow: #009349 0.1em 0.15em 0.1em;
+        }
+    }
+    .result-block{
+        margin-top: 8px;
+        background: url("../images/zodiac/result-block-bg.png") no-repeat;
+        width: 246px;
+        height: 578px;
+        background-size: 100% 100%;
+        .block-bd{
+            padding: 8px 5px;
+            margin: 0px auto;
+            width: 90%;
+            height: 88%;
+            overflow: auto;
+            border-radius: 10px;
+            border: 1px solid red;
+            &::-webkit-scrollbar {/*滚动条整体样式*/
+                width: 5px;     /*高宽分别对应横竖滚动条的尺寸*/
+                height: 5px;
+            }
+            &::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+                border-radius: 5px;
+                -webkit-box-shadow: inset 0 0 5px #2096e0;
+                background: #2096e0;
+            }
+            &::-webkit-scrollbar-track {/*滚动条里面轨道*/
+                -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+                border-radius: 0;
+                background: rgba(0,0,0,0.1);
+            }
+            .host-item{
+                margin: 0px auto;
+                background: url("../images/zodiac/lord-bg.png") no-repeat;
+                width: 207px;
+                min-height: 49px;
+                background-size: 100% 100%;
+                font-size: 20px;
+                color: #fff;
+                font-family: 'hytangmeiren';
+                text-shadow: #eb7a00 0.1em 0.14em 0.1em;
+                padding: 5px 10px 15px 10px;
+                line-height: 22px;
+            }
+            .session-list{
+                margin-top: 10px;
+                text-align: center;
+                li{
+                    display: inline-block;
+                    background: url("../images/zodiac/result-item-bg.png") no-repeat;
+                    width: 203px;
+                    height: 118px;
+                    background-size: 100% 100%;
+                    text-align: left;
+                    .label{
+                        position: relative;
+                        top:6px;
+                        left: -3px;
+                        display: inline-block;
+                        background: url("../images/zodiac/index-label-bg.png") no-repeat;
+                        width: 82px;
+                        height: 27px;
+                        font-size: 18px;
+                        color: #fff;
+                        font-family: 'hytangmeiren';
+                        text-shadow: #ef4242 0.1em 0.15em 0.02em;
+                        line-height: 20px;
+                        text-align: center;
+                    }
+                    .result{
+                        margin: 12px auto 0px auto;
+                        background: url("../images/zodiac/result-bg.png");
+                        width: 187px;
+                        height: 42px;
+                        background-size: 100% 100%;
+                        font-size: 20px;
+                        color: #fff;
+                        font-family: 'hytangmeiren';
+                        text-align: center;
+                        line-height: 32px;
+                        text-shadow: -2px 0 #046da4, 0 2px #046da4,
+                        2px 0 #046da4, 0 -2px #046da4
+                    }
+                    .score{
+                        margin-top: 2px;
+                        font-family: 'hytangmeiren';
+                        font-size: 16px;
+                        color: #1085d6;
+                        text-align: center;
+                    }
+                    &+li{
+                        margin-top: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
