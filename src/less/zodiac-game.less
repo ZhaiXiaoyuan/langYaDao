@@ -1,21 +1,18 @@
 .zodiac-game{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top:0px;
-    left: 0px;
     background: url("../images/zodiac/game-bg.jpg") no-repeat center;
     background-size: cover;
-    margin-top: 60px;
-    margin-bottom: 70px;
-    .content-wrap{
+    min-height: 100%;
+    .page-content{
         position: relative;
         width: 1310px;
-        height: 100%;
         margin: 0px auto;
+        overflow: hidden;
+        padding-bottom: 30px;
     }
     .panel{
-
+        &+.panel{
+            margin-left: 20px;
+        }
     }
     .session-panel{
         float: left;
@@ -71,25 +68,27 @@
         height: 578px;
         background-size: 100% 100%;
         .block-bd{
+            position: relative;
+            top:8px;
             padding: 8px 5px;
             margin: 0px auto;
             width: 90%;
-            height: 88%;
+            height: 87%;
             overflow: auto;
             border-radius: 10px;
-            border: 1px solid red;
             &::-webkit-scrollbar {/*滚动条整体样式*/
                 width: 5px;     /*高宽分别对应横竖滚动条的尺寸*/
                 height: 5px;
             }
             &::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
-                border-radius: 5px;
+                border-radius: 2px;
                 -webkit-box-shadow: inset 0 0 5px #2096e0;
                 background: #2096e0;
             }
             &::-webkit-scrollbar-track {/*滚动条里面轨道*/
+                display: none;
                 -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-                border-radius: 0;
+                border-radius: 5px;
                 background: rgba(0,0,0,0.1);
             }
             .host-item{
@@ -108,6 +107,7 @@
             .session-list{
                 margin-top: 10px;
                 text-align: center;
+                padding-left: 2px;
                 li{
                     display: inline-block;
                     background: url("../images/zodiac/result-item-bg.png") no-repeat;
@@ -142,7 +142,7 @@
                         text-align: center;
                         line-height: 32px;
                         text-shadow: -2px 0 #046da4, 0 2px #046da4,
-                        2px 0 #046da4, 0 -2px #046da4
+                        2px 0 #046da4, 0 -2px #046da4;
                     }
                     .score{
                         margin-top: 2px;
@@ -155,6 +155,819 @@
                         margin-top: 8px;
                     }
                 }
+            }
+        }
+    }
+    .mouse-icon{
+        background: url("../images/zodiac/mouse-icon.png") no-repeat;
+        width: 128px;
+        height: 185px;
+        background-size: 100%;
+    }
+    .cow-icon{
+        background: url("../images/zodiac/cow-icon.png") no-repeat;
+        width: 221px;
+        height: 197px;
+        background-size: 100%;
+    }
+    .tiger-icon{
+        background: url("../images/zodiac/tiger-icon.png") no-repeat;
+        width: 183px;
+        height: 213px;
+        background-size: 100%;
+    }
+    .rabbit-icon{
+        background: url("../images/zodiac/rabbit-icon.png") no-repeat;
+        width: 186px;
+        height: 223px;
+        background-size: 100%;
+    }
+    .dragon-icon{
+        background: url("../images/zodiac/dragon-icon.png") no-repeat;
+        width: 192px;
+        height: 198px;
+        background-size: 100%;
+    }
+    .snake-icon{
+        background: url("../images/zodiac/snake-icon.png") no-repeat;
+        width: 153px;
+        height: 220px;
+        background-size: 100%;
+    }
+    .horse-icon{
+        background: url("../images/zodiac/horse-icon.png") no-repeat;
+        width: 161px;
+        height: 195px;
+        background-size: 100%;
+    }
+    .sheep-icon{
+        background: url("../images/zodiac/sheep-icon.png") no-repeat;
+        width: 173px;
+        height: 206px;
+        background-size: 100%;
+    }
+    .monkey-icon{
+        background: url("../images/zodiac/monkey-icon.png") no-repeat;
+        width: 204px;
+        height: 185px;
+        background-size: 100%;
+    }
+    .chicken-icon{
+        background: url("../images/zodiac/chicken-icon.png") no-repeat;
+        width: 181px;
+        height: 200px;
+        background-size: 100%;
+    }
+    .dog-icon{
+        background: url("../images/zodiac/dog-icon.png") no-repeat;
+        width: 189px;
+        height: 192px;
+        background-size: 100%;
+    }
+    .pig-icon{
+        background: url("../images/zodiac/pig-icon.png") no-repeat;
+        width: 171px;
+        height: 171px;
+        background-size: 100%;
+    }
+    .turtle-icon{
+        background: url("../images/zodiac/turtle-icon.png") no-repeat;
+        width: 62px;
+        height: 64px;
+        background-size: 100%;
+    }
+    .kirin-icon{
+        background: url("../images/zodiac/kirin-icon.png") no-repeat;
+        width: 83px;
+        height: 62px;
+        background-size: 100%;
+    }
+    .phoenix-icon{
+        background: url("../images/zodiac/phoenix-icon.png") no-repeat;
+        width: 105px;
+        height: 76px;
+        background-size: 100%;
+    }
+    .pixiu-icon{
+        background: url("../images/zodiac/pixiu-icon.png") no-repeat;
+        width: 75px;
+        height: 66px;
+        background-size: 100%;
+    }
+    .turtle-min-icon{
+        background: url("../images/zodiac/turtle-min-icon.png") no-repeat;
+        width: 43px;
+        height: 41px;
+        background-size: 100%;
+    }
+    .kirin-min-icon{
+        background: url("../images/zodiac/kirin-min-icon.png") no-repeat;
+        width: 50px;
+        height: 37px;
+        background-size: 100%;
+    }
+    .phoenix-min-icon{
+        background: url("../images/zodiac/phoenix-min-icon.png") no-repeat;
+        width: 50px;
+        height: 43px;
+        background-size: 100%;
+    }
+    .pixiu-min-icon{
+        background: url("../images/zodiac/pixiu-min-icon.png") no-repeat;
+        width: 45px;
+        height: 45px;
+        background-size: 100%;
+    }
+    .turntable-panel{
+        float: left;
+        .table-block{
+            position: relative;
+            margin-top: 60px;
+            background: url("../images/zodiac/turntable-bg.png") no-repeat;
+            width: 473px;
+            height: 514px;
+            background-size: 100%;
+            .block-bd{
+                position: absolute;
+                width: 454px;
+                height: 454px;
+                top: 51px;
+                left: 10px;
+            }
+            .layers{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                .line{
+                    display: none;
+                    position: absolute;
+                    z-index: 100;
+                    top:0px;
+                    right: 0px;
+                    left:0px;
+                    bottom: 0px;
+                    width: 1px;
+                    height: 100%;
+                    background: red;
+                    margin: auto;
+                }
+                .line-2{
+                    transform:rotate(30deg);
+                }
+                .line-3{
+                    transform:rotate(60deg);
+                }
+                .line-4{
+                    transform:rotate(90deg);
+                }
+                .line-5{
+                    transform:rotate(120deg);
+                }
+                .line-6{
+                    transform:rotate(150deg);
+                }
+                .point{
+                    display: none;
+                    position: absolute;
+                    z-index: 1000;
+                    top:0px;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    margin: auto;
+                    width: 4px;
+                    height: 4px;
+                    background: blue;
+                    border-radius: 50%;
+                }
+
+            }
+            .outside-layer{
+                position: absolute;
+                width: 453px;
+                height: 453px;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .item{
+                    position: absolute;
+                    background: url("../images/zodiac/outside-item-bg.png") no-repeat;
+                    width: 108px;
+                    height: 70px;
+                    .item-content{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .current-mask{
+                        opacity: 0;
+                        position: absolute;
+                        z-index: 0;
+                        background: url("../images/zodiac/current-outside-item.png") no-repeat;
+                        width: 108px;
+                        height: 70px;
+                        background-size: 100%;
+                    }
+                    .icon{
+                        z-index: 2;
+                    }
+                    &.current{
+                        .current-mask{
+                            opacity: 1;
+                        }
+                    }
+                }
+                .item-1{
+                    top: 1px;
+                    left: 172px;
+                    .icon{
+                        width: 40px;
+                        height: 58px;
+                    }
+                }
+                .item-2{
+                    top: 27px;
+                    left: 267px;
+                    transform:rotate(30deg);
+                    .icon{
+                        width: 52px;
+                        height: 47px;
+                        transform:rotate(-30deg);
+                    }
+                }
+                .item-3{
+                    top: 96px;
+                    left: 336px;
+                    transform:rotate(60deg);
+                    .icon{
+                        width: 46px;
+                        height: 55px;
+                        transform:rotate(-60deg);
+                    }
+                }
+                .item-4{
+                    top: 191px;
+                    left: 361px;
+                    transform:rotate(90deg);
+                    .icon{
+                        width: 49px;
+                        height: 58px;
+                        transform:rotate(-90deg);
+                    }
+                }
+                .item-5{
+                    bottom: 97px;
+                    left: 336px;
+                    transform:rotate(120deg);
+                    .icon{
+                        width: 57px;
+                        height: 59px;
+                        transform:rotate(-120deg);
+                    }
+                }
+                .item-6{
+                    bottom: 28px;
+                    left: 267px;
+                    transform:rotate(150deg);
+                    .icon{
+                        width: 38px;
+                        height: 54px;
+                        transform:rotate(-150deg);
+                    }
+                }
+                .item-7{
+                    bottom: 2px;
+                    left: 173px;
+                    transform:rotate(180deg);
+                    .icon{
+                        width: 48px;
+                        height: 59px;
+                        transform:rotate(-180deg);
+                    }
+                }
+                .item-8{
+                    bottom: 27px;
+                    right: 268px;
+                    transform:rotate(210deg);
+                    .icon{
+                        width: 50px;
+                        height: 59px;
+                        transform:rotate(-210deg);
+                    }
+                }
+                .item-9{
+                    bottom: 97px;
+                    right: 338px;
+                    transform:rotate(240deg);
+                    .icon{
+                        width: 51px;
+                        height: 46px;
+                        transform:rotate(-240deg);
+                    }
+                }
+                .item-10{
+                    top: 191px;
+                    right: 363px;
+                    transform:rotate(270deg);
+                    .icon{
+                        width: 52px;
+                        height: 58px;
+                        transform:rotate(-270deg);
+                    }
+                }
+                .item-11{
+                    top: 96px;
+                    right: 338px;
+                    transform:rotate(300deg);
+                    .icon{
+                        width: 52px;
+                        height: 53px;
+                        transform:rotate(-300deg);
+                    }
+                }
+                .item-12{
+                    top: 26px;
+                    right: 268px;
+                    transform:rotate(330deg);
+                    .icon{
+                        width: 49px;
+                        height: 49px;
+                        transform:rotate(-330deg);
+                    }
+                }
+            }
+            .middle-layer{
+                position: absolute;
+                width: 310px;
+                height: 310px;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .item{
+                    position: absolute;
+                    background: url("../images/zodiac/middle-item-bg.png") no-repeat;
+                    width: 211px;
+                    height: 96px;
+                    .item-content{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .current-mask{
+                        opacity: 0;
+                        position: absolute;
+                        z-index: 0;
+                        background: url("../images/zodiac/current-middle-item.png") no-repeat;
+                        width: 211px;
+                        height: 96px;
+                        background-size: 100%;
+                    }
+                    .icon{
+                        z-index: 2;
+                    }
+                    .name{
+                        position: absolute;
+                        z-index: 1;
+                        font-size: 16px;
+                        color: #fff;
+                        font-family: 'hytangmeiren';
+                        text-shadow: -2px 0 #037b00, 0 2px #037b00,
+                        2px 0 #037b00, 0 -2px #037b00;
+                    }
+                    &.current{
+                        .current-mask{
+                            opacity: 1;
+                        }
+                    }
+                }
+                .item-1{
+                    top: 0px;
+                    left: 48px;
+                    .icon{
+                       position: relative;
+                        top:-8px;
+                    }
+                    .name{
+                        top: 40px;
+                        left: 51px;
+                    }
+                }
+                .item-2{
+                    top: 106px;
+                    left: 155px;
+                    transform:rotate(90deg);
+                    .icon{
+                        transform:rotate(-90deg);
+                        position: relative;
+                        bottom: 10px;
+                        right: 10px;
+                    }
+                    .name{
+                        transform:rotate(-90deg);
+                        top: 30px;
+                        left: 115px;
+                    }
+                }
+                .item-3{
+                    bottom: 0px;
+                    left: 48px;
+                    transform:rotate(180deg);
+                    .icon{
+                        transform:rotate(-180deg);
+                        position: relative;
+                        bottom: 6px;
+                    }
+                    .name{
+                        transform:rotate(-180deg);
+                        bottom: 31px;
+                        left: 51px;
+                    }
+                }
+                .item-4{
+                    top: 106px;
+                    right: 155px;
+                    transform:rotate(270deg);
+                    .icon{
+                        transform:rotate(-270deg);
+                        position: relative;
+                        bottom: 6px;
+                        left: 10px;
+                    }
+                    .name{
+                        transform:rotate(-270deg);
+                        bottom: 42px;
+                        left: 64px;
+                    }
+                }
+            }
+            .inside-layer{
+                position: absolute;
+                width: 152px;
+                height: 152px;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .item{
+                    position: absolute;
+                    background: url("../images/zodiac/inside-item-bg.png") no-repeat;
+                    width: 36px;
+                    height: 23px;
+                    .item-content{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .current-mask{
+                        opacity: 0;
+                        position: absolute;
+                        z-index: 0;
+                        background: url("../images/zodiac/current-inside-item.png") no-repeat;
+                        width: 36px;
+                        height: 23px;
+                        background-size: 100%;
+                    }
+                    .icon{
+                        z-index: 2;
+                    }
+                    .name{
+                        position: relative;
+                        top:-2px;
+                        z-index: 1;
+                        font-size: 16px;
+                        color: #fff;
+                        font-family: 'hytangmeiren';
+                        text-shadow: -2px 0 #a63900, 0 2px #a63900,
+                        2px 0 #a63900, 0 -2px #a63900;
+                    }
+                    &.current{
+                        .current-mask{
+                            opacity: 1;
+                        }
+                    }
+                }
+                .item-1{
+                    top: 1px;
+                    left: 57.5px;
+                }
+                .item-2{
+                    top: 9.5px;
+                    left: 88.5px;
+                    transform:rotate(30deg);
+                }
+                .item-3{
+                    top: 33px;
+                    left: 112px;
+                    transform:rotate(60deg);
+                }
+                .item-4{
+                    top: 64px;
+                    left: 120px;
+                    transform:rotate(90deg);
+                }
+                .item-5{
+                    bottom: 32px;
+                    left: 112px;
+                    transform:rotate(120deg);
+                }
+                .item-6{
+                    bottom: 9.5px;
+                    left: 88.5px;
+                    transform:rotate(150deg);
+                }
+                .item-7{
+                    bottom: 1px;
+                    left: 57.5px;
+                    transform:rotate(180deg);
+                }
+                .item-8{
+                    bottom: 9.5px;
+                    right: 88.5px;
+                    transform:rotate(210deg);
+                }
+                .item-9{
+                    bottom: 32px;
+                    right: 112px;
+                    transform:rotate(240deg);
+                }
+                .item-10{
+                    top: 64px;
+                    right: 120px;
+                    transform:rotate(270deg);
+                }
+                .item-11{
+                    top: 32px;
+                    right: 111px;
+                    transform:rotate(300deg);
+                }
+                .item-12{
+                    top: 9px;
+                    right: 88px;
+                    transform:rotate(330deg);
+                }
+            }
+            .timer-layer{
+                position: absolute;
+                width: 96px;
+                height: 96px;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-family: 'hytangmeiren';
+                font-size: 24px;
+                text-shadow: -2px 0 #225599, 0 2px #225599,
+                2px 0 #225599, 0 -2px #225599;
+                line-height: 25px;
+                .index{
+                    color: #fff;
+                }
+                .time{
+                    color: #fff000;
+                }
+            }
+            .result-layer{
+                position: absolute;
+                z-index: 10;
+                width: 339px;
+                height: 339px;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .radiation-icon{
+                    position: absolute;
+                    z-index: 1;
+                    top:0px;
+                    left: 0px;
+                    background: url("../images/zodiac/radiation-icon.png") no-repeat;
+                    width: 339px;
+                    height: 339px;
+                    background-size: 100%;
+                }
+                .fuzzy-icon{
+                    position: absolute;
+                    z-index: 2;
+                    top:0px;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    margin: auto;
+                    background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
+                    width: 358px;
+                    height: 358px;
+                    background-size: 100%;
+                }
+                .zodiac-icon{
+                    position: absolute;
+                    z-index: 3;
+                    top:0px;
+                    left: 0px;
+                    bottom: 0px;
+                    right: 0px;
+                    margin: auto;
+                }
+                .result-items{
+                    position: absolute;
+                    z-index: 4;
+                    left: 0px;
+                    bottom: 58px;
+                    width: 100%;
+                    height: 58px;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+                    .item{
+                        position: relative;
+                        overflow: hidden;
+                        &+.item{
+                            margin-left: 10px;
+                        }
+                    }
+                    .middle-result-item{
+                        background: url("../images/zodiac/middle-result-bg.png") no-repeat;
+                        width: 58px;
+                        height: 58px;
+                        background-size: 100%;
+                        .icon{
+                            position: absolute;
+                            top:4px;
+                            right: 4px;
+                        }
+                        .name{
+                            position: absolute;
+                            z-index: 1;
+                            font-size: 18px;
+                            color: #fff;
+                            font-family: 'hytangmeiren';
+                            text-shadow: -2px 0 #037b00, 0 2px #037b00,
+                            2px 0 #037b00, 0 -2px #037b00;
+                            left: 6px;
+                            bottom: 6px;
+                        }
+                    }
+                    .outside-result-item{
+                        background: url("../images/zodiac/outside-result-bg.png") no-repeat;
+                        width: 50px;
+                        height: 36px;
+                        background-size: 100%;
+                        line-height: 32px;
+                        text-align: center;
+                        .name{
+                            margin-top: -2px;
+                            font-size: 18px;
+                            color: #fff;
+                            font-family: 'hytangmeiren';
+                            text-shadow: -2px 0 #00569e, 0 2px #00569e,
+                            2px 0 #00569e, 0 -2px #00569e;
+                        }
+                    }
+                    .inside-result-item{
+                        background: url("../images/zodiac/inside-result-bg.png") no-repeat;
+                        width: 42px;
+                        height: 36px;
+                        background-size: 100%;
+                        line-height: 32px;
+                        text-align: center;
+                        .name{
+                            font-size: 20px;
+                            color: #fff;
+                            font-family: 'hytangmeiren';
+                            text-shadow: -2px 0 #a63900, 0 2px #a63900,
+                            2px 0 #a63900, 0 -2px #a63900;
+                        }
+                    }
+                }
+            }
+        }
+        .handle-btn-list{
+            margin-top: 20px;
+            text-align: center;
+            .handle-btn{
+                display: inline-block;
+                width: 178px;
+                height: 56px;
+                background-size: cover;
+                font-size: 24px;
+                color: #fff;
+                font-family: 'hytangmeiren';
+                text-align: center;
+                line-height: 42px;
+                &+.handle-btn{
+                    margin-left: 15px;
+                }
+            }
+            .apply-btn{
+                background: url("../images/zodiac/handle-btn-1.png");
+                text-shadow: #ef4242 0.05em 0.12em 0.01em;
+            }
+            .entrance-btn{
+                background: url("../images/zodiac/handle-btn-2.png");
+                text-shadow: #013200 0.05em 0.12em 0.01em;
+            }
+        }
+    }
+    .bet-panel{
+        float: left;
+        width: 296px;
+        height: 100%;
+        padding-top: 2.5%;
+        .bet-block{
+            background: url("../images/zodiac/bet-block-bg.png") no-repeat;
+            width: 296px;
+            height: 631px;
+            .block-bd{
+                margin-top: 5px;
+                height: 88%;
+                width: 100%;
+                border: 1px solid red;
+                padding: 0px 10px;
+            }
+            .balance{
+                background: url("../images/zodiac/balance-item-bg.png") no-repeat;
+                width: 258px;
+                height: 41px;
+                background-size: 100% 100%;
+                margin: 0px auto;
+                font-size: 18px;
+                color: #fff;
+                font-family: 'hytangmeiren';
+                text-shadow: #8651dc 0.05em 0.12em 0.01em;
+                line-height: 32px;
+                padding: 0px 15px;
+            }
+            .choice-list{
+                margin-top: 5px;
+                text-align: center;
+                >li{
+                    display: inline-block;
+                    background: url("../images/zodiac/choice.png") no-repeat;
+                    width: 74px;
+                    height: 32px;
+                    background-size: 100%;
+                    margin: 2px 5px;
+                    color: #fff;
+                    font-family: 'hytangmeiren';
+                    font-size: 16px;
+                    line-height: 26px;
+                    &.selected{
+                        background: url("../images/zodiac/choice-selected.png") no-repeat;
+                    }
+                }
+            }
+            .area{
+                .area-hd{
+                    text-align: center;
+                    .title{
+                        position: relative;
+                        color: #2096e0;
+                        font-family: 'hytangmeiren';
+                        font-size: 16px;
+                    }
+                }
+            }
+            .options-area{
+
             }
         }
     }

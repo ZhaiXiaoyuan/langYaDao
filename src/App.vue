@@ -3,14 +3,20 @@
         <v-header></v-header>
         <div id="page-content">
             <router-view></router-view>
+            <v-footer></v-footer>
         </div>
-        <v-footer></v-footer>
     </div>
 </template>
 <style lang="less" rel="stylesheet/less">
     @import "../static/css/main.css";
     @import "less/main";
     [v-cloak] { display: none }
+    #page-content{
+        padding-top: 60px;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
 </style>
 <script>
     import Vue from 'vue'

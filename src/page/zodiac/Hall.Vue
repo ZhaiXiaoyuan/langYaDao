@@ -1,15 +1,15 @@
 <template>
     <div class="cm-page zodiac-hall">
-        <div class="content-wrap">
+        <div class="page-content">
             <i class="icon logo-icon logo"></i>
             <div class="carousel-block">
-               <!-- <div class="view-box">
-                    <ul class="zodiac-list">
-                        <li class="zodiac-item" v-for="(item,index) in zodiacList" :key="index" v-bind:style="{left:-11*index+'px'}">
-                            <i class="icon" :class="item"></i>
-                        </li>
-                    </ul>
-                </div>-->
+                <!-- <div class="view-box">
+                     <ul class="zodiac-list">
+                         <li class="zodiac-item" v-for="(item,index) in zodiacList" :key="index" v-bind:style="{left:-11*index+'px'}">
+                             <i class="icon" :class="item"></i>
+                         </li>
+                     </ul>
+                 </div>-->
 
                 <div class="swiper-box" style="width: 520px;">
                     <!-- swiper -->

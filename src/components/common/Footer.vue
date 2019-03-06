@@ -26,9 +26,9 @@
 <style lang="less" rel="stylesheet/less" scoped>
     .footer{
         padding: 20px 10px;
-        position: absolute;
+    /*    position: absolute;
         left: 0px;
-        bottom: 0px;
+        bottom: 0px;*/
         text-align: center;
         width: 100%;
         background: #fff;
