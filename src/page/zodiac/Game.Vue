@@ -314,7 +314,72 @@
                             <div class="area-hd">
                                 <span class="title">-&nbsp;竞猜&nbsp;-</span>
                             </div>
+                            <div class="area-bd">
+                                <ul class="item-list">
+                                    <li v-for="(item,index) in optionsList" :key="index" class="item" :class="item.type">
+                                        <i class="icon" :class="item.icon"></i>
+                                        <div class="item-hd">
+                                            <span class="name">{{item.name}}</span>
+                                        </div>
+                                        <div class="item-bd">
+                                            <p>竞猜率:{{item.rate}}%</p>
+                                            <p>竞猜额度:{{item.count}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel data-panel">
+                <div class="block player-block">
+                    <div class="block-hd">
+                        <table>
+                            <thead>
+                            <tr>
+                                <td class="name">昵称</td>
+                                <td class="level">等级</td>
+                                <td class="count">战绩</td>
+                                <td class="balance">余额</td>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="block-bd">
+                        <table>
+                            <tbody>
+                            <tr v-for="(item,index) in 10" :key="index">
+                                <td class="name">消失的眼泪</td>
+                                <td class="level">勇士</td>
+                                <td class="count"><span class="win">0胜</span><span class="gap">/</span><span class="lose">2负</span></td>
+                                <td class="balance">18k</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="block host-block">
+                    <div class="block-hd"><span class="title">擂主后选区</span></div>
+                    <div class="block-bd">
+                        <table>
+                            <tbody>
+                            <tr v-for="(item,index) in 10" :key="index">
+                                <td class="index">{{index+1}}</td>
+                                <td class="name">旗木卡卡西</td>
+                                <td class="count"><span class="win">0胜</span><span class="gap">/</span><span class="lose">2负</span></td>
+                                <td class="balance">18k</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="block personal-block">
+                    <div class="block-hd"><span class="title">个人战绩</span></div>
+                    <div class="block-bd">
+                        <p>参与局数：3</p>
+                        <p>房内战绩：23234234</p>
+                        <p>单局最大胜利：6</p>
                     </div>
                 </div>
             </div>
@@ -338,42 +403,131 @@
         },
         data: function(){
             return {
-                swiperOption: {
-                    slidesPerView: 5,
-                    spaceBetween: 0,
-                    freeMode: true,
-                    loop: true,
-                    autoplay: {
-                        delay: 2500,
-                        disableOnInteraction: false
-                    },
-                },
-                zodiacList:['tiger-zodiac-icon','rabbit-zodiac-icon','cow-zodiac-icon','sheep-zodiac-icon','chicken-zodiac-icon','dog-zodiac-icon','monkey-zodiac-icon','pig-zodiac-icon','mouse-zodiac-icon','horse-zodiac-icon','snake-zodiac-icon','dragon-zodiac-icon'],
-                roomList:[
+                optionsList:[
                     {
-                        name:'初级房',
-                        limit:10,
-                        count:100,
-                        curCount:99,
+                        name:'亥猪',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'pig-icon',
                     },
                     {
-                        name:'中级房',
-                        limit:100,
-                        count:100,
-                        curCount:80,
+                        name:'子鼠',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'mouse-icon',
                     },
                     {
-                        name:'高级房',
-                        limit:1000,
-                        count:100,
-                        curCount:50,
+                        name:'丑牛',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'cow-icon',
                     },
                     {
-                        name:'大师房',
-                        limit:10000,
-                        count:100,
-                        curCount:30,
-                    }
+                        name:'寅虎',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'tiger-icon',
+                    },
+                    {
+                        name:'卯兔',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'rabbit-icon',
+                    },
+                    {
+                        name:'辰龙',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'dragon-icon',
+                    },
+                    {
+                        name:'巳蛇',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'snake-icon',
+                    },
+                    {
+                        name:'午马',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'horse-icon',
+                    },
+                    {
+                        name:'未羊',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'sheep-icon',
+                    },
+                    {
+                        name:'申猴',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'monkey-icon',
+                    },
+                    {
+                        name:'酉鸡',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'chicken-icon',
+                    },
+                    {
+                        name:'戍狗',
+                        rate:26,
+                        count:32,
+                        type:'outside',
+                        icon:'dog-icon',
+                    },
+                    {
+                        name:'神龟',
+                        rate:26,
+                        count:32,
+                        type:'middle',
+                        icon:'turtle-icon',
+                    },
+                    {
+                        name:'麒麟',
+                        rate:26,
+                        count:32,
+                        type:'middle',
+                        icon:'kirin-icon',
+                    },
+                    {
+                        name:'凤凰',
+                        rate:26,
+                        count:32,
+                        type:'middle',
+                        icon:'phoenix-icon',
+                    },
+                    {
+                        name:'貔貅',
+                        rate:26,
+                        count:32,
+                        type:'middle',
+                        icon:'pixiu-icon',
+                    },
+                    {
+                        name:'乾',
+                        rate:26,
+                        count:32,
+                        type:'inside',
+                    },
+                    {
+                        name:'坤',
+                        rate:26,
+                        count:32,
+                        type:'inside',
+                    },
                 ]
             }
         },

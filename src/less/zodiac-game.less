@@ -1,24 +1,26 @@
 .zodiac-game{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: url("../images/zodiac/game-bg.jpg") no-repeat center;
     background-size: cover;
     min-height: 100%;
     .page-content{
         position: relative;
-        width: 1310px;
+        width: 1320px;
         margin: 0px auto;
         overflow: hidden;
         padding-bottom: 30px;
     }
     .panel{
         &+.panel{
-            margin-left: 20px;
+            margin-left: 15px;
         }
     }
     .session-panel{
         float: left;
         width: 250px;
         height: 100%;
-        padding-top: 2.5%;
     }
     .block{
         .block-hd{
@@ -911,17 +913,16 @@
         float: left;
         width: 296px;
         height: 100%;
-        padding-top: 2.5%;
         .bet-block{
             background: url("../images/zodiac/bet-block-bg.png") no-repeat;
             width: 296px;
             height: 631px;
             .block-bd{
                 margin-top: 5px;
-                height: 88%;
+                height: 89%;
                 width: 100%;
-                border: 1px solid red;
                 padding: 0px 10px;
+                overflow: auto;
             }
             .balance{
                 background: url("../images/zodiac/balance-item-bg.png") no-repeat;
@@ -937,7 +938,7 @@
                 padding: 0px 15px;
             }
             .choice-list{
-                margin-top: 5px;
+                margin-top: 3px;
                 text-align: center;
                 >li{
                     display: inline-block;
@@ -958,6 +959,7 @@
             .area{
                 .area-hd{
                     text-align: center;
+                    line-height: 18px;
                     .title{
                         position: relative;
                         color: #2096e0;
@@ -967,7 +969,235 @@
                 }
             }
             .options-area{
-
+                ul{
+                    margin-top: 4px;
+                    text-align: center;
+                    >li{
+                        position: relative;
+                        display: inline-block;
+                        background: url("../images/zodiac/outside-option-item-bg.png") no-repeat;
+                        width: 82px;
+                        height: 56px;
+                        background-size: 100%;
+                        overflow: hidden;
+                        margin: 0.5px 3px;
+                        text-align: left;
+                        .icon{
+                            position: absolute;
+                            z-index: 0;
+                            top:-2px;
+                            right: -2px;
+                            opacity: 0.2;
+                        }
+                        .pig-icon{
+                            width: 49px;
+                            height: 49px;
+                        }
+                        .mouse-icon{
+                            width: 39px;
+                            height: 58px;
+                        }
+                        .cow-icon{
+                            width: 52px;
+                            height: 47px;
+                        }
+                        .tiger-icon{
+                            width: 46px;
+                            height: 55px;
+                        }
+                        .rabbit-icon{
+                            width: 49px;
+                            height: 58px;
+                        }
+                        .dragon-icon{
+                            width: 60px;
+                            height: 47px;
+                        }
+                        .snake-icon{
+                            width: 38px;
+                            height: 54px;
+                        }
+                        .horse-icon{
+                            width: 48px;
+                            height: 59px;
+                        }
+                        .sheep-icon{
+                            width: 50px;
+                            height: 59px;
+                        }
+                        .monkey-icon{
+                            width: 51px;
+                            height: 46px;
+                        }
+                        .chicken-icon{
+                            width: 52px;
+                            height: 58px;
+                        }
+                        .dog-icon{
+                            width: 52px;
+                            height: 53px;
+                        }
+                        .item-hd{
+                            position: relative;
+                            z-index: 1;
+                            height: 22px;
+                            line-height: 20px;
+                            padding: 0px 5px;
+                            .name{
+                                font-size: 15px;
+                                font-family: 'hytangmeiren';
+                                color: #fff;
+                                text-shadow: -2px 0 #046da4, 0 2px #046da4,
+                                2px 0 #046da4, 0 -2px #046da4;
+                            }
+                        }
+                        .item-bd{
+                            position: relative;
+                            z-index: 1;
+                            background: #fff;
+                            width: 78px;
+                            height: 32px;
+                            margin: 0px auto;
+                            border-bottom-left-radius: 8px;
+                            border-bottom-right-radius: 8px;
+                            font-size: 12px;
+                            font-family: 'hytangmeiren';
+                            color: #1085d6;
+                            line-height: 14px;
+                            p{
+                                transform: scale(0.95);
+                            }
+                        }
+                        &.middle{
+                            background: url("../images/zodiac/middle-option-item-bg.png") no-repeat;
+                            width: 125px;
+                            height: 56px;
+                            .icon{
+                                top:-12px;
+                                right: 0px;
+                            }
+                            .item-hd{
+                                .name{
+                                    text-shadow: -2px 0 #538503, 0 2px #538503,
+                                    2px 0 #538503, 0 -2px #538503;
+                                }
+                            }
+                            .item-bd{
+                                width: 121px;
+                                color: #588b06;
+                            }
+                        }
+                        &.inside{
+                            background: url("../images/zodiac/inside-option-item-bg.png") no-repeat;
+                            width: 125px;
+                            height: 56px;
+                            .item-hd{
+                                .name{
+                                    text-shadow: -2px 0 #996c15, 0 2px #996c15,
+                                    2px 0 #996c15, 0 -2px #996c15;
+                                }
+                            }
+                            .item-bd{
+                                width: 121px;
+                                color: #996c15;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .data-panel{
+        float: left;
+        width: 256px;
+        .block{
+            padding: 0px 10px;
+            &+.block{
+                margin-top: 7px;
+            }
+        }
+        table{
+            font-family: 'hytangmeiren';
+            width: 100%;
+            text-align: center;
+            .name{
+                width: 35%;
+            }
+            .level{
+                width: 15%;
+            }
+            .count{
+                width: 30%;
+            }
+            .balance{
+                width: 20%;
+            }
+            thead{
+                td{
+                    color: #fff;
+                    font-size: 16px;
+                }
+            }
+            tbody{
+              td{
+                  color: #2096e0;
+                  font-size: 12px;
+                  padding: 3px 2px;
+                  border-bottom: 1px solid #c8ecff;
+                  .win{
+                      color: #fa9300;
+                  }
+                  .lose{
+                      color: #ff5961;
+                  }
+              }
+            }
+        }
+        .player-block{
+            background: url("../images/zodiac/player-block-bg.png") no-repeat;
+            width: 256px;
+            height: 274px;
+            background-size: 100%;
+            .block-hd{
+                padding: 0px 5px;
+            }
+            .block-bd{
+                margin: 0px auto;
+                height: 80%;
+                overflow: auto;
+                padding: 5px 5px;
+                border-radius: 30px;
+            }
+        }
+        .host-block{
+            background: url("../images/zodiac/host-block-bg.png") no-repeat;
+            width: 256px;
+            height: 202px;
+            background-size: 100%;
+            .block-bd{
+                margin: 0px auto;
+                height: 74%;
+                overflow: auto;
+                padding: 5px 5px;
+                border-radius: 30px;
+                .index{
+                    width: 10%;
+                }
+                .name{
+                    width: 40%;
+                }
+            }
+        }
+        .personal-block{
+            background: url("../images/zodiac/personal-block-bg.png") no-repeat;
+            width: 256px;
+            height: 142px;
+            background-size: 100%;
+            .block-bd{
+                font-family: 'hytangmeiren';
+                font-size: 16px;
+                color: #2096e0;
+                padding: 5px 15px;
             }
         }
     }
