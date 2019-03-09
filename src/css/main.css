@@ -130,6 +130,14 @@ h5,
 h6 {
   line-height: inherit;
 }
+/*去掉input自动补全后的黄色样式*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition-delay: 99999s;
+  -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+}
 /*自定义样式*/
 body {
   background: #f5f5f5;
@@ -243,17 +251,6 @@ body {
 .cm-history-block > li.active:after {
   display: none;
 }
-.el-dialog__title {
-  color: #6e0d00 !important;
-}
-.el-button--primary {
-  background: #6e0d00 !important;
-  border: 1px solid #6e0d00 !important;
-}
-.el-button--primary:hover {
-  background: rgba(110, 13, 0, 0.8) !important;
-  border: 1px solid rgba(110, 13, 0, 0.8) !important;
-}
 .cm-no-content {
   font-size: 20px;
   padding: 20px 20px;
@@ -276,6 +273,135 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+/*登录注册弹窗组件样式*/
+.register-modal .el-dialog {
+  border-radius: 8px;
+  width: 420px;
+  background-image: url("../images/common/login-bg.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+.register-modal .el-dialog .el-dialog__title {
+  font-size: 22px;
+  color: #000;
+  font-weight: bold;
+}
+.register-modal .el-dialog .el-dialog__body {
+  padding: 10px 15px 30px 15px;
+}
+.register-modal .el-dialog .modal-body {
+  border-top: 1px solid #f5f5f5;
+  padding-top: 20px;
+}
+.register-modal .el-dialog .logo-md-icon {
+  display: block;
+  margin: 0px auto 20px auto;
+  background: url("../images/common/logo-md-icon.png") no-repeat;
+  width: 121px;
+  height: 121px;
+  background-size: 100% 100%;
+}
+.register-modal .el-dialog .form {
+  width: 85%;
+  margin: 0px auto;
+  padding-bottom: 50px;
+}
+.register-modal .el-dialog .form .input-item {
+  position: relative;
+}
+.register-modal .el-dialog .form .input-item .el-input .el-input__inner {
+  outline: none;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid #dadada;
+  padding: 0px 10px;
+  font-size: 14px;
+  color: #000;
+}
+.register-modal .el-dialog .form .input-item .el-input .el-input__inner:focus {
+  border-bottom: 2px solid #0facff;
+}
+.register-modal .el-dialog .form .input-item .gen-code {
+  bottom: 5px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 12px;
+  background: #f39700;
+  width: 88px;
+}
+.register-modal .el-dialog .form .input-item .counter {
+  position: absolute;
+  right: 0px;
+  bottom: 1px;
+  font-size: 12px;
+  color: #999;
+}
+.register-modal .el-dialog .form .input-item.code-input-item .el-input__suffix {
+  right: 90px;
+}
+.register-modal .el-dialog .form .input-item.unit-input-item .el-input__suffix {
+  right: 30px;
+}
+.register-modal .el-dialog .form .input-item.wechat-input-item .label {
+  padding-left: 10px;
+  font-size: 14px;
+  color: #999;
+}
+.register-modal .el-dialog .form .input-item.wechat-input-item .value {
+  text-align: center;
+}
+.register-modal .el-dialog .form .input-item.wechat-input-item .value .img-box {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  background: #f4f4f4;
+  border-radius: 3px;
+  padding: 5px;
+}
+.register-modal .el-dialog .form .input-item.wechat-input-item .value .img-box img {
+  width: 100%;
+  height: 100%;
+}
+.register-modal .el-dialog .form .input-item.wechat-input-item .value .tips {
+  margin-top: 0px;
+  font-size: 12px;
+  color: #010101;
+}
+.register-modal .el-dialog .form .input-item + .input-item {
+  margin-top: 10px;
+}
+.register-modal .el-dialog .form .submit-btn {
+  margin-top: 20px;
+  width: 100%;
+  font-size: 14px;
+}
+.register-modal .el-dialog .form .switch {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+.register-modal .el-dialog .form .switch .switch-btn {
+  position: relative;
+  padding: 0px 15px;
+  display: inline-block;
+}
+.register-modal .el-dialog .form .switch .switch-btn + .switch-btn:before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 1px;
+  height: 18px;
+  background: #c9c9c9;
+  margin: auto;
+}
+.el-button--primary {
+  background: #0facff;
+  border-color: #0facff;
+}
+/*左侧导航样式*/
 .home .banner-panel {
   width: 100%;
   height: 320px;
@@ -2052,4 +2178,192 @@ body {
   font-size: 16px;
   color: #2096e0;
   padding: 5px 15px;
+}
+.center {
+  /* min-height: 90%;*/
+}
+.center .page-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px auto;
+  width: 1000px;
+  min-height: 100%;
+}
+.center .left-nav {
+  float: left;
+  background: #fff;
+  width: 204px;
+  min-height: 800px;
+  border-radius: 10px;
+  padding: 20px 0px;
+  color: #000;
+}
+.center .left-nav .nav-list .list-hd {
+  font-size: 18px;
+  padding: 8px 20px;
+}
+.center .left-nav .nav-list + .nav-list {
+  margin-top: 20px;
+}
+.center .left-nav ul > li {
+  position: relative;
+  width: 204px;
+  font-size: 14px;
+  padding: 8px 20px 8px 40px;
+}
+.center .left-nav ul > li.active {
+  background: #f5f5f5;
+}
+.center .left-nav ul > li.active:before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 4px;
+  height: 100%;
+  background: #0facff;
+}
+.center .left-nav .vip-nav-list ul > li.active:before {
+  background: #ffa800;
+}
+.center .right-page-content {
+  margin-left: auto;
+  width: 780px;
+  border-radius: 10px;
+  background: #fff;
+  min-height: 100%;
+}
+.center .user-info {
+  padding: 30px 20px;
+}
+.center .user-info .info-panel {
+  padding-right: 20px;
+}
+.center .user-info .info-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  line-height: normal;
+}
+.center .user-info .info-row .label {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 80px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #010101;
+}
+.center .user-info .info-row .value {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #666;
+}
+.center .user-info .info-row .value .el-input .el-input__inner {
+  outline: none;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid #dadada;
+  padding: 0px;
+}
+.center .user-info .info-row .value .el-input .el-input__inner:focus {
+  border-bottom: 2px solid #0facff;
+}
+.center .user-info .info-row .value .to-vip-btn {
+  display: inline-block;
+  font-size: 12px;
+  color: #fff;
+  padding: 0px 10px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 10px;
+  background: -webkit-linear-gradient(left, #ffc000, #ff8400);
+  background: linear-gradient(to right, #ffc000, #ff8400);
+}
+.center .user-info .info-row .value .link-btn {
+  color: #0facff;
+}
+.center .user-info .info-row + .info-row {
+  margin-top: 20px;
+}
+.center .user-info .handle-row {
+  margin-top: 10px;
+  text-align: right;
+}
+.center .user-info .handle-row .handle-btn {
+  height: 30px;
+  padding: 0px 20px;
+}
+.center .vip-store {
+  padding: 30px 0px;
+}
+.center .vip-store .vip-list {
+  text-align: center;
+}
+.center .vip-store .vip-list > li {
+  position: relative;
+  display: inline-block;
+  background: url("../images/vip/vip-item-bg.png") no-repeat;
+  width: 360px;
+  height: 171px;
+  background-size: 100%;
+  margin: 0px 10px;
+  padding: 10px;
+}
+.center .vip-store .vip-list > li .cover {
+  float: left;
+  width: 130px;
+  height: 130px;
+  background: #fff;
+  border-radius: 3px;
+}
+.center .vip-store .vip-list > li .info {
+  padding-left: 145px;
+  color: #fff;
+  text-align: left;
+}
+.center .vip-store .vip-list > li .info .title {
+  padding-top: 2px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.center .vip-store .vip-list > li .info .desc {
+  font-size: 14px;
+  padding: 8px 0px;
+}
+.center .vip-store .vip-list > li .info .price {
+  font-size: 14px;
+}
+.center .vip-store .vip-list > li .info .price .num {
+  font-size: 24px;
+  font-weight: bold;
+}
+.center .vip-store .vip-list > li .buy-btn {
+  position: absolute;
+  top: -2px;
+  right: 7px;
+  display: inline-block;
+  background: url("../images/vip/vip-buy-btn.png") no-repeat;
+  width: 78px;
+  height: 44px;
+  background-size: 100%;
+  font-size: 18px;
+  color: #ba4a00;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
 }

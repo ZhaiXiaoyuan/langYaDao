@@ -93,7 +93,9 @@
 
         },
         mounted () {
-
+            //临时测试
+         /*   Vue.registerModal({open:true});*/
+         /*   Vue.loginModal({open:true});*/
         },
         beforeRouteLeave(to,from,next){
             next();

@@ -14,7 +14,7 @@
                 </li>
                 <li><span>琅琊豆中心</span></li>
                 <li class="new"><span>消息</span></li>
-                <li><span>注册/登录</span></li>
+                <li><span class="cm-btn" @click="registerModal({open:true})">注册</span><span>/</span><span class="cm-btn" @click="loginModal({open:true})">登录</span></li>
             </div>
         </div>
     </div>

@@ -7,6 +7,8 @@ import OperationFeedback from './OperationFeedback';
 import ViewPicModal from './ViewPicModal';
 import GenCode from './GenCode';
 import CropModal from './CropModal';
+import RegisterModal from './RegisterModal.vue';
+import LoginModal from './LoginModal.vue';
 
 
 
@@ -19,11 +21,15 @@ export default {
     Vue.component('ViewPicModal',ViewPicModal);
     Vue.component('GenCode',GenCode);
     Vue.component('CropModal',CropModal);
+    Vue.component('RegisterModal',RegisterModal);
+    Vue.component('LoginModal',LoginModal);
 
     /*方法调度方式*/
     let OperationFeedbackConstructor = Vue.extend(OperationFeedback);
     let ViewPicModalConstructor = Vue.extend(ViewPicModal);
     let CropModalConstructor=Vue.extend(CropModal);
+    let RegisterModalConstructor=Vue.extend(RegisterModal);
+    let LoginModalConstructor=Vue.extend(LoginModal);
     const functionObject={
         /**
          * 操作提示
@@ -105,6 +111,38 @@ export default {
             return {
                 close:instance.close
             }
+        },
+        /**
+         * 注册弹窗
+         * @param options
+         */
+        registerModal:function (options) {
+            options={...{
+
+            },...options};
+            //
+            let parentEle=document.getElementById('app');
+            //
+            let instance=new RegisterModalConstructor({});
+            instance.options=options;
+            instance.$mount();
+            parentEle.appendChild(instance.$el);
+        },
+        /**
+         * 登录弹窗
+         * @param options
+         */
+        loginModal:function (options) {
+            options={...{
+
+            },...options};
+            //
+            let parentEle=document.getElementById('app');
+            //
+            let instance=new LoginModalConstructor({});
+            instance.options=options;
+            instance.$mount();
+            parentEle.appendChild(instance.$el);
         },
     }
     /**/
