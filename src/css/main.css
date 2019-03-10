@@ -401,6 +401,9 @@ body {
   background: #0facff;
   border-color: #0facff;
 }
+.el-button--primary.is-plain {
+  background: none;
+}
 /*左侧导航样式*/
 .home .banner-panel {
   width: 100%;
@@ -2366,4 +2369,345 @@ body {
   font-weight: bold;
   text-align: center;
   line-height: 40px;
+}
+.center .safe-box {
+  padding: 20px 20px;
+}
+.center .safe-box .balance-panel {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.center .safe-box .balance-panel .balance-item {
+  position: relative;
+  color: #fff;
+  padding: 12px;
+}
+.center .safe-box .balance-panel .balance-item .title {
+  font-size: 18px;
+}
+.center .safe-box .balance-panel .balance-item .value {
+  margin-top: 8px;
+}
+.center .safe-box .balance-panel .balance-item .value .num {
+  font-size: 30px;
+  font-family: 'Arial';
+}
+.center .safe-box .balance-panel .balance-item .value .unit {
+  font-size: 14px;
+  padding-left: 4px;
+}
+.center .safe-box .balance-panel .balance-item .handle {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+}
+.center .safe-box .balance-panel .balance-item .handle .btn {
+  display: block;
+  font-size: 14px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  padding: 4px 10px;
+  min-width: 68px;
+  text-align: center;
+}
+.center .safe-box .balance-panel .balance-item .handle .btn + .btn {
+  margin-top: 8px;
+}
+.center .safe-box .balance-panel .balance-item .handle .solid-btn {
+  background: #fff;
+}
+.center .safe-box .balance-panel .total-balance-item {
+  background: url("../images/langYaDou/balance-item1-bg.png") no-repeat;
+  width: 360px;
+  height: 190px;
+  background-size: 100%;
+  margin-right: 20px;
+}
+.center .safe-box .balance-panel .total-balance-item .value {
+  margin-top: 40px;
+  text-align: center;
+}
+.center .safe-box .balance-panel .liquidity-balance-item {
+  background: url("../images/langYaDou/balance-item2-bg.png") no-repeat;
+  width: 360px;
+  height: 90px;
+  background-size: 100%;
+}
+.center .safe-box .balance-panel .safety-balance-item {
+  background: url("../images/langYaDou/balance-item3-bg.png") no-repeat;
+  width: 360px;
+  height: 90px;
+  background-size: 100%;
+  margin-top: 10px;
+}
+.center .safe-box .balance-panel .safety-balance-item .solid-btn {
+  color: #ffb340;
+}
+.center .tab-panel {
+  margin-top: 10px;
+}
+.center .tab-panel .tab-list ul {
+  border-bottom: 2px solid #f5f5f5;
+}
+.center .tab-panel .tab-list ul > li {
+  display: inline-block;
+  position: relative;
+  color: #666;
+  font-size: 16px;
+  padding: 8px 0px;
+}
+.center .tab-panel .tab-list ul > li.active {
+  color: #010101;
+  font-size: 18px;
+}
+.center .tab-panel .tab-list ul > li.active:after {
+  content: '';
+  position: absolute;
+  left: 0px;
+  bottom: -2px;
+  width: 100%;
+  height: 3px;
+  background: #0facff;
+}
+.center .tab-panel .tab-list ul > li + li {
+  margin-left: 10px;
+}
+.center .tab-panel .filter {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 15px;
+}
+.center .tab-panel .filter .type-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  color: #000;
+}
+.center .tab-panel .filter .type-list li {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  border: 1px solid #dadada;
+}
+.center .tab-panel .filter .type-list li.active {
+  background: #0facff;
+  border: 1px solid #0facff;
+  color: #fff;
+}
+.center .tab-panel .filter .type-list li + li {
+  margin-left: 5px;
+}
+.center .tab-panel .filter .all-btn {
+  margin-left: auto;
+  display: inline-block;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #dadada;
+}
+.center .tab-panel .gift-list {
+  margin-top: 15px;
+}
+.center .tab-panel .gift-list > li {
+  padding: 10px 0px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-top: 1px solid #f7f7f7;
+}
+.center .tab-panel .gift-list > li .cover {
+  width: 110px;
+  height: 110px;
+}
+.center .tab-panel .gift-list > li .cover img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.center .tab-panel .gift-list > li .info {
+  margin-left: 10px;
+  padding-top: 4px;
+}
+.center .tab-panel .gift-list > li .info .title-row {
+  font-size: 16px;
+  color: #000;
+  padding-bottom: 10px;
+}
+.center .tab-panel .gift-list > li .info .title-row .count {
+  display: inline-block;
+  margin-left: 5px;
+  height: 14px;
+  font-size: 12px;
+  color: #e5004f;
+  line-height: 13px;
+  border-radius: 7px;
+  padding: 0px 6px;
+  border: 1px solid #e5004f;
+}
+.center .tab-panel .gift-list > li .info .info-row {
+  font-size: 14px;
+  color: #666;
+}
+.center .tab-panel .gift-list > li .info .info-row + .info-row {
+  margin-top: 4px;
+}
+.center .tab-panel .gift-list > li .handle {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: auto;
+}
+.center .tab-panel .gift-list > li .handle .exchange-btn {
+  display: inline-block;
+  font-size: 12px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: #000;
+  border: 1px solid #dadada;
+  height: 28px;
+}
+.center .tab-panel .gift-list > li .handle .exchange-btn:focus,
+.center .tab-panel .gift-list > li .handle .exchange-btn:hover {
+  background: #0facff;
+  color: #fff;
+  border: 1px solid #0facff;
+}
+.center .tab-panel .gift-list > li .handle .exchange-btn:active {
+  background: #409eff;
+}
+.center .tab-panel .gift-list > li.disable .exchange-btn {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.center .charge {
+  padding: 0px 20px 20px 20px;
+}
+.center .charge .price-list {
+  margin-top: 20px;
+}
+.center .charge .price-list > li {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #dadada;
+  font-size: 16px;
+  color: #000;
+  overflow: hidden;
+}
+.center .charge .price-list > li.active {
+  position: relative;
+  border: 1px solid #0facff;
+}
+.center .charge .price-list > li.active:after {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  background: url("../images/common/selected-icon.png") no-repeat;
+  width: 25px;
+  height: 24px;
+  background-size: 100%;
+}
+.center .charge .price-list > li + li {
+  margin-left: 20px;
+}
+.center .charge .info-row {
+  font-size: 16px;
+  color: #010101;
+  margin-top: 20px;
+}
+.center .charge .info-row .num {
+  position: relative;
+  top: 1px;
+  font-size: 24px;
+  color: #0facff;
+}
+.center .charge .pay-type-list {
+  margin-top: 20px;
+}
+.center .charge .pay-type-list > li {
+  display: inline-block;
+}
+.center .charge .pay-type-list > li .item-bd {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 10px;
+  border: 1px solid #dadada;
+}
+.center .charge .pay-type-list > li .item-bd .wechat-icon {
+  background: url("../images/common/wechat-icon.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+}
+.center .charge .pay-type-list > li .item-bd .ali-icon {
+  background: url("../images/common/ali-icon.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+}
+.center .charge .pay-type-list > li .item-ft {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  padding-top: 5px;
+}
+.center .charge .pay-type-list > li + li {
+  margin-left: 20px;
+}
+.center .charge .pay-type-list > li.active .item-bd {
+  border: 1px solid #0facff;
+}
+.center .charge .pay-type-list > li.active .item-bd:after {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  background: url("../images/common/selected-icon.png") no-repeat;
+  width: 25px;
+  height: 24px;
+  background-size: 100%;
+}
+.center .charge .handle {
+  margin-top: 20px;
+  padding: 0px 20px;
+}
+.center .charge .handle button {
+  padding-left: 30px;
+  padding-right: 30px;
 }

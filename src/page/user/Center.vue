@@ -22,6 +22,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="nav-list vip-nav-list">
+                    <div class="list-hd">
+                        琅琊豆中心
+                    </div>
+                    <div class="list-bd">
+                        <ul>
+                            <li>保险箱</li>
+                            <li>充值</li>
+                            <li>赠送礼物</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="right-page-content">
                 <router-view></router-view>

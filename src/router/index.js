@@ -25,6 +25,16 @@ export default new Router({
                     name:'vipStore',
                     component: resolve => require(['../page/vip/VipStore.vue'], resolve)
                 },
+                {
+                    path: 'safeBox',
+                    name:'safeBox',
+                    component: resolve => require(['../page/langYaDou/SafeBox.vue'], resolve)
+                },
+                {
+                    path: 'charge',
+                    name:'charge',
+                    component: resolve => require(['../page/langYaDou/Charge.vue'], resolve)
+                },
             ]
         },
         {
