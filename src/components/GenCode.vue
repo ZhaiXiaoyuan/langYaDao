@@ -59,7 +59,7 @@
     methods: {
       genCode:function () {
         let that=this;
-          let code=document.getElementsByClassName('code-value')[0].value;
+         /* let code=document.getElementsByClassName('code-value')[0].value;
           if(!this.identifyCode){
               this.operationFeedback({type:'warn',text:'请出入图片验证码'});
               return;
@@ -67,7 +67,7 @@
           if(this.identifyCode!=code){
               this.operationFeedback({type:'warn',text:'图片验证码错误'});
               return;
-          }
+          }*/
         if(!regex.phone.test(this.phone)){
           this.operationFeedback({type:'warn',text:regex.phoneAlert})
           return;
@@ -77,14 +77,12 @@
         }
         this.isRequesting=true;
         let params={
-          ...Vue.tools.sessionInfo(),
-            telephoneNums:this.phone,
-            phoneNums:this.phone
+            phoneNumber:this.phone
         }
         let fb=this.operationFeedback({text:'发送中...'});
-        Vue.api.genPhoneCode(params,this.url).then(function (resp) {
+        Vue.api.sendVerifySms({apiParams:params}).then(function (resp) {
           that.isRequesting=false;
-          if(resp.respCode=='00'){
+          if(resp.respCode=='2000'){
             let data=JSON.parse(resp.respMsg);
               that.options.ok&&that.options.ok(data);
             fb.setOptions({type:'complete','text':'发送成功'});

@@ -7,7 +7,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';    // 默认主题
 //import '../static/css/theme-green/index.css';       // 浅绿色主题
 //import "babel-polyfill";
-
+import config from './utils/config'
 import api from './utils/api'
 import tools from './utils/tools'
 import './utils/filters'
@@ -20,6 +20,7 @@ Vue.use(vueResource);
 Vue.use(vueCookie);
 
 /*---安装自定义插件---*/
+Vue.use(config);
 Vue.use(api);
 Vue.use(tools);
 Vue.use(components);

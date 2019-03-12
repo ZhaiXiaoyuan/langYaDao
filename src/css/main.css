@@ -450,6 +450,11 @@ body {
 .home .banner-panel .el-carousel__indicator + .el-carousel__indicator {
   margin-left: 13px;
 }
+.home .banner-panel .banner-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .home .content-panel {
   margin-top: 20px;
 }
@@ -2710,4 +2715,360 @@ body {
 .center .charge .handle button {
   padding-left: 30px;
   padding-right: 30px;
+}
+.center .gift-type {
+  padding: 0px 20px;
+}
+.center .gift-type .gift-type-list {
+  text-align: center;
+  padding: 10px 0px;
+}
+.center .gift-type .gift-type-list li {
+  display: inline-block;
+  width: 140px;
+  margin: 15px 20px;
+}
+.center .gift-type .gift-type-list li img {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+}
+.center .gift-type .gift-type-list li .title {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #000;
+  text-align: left;
+}
+.center .gift-type .gift-type-list li .handle-btn {
+  margin-top: 8px;
+  display: inline-block;
+  font-size: 12px;
+  padding: 5px 35px;
+  border-radius: 5px;
+  color: #000;
+  border: 1px solid #dadada;
+  height: 28px;
+}
+.center .gift-type .gift-type-list li .handle-btn:focus,
+.center .gift-type .gift-type-list li .handle-btn:hover {
+  background: #0facff;
+  color: #fff;
+  border: 1px solid #0facff;
+}
+.center .gift-type .gift-type-list li .handle-btn:active {
+  background: #409eff;
+}
+.draw-activity {
+  background: url("../images/activity/draw-page-bg.jpg") no-repeat;
+  background-size: cover;
+  min-height: 100%;
+}
+.draw-activity .page-content {
+  width: 870px;
+  margin: 0px auto;
+  padding-top: 40px;
+}
+.draw-activity .page-content .title-icon {
+  background: url("../images/activity/draw-title-icon.png") no-repeat;
+  width: 440px;
+  height: 120px;
+  background-size: 100% 100%;
+}
+.draw-activity .page-content .main-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.draw-activity .page-content .main-content .info-panel {
+  padding-top: 30px;
+}
+.draw-activity .page-content .main-content .info-panel .block {
+  background: url("../images/activity/info-block-bg.png") no-repeat;
+  width: 402px;
+  height: 199px;
+  background-size: 100%;
+}
+.draw-activity .page-content .main-content .info-panel .block .block-hd {
+  font-size: 22px;
+  color: #6f00b6;
+  font-family: 'hytangmeiren';
+  text-align: center;
+  line-height: 25px;
+}
+.draw-activity .page-content .main-content .info-panel .block .block-bd {
+  width: 92%;
+  margin: 6px auto 0px auto;
+  height: 79%;
+  overflow: auto;
+  font-size: 14px;
+  color: #fff;
+}
+.draw-activity .page-content .main-content .info-panel .block + .block {
+  margin-top: 20px;
+}
+.draw-activity .page-content .main-content .info-panel .record-list {
+  width: 100%;
+  font-size: 14px;
+}
+.draw-activity .page-content .main-content .info-panel .record-list td {
+  text-align: center;
+  padding: 6px 5px;
+}
+.draw-activity .page-content .main-content .info-panel .record-list .time {
+  width: 40%;
+}
+.draw-activity .page-content .main-content .info-panel .record-list .cost {
+  width: 20%;
+}
+.draw-activity .page-content .main-content .info-panel .record-list .result {
+  width: 40%;
+}
+.draw-activity .page-content .main-content .info-panel .record-list thead td {
+  color: #fbda74;
+  border-bottom: 1px solid #932df2;
+}
+.draw-activity .page-content .main-content .info-panel .record-list tbody td {
+  color: #fff;
+}
+.draw-activity .page-content .main-content .draw-panel {
+  margin-top: -40px;
+  margin-left: auto;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table {
+  position: relative;
+  z-index: 1;
+  background: url("../images/activity/draw-table-bg.png") no-repeat;
+  width: 402px;
+  height: 396px;
+  background-size: 100%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc {
+  position: absolute;
+  top: 17px;
+  left: 23px;
+  background: url("../images/activity/draw-table.png") no-repeat;
+  width: 354px;
+  height: 354px;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .line {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  width: 1px;
+  height: 100%;
+  background: red;
+  margin: auto;
+  -webkit-transform: rotate(22.5deg);
+      -ms-transform: rotate(22.5deg);
+          transform: rotate(22.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .line-2 {
+  -webkit-transform: rotate(67.5deg);
+      -ms-transform: rotate(67.5deg);
+          transform: rotate(67.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .line-3 {
+  -webkit-transform: rotate(112.5deg);
+      -ms-transform: rotate(112.5deg);
+          transform: rotate(112.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .line-4 {
+  -webkit-transform: rotate(157.5deg);
+      -ms-transform: rotate(157.5deg);
+          transform: rotate(157.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .point {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  width: 4px;
+  height: 4px;
+  background: blue;
+  border-radius: 50%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .prize-item {
+  position: absolute;
+  width: 80px;
+  height: 100px;
+  text-align: center;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .prize-item .item-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .prize-item .name {
+  font-size: 12px;
+  color: #fff;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .prize-item .pic {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 5px auto 0px auto;
+  width: 80%;
+  height: 70%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .prize-item .pic img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-1 {
+  top: 17px;
+  left: 181px;
+  -webkit-transform: rotate(22.5deg);
+      -ms-transform: rotate(22.5deg);
+          transform: rotate(22.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-2 {
+  top: 81px;
+  left: 245px;
+  -webkit-transform: rotate(67.5deg);
+      -ms-transform: rotate(67.5deg);
+          transform: rotate(67.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-3 {
+  bottom: 80px;
+  left: 246px;
+  -webkit-transform: rotate(112.5deg);
+      -ms-transform: rotate(112.5deg);
+          transform: rotate(112.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-4 {
+  bottom: 17px;
+  left: 181px;
+  -webkit-transform: rotate(157.5deg);
+      -ms-transform: rotate(157.5deg);
+          transform: rotate(157.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-5 {
+  bottom: 17px;
+  right: 181px;
+  -webkit-transform: rotate(202.5deg);
+      -ms-transform: rotate(202.5deg);
+          transform: rotate(202.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-6 {
+  bottom: 80px;
+  right: 246px;
+  -webkit-transform: rotate(247.5deg);
+      -ms-transform: rotate(247.5deg);
+          transform: rotate(247.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-7 {
+  top: 81px;
+  right: 245px;
+  -webkit-transform: rotate(292.5deg);
+      -ms-transform: rotate(292.5deg);
+          transform: rotate(292.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .disc .prize-item-list .item-8 {
+  top: 17px;
+  right: 181px;
+  -webkit-transform: rotate(337.5deg);
+      -ms-transform: rotate(337.5deg);
+          transform: rotate(337.5deg);
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .light {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 25px;
+  background: url("../images/activity/light.png") no-repeat;
+  width: 330px;
+  height: 330px;
+  background-size: 100%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .start {
+  position: absolute;
+  z-index: 2;
+  top: 131px;
+  left: 137px;
+  background: url("../images/activity/start-btn-bg.png") no-repeat;
+  width: 126px;
+  height: 126px;
+  background-size: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .start .start-btn {
+  background: url("../images/activity/start-btn.png") no-repeat;
+  width: 96px;
+  height: 96px;
+  background-size: 100%;
+  text-align: center;
+  padding-top: 26px;
+  cursor: pointer;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .start .start-btn .start-text-icon {
+  background: url("../images/activity/start-text-icon.png ") no-repeat;
+  width: 60px;
+  height: 31px;
+  background-size: 100%;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .start .start-btn .cost {
+  font-size: 12px;
+  color: #fff;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .pointer {
+  position: absolute;
+  z-index: 3;
+  background: url("../images/activity/pointer.png") no-repeat;
+  width: 190px;
+  height: 58px;
+  background-size: 100%;
+  top: -20px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+.draw-activity .page-content .main-content .draw-panel .score-block {
+  position: relative;
+  top: -22px;
+  background: url("../images/activity/score-block.png") no-repeat;
+  width: 246px;
+  height: 96px;
+  background-size: 100%;
+  margin: 0px auto;
+  padding: 45px 10px 5px 16px;
+  color: #fff;
+  font-size: 14px;
+}
+.draw-activity .page-content .main-content .draw-panel .score-block .num {
+  color: #ffe371;
 }

@@ -1,0 +1,273 @@
+.draw-activity{
+    background: url("../images/activity/draw-page-bg.jpg") no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    .page-content{
+        width: 870px;
+        margin: 0px auto;
+        padding-top: 40px;
+        .title-icon{
+            background: url("../images/activity/draw-title-icon.png") no-repeat;
+            width: 440px;
+            height: 120px;
+            background-size: 100% 100%;
+        }
+        .main-content{
+            display: flex;
+            .info-panel{
+                padding-top: 30px;
+                .block{
+                 background: url("../images/activity/info-block-bg.png") no-repeat;
+                 width: 402px;
+                 height: 199px;
+                 background-size: 100%;
+                 .block-hd{
+                     font-size: 22px;
+                     color: #6f00b6;
+                     font-family: 'hytangmeiren';
+                     text-align: center;
+                     line-height: 25px;
+                 }
+                 .block-bd{
+                     width: 92%;
+                     margin: 6px auto 0px auto;
+                     height: 79%;
+                     overflow: auto;
+                     font-size: 14px;
+                     color: #fff;
+                 }
+               &+.block{
+                   margin-top: 20px;
+               }
+             }
+                .record-list{
+                    width: 100%;
+                    font-size: 14px;
+                    td{
+                        text-align: center;
+                        padding: 6px 5px;
+                    }
+                    .time{
+                        width: 40%;
+                    }
+                    .cost{
+                        width: 20%;
+                    }
+                    .result{
+                        width: 40%;
+                    }
+                    thead{
+                        td{
+                            color: #fbda74;
+                            border-bottom: 1px solid #932df2;
+                        }
+                    }
+                    tbody{
+                        td{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+            .draw-panel{
+                margin-top: -40px;
+                margin-left: auto;
+                .draw-table{
+                    position: relative;
+                    z-index: 1;
+                    background: url("../images/activity/draw-table-bg.png") no-repeat;
+                    width: 402px;
+                    height: 396px;
+                    background-size: 100%;
+                    .disc{
+                        position: absolute;
+                        top: 17px;
+                        left: 23px;
+                        background: url("../images/activity/draw-table.png") no-repeat;
+                        width: 354px;
+                        height: 354px;
+                        .line{
+                            display: none;
+                            position: absolute;
+                            z-index: 100;
+                            top:0px;
+                            right: 0px;
+                            left:0px;
+                            bottom: 0px;
+                            width: 1px;
+                            height: 100%;
+                            background: red;
+                            margin: auto;
+                            transform:rotate(22.5deg);
+                        }
+                        .line-2{
+                            transform:rotate(67.5deg);
+                        }
+                        .line-3{
+                            transform:rotate(112.5deg);
+                        }
+                        .line-4{
+                            transform:rotate(157.5deg);
+                        }
+                        .point{
+                            display: none;
+                            position: absolute;
+                            z-index: 1000;
+                            top:0px;
+                            left: 0px;
+                            right: 0px;
+                            bottom: 0px;
+                            margin: auto;
+                            width: 4px;
+                            height: 4px;
+                            background: blue;
+                            border-radius: 50%;
+                        }
+                        .prize-item-list{
+                            position: relative;
+                            width: 100%;
+                            height: 100%;
+                            .prize-item{
+                                position: absolute;
+                                width: 80px;
+                                height:100px;
+                                text-align: center;
+                                .item-content{
+                                    position: relative;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                                .name{
+                                    font-size: 12px;
+                                    color: #fff;
+                                }
+                                .pic{
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin: 5px auto 0px auto;
+                                    width: 80%;
+                                    height: 70%;
+                                    img{
+                                        max-width: 100%;
+                                        max-height: 100%;
+                                    }
+                                }
+                            }
+                            .item-1{
+                                top: 17px;
+                                left: 181px;
+                                transform: rotate(22.5deg);
+                            }
+                            .item-2{
+                                top: 81px;
+                                left: 245px;
+                                transform: rotate(67.5deg);
+                            }
+                            .item-3{
+                                bottom: 80px;
+                                left: 246px;
+                                transform: rotate(112.5deg);
+                            }
+                            .item-4{
+                                bottom: 17px;
+                                left: 181px;
+                                transform: rotate(157.5deg);
+                            }
+                            .item-5{
+                                bottom: 17px;
+                                right: 181px;
+                                transform: rotate(202.5deg);
+                            }
+                            .item-6{
+                                bottom: 80px;
+                                right: 246px;
+                                transform: rotate(247.5deg);
+                            }
+                            .item-7{
+                                top: 81px;
+                                right: 245px;
+                                transform: rotate(292.5deg);
+                            }
+                            .item-8{
+                                top: 17px;
+                                right: 181px;
+                                transform: rotate(337.5deg);
+                            }
+                        }
+                    }
+                    .light{
+                        display: none;
+                        position: absolute;
+                        z-index: 1;
+                        top: 20px;
+                        left: 25px;
+                        background: url("../images/activity/light.png") no-repeat;
+                        width: 330px;
+                        height: 330px;
+                        background-size: 100%;
+                    }
+                    .start{
+                        position: absolute;
+                        z-index: 2;
+                        top: 131px;
+                        left: 137px;
+                        background: url("../images/activity/start-btn-bg.png") no-repeat;
+                        width: 126px;
+                        height: 126px;
+                        background-size: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        .start-btn{
+                            background: url("../images/activity/start-btn.png") no-repeat;
+                            width: 96px;
+                            height: 96px;
+                            background-size: 100%;
+                            text-align: center;
+                            padding-top: 26px;
+                            cursor: pointer;
+                            .start-text-icon{
+                                background: url("../images/activity/start-text-icon.png ") no-repeat;
+                                width: 60px;
+                                height: 31px;
+                                background-size: 100%;
+                            }
+                            .cost{
+                                font-size: 12px;
+                                color: #fff;
+                            }
+                        }
+                    }
+                    .pointer{
+                        position: absolute;
+                        z-index: 3;
+                        background: url("../images/activity/pointer.png") no-repeat;
+                        width: 190px;
+                        height: 58px;
+                        background-size: 100%;
+                        top:-20px;
+                        left: 0px;
+                        right: 0px;
+                        margin: auto;
+                    }
+                }
+                .score-block{
+                    position: relative;
+                    top:-22px;
+                    background: url("../images/activity/score-block.png") no-repeat;
+                    width: 246px;
+                    height: 96px;
+                    background-size: 100%;
+                    margin: 0px auto;
+                    padding: 45px 10px 5px 16px;
+                    color: #fff;
+                    font-size: 14px;
+                    .num{
+                        color: #ffe371;
+                    }
+                }
+            }
+        }
+    }
+}

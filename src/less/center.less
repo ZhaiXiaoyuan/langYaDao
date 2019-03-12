@@ -497,4 +497,45 @@
             }
         }
     }
+    .gift-type{
+        padding:0px 20px;
+        .gift-type-list{
+            text-align: center;
+            padding: 10px 0px;
+            li{
+                display: inline-block;
+                width: 140px;
+                margin: 15px 20px;
+                img{
+                    width: 140px;
+                    height: 140px;
+                    border-radius: 10px;
+                }
+                .title{
+                    margin-top: 4px;
+                    font-size: 14px;
+                    color: #000;
+                    text-align: left;
+                }
+                .handle-btn{
+                    margin-top: 8px;
+                    display: inline-block;
+                    font-size: 12px;
+                    padding: 5px 35px;
+                    border-radius: 5px;
+                    color: #000;
+                    border: 1px solid #dadada;
+                    height: 28px;
+                    &:focus,&:hover{
+                        background: @mainBlue;
+                        color: #fff;
+                        border: 1px solid @mainBlue;
+                    }
+                    &:active{
+                        background: #409eff;
+                    }
+                }
+            }
+        }
+    }
 }

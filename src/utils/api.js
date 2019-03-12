@@ -47,7 +47,7 @@ export default {
 
     /**/
     //临时测试
-    let basicUrl=process.env.NODE_ENV=='development'?'http://1493v261y2.51mypc.cn:47032':'http://api.globalmazu.org:8801';
+      let basicUrl=Vue.appConfig.domain;
      // let basicUrl=false&&process.env.NODE_ENV=='development'?'http://api.yeahcai.com/yecai':'http://zyu-server.wicp.net:12412';
 
     Vue.api={
@@ -64,6 +64,38 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/user/login',
+                params: params
+            });
+        },
+        //发送短信验证码
+        sendVerifySms:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/sendVerifySms',
+                params: params
+            });
+        },
+        //验证短信验证码
+        verifySms:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/verifySms',
+                params: params
+            });
+        },
+        //获取游戏列表
+        getGameList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/game/getGameList',
+                params: params
+            });
+        },
+        //获取banner列表
+        getBannerList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/banner/getBannerList',
                 params: params
             });
         },

@@ -16,7 +16,7 @@
                 </div>
                 <div class="input-item code-input-item">
                     <el-input placeholder="输入验证码"  v-model="form.code" clearable></el-input>
-                    <gen-code></gen-code>
+                    <gen-code :phone="form.phone" :options="{ok:(data)=>{phoneCodeData=data;}}"></gen-code>
                 </div>
                 <div class="input-item unit-input-item">
                     <el-input placeholder="个性签名"  v-model="form.selfIntroduction" clearable></el-input>
@@ -55,7 +55,8 @@
       return {
           form:{
               phone:'',
-          }
+          },
+          phoneCodeData:null,
       }
     },
     computed: {},
@@ -64,10 +65,10 @@
     },
     methods: {
       register:function () {
-            if(!this.form.name){
+          if(!this.form.name){
                 Vue.operationFeedback({type:'warn',text:'请输入用户名'});
                 return;
-            }
+          }
           if(!this.form.password){
               Vue.operationFeedback({type:'warn',text:'请输入密码'});
               return;
@@ -88,32 +89,38 @@
               Vue.operationFeedback({type:'warn',text:'请输入手机号'});
               return;
           }
-          /*if(!this.form.code){
+          if(!this.form.code){
               Vue.operationFeedback({type:'warn',text:'请输入验证码'});
               return;
-          }*/
+          }
         /*  if(!this.form.selfIntroduction){
               Vue.operationFeedback({type:'warn',text:'请输入个性签名'});
               return;
           }*/
-            let params={
-                ...this.form,
-                wxOpenId:''
-            }
-            let fb=Vue.operationFeedback({text:'注册中...'});
-            Vue.api.register({apiParams:params}).then((resp)=>{
-                if(resp.respCode=='2000'){
-                    fb.setOptions({type:"complete",text:'注册成功'});
-                    //
-                    this.close();
-                    //
-                    setTimeout(()=>{
-                        Vue.loginModal({open:true});
-                    },3000)
-                }else{
-                    fb.setOptions({type:"warn",text:resp.respMsg});
-                }
-            });
+          let fb=Vue.operationFeedback({text:'注册中...'});
+          Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
+              if(resp.respCode=='2000'){
+                  let params={
+                      ...this.form,
+                      wxOpenId:''
+                  }
+                  Vue.api.register({apiParams:params}).then((resp)=>{
+                      if(resp.respCode=='2000'){
+                          fb.setOptions({type:"complete",text:'注册成功'});
+                          //
+                          this.close();
+                          //
+                          setTimeout(()=>{
+                              Vue.loginModal({open:true});
+                          },3000)
+                      }else{
+                          fb.setOptions({type:"warn",text:resp.respMsg});
+                      }
+                  });
+              }else{
+                  fb.setOptions({type:"warn",text:resp.respMsg});
+              }
+          });
         },
       close:function () {
         this.options.open=false;

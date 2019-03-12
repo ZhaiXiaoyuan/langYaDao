@@ -35,6 +35,11 @@ export default new Router({
                     name:'charge',
                     component: resolve => require(['../page/langYaDou/Charge.vue'], resolve)
                 },
+                {
+                    path: 'gift',
+                    name:'gift',
+                    component: resolve => require(['../page/langYaDou/Gift.vue'], resolve)
+                },
             ]
         },
         {
@@ -46,6 +51,11 @@ export default new Router({
             path: '/zodiac/game',
             name:'zodiacGame',
             component: resolve => require(['../page/zodiac/Game.vue'], resolve),
+        },
+        {
+            path: '/draw',
+            name:'draw',
+            component: resolve => require(['../page/activity/Draw.vue'], resolve)
         },
     ]
 })

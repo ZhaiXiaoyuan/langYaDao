@@ -3,8 +3,8 @@
         <div class="page-content">
             <div class="banner-panel">
                 <el-carousel height="100%" :interval="10000">
-                    <el-carousel-item @click="toDetail(item)" v-for="(item,index) in bannerList" :key="index" :style="{background: 'url('+item.cover+') no-repeat center',backgroundSize: 'cover'}">
-
+                    <el-carousel-item @click="toDetail(item)" v-for="(item,index) in bannerList" :key="index" :style="{background: 'url('+basicConfig.coverBasicUrl+item.image+') no-repeat center',backgroundSize: 'cover'}">
+                        <a :href="item.url" target="_blank" class="banner-link"></a>
                     </el-carousel-item>
                 </el-carousel>
             </div>
@@ -16,17 +16,13 @@
                     </div>
                     <div class="block-bd">
                         <ul class="item-list">
-                            <li>
-                                <div class="cover">
-                                    <img :src="cover1" alt="">
-                                </div>
-                                <h3>琅琊岛欢乐运动会</h3>
-                            </li>
-                            <li>
-                                <div class="cover">
-                                    <img :src="cover2" alt="">
-                                </div>
-                                <h3>琅琊岛欢乐运动会</h3>
+                            <li v-for="(item,index) in gameList" :key="index">
+                                <a :href="item.gameUrl">
+                                    <div class="cover">
+                                        <img :src="basicConfig.coverBasicUrl+item.gamePic" alt="">
+                                    </div>
+                                    <h3>琅琊岛欢乐运动会</h3>
+                                </a>
                             </li>
                             <li class="waiting-item">
                                 <div class="cover">
@@ -79,20 +75,43 @@
         },
         data: function(){
             return {
-                cover1:require('../images/home/game-cover-1.jpg'),
-                cover2:require('../images/home/game-cover-2.jpg'),
-                bannerList:[
-                    {
-                        cover:require('../images/home/banner-1.png'),
-                    },
-                ],
-
+                bannerList:[],
+                gameList:[],
             }
         },
         methods: {
-
+            getGameList:function () {
+                let params={
+                    pageIndex:1,
+                    pageSize:50,
+                    state:'enable'
+                }
+                Vue.api.getGameList({apiParams:params}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        this.gameList=data.gameList;
+                        console.log('this.gameList:',this.gameList);
+                    }
+                });
+            },
+            getBannerList:function () {
+                let params={
+                    pageIndex:1,
+                    pageSize:10,
+                }
+                Vue.api.getBannerList({apiParams:params}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        this.bannerList=data.bannerList;
+                        console.log('this.bannerList:',this.bannerList);
+                    }
+                });
+            },
         },
         mounted () {
+            //
+            this.getBannerList();
+            this.getGameList();
             //临时测试
          /*   Vue.registerModal({open:true});*/
          /*   Vue.loginModal({open:true});*/
