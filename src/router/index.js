@@ -43,14 +43,21 @@ export default new Router({
             ]
         },
         {
-            path: '/zodiac/hall',
-            name:'zodiacHall',
-            component: resolve => require(['../page/zodiac/Hall.vue'], resolve),
-        },
-        {
-            path: '/zodiac/game',
-            name:'zodiacGame',
-            component: resolve => require(['../page/zodiac/Game.vue'], resolve),
+            path: '/zodiac',
+            name:'zodiac',
+            component: resolve => require(['../page/zodiac/Zodiac.vue'], resolve),
+            children:[
+                {
+                    path: 'hall',
+                    name:'zodiacHall',
+                    component: resolve => require(['../page/zodiac/Hall.vue'], resolve),
+                },
+                {
+                    path: 'game/:type?',
+                    name:'zodiacGame',
+                    component: resolve => require(['../page/zodiac/Game.vue'], resolve),
+                },
+            ]
         },
         {
             path: '/draw',

@@ -3,7 +3,7 @@
         <div class="page-content">
             <div class="banner-panel">
                 <el-carousel height="100%" :interval="10000">
-                    <el-carousel-item @click="toDetail(item)" v-for="(item,index) in bannerList" :key="index" :style="{background: 'url('+basicConfig.coverBasicUrl+item.image+') no-repeat center',backgroundSize: 'cover'}">
+                    <el-carousel-item @click="toDetail(item)" v-for="(item,index) in bannerList" :key="index" :style="{background: 'url('+basicConfig.imgBasicUrl+item.image+') no-repeat center',backgroundSize: 'cover'}">
                         <a :href="item.url" target="_blank" class="banner-link"></a>
                     </el-carousel-item>
                 </el-carousel>
@@ -19,7 +19,7 @@
                             <li v-for="(item,index) in gameList" :key="index">
                                 <a :href="item.gameUrl">
                                     <div class="cover">
-                                        <img :src="basicConfig.coverBasicUrl+item.gamePic" alt="">
+                                        <img :src="basicConfig.imgBasicUrl+item.gamePic" alt="">
                                     </div>
                                     <h3>琅琊岛欢乐运动会</h3>
                                 </a>
@@ -90,7 +90,6 @@
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
                         this.gameList=data.gameList;
-                        console.log('this.gameList:',this.gameList);
                     }
                 });
             },
@@ -103,7 +102,6 @@
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
                         this.bannerList=data.bannerList;
-                        console.log('this.bannerList:',this.bannerList);
                     }
                 });
             },

@@ -28,10 +28,25 @@
                     </div>
                     <div class="block-bd">
                         <ul class="room-list">
-                            <li v-for="(item,index) in roomList" :key="index" :class="'level'+(index+1)">
-                                <p class="title">{{item.name}}</p>
-                                <p class="limit">入场条件：{{item.limit}}琅琊豆以上</p>
-                                <p class="count">{{item.curCount}}/{{item.count}}人</p>
+                            <li class="level1" @click="enterRoom('初级房')">
+                                <p class="title">{{juniorRoom.name}}</p>
+                                <p class="limit">入场条件：{{juniorRoom.进入门槛}}琅琊豆以上</p>
+                                <p class="count">{{juniorRoom.curCount}}/{{juniorRoom.桌子数*11}}人</p>
+                            </li>
+                            <li class="level2"  @click="enterRoom('中级房')">
+                                <p class="title">{{middleRoom.name}}</p>
+                                <p class="limit">入场条件：{{middleRoom.进入门槛}}琅琊豆以上</p>
+                                <p class="count">{{middleRoom.curCount}}/{{middleRoom.桌子数*11}}人</p>
+                            </li>
+                            <li class="level3"  @click="enterRoom('高级房')">
+                                <p class="title">{{advanceRoom.name}}</p>
+                                <p class="limit">入场条件：{{advanceRoom.进入门槛}}琅琊豆以上</p>
+                                <p class="count">{{advanceRoom.curCount}}/{{advanceRoom.桌子数*11}}人</p>
+                            </li>
+                            <li class="level4"  @click="enterRoom('大师房')">
+                                <p class="title">{{masterRoom.name}}</p>
+                                <p class="limit">入场条件：{{masterRoom.进入门槛}}琅琊豆以上</p>
+                                <p class="count">{{masterRoom.curCount}}/{{masterRoom.桌子数*11}}人</p>
                             </li>
                         </ul>
                     </div>
@@ -91,6 +106,7 @@
         },
         data: function(){
             return {
+                account:{},
                 swiperOption: {
                     slidesPerView: 5,
                     spaceBetween: 0,
@@ -102,39 +118,110 @@
                     },
                 },
                 zodiacList:['tiger-zodiac-icon','rabbit-zodiac-icon','cow-zodiac-icon','sheep-zodiac-icon','chicken-zodiac-icon','dog-zodiac-icon','monkey-zodiac-icon','pig-zodiac-icon','mouse-zodiac-icon','horse-zodiac-icon','snake-zodiac-icon','dragon-zodiac-icon'],
-                roomList:[
-                    {
-                        name:'初级房',
-                        limit:10,
-                        count:100,
-                        curCount:99,
-                    },
-                    {
-                        name:'中级房',
-                        limit:100,
-                        count:100,
-                        curCount:80,
-                    },
-                    {
-                        name:'高级房',
-                        limit:1000,
-                        count:100,
-                        curCount:50,
-                    },
-                    {
-                        name:'大师房',
-                        limit:10000,
-                        count:100,
-                        curCount:30,
-                    }
-                ]
+                juniorRoom:{
+                    name:'初级房',
+                    curCount:0,
+                },
+                middleRoom:{
+                    name:'中级房',
+                    curCount:0,
+                },
+                advanceRoom:{
+                    name:'高级房',
+                    curCount:0,
+                },
+                masterRoom:{
+                    name:'大师房',
+                    curCount:0,
+                },
+
+                ws:null,
+                requestInterval:null,
+
             }
         },
         methods: {
+            getRoomInfo:function (type) {
+                Vue.api.getGameConfigInfo({apiParams:{property:type+'配置'}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        let roomObj={};
+                        data.forEach((item)=>{
+                            roomObj[item.configName]=parseInt(item.configValue);
+                        });
+                        switch (type){
+                            case '初级房':
+                                this.juniorRoom={...this.juniorRoom,...roomObj};
+                                break;
+                            case '中级房':
+                                this.middleRoom={...this.middleRoom,...roomObj};
+                                break;
+                            case '高级房':
+                                this.advanceRoom={...this.advanceRoom,...roomObj};
+                                break;
+                            case '大师房':
+                                this.masterRoom={...this.masterRoom,...roomObj};
+                                break;
+                        }
+                    }else{
 
+                    }
+                });
+            } ,
+            getRoomData:function () {
+                this.socketApi.sendSock({api:'getLobbyInfo',apiParams:{}});
+            },
+            roomDataFb:function (data) {
+                if(!data.state){
+                    this.juniorRoom.curCount=data.juniorRoomPlayerCount;
+                    this.middleRoom.curCount=data.middleRoomPlayerCount;
+                    this.advanceRoom.curCount=data.advancedRoomPlayerCount;
+                    this.masterRoom.curCount=data.masterRoomPlayerCount;
+                }
+            },
+            enterRoom:function (type) {
+                this.socketApi.sendSock({api:'entryRoom',apiParams:{roomProperty:type}});
+            },
+            enterRoomFb:function (data) {
+                this.$router.push({path:'/zodiac/game'})
+            }
+        },
+        created (){
+            this.socketApi.setListener((e)=>{
+                let resp=JSON.parse(e.data);
+                console.log('resp233:',resp);
+                if(resp.respCode=='2000'){
+                  try{
+                      let data=JSON.parse(resp.respMsg);
+                      if(data.info){
+                          this.enterRoomFb(data);
+                      }else{
+                          this.roomDataFb(data);
+                      }
+                  }catch (err){
+
+                  }
+                }
+            });
         },
         mounted () {
-
+            //
+            this.account=this.getAccountInfo();
+            this.account.id=1;
+            //
+            this.getRoomInfo('初级房');
+            this.getRoomInfo('中级房');
+            this.getRoomInfo('高级房');
+            this.getRoomInfo('大师房');
+            //
+            //临时测试
+            setTimeout(()=>{ this.getRoomData();},500);
+            this.requestInterval=setInterval(()=>{
+                this.getRoomData();
+                },5000);
+        },
+        beforeDestroy(){
+            clearInterval(this.requestInterval);
         },
         beforeRouteLeave(to,from,next){
             next();

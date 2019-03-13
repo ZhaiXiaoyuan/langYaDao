@@ -48,7 +48,7 @@ export default {
     /**/
     //临时测试
       let basicUrl=Vue.appConfig.domain;
-     // let basicUrl=false&&process.env.NODE_ENV=='development'?'http://api.yeahcai.com/yecai':'http://zyu-server.wicp.net:12412';
+      let basicUrl2=Vue.appConfig.domain2;
 
     Vue.api={
         //注册
@@ -99,7 +99,55 @@ export default {
                 params: params
             });
         },
-
+        //获取用户信息
+        getUserInfo:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/getUserInfo',
+                params: params
+            });
+        },
+        //获取用户信息
+        updateUserInfo:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/updateUserInfo',
+                type:'formData',
+                params: params
+            });
+        },
+        //获取会员计划
+        getVipTypeList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/vipType/getVipTypeList',
+                params: params
+            });
+        },
+        //获取收到的礼物列表
+        getGiftMessageList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/gift/getGiftMessageList',
+                params: params
+            });
+        },
+        //获取礼物列表
+        getGiftList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/gift/getGiftList',
+                params: params
+            });
+        },
+        //获取游戏配置信息
+        getGameConfigInfo:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl2+'/game1Config/getGameConfigInfo',
+                params: params
+            });
+        },
     }
   },
 

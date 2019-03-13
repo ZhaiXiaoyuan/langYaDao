@@ -3,18 +3,25 @@
         <div class="cm-container header-content">
             <i class="icon logo-icon"></i>
             <ul class="nav-list">
-                <li class="cm-btn" @click="go('home')" :class="{'active':pageName=='home'}"><span>琅琊岛</span></li>
+                <li class="cm-btn" @click="go('home')" :class="{'active':page=='home'}"><span>琅琊岛</span></li>
                <!-- <li class="cm-btn"><span>琅琊谷</span></li>
                 <li class="cm-btn"><span>琅琊村</span></li>
                 <li class="cm-btn"><span>琅琊秀</span></li>-->
             </ul>
             <div class="fun-nav-list">
-                <li>
-                    <i class="icon vip-icon"></i>
+                <li :class="{'active':page=='vipStore'}" class="vip-link">
+                    <router-link tag="i" :to="{ path: '/center/vip/vipStore'}" class="icon vip-icon"></router-link>
                 </li>
-                <li><span>琅琊豆中心</span></li>
+                <router-link tag="li" :to="{ path: '/center/coin/charge'}" :class="{'active':page=='charge'}"><span>琅琊豆中心</span></router-link>
                 <li class="new"><span>消息</span></li>
-                <li><span class="cm-btn" @click="registerModal({open:true})">注册</span><span>/</span><span class="cm-btn" @click="loginModal({open:true})">登录</span></li>
+                <li v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true})">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true})">登录</span></li>
+                <li class="account-info" v-if="account.id">
+                    <div class="wrap">
+                        <img :src="account.headPic?basicConfig.imgBasicUrl+account.headPic:defaultAvatar" alt="">
+                        <router-link tag="span" :to="{ path: '/center/user/userInfo'}" >{{account.name}}</router-link>
+                        <span class="cmb-tn logout-btn" @click="logout()">退出</span>
+                    </div>
+                </li>
             </div>
         </div>
     </div>
@@ -72,10 +79,12 @@
                 display: inline-block;
                 height: 100%;
                 line-height: 60px;
-                margin-left: 35px;
+                margin-left: 12px;
                 font-size: 14px;
                 color: #000;
                 cursor: pointer;
+                padding: 0px 13px;
+                .gap{}
                 &.new{
                     >span{
                         position: relative;
@@ -89,6 +98,42 @@
                             top:-2px;
                             right: -7px;
                         }
+                    }
+                }
+                &.active{
+                    color: #fff;
+                    background: url("../../images/common/nav-active-md-icon.png") no-repeat center;
+                    background-size: 100% 48%;
+                }
+                &.vip-link{
+                    &.active{
+                        color: #fff;
+                        background: url("../../images/common/vip-nav-active-icon.png") no-repeat center;
+                        background-size: 100% 48%;
+                        .vip-icon{
+                            background: url("../../images/common/vip-active-icon.png") no-repeat;
+                        }
+                    }
+                }
+                &.account-info{
+                    .wrap{
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        padding-left: 45px;
+                    }
+                    img{
+                        position: absolute;
+                        width: 40px;
+                        height: 40px;
+                        top:0px;
+                        left: 0px;
+                        bottom: 0px;
+                        margin: auto;
+                    }
+                    .logout-btn{
+                        margin-left: 5px;
+                        text-decoration: underline;
                     }
                 }
             }
@@ -112,28 +157,41 @@
     export default {
         data() {
             return {
-                pageName:'home',
+                page:'home',
                 collapse: false,
                 name: 'linxin',
-                accountInfo:{},
+                account:{},
                 showMenu:false,
+                defaultAvatar:require('../../images/common/default-avatar.png'),
             }
         },
         watch:{
             '$route': function(to, from) {
-                this.pageName=this.$route.name;
+                this.page=this.$route.name;
             },
         },
         methods:{
             go:function (page) {
                 this.showMenu=false;
                 this.$router.push({name:page});
+            },
+            logout:function () {
+                Vue.cookie.set('account','');
+                this.account={};
+                Vue.operationFeedback({type:'complete',text:'退出成功'});
             }
         },
         created(){
             //
-            this.pageName=this.$route.name;
+            this.account=Vue.getAccountInfo();
             //
+            this.page=this.$route.name;
+            //
+            /*刷新用户信息*/
+            bus.$on('refreshAccount', () => {
+                this.account=Vue.getAccountInfo();
+                console.log('this.account:',this.account);
+            });
         }
     }
 </script>

@@ -3,19 +3,19 @@
         <div class="balance-panel">
             <div class="balance-item total-balance-item">
                 <p class="title">总资产：</p>
-                <p class="value"><span class="num">8918989829</span><span class="unit">琅琊豆</span></p>
+                <p class="value"><span class="num">{{account.balance+account.safeBoxBalance}}</span><span class="unit">琅琊豆</span></p>
             </div>
             <div class="items-wrap">
                 <div class="balance-item liquidity-balance-item">
                     <p class="title">流动余额：</p>
-                    <p class="value"><span class="num">8918989829</span><span class="unit">琅琊豆</span></p>
+                    <p class="value"><span class="num">{{account.balance}}</span><span class="unit">琅琊豆</span></p>
                     <div class="handle">
-                        <span class="cm-btn btn">充值</span>
+                        <router-link tag="span" :to="{ path: '/center/coin/charge'}" class="cm-btn btn">充值</router-link>
                     </div>
                 </div>
                 <div class="balance-item safety-balance-item">
                     <p class="title">保险箱余额：</p>
-                    <p class="value"><span class="num">8918989829</span><span class="unit">琅琊豆</span></p>
+                    <p class="value"><span class="num">{{account.safeBoxBalance}}</span><span class="unit">琅琊豆</span></p>
                     <div class="handle">
                         <span class="cm-btn btn solid-btn">从余额转入</span>
                         <span class="cm-btn btn">转出到余额</span>
@@ -27,7 +27,6 @@
             <div class="tab-list">
                 <ul>
                     <li class="active">我的礼物</li>
-                    <li>德玛西亚</li>
                 </ul>
             </div>
             <div class="filter">
@@ -68,6 +67,7 @@
                         </div>
                     </li>
                 </ul>
+                <scroll-load :page="pager" @scrolling="getList()"></scroll-load>
             </div>
         </div>
     </div>
@@ -85,14 +85,64 @@
         },
         data: function(){
             return {
-
+                account:{},
+                state:'',//notExchanged:未兑换,exchanged:已兑换
+                pager:{
+                    pageNum: 1,
+                    pageSize: 20,
+                    isLoading:false,
+                    isFinished:false
+                },
+                entryList:[],
             }
         },
         methods: {
+            getUserInfo:function () {
+                Vue.api.getUserInfo({apiParams:{id:this.account.phone,type:'phone'}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        this.account={...this.account,...data};
+                        console.log('this.account:',this.account);
+                    }
+                });
+            },
+            getList:function (isInit) {
+                if(isInit){
+                    this.pager.pageNum = 1;
+                    this.entryList = [];
+                }
+                let params={
+                    userId:this.account.id,
+                    state:this.state,
+                    userType:'gainer',
+                    pageIndex:this.pager.pageNum,
+                    pageSize:this.pager.pageSize,
+                }
+                this.pager.loading=true;
+                Vue.api.getGiftMessageList({apiParams:params}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        console.log('data:',data);
+                        let list=data.giftMessageList;
 
+                        this.pager.pageNum=this.pager.pageNum+1;
+                        this.pager.maxPage=Math.ceil(data.count/this.pager.pageSize);
+                        this.pager.isLoading=false;
+                        this.pager.isFinished=false;
+                        this.entryList=this.entryList.concat(list);
+                        console.log('test:',this.entryList);
+                    }else{
+
+                    }
+                });
+            },
         },
         mounted () {
-
+            //
+            this.account=this.getAccountInfo();
+            //
+            this.getUserInfo();
+            this.getList();
         },
     }
 </script>

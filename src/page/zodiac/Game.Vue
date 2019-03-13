@@ -293,7 +293,7 @@
                     </div>
                 </div>
                 <div class="handle-btn-list">
-                    <span class="cm-btn handle-btn apply-btn">申请成为擂主</span>
+                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'">申请成为擂主</span>
                     <span class="cm-btn handle-btn entrance-btn">我的农场</span>
                 </div>
             </div>
@@ -302,7 +302,7 @@
                     <div class="block-hd"><p class="title">竞猜区</p></div>
                     <div class="block-bd">
                         <div class="balance">琅琊豆余额:245454543</div>
-                        <ul class="choice-list">
+                        <ul class="choice-list" v-if="type=='player'">
                             <li class="cm-btn selected">1K</li>
                             <li class="cm-btn">2K</li>
                             <li class="cm-btn">5K</li>
@@ -310,7 +310,7 @@
                             <li class="cm-btn">2W</li>
                             <li class="cm-btn">5W</li>
                         </ul>
-                        <div class="area options-area">
+                        <div class="area options-area" v-if="type=='player'">
                             <div class="area-hd">
                                 <span class="title">-&nbsp;竞猜&nbsp;-</span>
                             </div>
@@ -329,6 +329,54 @@
                                 </ul>
                             </div>
                         </div>
+                        <!--start:擂主竞猜区内容-->
+                        <div class="area options-area host-options-area" v-if="type=='host'">
+                            <div class="area-hd">
+                                <span class="title">-&nbsp;竞猜结果&nbsp;-</span>
+                            </div>
+                            <div class="area-bd">
+                                <ul class="item-list">
+                                    <li v-for="(item,index) in hostOptionsList" :key="index" class="item">
+                                        <i class="icon" :class="item.icon"></i>
+                                        <div class="item-hd">
+                                            <span class="name">{{item.outsideName}}</span>
+                                        </div>
+                                        <div class="item-bd">
+                                          <p>
+                                              <span>{{item.middleName}}</span>
+                                              <span>{{item.insideName}}</span>
+                                          </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="area options-area host-options-area reset-area" v-if="type=='host'">
+                            <div class="area-hd">
+                                <span class="title">-&nbsp;设置竞猜结果&nbsp;-</span>
+                            </div>
+                            <div class="area-bd">
+                                <ul class="item-list">
+                                    <li v-for="(item,index) in presetList" :key="index" class="item preset-item" :class="{'to-set':!item.value,'cur-item':index==3}">
+                                        <div class="item-hd">
+                                            <span class="name">{{item.title}}</span>
+                                        </div>
+                                        <div class="item-bd">
+                                            <p v-if="item.value">
+                                                {{item.middleName}},{{item.outsideName}},{{item.insideName}}
+                                            </p>
+                                            <p class="to-set-btn">点击设置</p>
+                                            <p class="setting-tips">设置中</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="handle">
+                                <div class="cm-btn apply-btn">提交结果</div>
+                            </div>
+                        </div>
+                        <!--start:擂主竞猜区内容-->
                     </div>
                 </div>
             </div>
@@ -403,6 +451,7 @@
         },
         data: function(){
             return {
+                type:'host',//player:'玩家',host:'擂主'
                 optionsList:[
                     {
                         name:'亥猪',
@@ -528,16 +577,150 @@
                         count:32,
                         type:'inside',
                     },
-                ]
+                ],
+
+                hostOptionsList:[
+                    {
+                        outsideName:'亥猪',
+                        middleName:'神龟',
+                        insideName:'坤',
+                        icon:'pig-icon',
+                        value:12
+                    },
+                    {
+                        outsideName:'子鼠',
+                        middleName:'神龟',
+                        insideName:'乾',
+                        icon:'mouse-icon',
+                        value:1
+                    },
+                    {
+                        outsideName:'丑牛',
+                        middleName:'神龟',
+                        insideName:'坤',
+                        icon:'pig-icon',
+                        value:2
+                    },
+                    {
+                        outsideName:'寅虎',
+                        middleName:'麒麟',
+                        insideName:'乾',
+                        icon:'tiger-icon',
+                        value:3
+                    },
+                    {
+                        outsideName:'卯兔',
+                        middleName:'麒麟',
+                        insideName:'坤',
+                        icon:'rabbit-icon',
+                        value:4
+                    },
+                    {
+                        outsideName:'辰龙',
+                        middleName:'麒麟',
+                        insideName:'乾',
+                        icon:'dragon-icon',
+                        value:5
+                    },
+                    {
+                        outsideName:'巳蛇',
+                        middleName:'凤凰',
+                        insideName:'坤',
+                        icon:'snake-icon',
+                        value:6
+                    },
+                    {
+                        outsideName:'午马',
+                        middleName:'凤凰',
+                        insideName:'乾',
+                        icon:'horse-icon',
+                        value:7
+                    },
+                    {
+                        outsideName:'未羊',
+                        middleName:'凤凰',
+                        insideName:'坤',
+                        icon:'sheep-icon',
+                        value:8
+                    },
+                    {
+                        outsideName:'申猴',
+                        middleName:'貔貅',
+                        insideName:'乾',
+                        icon:'monkey-icon',
+                        value:9
+                    },
+                    {
+                        outsideName:'酉鸡',
+                        middleName:'貔貅',
+                        insideName:'坤',
+                        icon:'chicken-icon',
+                        value:10
+                    },
+                    {
+                        outsideName:'戍狗',
+                        middleName:'貔貅',
+                        insideName:'乾',
+                        icon:'dog-icon',
+                        value:11
+                    },
+                ],
+                presetList:[
+                    {
+                        title:'第一局',
+                        outsideName:'亥猪',
+                        middleName:'神龟',
+                        insideName:'坤',
+                        icon:'pig-icon',
+                        value:12
+                    },
+                    {
+                        title:'第二局',
+                    }
+                    ,
+                    {
+                        title:'第三局',
+                    }
+                    ,
+                    {
+                        title:'第四局',
+                    }
+                    ,
+                    {
+                        title:'第五局',
+                    }
+                    ,
+                    {
+                        title:'第六局',
+                    }
+                ],
             }
         },
         methods: {
-
+            exitRoom:function () {
+                this.socketApi.sendSock({"api":"exitRoom","apiParams":"{}"});
+                console.log('*********exitRoom*********');
+            },
         },
         mounted () {
+            //
+            if(this.$route.params.type){
+                this.type=this.$route.params.type;
+                console.log('test:',this.type);
+            }
+            //
+            this.socketApi.setListener((e)=>{
+                let resp=JSON.parse(e.data);
+                console.log('resp:',resp);
+             /*   if(resp.respCode=='2000'){
+                    let data=JSON.parse(resp.respMsg);
+                    console.log('data233:',data);
+                }*/
+            });
 
         },
         beforeRouteLeave(to,from,next){
+            this.exitRoom();
             next();
         },
     }

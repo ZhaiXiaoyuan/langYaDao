@@ -52,11 +52,7 @@ export default {
               appBaickUrl:'http://happcpapp.yeahcai.com'
           },*/
           basicConfig:{
-              basicUrl:false&&process.env.NODE_ENV=='development'?'http://zyu-server.wicp.net:19356/':'http://zyu-server.wicp.net:12412/',
-              coverBasicUrl:Vue.appConfig.fileDomain+'/image/',
-              qrCodeBasicUrl:'http://shopqrcode.yeahcai.cn',
-              yeCaiBasicUrl:'http://yecai.happycp.cn',
-              appBaickUrl:'http://happcpapp.yeahcai.cn'
+              imgBasicUrl:Vue.appConfig.fileDomain+'/image/',
           },
         /*生成请求时间戳*/
         genTimestamp:function () {
@@ -141,7 +137,7 @@ export default {
             if(account){
                 return JSON.parse(account);
             }else{
-                router.push({name:'login'});
+                /*router.push({name:'login'});*/
                 return{};
             }
         },

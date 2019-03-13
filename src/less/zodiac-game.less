@@ -982,6 +982,8 @@
                         overflow: hidden;
                         margin: 0.5px 3px;
                         text-align: left;
+                        cursor: pointer;
+                        transition: all 0.3s;
                         .icon{
                             position: absolute;
                             z-index: 0;
@@ -1102,6 +1104,117 @@
                                 color: #996c15;
                             }
                         }
+                        &:hover{
+                           transform: translateY(-5px);
+                        }
+                    }
+                }
+                &.host-options-area{
+                    ul{
+                        margin-top: 4px;
+                        text-align: center;
+                        >li{
+                            background: url("../images/zodiac/host-option-item-bg.png") no-repeat;
+                            height: 52px;
+                            text-align: center;
+                            margin-top: 3px;
+                            margin-bottom: 3px;
+                            .item-bd{
+                                height: 28px;
+                                font-size: 18px;
+                                font-family: 'hytangmeiren';
+                                color: #1085d6;
+                                line-height: 22px;
+                                .to-set-btn{
+                                    display: none;
+                                }
+                                .setting-tips{
+                                    display: none;
+                                }
+                            }
+                            &.preset-item{
+                                background: url("../images/zodiac/preset-option-item-bg.png") no-repeat;
+                                .item-hd{
+                                    .name{
+                                        text-shadow: -2px 0 #7842d1, 0 2px #7842d1,
+                                        2px 0 #7842d1, 0 -2px #7842d1;
+                                    }
+                                }
+                                .item-bd{
+                                    color: #7842d1;
+                                    font-size: 14px;
+                                }
+                            }
+                            &.to-set{
+                                cursor: pointer;
+                                .item-bd{
+                                    color: #ff3c4b;
+                                    font-size: 16px;
+                                    .to-set-btn{
+                                        display: block;
+                                    }
+                                    .setting-tips{
+                                        display: none;
+                                    }
+                                }
+                            }
+                            &.cur-item{
+                                background: url("../images/zodiac/host-option-item-bg.png") no-repeat;
+                                width: 82px;
+                                height: 52px;
+                                .item-hd{
+                                    .name{
+                                        text-shadow: -2px 0 #1085d6, 0 2px #1085d6,
+                                        2px 0 #1085d6, 0 -2px #1085d6;
+                                    }
+                                }
+                                .item-bd{
+                                    color: #1085d6;
+                                    font-size: 14px;
+                                    .to-set-btn{
+                                        display: none;
+                                    }
+                                    .setting-tips{
+                                        display: block;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                &.reset-area{
+                    margin-top: 10px;
+                    .area-hd{
+                        text-align: center;
+                        line-height: 18px;
+                        .title{
+                             color: #8651dc;
+                             font-size: 20px;
+                        }
+                    }
+                    ul{
+                        li{
+                            &:hover{
+                                transform: none;
+                            }
+                        }
+                    }
+                    .handle{
+                        margin-top: 20px;
+                        text-align: center;
+                    }
+                    .apply-btn{
+                        display: inline-block;
+                        background: url("../images/zodiac/preset-btn.png");
+                        width: 178px;
+                        height: 52px;
+                        font-size: 24px;
+                        color: #fff;
+                        font-family: 'hytangmeiren';
+                        text-align: center;
+                        line-height: 42px;
+                        background-size: 100%;
+                        text-shadow: #9557f7 0.05em 0.12em 0.01em;
                     }
                 }
             }

@@ -11,7 +11,7 @@
                 </div>
                 <el-button class="submit-btn" type="primary" style="margin-top: 30px;" @click="login()">登录</el-button>
                 <div class="switch">
-                    <span class="cm-btn switch-btn">账号注册</span>
+                    <span class="cm-btn switch-btn" @click="toRegister()">账号注册</span>
                     <span class="cm-btn switch-btn">忘记密码</span>
                 </div>
             </div>
@@ -24,6 +24,8 @@
 </style>
 <script>
   import Vue from 'vue'
+  import bus from '../components/common/bus';
+
   export default {
     components: {
 
@@ -55,12 +57,14 @@
             }
             let params={
                 ...this.form,
-                ipAddress:'test',
                 location:this.userPosition.city,
             }
             let fb=Vue.operationFeedback({text:'登录中...'});
             Vue.api.login({apiParams:params}).then((resp)=>{
                 if(resp.respCode=='2000'){
+                    let data=JSON.parse(resp.respMsg);
+                    this.$cookie.set('account',JSON.stringify(data.user),7);
+                    bus.$emit('refreshAccount');
                     fb.setOptions({type:"complete",text:'登录成功'});
                     //
                     this.close();
@@ -74,6 +78,10 @@
         this.$el.remove();
         this.$destroy();
       },
+      toRegister:function () {
+          Vue.registerModal({open:true});
+          this.close();
+      }
     },
     created: function () {
 
@@ -89,8 +97,8 @@
                 citySearch.getLocalCity();
                 AMap.event.addListener(citySearch, 'complete', (data)=>{
                     that.userPosition=data;
-                    console.log('that.userPosition:',that.userPosition);
-                    console.log('mapObj：',mapObj);
+               /*     console.log('that.userPosition:',that.userPosition);
+                    console.log('mapObj：',mapObj);*/
 
                 });//返回定位信息
                 AMap.event.addListener(citySearch, 'error', (error)=>{

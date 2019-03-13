@@ -9,6 +9,8 @@ import GenCode from './GenCode';
 import CropModal from './CropModal';
 import RegisterModal from './RegisterModal.vue';
 import LoginModal from './LoginModal.vue';
+import ScrollLoad from './ScrollLoad';
+import * as socketApi from './socket';
 
 
 
@@ -23,6 +25,7 @@ export default {
     Vue.component('CropModal',CropModal);
     Vue.component('RegisterModal',RegisterModal);
     Vue.component('LoginModal',LoginModal);
+    Vue.component('ScrollLoad',ScrollLoad);
 
     /*方法调度方式*/
     let OperationFeedbackConstructor = Vue.extend(OperationFeedback);
@@ -144,6 +147,7 @@ export default {
             instance.$mount();
             parentEle.appendChild(instance.$el);
         },
+        socketApi:socketApi
     }
     /**/
     Object.assign(Vue,functionObject);

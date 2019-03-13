@@ -8,7 +8,7 @@
                     </div>
                     <div class="list-bd">
                         <ul>
-                            <li class="active">个人资料</li>
+                            <router-link tag="li" :to="{ path: '/center/user/userInfo'}" :class="{'active':page=='userInfo'}">个人资料</router-link>
                         </ul>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="list-bd">
                         <ul>
-                            <li>成为会员</li>
+                            <router-link tag="li" :to="{ path: '/center/vip/vipStore'}" :class="{'active':page=='vipStore'}">成为会员</router-link>
                         </ul>
                     </div>
                 </div>
@@ -28,9 +28,9 @@
                     </div>
                     <div class="list-bd">
                         <ul>
-                            <li>保险箱</li>
-                            <li>充值</li>
-                            <li>赠送礼物</li>
+                            <router-link tag="li" :to="{ path: '/center/coin/safeBox'}" :class="{'active':page=='safeBox'}">保险箱</router-link>
+                            <router-link tag="li" :to="{ path: '/center/coin/charge'}" :class="{'active':page=='charge'}">充值</router-link>
+                            <router-link tag="li" :to="{ path: '/center/coin/gift'}" :class="{'active':page=='gift'}">赠送礼物</router-link>
                         </ul>
                     </div>
                 </div>
@@ -54,16 +54,28 @@
         },
         data: function(){
             return {
-                type:'user',
+                type:'user',//user,vip,coin
+                page:'',
+            }
+        },
+        watch: {
+            $route: {
+                handler: function(val, oldVal){
+                    if(val.name!=this.page){
+                        this.page=val.name;
+                    }
+                },
+                // 深度观察监听
+                deep: true
             }
         },
         methods: {
 
         },
         mounted () {
+            this.page=this.$route.name;
             if(this.$route.params.type){
                 this.type=this.$route.params.type;
-                console.log('this.type:',this.type);
             }
         },
     }
