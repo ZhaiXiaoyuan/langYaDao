@@ -189,25 +189,27 @@
         created (){
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
-                console.log('resp233:',resp);
+                console.log('respHall:',resp);
                 if(resp.respCode=='2000'){
-                  try{
-                      let data=JSON.parse(resp.respMsg);
-                      if(data.info){
-                          this.enterRoomFb(data);
-                      }else{
-                          this.roomDataFb(data);
-                      }
-                  }catch (err){
+                    let data={};
+                    try{
+                        data=JSON.parse(resp.respMsg);
+                        data.data=JSON.parse(data.data);
+                    }catch (err){
 
-                  }
+                    }
+                    if(data.api=='entryRoom'){
+                        this.enterRoomFb(data.data);
+                    }else if(data.api=='getLobbyInfo'){
+                        this.roomDataFb(data.data);
+                    }
                 }
             });
         },
         mounted () {
             //
             this.account=this.getAccountInfo();
-            this.account.id=1;
+            console.log('this.account:',this.account);
             //
             this.getRoomInfo('初级房');
             this.getRoomInfo('中级房');

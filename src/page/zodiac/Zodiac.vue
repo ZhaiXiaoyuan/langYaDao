@@ -47,9 +47,8 @@
         created(){
             //
             this.account=this.getAccountInfo();
-            this.account.id=1;
             //
-            /*this.socketApi.initWebSocket("ws://zyugoodluck.vicp.cc:15852/"+this.account.id);*/
+            this.socketApi.initWebSocket("ws://zyugoodluck.vicp.cc:15852/"+this.account.id);
         },
         mounted () {
 

@@ -63,6 +63,15 @@
             Vue.api.login({apiParams:params}).then((resp)=>{
                 if(resp.respCode=='2000'){
                     let data=JSON.parse(resp.respMsg);
+                    //临时测试
+                    if(this.form.phone=='18825162417'){
+                        data.user.id=1;
+                    }else if(this.form.phone=='18825162416'){
+                        data.user.id=2;
+                    }else if(this.form.phone=='18825162415'){
+                        data.user.id=2;
+                    }
+                    //
                     this.$cookie.set('account',JSON.stringify(data.user),7);
                     bus.$emit('refreshAccount');
                     fb.setOptions({type:"complete",text:'登录成功'});

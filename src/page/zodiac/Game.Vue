@@ -4,7 +4,7 @@
             <div class="panel session-panel">
                 <div class="nav-block">
                     <span class="cm-btn btn exit-btn">退出房间</span>
-                    <span class="cm-btn btn home-btn">高级房</span>
+                    <span class="cm-btn btn home-btn">{{deskInfo.property}}</span>
                 </div>
                 <div class="block result-block">
                     <div class="block-hd"><p class="title">战绩专区</p></div>
@@ -451,6 +451,7 @@
         },
         data: function(){
             return {
+                account:{},
                 type:'host',//player:'玩家',host:'擂主'
                 optionsList:[
                     {
@@ -694,6 +695,8 @@
                         title:'第六局',
                     }
                 ],
+
+                deskInfo:{},
             }
         },
         methods: {
@@ -701,21 +704,47 @@
                 this.socketApi.sendSock({"api":"exitRoom","apiParams":"{}"});
                 console.log('*********exitRoom*********');
             },
+            gameRender:function (data) {
+                this.deskInfo=data.deskInfoJSONObject;
+            }
         },
         mounted () {
+            this.account=this.getAccountInfo();
+            console.log(' this.account:', this.account);
             //
             if(this.$route.params.type){
                 this.type=this.$route.params.type;
                 console.log('test:',this.type);
             }
             //
+            let temCount=0;
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
-                console.log('resp:',resp);
-             /*   if(resp.respCode=='2000'){
-                    let data=JSON.parse(resp.respMsg);
-                    console.log('data233:',data);
+             /*   console.log('game:',resp);*/
+               /* let data={};
+                try{
+                    data=JSON.parse(resp.respMsg);
+                }catch (err){
+
+                }
+                try{
+                    data.data=JSON.parse(data.data);
+                }catch (err){
+
+                }
+                console.log('data:',data);
+                if(!temCount&&data.api=='deskFrame'){
+                    temCount++;
+                    console.log('data.data:',data.data);
                 }*/
+               if(resp.respCode){
+
+               }else if(resp.api=='deskFrame'){
+                   temCount++;
+                   let data=JSON.parse(resp.data);
+                   this.gameRender(data);
+                   console.log('data:',data);
+               }
             });
 
         },
