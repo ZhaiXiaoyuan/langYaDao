@@ -4,39 +4,28 @@
             <div class="panel session-panel">
                 <div class="nav-block">
                     <span class="cm-btn btn exit-btn">退出房间</span>
-                    <span class="cm-btn btn home-btn">{{deskInfo.property}}</span>
+                    <span class="cm-btn btn home-btn">{{roomLevel}}</span>
                 </div>
                 <div class="block result-block">
                     <div class="block-hd"><p class="title">战绩专区</p></div>
                     <div class="block-bd">
                         <div class="host-item">
-                            本轮擂主：旗木卡卡西
+                            本轮擂主：
+                            <span v-if="deskInfo.deskState!='waitingBanker'&&curHost.user.name">{{curHost.user.name}}</span>
+                            <span v-if="deskInfo.deskState=='waitingBanker'">等待擂主</span>
                         </div>
                         <ul class="session-list">
-                            <li>
-                                <span class="label">第一局</span>
-                                <div class="result">凤凰，丑牛，地</div>
-                                <p class="score">个人战绩：+1234567</p>
-                            </li>
-                            <li>
-                                <span class="label">第一局</span>
-                                <div class="result">凤凰，丑牛，地</div>
-                                <p class="score">个人战绩：+1234567</p>
-                            </li>
-                            <li>
-                                <span class="label">第一局</span>
-                                <div class="result">凤凰，丑牛，地</div>
-                                <p class="score">个人战绩：+1234567</p>
-                            </li>
-                            <li>
-                                <span class="label">第一局</span>
-                                <div class="result">凤凰，丑牛，地</div>
-                                <p class="score">个人战绩：+1234567</p>
-                            </li>
-                            <li>
-                                <span class="label">第一局</span>
-                                <div class="result">凤凰，丑牛，地</div>
-                                <p class="score">个人战绩：+1234567</p>
+                            <li v-for="(item,index) in recordList" :key="index">
+                                <span class="label">{{item.title}}</span>
+                                <div v-if="item.result">
+                                    <div class="result">{{item.result-1|resultDict}}</div>
+                                    <p class="score">
+                                        个人战绩：<span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord}}
+                                    </p>
+                                </div>
+                                <div class="non-content" v-if="!item.result">
+                                    <i class="icon tips"></i>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -54,84 +43,84 @@
                             <div class="line line-6"></div>
                             <div class="outside-layer">
                                 <div class="layer-bd">
-                                    <div class="item item-1 current">
+                                    <div class="item item-1" :class="{'current':runningIndex==1}">
                                        <div class="item-content">
                                            <div class="current-mask"></div>
                                            <i class="point"></i>
                                            <i class="icon mouse-icon"></i>
                                        </div>
                                     </div>
-                                    <div class="item item-2">
+                                    <div class="item item-2"  :class="{'current':runningIndex==2}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon cow-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-3">
+                                    <div class="item item-3"  :class="{'current':runningIndex==3}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon tiger-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-4">
+                                    <div class="item item-4"  :class="{'current':runningIndex==4}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon rabbit-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-5">
+                                    <div class="item item-5"  :class="{'current':runningIndex==5}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon dragon-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-6">
+                                    <div class="item item-6"  :class="{'current':runningIndex==6}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon snake-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-7">
+                                    <div class="item item-7"  :class="{'current':runningIndex==7}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon horse-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-8">
+                                    <div class="item item-8"  :class="{'current':runningIndex==8}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon sheep-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-9">
+                                    <div class="item item-9"  :class="{'current':runningIndex==9}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon monkey-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-10">
+                                    <div class="item item-10"  :class="{'current':runningIndex==10}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon chicken-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-11">
+                                    <div class="item item-11"  :class="{'current':runningIndex==11}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
                                             <i class="icon dog-icon"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-12">
+                                    <div class="item item-12"  :class="{'current':runningIndex==12}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <i class="point"></i>
@@ -264,27 +253,44 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="tips-layer" v-if="deskInfo.deskState=='bankerSetting'">
+                                <p class="index">擂主设置中</p>
+                                <p class="time"><span>请等候</span>{{timer}}s</p>
+                            </div>
                             <div class="timer-layer">
-                                <div>
-                                    <p class="index">第三局</p>
-                                    <p class="time">20s</p>
+                                <div class="waiting" v-if="deskInfo.deskState=='leisure'">
+                                    <p class="index">空闲</p>
+                                </div>
+                                <div class="waiting" v-if="deskInfo.deskState=='waitingBanker'">
+                                    <p class="index">等待擂主</p>
+                                </div>
+                                <div class="waiting" v-if="deskInfo.deskState=='bankerSetting'">
+                                    <p class="index">擂主设置中</p>
+                                </div>
+                                <div v-if="deskInfo.deskState=='countdown'">
+                                    <p class="index">第{{deskInfo.currentRount-1|numToCn}}局</p>
+                                    <p class="time">{{timer}}s</p>
+                                </div>
+                                <div class="waiting" v-if="deskInfo.deskState=='betweenRound'">
+                                    <p class="index">第{{deskInfo.currentRount-1|numToCn}}局</p>
+                                    <p class="time">结算中{{timer}}s</p>
                                 </div>
                             </div>
-                            <div class="result-layer">
+                            <div class="result-layer" v-if="deskInfo.deskState=='betweenRound'&&resultTimer>0">
                                 <div class="layer-bd">
                                     <i class="icon radiation-icon"></i>
                                     <i class="icon fuzzy-icon"></i>
-                                    <i class="icon zodiac-icon dragon-icon"></i>
+                                    <i class="icon zodiac-icon" :class="curResult.icon"></i>
                                     <div class="result-items">
                                         <div class="item middle-result-item">
-                                            <i class="icon turtle-min-icon"></i>
-                                            <span class="name">神龟</span>
+                                            <i class="icon" :class="curResult.middleIcon+'-min-icon'"></i>
+                                            <span class="name">{{curResult.middleName}}</span>
                                         </div>
                                         <div class="item outside-result-item">
-                                            <span class="name">戍狗</span>
+                                            <span class="name">{{curResult.outsideName}}</span>
                                         </div>
                                         <div class="item inside-result-item">
-                                            <span class="name">坤</span>
+                                            <span class="name">{{curResult.insideName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -293,7 +299,7 @@
                     </div>
                 </div>
                 <div class="handle-btn-list">
-                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'">申请成为擂主</span>
+                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
                     <span class="cm-btn handle-btn entrance-btn">我的农场</span>
                 </div>
             </div>
@@ -301,14 +307,9 @@
                 <div class="block bet-block">
                     <div class="block-hd"><p class="title">竞猜区</p></div>
                     <div class="block-bd">
-                        <div class="balance">琅琊豆余额:245454543</div>
+                        <div class="balance">琅琊豆余额:{{curPlayer.user.balance}}</div>
                         <ul class="choice-list" v-if="type=='player'">
-                            <li class="cm-btn selected">1K</li>
-                            <li class="cm-btn">2K</li>
-                            <li class="cm-btn">5K</li>
-                            <li class="cm-btn">1W</li>
-                            <li class="cm-btn">2W</li>
-                            <li class="cm-btn">5W</li>
+                            <li v-for="(item,index) in roomConfig.chipList" :key="index" class="cm-btn" :class="{'selected':selectedChip==item}" @click="selectChip(item)">{{item}}</li>
                         </ul>
                         <div class="area options-area" v-if="type=='player'">
                             <div class="area-hd">
@@ -316,27 +317,27 @@
                             </div>
                             <div class="area-bd">
                                 <ul class="item-list">
-                                    <li v-for="(item,index) in optionsList" :key="index" class="item" :class="item.type">
+                                    <li v-for="(item,index) in optionsList" :key="index" class="item" :class="item.type" @click="setBet(item)">
                                         <i class="icon" :class="item.icon"></i>
                                         <div class="item-hd">
                                             <span class="name">{{item.name}}</span>
                                         </div>
                                         <div class="item-bd">
-                                            <p>竞猜率:{{item.rate}}%</p>
-                                            <p>竞猜额度:{{item.count}}</p>
+                                            <p>竞猜率:{{parseInt(rateConfig[item.type])}}</p>
+                                            <p>竞猜额:{{curBetInfo[item.id-1]&&curBetInfo[item.id-1][item.id]}}</p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <!--start:擂主竞猜区内容-->
-                        <div class="area options-area host-options-area" v-if="type=='host'">
+                        <div class="area options-area host-options-area" :class="{'cm-disabled':deskInfo.deskState!='bankerSetting'}" v-if="type=='host'">
                             <div class="area-hd">
                                 <span class="title">-&nbsp;竞猜结果&nbsp;-</span>
                             </div>
                             <div class="area-bd">
                                 <ul class="item-list">
-                                    <li v-for="(item,index) in hostOptionsList" :key="index" class="item">
+                                    <li v-for="(item,index) in hostOptionsList" :key="index" class="item" @click="selectPresetOption(item)">
                                         <i class="icon" :class="item.icon"></i>
                                         <div class="item-hd">
                                             <span class="name">{{item.outsideName}}</span>
@@ -352,13 +353,13 @@
                             </div>
                         </div>
 
-                        <div class="area options-area host-options-area reset-area" v-if="type=='host'">
+                        <div class="area options-area host-options-area reset-area" :class="{'cm-disabled':deskInfo.deskState!='bankerSetting'}" v-if="type=='host'">
                             <div class="area-hd">
                                 <span class="title">-&nbsp;设置竞猜结果&nbsp;-</span>
                             </div>
                             <div class="area-bd">
                                 <ul class="item-list">
-                                    <li v-for="(item,index) in presetList" :key="index" class="item preset-item" :class="{'to-set':!item.value,'cur-item':index==3}">
+                                    <li v-for="(item,index) in presetList" :key="index" class="item preset-item" :class="{'to-set':!item.value,'cur-item':deskInfo.deskState=='bankerSetting'&&curPreset.title==item.title}" @click="toPreset(item)">
                                         <div class="item-hd">
                                             <span class="name">{{item.title}}</span>
                                         </div>
@@ -373,7 +374,7 @@
                                 </ul>
                             </div>
                             <div class="handle">
-                                <div class="cm-btn apply-btn">提交结果</div>
+                                <div class="cm-btn apply-btn" @click="savePreset()">提交结果</div>
                             </div>
                         </div>
                         <!--start:擂主竞猜区内容-->
@@ -397,11 +398,11 @@
                     <div class="block-bd">
                         <table>
                             <tbody>
-                            <tr v-for="(item,index) in 10" :key="index">
-                                <td class="name">消失的眼泪</td>
-                                <td class="level">勇士</td>
-                                <td class="count"><span class="win">0胜</span><span class="gap">/</span><span class="lose">2负</span></td>
-                                <td class="balance">18k</td>
+                            <tr v-for="(item,index) in playerList" :key="index">
+                                <td class="name">{{item.user.name}}</td>
+                                <td class="level">缺</td>
+                                <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord|numFormat}}</span></td>
+                                <td class="balance">{{item.user.balance|numFormat}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -412,11 +413,11 @@
                     <div class="block-bd">
                         <table>
                             <tbody>
-                            <tr v-for="(item,index) in 10" :key="index">
+                            <tr v-for="(item,index) in hostList" :key="index">
                                 <td class="index">{{index+1}}</td>
-                                <td class="name">旗木卡卡西</td>
-                                <td class="count"><span class="win">0胜</span><span class="gap">/</span><span class="lose">2负</span></td>
-                                <td class="balance">18k</td>
+                                <td class="name">{{item.user.name}}</td>
+                                <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}">{{item.langyaRecord}}</span></td>
+                                <td class="balance">{{item.user.balance}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -425,13 +426,32 @@
                 <div class="block personal-block">
                     <div class="block-hd"><span class="title">个人战绩</span></div>
                     <div class="block-bd">
-                        <p>参与局数：3</p>
-                        <p>房内战绩：23234234</p>
-                        <p>单局最大胜利：6</p>
+                        <p>参与局数：{{curPlayer.round}}</p>
+                        <p>房内战绩：{{curPlayer.langyaRecord}}</p>
+                        <p>单局最大胜利：{{curPlayer.maxWin}}</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--结果弹窗-->
+        <el-dialog class="result-modal" title="" :visible.sync="resultModalFlag" center top="25vh">
+            <div class="modal-header">
+                <div class="title">本局结算</div>
+                <span class="cm-btn close-btn"></span>
+            </div>
+            <div class="modal-body" style="padding-top: 0px;border-top: none;">
+                <div class="view-win">
+
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </el-dialog>
+
+        <!--音频-->
+        <audio src="someaudio.wav">
+            您的浏览器不支持 audio 标签。
+        </audio>
     </div>
 </template>
 
@@ -452,130 +472,113 @@
         data: function(){
             return {
                 account:{},
-                type:'host',//player:'玩家',host:'擂主'
+                type:'player',//player:'玩家',host:'擂主'
+                roomLevel:null,
                 optionsList:[
                     {
+                        id:12,
                         name:'亥猪',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'pig-icon',
                     },
                     {
+                        id:1,
                         name:'子鼠',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'mouse-icon',
                     },
                     {
+                        id:2,
                         name:'丑牛',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'cow-icon',
                     },
                     {
+                        id:3,
                         name:'寅虎',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'tiger-icon',
                     },
                     {
+                        id:4,
                         name:'卯兔',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'rabbit-icon',
                     },
                     {
+                        id:5,
                         name:'辰龙',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'dragon-icon',
                     },
                     {
+                        id:6,
                         name:'巳蛇',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'snake-icon',
                     },
                     {
+                        id:7,
                         name:'午马',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'horse-icon',
                     },
                     {
+                        id:8,
                         name:'未羊',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'sheep-icon',
                     },
                     {
+                        id:9,
                         name:'申猴',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'monkey-icon',
                     },
                     {
+                        id:10,
                         name:'酉鸡',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'chicken-icon',
                     },
                     {
+                        id:11,
                         name:'戍狗',
-                        rate:26,
-                        count:32,
                         type:'outside',
                         icon:'dog-icon',
                     },
                     {
+                        id:13,
                         name:'神龟',
-                        rate:26,
-                        count:32,
                         type:'middle',
                         icon:'turtle-icon',
                     },
                     {
+                        id:14,
                         name:'麒麟',
-                        rate:26,
-                        count:32,
                         type:'middle',
                         icon:'kirin-icon',
                     },
                     {
+                        id:15,
                         name:'凤凰',
-                        rate:26,
-                        count:32,
                         type:'middle',
                         icon:'phoenix-icon',
                     },
                     {
+                        id:16,
                         name:'貔貅',
-                        rate:26,
-                        count:32,
                         type:'middle',
                         icon:'pixiu-icon',
                     },
                     {
+                        id:17,
                         name:'乾',
-                        rate:26,
-                        count:32,
                         type:'inside',
                     },
                     {
+                        id:18,
                         name:'坤',
-                        rate:26,
-                        count:32,
                         type:'inside',
                     },
                 ],
@@ -586,6 +589,7 @@
                         middleName:'神龟',
                         insideName:'坤',
                         icon:'pig-icon',
+                        resultText:'',
                         value:12
                     },
                     {
@@ -593,6 +597,7 @@
                         middleName:'神龟',
                         insideName:'乾',
                         icon:'mouse-icon',
+                        resultText:'',
                         value:1
                     },
                     {
@@ -600,6 +605,7 @@
                         middleName:'神龟',
                         insideName:'坤',
                         icon:'pig-icon',
+                        resultText:'',
                         value:2
                     },
                     {
@@ -607,6 +613,7 @@
                         middleName:'麒麟',
                         insideName:'乾',
                         icon:'tiger-icon',
+                        resultText:'',
                         value:3
                     },
                     {
@@ -614,6 +621,7 @@
                         middleName:'麒麟',
                         insideName:'坤',
                         icon:'rabbit-icon',
+                        resultText:'',
                         value:4
                     },
                     {
@@ -621,6 +629,7 @@
                         middleName:'麒麟',
                         insideName:'乾',
                         icon:'dragon-icon',
+                        resultText:'',
                         value:5
                     },
                     {
@@ -628,6 +637,7 @@
                         middleName:'凤凰',
                         insideName:'坤',
                         icon:'snake-icon',
+                        resultText:'',
                         value:6
                     },
                     {
@@ -635,6 +645,7 @@
                         middleName:'凤凰',
                         insideName:'乾',
                         icon:'horse-icon',
+                        resultText:'',
                         value:7
                     },
                     {
@@ -642,6 +653,7 @@
                         middleName:'凤凰',
                         insideName:'坤',
                         icon:'sheep-icon',
+                        resultText:'',
                         value:8
                     },
                     {
@@ -649,6 +661,7 @@
                         middleName:'貔貅',
                         insideName:'乾',
                         icon:'monkey-icon',
+                        resultText:'',
                         value:9
                     },
                     {
@@ -656,6 +669,7 @@
                         middleName:'貔貅',
                         insideName:'坤',
                         icon:'chicken-icon',
+                        resultText:'',
                         value:10
                     },
                     {
@@ -663,17 +677,186 @@
                         middleName:'貔貅',
                         insideName:'乾',
                         icon:'dog-icon',
+                        resultText:'',
                         value:11
                     },
                 ],
-                presetList:[
+                presetList:[],
+                curPreset:{},
+
+                roomConfig:{
+                    chipList:[],
+                },
+                deskInfo:{},
+                playerList:[],
+                curPlayer:{user:{}},
+                curHost:null,
+                curBetInfo:[],
+                rateConfig:{},
+                selectedChip:0,
+                hostList:[],
+                timer:0,
+                recordList:[],
+                resultModalFlag:false,
+                curResult:{},
+                resultTimer:5,
+
+                runningIndex:-1,
+                runningCount:-1,
+                long:0,
+                speed:400,
+            }
+        },
+        methods: {
+            getConfigData:function (type) {
+                Vue.api.getGameConfigInfo({apiParams:{property:type}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                      /*  console.log(type+':',data);*/
+                        if(type=='赔率'){
+                            data.forEach((item)=>{
+                                switch (item.configName){
+                                    case '生肖':
+                                        this.rateConfig.outside=item.configValue;
+                                        break;
+                                    case '神兽':
+                                        this.rateConfig.middle=item.configValue;
+                                        break;
+                                    case '天地':
+                                        this.rateConfig.inside=item.configValue;
+                                        break;
+                                }
+                            });
+                        }else if(type.indexOf('房配置')){
+                            data.forEach((item)=>{
+                                this.roomConfig[item.configName]=item.configValue;
+                            });
+                            for(let i=1;i<=6;i++){
+                                this.roomConfig.chipList.push(parseInt(this.roomConfig['筹码'+i]));
+                            }
+                            this.roomConfig.chipList.sort();
+                        }
+                    }
+                });
+            },
+            exitRoom:function () {
+                this.socketApi.sendSock({"api":"exitRoom","apiParams":{}});
+                console.log('*********exitRoom*********');
+            },
+            gameRender:function (data) {
+                this.deskInfo=data.deskInfoJSONObject;
+                //
+                this.playerList=data.playerInfoJSONArray;
+                let temHostList=data.bankerSequenceJSONArray;
+                this.timer=data.deskTimer;
+                this.hostList=[];
+                this.playerList.forEach((item,index)=>{
+                    if(item.user.id==this.account.id){
+                        this.curPlayer=item;
+                    }
+                    if(item.userId==this.deskInfo.currentBankerId){
+                        this.curHost=item;
+                    }
+
+                    temHostList.forEach((hostItem)=>{
+                        if(hostItem.userId==item.userId){
+                            this.hostList.push(item);
+                        }
+                    })
+                });
+                //擂主更换时重置相关数据
+                if(this.curHost.userId!=this.deskInfo.currentBankerId){
+                    this.initData();
+                }
+                //
+                if(this.curHost.userId==this.curPlayer.userId){
+                    this.type='host';
+                }else{
+                    this.type='player';
+                }
+                this.curBetInfo= this.curPlayer.currentRountBetInfo;
+                this.curPlayer.roundRecord.forEach((item)=>{
+                    Object.assign(this.recordList[item.currentRount-1],item);
+                });
+                //结算
+                if(this.deskInfo.deskState=='betweenRound'){
+                    this.resultTimer--;
+                    //局号变换，说明新开奖，更新相关数据
+                    if(this.curResult.round!=this.deskInfo.currentRount){
+                        this.curResult=this.$options.filters.resultDict(this.curPlayer.roundRecord[this.curPlayer.roundRecord.length-1].result-1,'all');
+                        this.curResult.round=this.deskInfo.currentRount;
+                        this.resultTimer=5;
+                    }
+                }
+               /* console.log('***状态:'+this.deskInfo.deskState+'**擂主:'+this.deskInfo.currentBankerId+'**计时:'+this.timer+'***');*/
+                /*console.log('recordList:',this.recordList);*/
+                /*   console.log('this.hostList:',this.hostList);*/
+                /*    console.log('this.curHost:',this.curHost);*/
+              /*  console.log('this.deskInfo:',this.deskInfo);*/
+             /*   console.log('this.hostList:',this.hostList);*/
+                /* console.log('this.curPlayer:',this.curPlayer);*/
+            },
+            setBet:function (item) {
+                console.log('dsdfs:',item);
+                console.log('this.selectedChip:',this.selectedChip);
+                if(this.deskInfo.deskState=='countdown'){
+                    if(!this.selectedChip){
+                        Vue.operationFeedback({type:'warn',text:'请先选择筹码'});
+                        return;
+                    }
+                    this.socketApi.sendSock({"api":"gamble","apiParams":{kind:item.id,jetton:this.selectedChip}});
+                }else{
+                    Vue.operationFeedback({type:'warn',text:'现在还不能下注，请稍作等待'});
+                }
+            },
+            setBetCallback:function () {
+
+            },
+            applyToHost:function () {
+                this.socketApi.sendSock({"api":"applyForBanker","apiParams":{}});
+            },
+            applyToHostCallback:function () {
+
+            },
+            selectChip:function (value) {
+                this.selectedChip=value;
+            },
+            toPreset:function (item) {
+                if(this.deskInfo.deskState!='bankerSetting'){
+                    Vue.operationFeedback({type:'warn',text:'现在还不能设置竞猜结果'});
+                    return;
+                }
+                this.curPreset=item;
+            },
+            selectPresetOption:function (item) {
+                this.curPreset.value=item.value;
+                this.curPreset.outsideName=item.outsideName;
+                this.curPreset.middleName=item.middleName;
+                this.curPreset.insideName=item.insideName;
+            },
+            savePreset:function () {
+             /*   if(this.deskInfo.deskState!='bankerSetting'){
+                    Vue.operationFeedback({type:'warn',text:'现在还不能设置竞猜结果'});
+                    return;
+                }*/
+                let list=[];
+                this.presetList.forEach((item)=>{
+                    if(item.value){
+                        list.push({result:item.value});
+                    }
+                });
+                console.log('list:',list);
+                if(list.length<6){
+                    Vue.operationFeedback({type:'warn',text:'请设置好所有竞猜结果'});
+                }
+                this.socketApi.sendSock({"api":"presetResult","apiParams":{presetResultJSONArrayString:list}});
+            },
+
+            initData:function () {
+                this.curHost={ user:{}};
+                this.presetList=[
                     {
                         title:'第一局',
-                        outsideName:'亥猪',
-                        middleName:'神龟',
-                        insideName:'坤',
-                        icon:'pig-icon',
-                        value:12
                     },
                     {
                         title:'第二局',
@@ -694,59 +877,84 @@
                     {
                         title:'第六局',
                     }
-                ],
+                ];
+                this.recordList=[{title:'第一局'},{title:'第二局'},{title:'第三局'},{title:'第四局'},{title:'第五局'},{title:'第六局'}];
+            },
+            runTurntable:function (value) {
+              setTimeout(()=>{
 
-                deskInfo:{},
+                  if(this.runningCount==-1){
+                      this.long=value-1+5*12;
+                  }
+                  this.runningCount++;
+                  this.runningIndex=this.runningCount%12+1;
+                  if(this.runningCount<this.long){
+                      this.runTurntable();
+                  }else{
+                      this.runningCount=0;
+                     /* this.runningIndex=-1;*/
+                  }
+                  if(this.runningCount>parseInt((1/10)*this.long)){
+                      this.speed=100;
+                  }if(this.runningCount>parseInt((5/6)*this.long)){
+                      this.speed=300;
+                  }else if(this.runningCount>=this.long){
+
+                  }
+              },this.speed);
             }
         },
-        methods: {
-            exitRoom:function () {
-                this.socketApi.sendSock({"api":"exitRoom","apiParams":"{}"});
-                console.log('*********exitRoom*********');
-            },
-            gameRender:function (data) {
-                this.deskInfo=data.deskInfoJSONObject;
-            }
+        created (){
+            //初始化数据
+            this.initData();
         },
         mounted () {
             this.account=this.getAccountInfo();
-            console.log(' this.account:', this.account);
+          /*  console.log(' this.account:', this.account);*/
             //
+            this.roomLevel=this.$route.query.roomLevel;
             if(this.$route.params.type){
                 this.type=this.$route.params.type;
-                console.log('test:',this.type);
             }
             //
-            let temCount=0;
+            this.getConfigData('赔率');
+            this.getConfigData(this.roomLevel+'配置');
+            //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
-             /*   console.log('game:',resp);*/
-               /* let data={};
-                try{
-                    data=JSON.parse(resp.respMsg);
-                }catch (err){
-
-                }
-                try{
-                    data.data=JSON.parse(data.data);
-                }catch (err){
-
-                }
-                console.log('data:',data);
-                if(!temCount&&data.api=='deskFrame'){
-                    temCount++;
-                    console.log('data.data:',data.data);
-                }*/
+              /*  console.log('game:',resp);*/
                if(resp.respCode){
+                   if(resp.respCode=='2000'){
+                       let data={};
+                       try{
+                           data=JSON.parse(resp.respMsg);
+                       }catch (err){
 
+                       }
+                       try{
+                           data.data=JSON.parse(data.data);
+                       }catch (err){
+
+                       }
+                       console.log('data:',data);
+                       if(data.api=='applyForBanker'){
+                          this.applyToHostCallback();
+                       }
+                   }else{
+                       Vue.operationFeedback({type:'warn',text:resp.respMsg});
+                   }
+                   console.log('gameHandle:',resp);
                }else if(resp.api=='deskFrame'){
-                   temCount++;
                    let data=JSON.parse(resp.data);
                    this.gameRender(data);
-                   console.log('data:',data);
+                  /* console.log('data:',data);*/
                }
             });
 
+            //临时测试
+            setTimeout(()=>{
+                this.runTurntable(11);
+            },2000)
         },
         beforeRouteLeave(to,from,next){
             this.exitRoom();

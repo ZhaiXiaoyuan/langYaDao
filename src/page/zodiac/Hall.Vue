@@ -138,6 +138,8 @@
                 ws:null,
                 requestInterval:null,
 
+                selectedRoomLevel:''
+
             }
         },
         methods: {
@@ -180,16 +182,17 @@
                 }
             },
             enterRoom:function (type) {
+                this.selectedRoomLevel=type;
                 this.socketApi.sendSock({api:'entryRoom',apiParams:{roomProperty:type}});
             },
             enterRoomFb:function (data) {
-                this.$router.push({path:'/zodiac/game'})
+                this.$router.push({path:'/zodiac/game?roomLevel='+this.selectedRoomLevel});
             }
         },
         created (){
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
-                console.log('respHall:',resp);
+               /* console.log('respHall:',resp);*/
                 if(resp.respCode=='2000'){
                     let data={};
                     try{
@@ -199,10 +202,13 @@
 
                     }
                     if(data.api=='entryRoom'){
+                        console.log('respHall:',resp);
                         this.enterRoomFb(data.data);
                     }else if(data.api=='getLobbyInfo'){
                         this.roomDataFb(data.data);
                     }
+                }else{
+
                 }
             });
         },

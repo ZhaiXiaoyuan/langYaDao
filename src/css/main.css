@@ -866,6 +866,7 @@ body {
   background: url("../images/zodiac/game-bg.jpg") no-repeat center;
   background-size: cover;
   min-height: 100%;
+  padding-top: 20px;
 }
 .zodiac-game .page-content {
   position: relative;
@@ -1030,6 +1031,16 @@ body {
   color: #1085d6;
   text-align: center;
 }
+.zodiac-game .result-block .block-bd .session-list li .non-content {
+  padding-top: 18px;
+  text-align: center;
+}
+.zodiac-game .result-block .block-bd .session-list li .non-content .tips {
+  background: url("../images/zodiac/waiting-icon.png") no-repeat;
+  width: 120px;
+  height: 46px;
+  background-size: 100%;
+}
 .zodiac-game .result-block .block-bd .session-list li + li {
   margin-top: 8px;
 }
@@ -1155,10 +1166,10 @@ body {
 }
 .zodiac-game .turntable-panel {
   float: left;
+  padding-top: 20px;
 }
 .zodiac-game .turntable-panel .table-block {
   position: relative;
-  margin-top: 60px;
   background: url("../images/zodiac/turntable-bg.png") no-repeat;
   width: 473px;
   height: 514px;
@@ -1724,6 +1735,34 @@ body {
       -ms-transform: rotate(330deg);
           transform: rotate(330deg);
 }
+.zodiac-game .turntable-panel .table-block .tips-layer {
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
+  width: 450px;
+  height: 148px;
+  background-size: 100%;
+  text-align: center;
+  font-family: 'hytangmeiren';
+  text-shadow: -3px 0 #225599, 0 3px #225599, 3px 0 #225599, 0 -3px #225599;
+  color: #fefeff;
+  padding-top: 15px;
+}
+.zodiac-game .turntable-panel .table-block .tips-layer .index {
+  font-size: 50px;
+}
+.zodiac-game .turntable-panel .table-block .tips-layer .time {
+  color: #fff000;
+  font-size: 26px;
+}
+.zodiac-game .turntable-panel .table-block .tips-layer .time span {
+  color: #fefeff;
+}
 .zodiac-game .turntable-panel .table-block .timer-layer {
   position: absolute;
   width: 96px;
@@ -1756,6 +1795,9 @@ body {
 }
 .zodiac-game .turntable-panel .table-block .timer-layer .time {
   color: #fff000;
+}
+.zodiac-game .turntable-panel .table-block .timer-layer .waiting {
+  font-size: 18px;
 }
 .zodiac-game .turntable-panel .table-block .result-layer {
   position: absolute;
@@ -1982,8 +2024,8 @@ body {
   margin: 0.5px 3px;
   text-align: left;
   cursor: pointer;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .zodiac-game .bet-panel .bet-block .options-area ul > li .icon {
   position: absolute;
@@ -2101,9 +2143,9 @@ body {
   color: #996c15;
 }
 .zodiac-game .bet-panel .bet-block .options-area ul > li:hover {
-  -webkit-transform: translateY(-5px);
-      -ms-transform: translateY(-5px);
-          transform: translateY(-5px);
+  -webkit-transform: translateY(-4px);
+      -ms-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
 .zodiac-game .bet-panel .bet-block .options-area.host-options-area ul {
   margin-top: 4px;
@@ -2225,10 +2267,10 @@ body {
   width: 15%;
 }
 .zodiac-game .data-panel table .count {
-  width: 30%;
+  width: 20%;
 }
 .zodiac-game .data-panel table .balance {
-  width: 20%;
+  width: 35%;
 }
 .zodiac-game .data-panel table thead td {
   color: #fff;
@@ -2237,8 +2279,10 @@ body {
 .zodiac-game .data-panel table tbody td {
   color: #2096e0;
   font-size: 12px;
-  padding: 3px 2px;
+  padding: 5px 2px;
   border-bottom: 1px solid #c8ecff;
+  word-break: break-all;
+  line-height: 12px;
 }
 .zodiac-game .data-panel table tbody td .win {
   color: #fa9300;
@@ -2292,6 +2336,94 @@ body {
   font-size: 16px;
   color: #2096e0;
   padding: 5px 15px;
+}
+.zodiac-game .result-modal .el-dialog {
+  border-radius: 8px;
+  width: 396px;
+  background: none;
+  font-family: 'hytangmeiren';
+}
+.zodiac-game .result-modal .el-dialog .el-dialog__header {
+  display: none;
+}
+.zodiac-game .result-modal .el-dialog .el-dialog__body {
+  padding: 0px;
+}
+.zodiac-game .result-modal .el-dialog .modal-header {
+  position: relative;
+  top: 15px;
+  z-index: 1;
+  text-align: center;
+}
+.zodiac-game .result-modal .el-dialog .modal-header .title {
+  display: inline-block;
+  background: url("../images/zodiac/result-modal-header.png") no-repeat;
+  width: 291px;
+  height: 71px;
+  background-size: 100%;
+  text-align: center;
+  line-height: 39px;
+  color: #fff;
+  font-size: 26px;
+  text-shadow: #e28c00 0.1em 0.15em 0.1em;
+}
+.zodiac-game .result-modal .el-dialog .modal-header .close-btn {
+  position: absolute;
+  top: 46px;
+  right: -10px;
+  display: inline-block;
+  background: url("../images/zodiac/close-btn.png") no-repeat;
+  width: 36px;
+  height: 36px;
+  background-size: 100%;
+}
+.zodiac-game .result-modal .el-dialog .modal-body {
+  background: url("../images/zodiac/result-modal-body.png") no-repeat;
+  width: 396px;
+  height: 256px;
+}
+.zodiac-game .result-modal .el-dialog .modal-body .view-win {
+  margin: 0px auto;
+  height: 100%;
+  overflow: auto;
+  padding: 15% 5px 20px 5px;
+  border-radius: 30px;
+  border: 1px solid red;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table {
+  font-family: 'hytangmeiren';
+  width: 100%;
+  text-align: center;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table .name {
+  width: 35%;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table .level {
+  width: 15%;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table .count {
+  width: 20%;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table .balance {
+  width: 35%;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table thead td {
+  color: #fff;
+  font-size: 16px;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table tbody td {
+  color: #2096e0;
+  font-size: 12px;
+  padding: 5px 2px;
+  border-bottom: 1px solid #c8ecff;
+  word-break: break-all;
+  line-height: 12px;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table tbody td .win {
+  color: #fa9300;
+}
+.zodiac-game .result-modal .el-dialog .modal-body table tbody td .lose {
+  color: #ff5961;
 }
 .center {
   /* min-height: 90%;*/

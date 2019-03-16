@@ -108,14 +108,138 @@ Vue.filter('adviceStatus',function(str){
 /*数值格式*/
 Vue.filter('numFormat',function(num){
     let result='';
-    if(num>10000){
-        let unit='万';
+    if(num>=1000000){
+        let unit='W';
         let num1=Math.floor(num/10000);
-        let num1Arr=num1.toString().split('');
         let num2=num%10000;
-        result=num1+unit+num2;
+        result=num1+unit;
+    }else if(num>=100000){
+
     }else{
         result=num;
     }
     return result;
+});
+
+/*数字转中文*/
+Vue.filter('numToCn',function(str){
+    let cnArr=['一','二','三','四','五','六'];
+    return cnArr[str];
+});
+
+/*结果字典*/
+Vue.filter('resultDict',function(index,property){
+    property=property?property:'resultText';
+    let resultArr=[
+        {
+            outsideName:'子鼠',
+            middleName:'神龟',
+            insideName:'乾',
+            icon:'mouse-icon',
+            middleIcon:'turtle',
+            resultText:'神龟，子鼠，乾',
+            value:1
+        },
+        {
+            outsideName:'丑牛',
+            middleName:'神龟',
+            insideName:'坤',
+            icon:'pig-icon',
+            middleIcon:'turtle',
+            resultText:'神龟，丑牛，坤',
+            value:2
+        },
+        {
+            outsideName:'寅虎',
+            middleName:'麒麟',
+            insideName:'乾',
+            icon:'tiger-icon',
+            middleIcon:'kirin',
+            resultText:'麒麟，寅虎，乾',
+            value:3
+        },
+        {
+            outsideName:'卯兔',
+            middleName:'麒麟',
+            insideName:'坤',
+            icon:'rabbit-icon',
+            middleIcon:'kirin',
+            resultText:'麒麟，卯兔，坤',
+            value:4
+        },
+        {
+            outsideName:'辰龙',
+            middleName:'麒麟',
+            insideName:'乾',
+            icon:'dragon-icon',
+            middleIcon:'kirin',
+            resultText:'麒麟，辰龙，乾',
+            value:5
+        },
+        {
+            outsideName:'巳蛇',
+            middleName:'凤凰',
+            insideName:'坤',
+            icon:'snake-icon',
+            middleIcon:'phoenix',
+            resultText:'凤凰，巳蛇，坤',
+            value:6
+        },
+        {
+            outsideName:'午马',
+            middleName:'凤凰',
+            insideName:'乾',
+            icon:'horse-icon',
+            middleIcon:'phoenix',
+            resultText:'凤凰，午马，乾',
+            value:7
+        },
+        {
+            outsideName:'未羊',
+            middleName:'凤凰',
+            insideName:'坤',
+            icon:'sheep-icon',
+            middleIcon:'phoenix',
+            resultText:'凤凰，未羊，坤',
+            value:8
+        },
+        {
+            outsideName:'申猴',
+            middleName:'貔貅',
+            insideName:'乾',
+            icon:'monkey-icon',
+            middleIcon:'pixiu',
+            resultText:'貔貅，申猴，乾',
+            value:9
+        },
+        {
+            outsideName:'酉鸡',
+            middleName:'貔貅',
+            insideName:'坤',
+            icon:'chicken-icon',
+            middleIcon:'pixiu',
+            resultText:'貔貅，酉鸡，坤',
+            value:10
+        },
+        {
+            outsideName:'戍狗',
+            middleName:'貔貅',
+            insideName:'乾',
+            icon:'dog-icon',
+            middleIcon:'pixiu',
+            resultText:'貔貅，戍狗，乾',
+            value:11
+        },
+        {
+            outsideName:'亥猪',
+            middleName:'神龟',
+            insideName:'坤',
+            icon:'pig-icon',
+            middleIcon:'turtle',
+            resultText:'神龟，亥猪，坤',
+            value:12
+        },
+    ];
+    let result=resultArr[index];
+    return property=='all'?result:result[property];
 });
