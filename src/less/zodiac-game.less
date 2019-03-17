@@ -171,6 +171,29 @@
             }
         }
     }
+    .ani-item{
+        opacity: 0;
+    }
+    .animated{
+        opacity: 1;
+    }
+    .coin-icon{
+        background: url("../images/zodiac/coin-icon.png") no-repeat;
+        width: 24px;
+        height: 21px;
+        background-size: 100%;
+    }
+    .coin-item{
+        position: absolute;
+        z-index: 10;
+        top:0px;
+        left: 0px;
+        transform:translate(500px,106px);
+        transition: all 1.2s;
+        opacity: 0.8;
+      /*  transition-delay:0.2s;*/
+        /*transition-timing-function:cubic-bezier(0.42,0,1,1);*/
+    }
     .mouse-icon{
         background: url("../images/zodiac/mouse-icon.png") no-repeat;
         width: 128px;
@@ -340,7 +363,7 @@
                     transform:rotate(150deg);
                 }
                 .point{
-                    display: none;
+                    opacity: 0;
                     position: absolute;
                     z-index: 1000;
                     top:0px;
@@ -394,11 +417,11 @@
                     .icon{
                         z-index: 2;
                     }
-                    &.current{
+                   /* &.current{
                         .current-mask{
                             opacity: 1;
                         }
-                    }
+                    }*/
                 }
                 .item-1{
                     top: 1px;
@@ -567,11 +590,11 @@
                         text-shadow: -2px 0 #037b00, 0 2px #037b00,
                         2px 0 #037b00, 0 -2px #037b00;
                     }
-                    &.current{
+                   /* &.current{
                         .current-mask{
                             opacity: 1;
                         }
-                    }
+                    }*/
                 }
                 .item-1{
                     top: 0px;
@@ -682,11 +705,11 @@
                         text-shadow: -2px 0 #a63900, 0 2px #a63900,
                         2px 0 #a63900, 0 -2px #a63900;
                     }
-                    &.current{
+                   /* &.current{
                         .current-mask{
                             opacity: 1;
                         }
-                    }
+                    }*/
                 }
                 .item-1{
                     top: 1px;
@@ -820,6 +843,18 @@
                     width: 100%;
                     height: 100%;
                 }
+                @keyframes circle-ani
+                {
+                    0% {transform: scale(1)}
+                    50% {transform: scale(0.7)}
+                    100% {transform: scale(1)}
+                }
+                @keyframes light-ani
+                {
+                    0% {transform: rotate(0deg)}
+                    50% {transform: rotate(360deg)}
+                    100% {transform: rotate(720deg)}
+                }
                 .radiation-icon{
                     position: absolute;
                     z-index: 1;
@@ -829,6 +864,7 @@
                     width: 339px;
                     height: 339px;
                     background-size: 100%;
+                    animation:light-ani 20s infinite;
                 }
                 .fuzzy-icon{
                     position: absolute;
@@ -842,6 +878,7 @@
                     width: 358px;
                     height: 358px;
                     background-size: 100%;
+                    animation:circle-ani 3s infinite;
                 }
                 .zodiac-icon{
                     position: absolute;
@@ -920,6 +957,15 @@
                             font-family: 'hytangmeiren';
                             text-shadow: -2px 0 #a63900, 0 2px #a63900,
                             2px 0 #a63900, 0 -2px #a63900;
+                        }
+                    }
+                }
+            }
+            &.show-result{
+                .item{
+                    &.current{
+                        .current-mask{
+                            opacity: 1 !important;
                         }
                     }
                 }
@@ -1454,4 +1500,77 @@
             }
         }
     }
+
+    .stylie {
+        animation-name: stylie-keyframes;
+        animation-duration: 1000ms;
+        animation-delay: 0ms;
+        animation-fill-mode: forwards;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        transform-origin: 0 0;
+    }
+    @keyframes stylie-keyframes {
+        0% {transform:translate(0px, 0px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        1.67% {transform:translate(-21.6511px, 8.7px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        3.33% {transform:translate(-42.2289px, 17.4px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        5% {transform:translate(-61.7694px, 26.1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        6.67% {transform:translate(-80.3081px, 34.8px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        8.33% {transform:translate(-97.8798px, 43.5px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        10% {transform:translate(-114.5187px, 52.2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        11.67% {transform:translate(-130.2585px, 60.9px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        13.33% {transform:translate(-145.1321px, 69.6px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        15% {transform:translate(-159.1719px, 78.3px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        16.67% {transform:translate(-172.4097px, 87px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        18.33% {transform:translate(-184.8766px, 95.7px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        20% {transform:translate(-196.6032px, 104.4px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        21.67% {transform:translate(-207.6193px, 113.1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        23.33% {transform:translate(-217.9543px, 121.8px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        25% {transform:translate(-227.6367px, 130.5px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        26.67% {transform:translate(-236.6948px, 139.2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        28.33% {transform:translate(-245.1558px, 147.9px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        30% {transform:translate(-253.0467px, 156.6px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        31.67% {transform:translate(-260.3936px, 165.3px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        33.33% {transform:translate(-267.2222px, 174px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        35% {transform:translate(-273.5574px, 182.7px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        36.67% {transform:translate(-279.4236px, 191.4px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        38.33% {transform:translate(-284.8445px, 200.1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        40% {transform:translate(-289.8432px, 208.8px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        41.67% {transform:translate(-294.4423px, 217.5px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        43.33% {transform:translate(-298.6636px, 226.2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        45% {transform:translate(-302.5284px, 234.9px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        46.67% {transform:translate(-306.0574px, 243.6px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        48.33% {transform:translate(-309.2706px, 252.3px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        50% {transform:translate(-312.1875px, 261px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        51.67% {transform:translate(-314.8268px, 269.7px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        53.33% {transform:translate(-317.2068px, 278.4px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        55% {transform:translate(-319.3449px, 287.1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        56.67% {transform:translate(-321.2583px, 295.8px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        58.33% {transform:translate(-322.9631px, 304.5px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        60% {transform:translate(-324.4752px, 313.2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        61.67% {transform:translate(-325.8096px, 321.9px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        63.33% {transform:translate(-326.9809px, 330.6px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        65% {transform:translate(-328.0029px, 339.3px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        66.67% {transform:translate(-328.8889px, 348px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        68.33% {transform:translate(-329.6515px, 356.7px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        70% {transform:translate(-330.3027px, 365.4px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        71.67% {transform:translate(-330.854px, 374.1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        73.33% {transform:translate(-331.3161px, 382.8px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        75% {transform:translate(-331.6992px, 391.5px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        76.67% {transform:translate(-332.0129px, 400.2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        78.33% {transform:translate(-332.2661px, 408.9px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        80% {transform:translate(-332.4672px, 417.6px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        81.67% {transform:translate(-332.6238px, 426.3px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        83.33% {transform:translate(-332.7431px, 435px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        85% {transform:translate(-332.8314px, 443.7px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        86.67% {transform:translate(-332.8948px, 452.4px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        88.33% {transform:translate(-332.9383px, 461.1px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        90% {transform:translate(-332.9667px, 469.8px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        91.67% {transform:translate(-332.9839px, 478.5px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        93.33% {transform:translate(-332.9934px, 487.2px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        95% {transform:translate(-332.9979px, 495.9px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        96.67% {transform:translate(-332.9996px, 504.6px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        98.33% {transform:translate(-333px, 513.3px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+        100% {transform:translate(-333px, 522px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
+    }html::after { content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel); position: absolute; left: -999em; }
 }

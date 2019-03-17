@@ -1,9 +1,9 @@
 <template>
     <div class="cm-page zodiac-game">
-        <div class="page-content">
+        <div class="page-content" id="container">
             <div class="panel session-panel">
                 <div class="nav-block">
-                    <span class="cm-btn btn exit-btn">退出房间</span>
+                    <span class="cm-btn btn exit-btn" @click="exitRoom()">退出房间</span>
                     <span class="cm-btn btn home-btn">{{roomLevel}}</span>
                 </div>
                 <div class="block result-block">
@@ -17,13 +17,13 @@
                         <ul class="session-list">
                             <li v-for="(item,index) in recordList" :key="index">
                                 <span class="label">{{item.title}}</span>
-                                <div v-if="item.result">
+                                <div v-if="item.result&&((index!=deskInfo.currentRount-1)||showResult)">
                                     <div class="result">{{item.result-1|resultDict}}</div>
                                     <p class="score">
                                         个人战绩：<span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord}}
                                     </p>
                                 </div>
-                                <div class="non-content" v-if="!item.result">
+                                <div class="non-content" v-if="!item.result||(index==deskInfo.currentRount-1&&!showResult)">
                                     <i class="icon tips"></i>
                                 </div>
                             </li>
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="panel turntable-panel">
-                <div class="table-block">
+                <div class="table-block" :class="{'show-result':deskInfo.deskState=='betweenRound'}">
                     <div class="block-bd">
                         <div class="layers">
                             <div class="line"></div>
@@ -46,84 +46,84 @@
                                     <div class="item item-1" :class="{'current':runningIndex==1}">
                                        <div class="item-content">
                                            <div class="current-mask"></div>
-                                           <i class="point"></i>
+                                           <i class="point" id="target-point-1"></i>
                                            <i class="icon mouse-icon"></i>
                                        </div>
                                     </div>
                                     <div class="item item-2"  :class="{'current':runningIndex==2}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-2"></i>
                                             <i class="icon cow-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-3"  :class="{'current':runningIndex==3}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-3"></i>
                                             <i class="icon tiger-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-4"  :class="{'current':runningIndex==4}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-4"></i>
                                             <i class="icon rabbit-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-5"  :class="{'current':runningIndex==5}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-5"></i>
                                             <i class="icon dragon-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-6"  :class="{'current':runningIndex==6}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-6"></i>
                                             <i class="icon snake-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-7"  :class="{'current':runningIndex==7}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-7"></i>
                                             <i class="icon horse-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-8"  :class="{'current':runningIndex==8}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-8"></i>
                                             <i class="icon sheep-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-9"  :class="{'current':runningIndex==9}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-9"></i>
                                             <i class="icon monkey-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-10"  :class="{'current':runningIndex==10}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-10"></i>
                                             <i class="icon chicken-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-11"  :class="{'current':runningIndex==11}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-11"></i>
                                             <i class="icon dog-icon"></i>
                                         </div>
                                     </div>
                                     <div class="item item-12"  :class="{'current':runningIndex==12}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-12"></i>
                                             <i class="icon pig-icon"></i>
                                         </div>
                                     </div>
@@ -131,34 +131,34 @@
                             </div>
                             <div class="middle-layer">
                                 <div class="layer-bd">
-                                    <div class="item item-1 current">
+                                    <div class="item item-1" :class="{'current':this.runningCount==-1&&(runningIndex==12||runningIndex==1||runningIndex==2)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-13"></i>
                                             <i class="icon turtle-icon"></i>
                                             <span class="name">神龟</span>
                                         </div>
                                     </div>
-                                    <div class="item item-2">
+                                    <div class="item item-2" :class="{'current':this.runningCount==-1&&(runningIndex==3||runningIndex==4||runningIndex==5)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-14"></i>
                                             <i class="icon kirin-icon"></i>
                                             <span class="name">麒麟</span>
                                         </div>
                                     </div>
-                                    <div class="item item-3">
+                                    <div class="item item-3"  :class="{'current':this.runningCount==-1&&(runningIndex==6||runningIndex==7||runningIndex==8)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-15"></i>
                                             <i class="icon phoenix-icon"></i>
                                             <span class="name">凤凰</span>
                                         </div>
                                     </div>
-                                    <div class="item item-4">
+                                    <div class="item item-4"  :class="{'current':this.runningCount==-1&&(runningIndex==9||runningIndex==10||runningIndex==11)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-16"></i>
                                             <i class="icon pixiu-icon"></i>
                                             <span class="name">貔貅</span>
                                         </div>
@@ -167,84 +167,84 @@
                             </div>
                             <div class="inside-layer">
                                 <div class="layer-bd">
-                                    <div class="item item-1 current">
+                                    <div class="item item-1" :class="{'current':this.runningCount==-1&&runningIndex==1}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">乾</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-2">
+                                    <div class="item item-2"  :class="{'current':this.runningCount==-1&&runningIndex==2}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">坤</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-3">
+                                    <div class="item item-3"  :class="{'current':this.runningCount==-1&&runningIndex==3}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">乾</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-4">
+                                    <div class="item item-4"  :class="{'current':this.runningCount==-1&&runningIndex==4}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">坤</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-5">
+                                    <div class="item item-5"  :class="{'current':this.runningCount==-1&&runningIndex==5}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">乾</span>
-                                            <i class="point"></i>
+                                            <i class="point" id="target-point-17"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-6">
+                                    <div class="item item-6"  :class="{'current':this.runningCount==-1&&runningIndex==6}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">坤</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-7">
+                                    <div class="item item-7"  :class="{'current':this.runningCount==-1&&runningIndex==7}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">乾</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-8">
+                                    <div class="item item-8"  :class="{'current':this.runningCount==-1&&runningIndex==8}">
+                                        <div class="item-content">
+                                            <div class="current-mask"></div>
+                                            <span class="name">坤</span>
+                                            <i class="point" id="target-point-18"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item item-9"  :class="{'current':this.runningCount==-1&&runningIndex==9}">
+                                        <div class="item-content">
+                                            <div class="current-mask"></div>
+                                            <span class="name">乾</span>
+                                            <i class="point"></i>
+                                        </div>
+                                    </div>
+                                    <div class="item item-10"  :class="{'current':this.runningCount==-1&&runningIndex==10}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">坤</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-9">
+                                    <div class="item item-11"  :class="{'current':this.runningCount==-1&&runningIndex==11}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">乾</span>
                                             <i class="point"></i>
                                         </div>
                                     </div>
-                                    <div class="item item-10">
-                                        <div class="item-content">
-                                            <div class="current-mask"></div>
-                                            <span class="name">坤</span>
-                                            <i class="point"></i>
-                                        </div>
-                                    </div>
-                                    <div class="item item-11">
-                                        <div class="item-content">
-                                            <div class="current-mask"></div>
-                                            <span class="name">乾</span>
-                                            <i class="point"></i>
-                                        </div>
-                                    </div>
-                                    <div class="item item-12">
+                                    <div class="item item-12"  :class="{'current':this.runningCount==-1&&runningIndex==12}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
                                             <span class="name">坤</span>
@@ -267,16 +267,14 @@
                                 <div class="waiting" v-if="deskInfo.deskState=='bankerSetting'">
                                     <p class="index">擂主设置中</p>
                                 </div>
-                                <div v-if="deskInfo.deskState=='countdown'">
+                                <div class="waiting" v-if="deskInfo.deskState=='countdown'||deskInfo.deskState=='settlement'||deskInfo.deskState=='betweenRound'">
                                     <p class="index">第{{deskInfo.currentRount-1|numToCn}}局</p>
-                                    <p class="time">{{timer}}s</p>
+                                    <p class="time">
+                                        <span v-if="deskInfo.deskState=='countdown'">下注中</span><span v-if="deskInfo.deskState=='betweenRound'">开奖中</span>{{timer}}s</p>
                                 </div>
-                                <div class="waiting" v-if="deskInfo.deskState=='betweenRound'">
-                                    <p class="index">第{{deskInfo.currentRount-1|numToCn}}局</p>
-                                    <p class="time">结算中{{timer}}s</p>
-                                </div>
+                                <i class="point" id="inside-layer-point"></i>
                             </div>
-                            <div class="result-layer" v-if="deskInfo.deskState=='betweenRound'&&resultTimer>0">
+                            <div class="result-layer ani-item" :class="showResultClass">
                                 <div class="layer-bd">
                                     <i class="icon radiation-icon"></i>
                                     <i class="icon fuzzy-icon"></i>
@@ -300,7 +298,7 @@
                 </div>
                 <div class="handle-btn-list">
                     <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
-                    <span class="cm-btn handle-btn entrance-btn">我的农场</span>
+                    <span class="cm-btn handle-btn entrance-btn" @click="test()">我的庄园</span>
                 </div>
             </div>
             <div class="panel bet-panel">
@@ -409,15 +407,15 @@
                     </div>
                 </div>
                 <div class="block host-block">
-                    <div class="block-hd"><span class="title">擂主后选区</span></div>
+                    <div class="block-hd"><span class="title">擂主候选区</span></div>
                     <div class="block-bd">
                         <table>
                             <tbody>
                             <tr v-for="(item,index) in hostList" :key="index">
                                 <td class="index">{{index+1}}</td>
                                 <td class="name">{{item.user.name}}</td>
-                                <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}">{{item.langyaRecord}}</span></td>
-                                <td class="balance">{{item.user.balance}}</td>
+                                <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord}}</span></td>
+                                <td class="balance">{{item.user.balance|numFormat}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -432,8 +430,10 @@
                     </div>
                 </div>
             </div>
+            <!--start:琅琊豆效果-->
+            <span class="coin-item" v-for="(item,index) in coinList" :key="index" :style="item.from"><i class="icon coin-icon"></i></span>
         </div>
-
+        <!--end:琅琊豆效果-->
         <!--结果弹窗-->
         <el-dialog class="result-modal" title="" :visible.sync="resultModalFlag" center top="25vh">
             <div class="modal-header">
@@ -449,9 +449,9 @@
         </el-dialog>
 
         <!--音频-->
-        <audio src="someaudio.wav">
+        <!--<audio src="someaudio.wav">
             您的浏览器不支持 audio 标签。
-        </audio>
+        </audio>-->
     </div>
 </template>
 
@@ -582,6 +582,7 @@
                         type:'inside',
                     },
                 ],
+                selectedOption:{},
 
                 hostOptionsList:[
                     {
@@ -699,12 +700,18 @@
                 recordList:[],
                 resultModalFlag:false,
                 curResult:{},
-                resultTimer:5,
 
                 runningIndex:-1,
                 runningCount:-1,
                 long:0,
                 speed:400,
+                showResult:false,
+                showResultClass:'',
+                switchSession:false,
+
+                containerPosition:{},
+                centerPosition:{},
+                coinList:[],
             }
         },
         methods: {
@@ -778,14 +785,18 @@
                 this.curPlayer.roundRecord.forEach((item)=>{
                     Object.assign(this.recordList[item.currentRount-1],item);
                 });
+                //
+                if(this.deskInfo.deskState=='settlement'){
+                    this.collectCoin();
+                }
                 //结算
                 if(this.deskInfo.deskState=='betweenRound'){
-                    this.resultTimer--;
                     //局号变换，说明新开奖，更新相关数据
                     if(this.curResult.round!=this.deskInfo.currentRount){
                         this.curResult=this.$options.filters.resultDict(this.curPlayer.roundRecord[this.curPlayer.roundRecord.length-1].result-1,'all');
                         this.curResult.round=this.deskInfo.currentRount;
-                        this.resultTimer=5;
+                        this.runningIndex=-1;
+                        this.runTurntable(this.curResult.value);
                     }
                 }
                /* console.log('***状态:'+this.deskInfo.deskState+'**擂主:'+this.deskInfo.currentBankerId+'**计时:'+this.timer+'***');*/
@@ -797,20 +808,19 @@
                 /* console.log('this.curPlayer:',this.curPlayer);*/
             },
             setBet:function (item) {
-                console.log('dsdfs:',item);
-                console.log('this.selectedChip:',this.selectedChip);
                 if(this.deskInfo.deskState=='countdown'){
                     if(!this.selectedChip){
                         Vue.operationFeedback({type:'warn',text:'请先选择筹码'});
                         return;
                     }
+                    this.selectedOption=item;
                     this.socketApi.sendSock({"api":"gamble","apiParams":{kind:item.id,jetton:this.selectedChip}});
                 }else{
                     Vue.operationFeedback({type:'warn',text:'现在还不能下注，请稍作等待'});
                 }
             },
             setBetCallback:function () {
-
+                this.putCoin(this.selectedOption.id);
             },
             applyToHost:function () {
                 this.socketApi.sendSock({"api":"applyForBanker","apiParams":{}});
@@ -881,28 +891,88 @@
                 this.recordList=[{title:'第一局'},{title:'第二局'},{title:'第三局'},{title:'第四局'},{title:'第五局'},{title:'第六局'}];
             },
             runTurntable:function (value) {
-              setTimeout(()=>{
+                setTimeout(()=>{
+                    if(this.runningCount==-1){
+                        this.long=value-1+3*12;
+                    }
+                    this.runningCount++;
+                    this.runningIndex=this.runningCount%12+1;
+                    if(this.runningCount<this.long){
+                        this.runTurntable();
+                    }else{
+                        this.runningCount=-1;
+                        setTimeout(()=>{
+                            this.showResult=true;
+                            this.showResultClass='animated bounceIn';
 
-                  if(this.runningCount==-1){
-                      this.long=value-1+5*12;
-                  }
-                  this.runningCount++;
-                  this.runningIndex=this.runningCount%12+1;
-                  if(this.runningCount<this.long){
-                      this.runTurntable();
-                  }else{
-                      this.runningCount=0;
-                     /* this.runningIndex=-1;*/
-                  }
-                  if(this.runningCount>parseInt((1/10)*this.long)){
-                      this.speed=100;
-                  }if(this.runningCount>parseInt((5/6)*this.long)){
-                      this.speed=300;
-                  }else if(this.runningCount>=this.long){
+                        },1000);
+                        setTimeout(()=>{
+                            this.showResult=false;
+                            this.showResultClass='animated bounceOut';
+                        },7000);
+                    }
+                    if(this.runningCount>parseInt((1/12)*this.long)){
+                        this.speed=100;
+                    }if(this.runningCount>parseInt((11/12)*this.long)){
+                        this.speed=300;
+                    }else if(this.runningCount>=this.long){
 
-                  }
-              },this.speed);
-            }
+                    }
+                },this.speed);
+            },
+            getPosition:function (element) {
+                var actualLeft=element.offsetLeft;
+                var actualTop=element.offsetTop;
+                var parent=element.offsetParent;
+                while(parent!=null){
+                    actualLeft+=parent.offsetLeft+(parent.offsetWidth-parent.clientWidth)/2;
+                    actualTop+=parent.offsetTop+(parent.offsetHeight-parent.clientHeight)/2;
+                    parent=parent.offsetParent;
+                }
+                return {x:actualLeft,y:actualTop};
+            },
+            putCoin:function (id) {
+                let unit='px';
+                //
+                let fromPosition=this.getPosition(document.getElementsByClassName('selected')[0]);
+                fromPosition.x=fromPosition.x-this.containerPosition.x;
+                fromPosition.y=fromPosition.y-this.containerPosition.y;
+                //
+                let topPosition=this.getPosition(document.getElementById('target-point-'+id));
+                topPosition.x=topPosition.x-this.containerPosition.x;
+                topPosition.y=topPosition.y-this.containerPosition.y;
+                //
+                let rMin=-25;
+                let rMax=10;
+                if(id>=17){
+                    rMin=-15;
+                    rMax=-5;
+                }
+
+                //
+                let count=Math.ceil(this.selectedChip/this.roomConfig.chipList[0])*2;
+                for(let i=0;i<count;i++){
+                    let xRandom=this.randomNum(rMin,rMax);
+                    let yRandom=this.randomNum(rMin,rMax);
+                    let delayRandom=this.randomNum(1,10);
+                    let item={from:{transform:'translate('+fromPosition.x+unit+', '+fromPosition.y+unit+')'},to:{transform:'translate('+(topPosition.x+xRandom)+unit+', '+(topPosition.y+yRandom)+unit+')',opacity:1,transitionDelay:0.1*i+'s'},end:{transform:'translate('+(this.centerPosition.x-10)+unit+', '+(this.centerPosition.y-10)+unit+')',transitionDelay:0.05*delayRandom+'s',transitionDuration:'0.5s'}};
+                    this.coinList.push(item);
+                    setTimeout(()=>{
+                        item.from=item.to;
+                    },200);
+                };
+            },
+            collectCoin:function () {
+                this.coinList.forEach((item)=>{
+                    item.from=item.end;
+                });
+                setTimeout(()=>{
+                    this.coinList=[];
+                },1500);
+            },
+            randomNum:function (minNum,maxNum) {
+                return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10);
+            },
         },
         created (){
             //初始化数据
@@ -919,6 +989,11 @@
             //
             this.getConfigData('赔率');
             this.getConfigData(this.roomLevel+'配置');
+            //
+            this.containerPosition=this.getPosition(document.getElementById('container'));
+            this.centerPosition=this.getPosition(document.getElementById('inside-layer-point'));
+            this.centerPosition.x=this.centerPosition.x-this.containerPosition.x;
+            this.centerPosition.y=this.centerPosition.y-this.containerPosition.y;
             //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
@@ -939,6 +1014,8 @@
                        console.log('data:',data);
                        if(data.api=='applyForBanker'){
                           this.applyToHostCallback();
+                       }else if(data.api=='gamble'){
+                           this.setBetCallback();
                        }
                    }else{
                        Vue.operationFeedback({type:'warn',text:resp.respMsg});
@@ -952,9 +1029,15 @@
             });
 
             //临时测试
-            setTimeout(()=>{
-                this.runTurntable(11);
-            },2000)
+          /*  setTimeout(()=>{
+                this.runTurntable(1);
+            },2000)*/
+          /*  let ele=document.getElementById('target-point-1');
+            let position=this.getPosition(ele);
+            let containerPosition=this.getPosition(document.getElementById('container'));
+            console.log('position:',position);
+            console.log('containerPosition:',containerPosition);
+            console.log('test:',{x:position.x-containerPosition.x,y:position.y-containerPosition.y});*/
         },
         beforeRouteLeave(to,from,next){
             this.exitRoom();

@@ -12,6 +12,7 @@ import api from './utils/api'
 import tools from './utils/tools'
 import './utils/filters'
 import components from './components'
+import animate from 'animate.css';
 
 Vue.use(ElementUI, { size: 'small' });
 
