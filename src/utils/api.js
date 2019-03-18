@@ -91,6 +91,14 @@ export default {
                 params: params
             });
         },
+        //获取微信openId
+        getOpenIdInfo:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'//weixin/getOpenIdInfo',
+                params: params
+            });
+        },
         //获取banner列表
         getBannerList:function (params) {
             return Vue.http.ajax({
@@ -145,6 +153,14 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl2+'/game1Config/getGameConfigInfo',
+                params: params
+            });
+        },
+        //提交充值订单h5
+        addRechargeOrder:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/rechargeOrder/addRechargeOrder',
                 params: params
             });
         },

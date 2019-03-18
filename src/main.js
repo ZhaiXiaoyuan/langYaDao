@@ -13,6 +13,7 @@ import tools from './utils/tools'
 import './utils/filters'
 import components from './components'
 import animate from 'animate.css';
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 
 Vue.use(ElementUI, { size: 'small' });
 
@@ -25,6 +26,7 @@ Vue.use(config);
 Vue.use(api);
 Vue.use(tools);
 Vue.use(components);
+Vue.component(VueQrcode.name, VueQrcode);
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {

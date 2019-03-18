@@ -26,7 +26,7 @@
                     <span class="label">绑定微信：</span>
                     <div class="value">
                         <div class="img-box">
-                            <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1750833952,2529388352&fm=58&bpow=380&bpoh=380" alt="">
+                            <qrcode :value="qrCodeDomain+'/weixin/getWeixinCode?state='+randomId" :options="{ width: 110 }"></qrcode>
                         </div>
                         <p class="tips">打开微信扫一扫</p>
                     </div>
@@ -57,6 +57,8 @@
               phone:'',
           },
           phoneCodeData:null,
+          qrCodeDomain:Vue.appConfig.domain,
+          randomId:new Date().getTime()+Math.random(),
       }
     },
     computed: {},
@@ -132,7 +134,7 @@
 
     },
     mounted: function () {
-
+        console.log('test:',this.randomId);
     }
   };
 </script>

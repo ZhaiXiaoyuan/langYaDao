@@ -50,14 +50,43 @@
         },
         data: function(){
             return {
-
+                account:{},
             }
         },
         methods: {
-
+            createOrder:function () {
+                /* if(!this.form.phone){
+                     Vue.operationFeedback({type:'warn',text:'请输入手机号'});
+                     return;
+                 }
+                 if(!this.form.password){
+                     Vue.operationFeedback({type:'warn',text:'请输入密码'});
+                     return;
+                 }*/
+                this.account.id='testuser';
+                let params={
+                    userId: this.account.id,
+                    amount: 5*100,
+                    type:'Native',//H5\JSAPI\Native
+                    openId:'',//当type为JSAPI时必填
+                }
+                let fb=Vue.operationFeedback({text:'订单生成中...'});
+                Vue.api.addRechargeOrder({apiParams:params}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        fb.setOptions({type:"complete",text:'订单生成成功，请扫码支付'});
+                    }else{
+                        fb.setOptions({type:"warn",text:resp.respMsg});
+                    }
+                });
+            },
         },
         mounted () {
-
+            //
+            this.account=this.getAccountInfo();
+            console.log('test:',this.account);
+            //
+            this.createOrder();
         },
     }
 </script>
