@@ -46,9 +46,15 @@
         },
         created(){
             //
+         /*   this.userId=this.$route.query.userId;
+            if(this.userId){
+                this.account.id=this.userId;
+            }
+            console.log('test:',this.userId)*/
+            //
             this.account=this.getAccountInfo();
             //
-            this.socketApi.initWebSocket("ws://zyugoodluck.vicp.cc:15852/"+this.account.id);
+            this.socketApi.initWebSocket("ws://192.168.0.100:8601/"+this.account.id);
         },
         mounted () {
 
