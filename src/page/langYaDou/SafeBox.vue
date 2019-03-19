@@ -70,6 +70,10 @@
                 <scroll-load :page="pager" @scrolling="getList()"></scroll-load>
             </div>
         </div>
+
+        <el-dialog class="coin-convert-modal" title="" :visible.sync="coinConvertModalFlag"top="10vh">
+            1231
+        </el-dialog>
     </div>
 </template>
 
@@ -94,6 +98,8 @@
                     isFinished:false
                 },
                 entryList:[],
+
+                coinConvertModalFlag:false,
             }
         },
         methods: {

@@ -100,7 +100,9 @@
               return;
           }*/
           let fb=Vue.operationFeedback({text:'注册中...'});
-          Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
+          //临时测试
+       /*   this.phoneCodeData.bizId='whosyourdaddy';*/
+         /* Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
               if(resp.respCode=='2000'){
                   let params={
                       ...this.form,
@@ -119,6 +121,23 @@
                           fb.setOptions({type:"warn",text:resp.respMsg});
                       }
                   });
+              }else{
+                  fb.setOptions({type:"warn",text:resp.respMsg});
+              }
+          });*/
+          let params={
+              ...this.form,
+              wxOpenId:''
+          }
+          Vue.api.register({apiParams:params}).then((resp)=>{
+              if(resp.respCode=='2000'){
+                  fb.setOptions({type:"complete",text:'注册成功'});
+                  //
+                  this.close();
+                  //
+                  setTimeout(()=>{
+                      Vue.loginModal({open:true});
+                  },3000)
               }else{
                   fb.setOptions({type:"warn",text:resp.respMsg});
               }

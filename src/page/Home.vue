@@ -21,7 +21,7 @@
                                     <div class="cover">
                                         <img :src="basicConfig.imgBasicUrl+item.gamePic" alt="">
                                     </div>
-                                    <h3>琅琊岛欢乐运动会</h3>
+                                    <h3>{{item.gameName}}</h3>
                                 </a>
                             </li>
                             <li class="waiting-item">
@@ -89,7 +89,7 @@
                 Vue.api.getGameList({apiParams:params}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
-                        this.gameList=data.gameList;
+                        this.gameList=typeof data.gameList=='string'?JSON.parse(data.gameList):data.gameList;
                     }
                 });
             },
@@ -111,7 +111,8 @@
             this.getBannerList();
             this.getGameList();
             //临时测试
-            Vue.registerModal({open:true});
+            this.alertModal({});
+           /* Vue.registerModal({open:true});*/
          /*   Vue.loginModal({open:true});*/
         },
         beforeRouteLeave(to,from,next){

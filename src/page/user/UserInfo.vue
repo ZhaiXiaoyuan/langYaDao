@@ -42,6 +42,7 @@
 </style>
 <script>
     import Vue from 'vue'
+    import bus from '../../components/common/bus';
 
     export default {
         components:{
@@ -79,6 +80,9 @@
                 params.phone='';
                 Vue.api.updateUserInfo({apiParams:params,coverPicFile:this.form.file?this.form.file:null}).then((resp)=>{
                     if(resp.respCode=='2000'){
+                        this.account.selfIntroduction=params.selfIntroduction;
+                        this.$cookie.set('account',JSON.stringify(this.account),7);
+                        bus.$emit('refreshAccount');
                         fb.setOptions({type:'complete',text:'保存成功'});
                     }else{
                         fb.setOptions({type:'warn',text:'保存失败，'+resp.respMsg});

@@ -11,7 +11,7 @@ import RegisterModal from './RegisterModal.vue';
 import LoginModal from './LoginModal.vue';
 import ScrollLoad from './ScrollLoad';
 import * as socketApi from './socket';
-
+import AlertModal from './AlertModal.vue';
 
 
 /*全局组件注册配置*/
@@ -26,6 +26,7 @@ export default {
     Vue.component('RegisterModal',RegisterModal);
     Vue.component('LoginModal',LoginModal);
     Vue.component('ScrollLoad',ScrollLoad);
+      Vue.component('AlertModal',AlertModal);
 
     /*方法调度方式*/
     let OperationFeedbackConstructor = Vue.extend(OperationFeedback);
@@ -33,6 +34,7 @@ export default {
     let CropModalConstructor=Vue.extend(CropModal);
     let RegisterModalConstructor=Vue.extend(RegisterModal);
     let LoginModalConstructor=Vue.extend(LoginModal);
+    let AlertModalConstructor=Vue.extend(AlertModal);
     const functionObject={
         /**
          * 操作提示
@@ -143,6 +145,29 @@ export default {
             let parentEle=document.getElementById('app');
             //
             let instance=new LoginModalConstructor({});
+            instance.options=options;
+            instance.$mount();
+            parentEle.appendChild(instance.$el);
+        },
+        /**
+         * 提示弹窗
+         * @param options
+         */
+        alertModal:function (options) {
+            options={...{
+                open:true,
+                type:'alert',//alert,confirm
+                title: '温馨提示', //提示标题
+                html: '',   //提示内容
+                yes: '确 定',
+                no: '取 消',
+                ok:null,//确定的回调
+                cancel:null,//取消的回调,
+            },...options};
+            //
+            let parentEle=document.getElementById('app');
+            //
+            let instance=new AlertModalConstructor({});
             instance.options=options;
             instance.$mount();
             parentEle.appendChild(instance.$el);

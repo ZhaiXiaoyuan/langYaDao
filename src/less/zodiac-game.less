@@ -1418,6 +1418,7 @@
             width: 396px;
             background: none;
             font-family: 'hytangmeiren';
+            box-shadow: none;
             .el-dialog__header{
                 display: none;
             }
@@ -1456,13 +1457,20 @@
                 background: url("../images/zodiac/result-modal-body.png") no-repeat;
                 width: 396px;
                 height: 256px;
-                .view-win{
+                padding-top: 15px;
+                .result-list{
                     margin: 0px auto;
                     height: 100%;
-                    overflow: auto;
-                    padding: 15% 5px 20px 5px;
                     border-radius: 30px;
-                    border: 1px solid red;
+                    padding: 5px 15px;
+                    .list-hd{
+                        padding: 0px 5px 0px 0px;
+                    }
+                    .list-bd{
+                        height: 81.5%;
+                        overflow: auto;
+                        border-radius: 25px;
+                    }
                 }
                 table{
                     font-family: 'hytangmeiren';
@@ -1471,13 +1479,13 @@
                     .name{
                         width: 35%;
                     }
-                    .level{
+                    .type{
                         width: 15%;
                     }
-                    .count{
+                    .score{
                         width: 20%;
                     }
-                    .balance{
+                    .count{
                         width: 35%;
                     }
                     thead{
@@ -1502,6 +1510,20 @@
                             }
                         }
                     }
+                }
+            }
+            .modal-footer{
+                margin-top: 10px;
+                text-align: center;
+                .handle-btn{
+                    display: inline-block;
+                    background: url("../images/zodiac/result-modal-handle-btn.png") no-repeat;
+                    width: 124px;
+                    height: 38px;
+                    background-size: 100%;
+                    color: #e28000;
+                    font-size: 18px;
+                    line-height: 28px;
                 }
             }
         }

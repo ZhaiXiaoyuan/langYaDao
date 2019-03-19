@@ -152,7 +152,7 @@ export default {
         getGameConfigInfo:function (params) {
             return Vue.http.ajax({
                 method: 'post',
-                url: basicUrl2+'/game1Config/getGameConfigInfo',
+                url: basicUrl+'/game1Config/getGameConfigInfo',
                 params: params
             });
         },
@@ -161,6 +161,14 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/rechargeOrder/addRechargeOrder',
+                params: params
+            });
+        },
+        //获取基本配置
+        getBaseGlobalVariable:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/admin/getBaseGlobalVariable',
                 params: params
             });
         },

@@ -322,7 +322,7 @@
                                         </div>
                                         <div class="item-bd">
                                             <p>竞猜率:{{parseInt(rateConfig[item.type])}}</p>
-                                            <p>竞猜额:{{curBetInfo[item.id-1]&&curBetInfo[item.id-1][item.id]}}</p>
+                                            <p>竞猜额:{{curBetInfo[item.id]}}</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -398,7 +398,7 @@
                             <tbody>
                             <tr v-for="(item,index) in playerList" :key="index">
                                 <td class="name">{{item.user.name}}</td>
-                                <td class="level">缺</td>
+                                <td class="level">{{item.vipType?'vip'+item.vipType:'非vip'}}</td>
                                 <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord|numFormat}}</span></td>
                                 <td class="balance">{{item.user.balance|numFormat}}</td>
                             </tr>
@@ -438,14 +438,39 @@
         <el-dialog class="result-modal" title="" :visible.sync="resultModalFlag" center top="25vh">
             <div class="modal-header">
                 <div class="title">本局结算</div>
-                <span class="cm-btn close-btn"></span>
+                <span class="cm-btn close-btn" @click="resultModalFlag=false"></span>
             </div>
-            <div class="modal-body" style="padding-top: 0px;border-top: none;">
-                <div class="view-win">
-
+            <div class="modal-body" style="border-top: none;">
+                <div class="result-list">
+                    <div class="list-hd">
+                        <table>
+                            <thead>
+                            <tr>
+                                <td class="type">身份</td>
+                                <td class="name">昵称</td>
+                                <td class="score">积分</td>
+                                <td class="count">琅琊豆</td>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="list-bd">
+                        <table>
+                            <tbody>
+                            <tr v-for="(item,index) in resultList" :key="index">
+                                <td class="type">{{item.id==curHost.userId?'擂主':'挑战者'}}</td>
+                                <td class="name">{{item.name}}</td>
+                                <td class="score">{{item.bonus}}</td>
+                                <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord}}</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer"></div>
+            <div class="modal-footer">
+                <span class="cm-btn handle-btn" @click="resultModalFlag=false">关闭({{resultModalTimer}}s)</span>
+            </div>
         </el-dialog>
 
         <!--音频-->
@@ -549,27 +574,27 @@
                     },
                     {
                         id:13,
-                        name:'神龟',
-                        type:'middle',
-                        icon:'turtle-icon',
-                    },
-                    {
-                        id:14,
                         name:'麒麟',
                         type:'middle',
                         icon:'kirin-icon',
                     },
                     {
-                        id:15,
+                        id:14,
                         name:'凤凰',
                         type:'middle',
                         icon:'phoenix-icon',
                     },
                     {
-                        id:16,
+                        id:15,
                         name:'貔貅',
                         type:'middle',
                         icon:'pixiu-icon',
+                    },
+                    {
+                        id:16,
+                        name:'神龟',
+                        type:'middle',
+                        icon:'turtle-icon',
                     },
                     {
                         id:17,
@@ -689,17 +714,20 @@
                     chipList:[],
                 },
                 deskInfo:{},
+                deskCoinList:[],
                 playerList:[],
                 curPlayer:{user:{}},
                 curHost:null,
-                curBetInfo:[],
+                curBetInfo:{},
                 rateConfig:{},
                 selectedChip:0,
                 hostList:[],
                 timer:0,
                 recordList:[],
                 resultModalFlag:false,
+                resultModalTimer:5,
                 curResult:{},
+                resultList:[],
 
                 runningIndex:-1,
                 runningCount:-1,
@@ -709,6 +737,7 @@
                 showResultClass:'',
                 switchSession:false,
 
+                originalPosition:{},
                 containerPosition:{},
                 centerPosition:{},
                 coinList:[],
@@ -752,6 +781,17 @@
             },
             gameRender:function (data) {
                 this.deskInfo=data.deskInfoJSONObject;
+                if(this.deskInfo.deskState=='countdown'){
+                    for(let i=0;i<this.deskCoinList.length;i++){
+                        let increment=this.deskInfo.currentRountJettonStatistics[i+1]-this.deskCoinList[i];
+                        if(increment>0&&(!this.selectedOption||this.selectedOption.id!=i+1)){
+                            this.originalPosition.increment=increment;
+                            this.originalPosition.id=i+1;
+                            this.putCoin(i+1,this.originalPosition)
+                        }
+                        this.deskCoinList[i]=this.deskInfo.currentRountJettonStatistics[i+1];
+                    };
+                }
                 //
                 this.playerList=data.playerInfoJSONArray;
                 let temHostList=data.bankerSequenceJSONArray;
@@ -769,7 +809,8 @@
                         if(hostItem.userId==item.userId){
                             this.hostList.push(item);
                         }
-                    })
+                    });
+
                 });
                 //擂主更换时重置相关数据
                 if(this.curHost.userId!=this.deskInfo.currentBankerId){
@@ -793,9 +834,21 @@
                 if(this.deskInfo.deskState=='betweenRound'){
                     //局号变换，说明新开奖，更新相关数据
                     if(this.curResult.round!=this.deskInfo.currentRount){
+                        console.log('this.curResult.round:',this.curResult.round);
+                        console.log('this.deskInfo.currentRount:',this.deskInfo.currentRount);
                         this.curResult=this.$options.filters.resultDict(this.curPlayer.roundRecord[this.curPlayer.roundRecord.length-1].result-1,'all');
                         this.curResult.round=this.deskInfo.currentRount;
                         this.runningIndex=-1;
+
+                        this.resultList=[];
+                        this.playerList.forEach((item,index)=>{
+                            let curRoundResult=item.roundRecord.length>0?item.roundRecord[item.roundRecord.length-1]:{};
+                            this.resultList.push({
+                                ...item.user,
+                                ...curRoundResult
+                            });
+                        });
+                        console.log('this.resultList:',this.resultList);
                         this.runTurntable(this.curResult.value);
                     }
                 }
@@ -806,6 +859,7 @@
               /*  console.log('this.deskInfo:',this.deskInfo);*/
              /*   console.log('this.hostList:',this.hostList);*/
                 /* console.log('this.curPlayer:',this.curPlayer);*/
+            /*    console.log('test:',this.playerList);*/
             },
             setBet:function (item) {
                 if(this.deskInfo.deskState=='countdown'){
@@ -845,19 +899,19 @@
                 this.curPreset.insideName=item.insideName;
             },
             savePreset:function () {
-             /*   if(this.deskInfo.deskState!='bankerSetting'){
+                if(this.deskInfo.deskState!='bankerSetting'){
                     Vue.operationFeedback({type:'warn',text:'现在还不能设置竞猜结果'});
                     return;
-                }*/
+                }
                 let list=[];
                 this.presetList.forEach((item)=>{
                     if(item.value){
                         list.push({result:item.value});
                     }
                 });
-                console.log('list:',list);
                 if(list.length<6){
                     Vue.operationFeedback({type:'warn',text:'请设置好所有竞猜结果'});
+                    return;
                 }
                 this.socketApi.sendSock({"api":"presetResult","apiParams":{presetResultJSONArrayString:list}});
             },
@@ -904,12 +958,22 @@
                         setTimeout(()=>{
                             this.showResult=true;
                             this.showResultClass='animated bounceIn';
-
+                            this.initdeskCoinList();
                         },1000);
                         setTimeout(()=>{
                             this.showResult=false;
                             this.showResultClass='animated bounceOut';
+                            this.resultModalFlag=true;
+                            let resultModalTimerInterval=setInterval(()=>{
+                                this.resultModalTimer--;
+                                if(!this.resultModalTimer){
+                                    this.resultModalFlag=false;
+                                    this.resultModalTimer=5;
+                                    clearInterval(resultModalTimerInterval);
+                                }
+                            },1000);
                         },7000);
+
                     }
                     if(this.runningCount>parseInt((1/12)*this.long)){
                         this.speed=100;
@@ -931,12 +995,19 @@
                 }
                 return {x:actualLeft,y:actualTop};
             },
-            putCoin:function (id) {
+            putCoin:function (id,fromPositionObj) {
                 let unit='px';
                 //
-                let fromPosition=this.getPosition(document.getElementsByClassName('selected')[0]);
-                fromPosition.x=fromPosition.x-this.containerPosition.x;
-                fromPosition.y=fromPosition.y-this.containerPosition.y;
+                let fromPosition=null;
+                if(fromPositionObj){
+                    fromPosition=fromPositionObj;
+                    id=fromPositionObj.id;
+                }else{
+                    fromPosition=this.getPosition(document.getElementsByClassName('selected')[0]);
+                    fromPosition.x=fromPosition.x-this.containerPosition.x;
+                    fromPosition.y=fromPosition.y-this.containerPosition.y;
+                }
+
                 //
                 let topPosition=this.getPosition(document.getElementById('target-point-'+id));
                 topPosition.x=topPosition.x-this.containerPosition.x;
@@ -950,7 +1021,8 @@
                 }
 
                 //
-                let count=Math.ceil(this.selectedChip/this.roomConfig.chipList[0])*2;
+                let count=Math.ceil((fromPositionObj?fromPositionObj.increment:this.selectedChip)/this.roomConfig.chipList[0])*1;
+                /*console.log('******count:'+count+'*****');*/
                 for(let i=0;i<count;i++){
                     let xRandom=this.randomNum(rMin,rMax);
                     let yRandom=this.randomNum(rMin,rMax);
@@ -973,6 +1045,12 @@
             randomNum:function (minNum,maxNum) {
                 return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10);
             },
+            initdeskCoinList:function () {
+                this.deskCoinList=[];
+                for(let i=0;i<18;i++){
+                    this.deskCoinList.push(0);
+                }
+            }
         },
         created (){
             //初始化数据
@@ -990,10 +1068,12 @@
             this.getConfigData('赔率');
             this.getConfigData(this.roomLevel+'配置');
             //
+            this.originalPosition={x:0,y:0};
             this.containerPosition=this.getPosition(document.getElementById('container'));
             this.centerPosition=this.getPosition(document.getElementById('inside-layer-point'));
             this.centerPosition.x=this.centerPosition.x-this.containerPosition.x;
             this.centerPosition.y=this.centerPosition.y-this.containerPosition.y;
+            this.initdeskCoinList();
             //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);

@@ -261,6 +261,12 @@
                 }
             }
         }
+        .coin-convert-modal{
+            .el-dialog{
+                width: 360px;
+                border-radius: 10px;
+            }
+        }
     }
     .tab-panel{
         margin-top: 10px;
@@ -442,6 +448,18 @@
                 top:1px;
                 font-size: 24px;
                 color: @mainBlue;
+            }
+            &.payment-info{
+                text-align: center;
+                background: #f4f4f4;
+                padding: 20px 0px;
+                .qrcode-item{
+                    .img-box{
+                        background: #f4f4f4;
+                        border-radius: 3px;
+                        padding: 5px;
+                    }
+                }
             }
         }
         .pay-type-list{

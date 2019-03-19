@@ -54,7 +54,7 @@
             //
             this.account=this.getAccountInfo();
             //
-            this.socketApi.initWebSocket("ws://192.168.0.100:8601/"+this.account.id);
+            this.socketApi.initWebSocket("ws://39.108.252.213:8600/"+this.account.id);
         },
         mounted () {
 
