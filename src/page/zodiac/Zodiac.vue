@@ -54,7 +54,7 @@
             //
             this.account=this.getAccountInfo();
             //
-            this.socketApi.initWebSocket("ws://39.108.252.213:8600/"+this.account.id);
+            this.socketApi.initWebSocket("ws://api.linqi.tech:8600/"+this.account.id);
         },
         mounted () {
 

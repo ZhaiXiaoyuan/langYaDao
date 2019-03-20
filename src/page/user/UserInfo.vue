@@ -12,7 +12,7 @@
            <div class="info-row">
                <span class="label">会员等级：</span>
                <div class="value">
-                   <p v-if="form.vipTypeId">会员等级（有效期至2018-12-12）<router-link tag="span" :to="{ path: '/center/vip/vipStore'}"  class="cm-btn to-vip-btn">去续费</router-link></p>
+                   <p v-if="form.vipTypeId">VIP{{vipInfo.vipLevel}}（有效期至{{form.vipEndDate|formatDate('yyyy-MM-dd')}}）<router-link tag="span" :to="{ path: '/center/vip/vipStore'}"  class="cm-btn to-vip-btn">去续费</router-link></p>
                    <p v-if="!form.vipTypeId">非会员<router-link tag="span" :to="{ path: '/center/vip/vipStore'}" class="cm-btn to-vip-btn">成为会员</router-link></p>
                </div>
            </div>
@@ -52,6 +52,7 @@
             return {
                 account:{},
                 form:{},
+                vipInfo:{},
             }
         },
         methods: {
@@ -59,9 +60,22 @@
                 Vue.api.getUserInfo({apiParams:{id:this.account.phone,type:'phone'}}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
-                        this.account={...this.account,...data};
+                        this.account={...this.account,...data.user};
                         this.form={...this.account};
                         console.log('this.account:',this.account);
+                        //
+                        if(this.account.vipTypeId){
+                            this.getVipInfo(this.account.vipTypeId);
+                        }
+                    }
+                });
+            },
+            getVipInfo:function (id) {
+                Vue.api.getVipTypeInfo({apiParams:{id:id}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        this.vipInfo=data;
+                        console.log(data);
                     }
                 });
             },

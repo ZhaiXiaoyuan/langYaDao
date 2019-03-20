@@ -108,17 +108,22 @@ Vue.filter('adviceStatus',function(str){
 /*数值格式*/
 Vue.filter('numFormat',function(num){
     let result='';
-    if(num>=1000000){
-        let unit='W';
-        let num1=Math.floor(num/10000);
-        let num2=num%10000;
+    let unit='W';
+    let num1=null;
+    let num2=null;
+    let abs=Math.abs(num);
+    if(abs>=1000000){
+        num1=Math.floor(num/10000);
+      /*  num2=num%10000;*/
         result=num1+unit;
-    }else if(num>=100000){
-
+    }else if(abs>=10000){
+        unit='K';
+        num1=Math.floor(num/1000);
+        result=num1+unit;
     }else{
         result=num;
     }
-    return result;
+    return num>0?result:-result;
 });
 
 /*数字转中文*/

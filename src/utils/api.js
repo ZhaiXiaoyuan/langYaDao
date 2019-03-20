@@ -152,7 +152,7 @@ export default {
         getGameConfigInfo:function (params) {
             return Vue.http.ajax({
                 method: 'post',
-                url: basicUrl+'/game1Config/getGameConfigInfo',
+                url: basicUrl2+'/game1Config/getGameConfigInfo',
                 params: params
             });
         },
@@ -169,6 +169,62 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/admin/getBaseGlobalVariable',
+                params: params
+            });
+        },
+        //查询充值订单的状态
+        checkRechargeOrderState:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/rechargeOrder/checkRechargeOrderState',
+                params: params
+            });
+        },
+        //生成vip支付订单
+        addVipOrder:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/vipOrder/addVipOrder',
+                params: params
+            });
+        },
+        //查询vip支付订单状态
+        checkVipOrderState:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/vipOrder/checkVipOrderState',
+                params: params
+            });
+        },
+        //保险箱和余额转换
+        transformUserBalance:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/transformUserBalance',
+                params: params
+            });
+        },
+        //获取vip信息
+        getVipTypeInfo:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/vipType/getVipTypeInfo',
+                params: params
+            });
+        },
+        //赠送礼物
+        addGiftMessage:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/gift/addGiftMessage',
+                params: params
+            });
+        },
+        //批量兑换礼物
+        exchangeGiftMessageInBatch:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/gift/exchangeGiftMessageInBatch',
                 params: params
             });
         },

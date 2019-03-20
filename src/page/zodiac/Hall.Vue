@@ -186,6 +186,7 @@
                 this.socketApi.sendSock({api:'entryRoom',apiParams:{roomProperty:type}});
             },
             enterRoomFb:function (data) {
+                console.log('data:',data);
                 this.$router.push({path:'/zodiac/game?roomLevel='+this.selectedRoomLevel});
             }
         },
@@ -207,8 +208,9 @@
                     }else if(data.api=='getLobbyInfo'){
                         this.roomDataFb(data.data);
                     }
-                }else{
-
+                }else if(resp.respCode=='4000'){
+                    this.alertModal({html:resp.respMsg});
+                     console.log('respHall:',resp);
                 }
             });
         },

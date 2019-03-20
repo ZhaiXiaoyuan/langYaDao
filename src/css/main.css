@@ -405,6 +405,12 @@ body {
   background: none;
 }
 /*左侧导航样式*/
+.cm-pagination-box {
+  text-align: center;
+}
+.cm-pagination-box .el-pagination {
+  display: inline-block;
+}
 .home {
   min-height: 100%;
 }
@@ -2365,10 +2371,10 @@ body {
   text-align: center;
 }
 .zodiac-game .data-panel table .name {
-  width: 35%;
+  width: 33%;
 }
 .zodiac-game .data-panel table .level {
-  width: 15%;
+  width: 17%;
 }
 .zodiac-game .data-panel table .count {
   width: 20%;
@@ -3202,7 +3208,18 @@ body {
   padding: 30px 0px;
 }
 .center .vip-store .vip-list {
-  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0px 5px;
 }
 .center .vip-store .vip-list > li {
   position: relative;
@@ -3261,6 +3278,16 @@ body {
   font-weight: bold;
   text-align: center;
   line-height: 40px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.center .vip-store .vip-list > li .buy-btn:active {
+  -webkit-transform: scale(0.95);
+      -ms-transform: scale(0.95);
+          transform: scale(0.95);
+}
+.center .vip-store .to-pay {
+  padding: 0px 20px;
 }
 .center .safe-box {
   padding: 20px 20px;
@@ -3339,7 +3366,34 @@ body {
 }
 .center .safe-box .coin-convert-modal .el-dialog {
   width: 360px;
-  border-radius: 10px;
+  border-radius: 6px;
+}
+.center .safe-box .coin-convert-modal .el-dialog .el-dialog__header {
+  position: relative;
+  height: 30px;
+}
+.center .safe-box .coin-convert-modal .el-dialog .el-dialog__header .el-dialog__headerbtn {
+  top: 10px;
+  right: 10px;
+}
+.center .safe-box .coin-convert-modal .el-dialog .el-dialog__body {
+  padding: 5px 10px;
+}
+.center .safe-box .coin-convert-modal .modal-body {
+  font-size: 14px;
+  color: #000;
+}
+.center .safe-box .coin-convert-modal .modal-body .el-form-item {
+  margin-bottom: 10px;
+}
+.center .safe-box .coin-convert-modal .modal-body .input-item {
+  width: 100px;
+}
+.center .safe-box .coin-convert-modal .modal-body .input-item input {
+  height: 28px;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 2px solid #0facff;
 }
 .center .tab-panel {
   margin-top: 10px;
@@ -3488,9 +3542,109 @@ body {
 .center .tab-panel .gift-list > li .handle .exchange-btn:active {
   background: #409eff;
 }
-.center .tab-panel .gift-list > li.disable .exchange-btn {
+.center .tab-panel .gift-list > li .handle .status {
+  display: none;
+  padding: 0px 10px;
+}
+.center .tab-panel .gift-list > li.disabled .exchange-btn {
+  display: none;
   pointer-events: none;
   opacity: 0.5;
+}
+.center .tab-panel .gift-list > li.disabled .status {
+  display: block;
+}
+.center .payment-info {
+  padding-top: 5px;
+}
+.center .payment-info .info-row {
+  font-size: 16px;
+  color: #010101;
+  margin-top: 15px;
+}
+.center .payment-info .info-row .num {
+  position: relative;
+  top: 1px;
+  font-size: 24px;
+  color: #0facff;
+}
+.center .payment-info .info-row.payment-info {
+  text-align: center;
+  background: #f4f4f4;
+  padding: 20px 0px;
+}
+.center .payment-info .info-row.payment-info .qrcode-item .img-box {
+  background: #f4f4f4;
+  border-radius: 3px;
+  padding: 5px;
+}
+.center .payment-info .pay-type-list {
+  margin-top: 20px;
+}
+.center .payment-info .pay-type-list > li {
+  display: inline-block;
+}
+.center .payment-info .pay-type-list > li .item-bd {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 10px;
+  border: 1px solid #dadada;
+}
+.center .payment-info .pay-type-list > li .item-bd .wechat-icon {
+  background: url("../images/common/wechat-icon.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+}
+.center .payment-info .pay-type-list > li .item-bd .ali-icon {
+  background: url("../images/common/ali-icon.png") no-repeat;
+  width: 50px;
+  height: 50px;
+  background-size: 100%;
+}
+.center .payment-info .pay-type-list > li .item-ft {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  padding-top: 5px;
+}
+.center .payment-info .pay-type-list > li + li {
+  margin-left: 20px;
+}
+.center .payment-info .pay-type-list > li.active .item-bd {
+  border: 1px solid #0facff;
+}
+.center .payment-info .pay-type-list > li.active .item-bd:after {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  background: url("../images/common/selected-icon.png") no-repeat;
+  width: 25px;
+  height: 24px;
+  background-size: 100%;
+}
+.center .payment-info .handle {
+  margin-top: 20px;
+  padding: 0px 20px;
+}
+.center .payment-info .handle button {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 .center .charge {
   padding: 0px 20px 20px 20px;
@@ -3528,106 +3682,17 @@ body {
 .center .charge .price-list > li + li {
   margin-left: 20px;
 }
-.center .charge .info-row {
-  font-size: 16px;
-  color: #010101;
-  margin-top: 20px;
-}
-.center .charge .info-row .num {
-  position: relative;
-  top: 1px;
-  font-size: 24px;
-  color: #0facff;
-}
-.center .charge .info-row.payment-info {
-  text-align: center;
-  background: #f4f4f4;
-  padding: 20px 0px;
-}
-.center .charge .info-row.payment-info .qrcode-item .img-box {
-  background: #f4f4f4;
-  border-radius: 3px;
-  padding: 5px;
-}
-.center .charge .pay-type-list {
-  margin-top: 20px;
-}
-.center .charge .pay-type-list > li {
-  display: inline-block;
-}
-.center .charge .pay-type-list > li .item-bd {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 130px;
-  height: 130px;
-  border-radius: 10px;
-  border: 1px solid #dadada;
-}
-.center .charge .pay-type-list > li .item-bd .wechat-icon {
-  background: url("../images/common/wechat-icon.png") no-repeat;
-  width: 50px;
-  height: 50px;
-  background-size: 100%;
-}
-.center .charge .pay-type-list > li .item-bd .ali-icon {
-  background: url("../images/common/ali-icon.png") no-repeat;
-  width: 50px;
-  height: 50px;
-  background-size: 100%;
-}
-.center .charge .pay-type-list > li .item-ft {
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-  padding-top: 5px;
-}
-.center .charge .pay-type-list > li + li {
-  margin-left: 20px;
-}
-.center .charge .pay-type-list > li.active .item-bd {
-  border: 1px solid #0facff;
-}
-.center .charge .pay-type-list > li.active .item-bd:after {
-  display: inline-block;
-  content: '';
-  position: absolute;
-  right: -1px;
-  bottom: -1px;
-  background: url("../images/common/selected-icon.png") no-repeat;
-  width: 25px;
-  height: 24px;
-  background-size: 100%;
-}
-.center .charge .handle {
-  margin-top: 20px;
-  padding: 0px 20px;
-}
-.center .charge .handle button {
-  padding-left: 30px;
-  padding-right: 30px;
-}
 .center .gift-type {
   padding: 0px 20px;
 }
 .center .gift-type .gift-type-list {
-  text-align: center;
   padding: 10px 0px;
 }
 .center .gift-type .gift-type-list li {
   display: inline-block;
   width: 140px;
   margin: 15px 20px;
+  text-align: center;
 }
 .center .gift-type .gift-type-list li img {
   width: 140px;
@@ -3638,7 +3703,6 @@ body {
   margin-top: 4px;
   font-size: 14px;
   color: #000;
-  text-align: left;
 }
 .center .gift-type .gift-type-list li .handle-btn {
   margin-top: 8px;
@@ -3658,6 +3722,111 @@ body {
 }
 .center .gift-type .gift-type-list li .handle-btn:active {
   background: #409eff;
+}
+.center .gift-type .give-modal .el-dialog {
+  width: 370px;
+  border-radius: 6px;
+}
+.center .gift-type .give-modal .el-dialog .el-dialog__header {
+  position: relative;
+  padding: 8px 0px;
+}
+.center .gift-type .give-modal .el-dialog .el-dialog__header .el-dialog__headerbtn {
+  top: 10px;
+  right: 10px;
+}
+.center .gift-type .give-modal .el-dialog .el-dialog__body {
+  padding: 0px;
+}
+.center .gift-type .give-modal .modal-header .title-label {
+  display: inline-block;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 0px 15px;
+  background: -webkit-linear-gradient(left, #f8354d, #f8354d);
+  background: linear-gradient(to right, #f8354d, #f8354d);
+}
+.center .gift-type .give-modal .modal-body {
+  font-size: 14px;
+  color: #000;
+  min-height: 120px;
+  padding: 10px;
+}
+.center .gift-type .give-modal .modal-body .form {
+  padding-top: 20px;
+  width: 90%;
+  margin: 0px auto;
+}
+.center .gift-type .give-modal .modal-body .el-form-item {
+  margin-bottom: 10px;
+}
+.center .gift-type .give-modal .modal-body .input-item input {
+  height: 28px;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 2px solid #0facff;
+}
+.center .gift-type .give-modal .modal-body .user-info-block {
+  overflow: hidden;
+}
+.center .gift-type .give-modal .modal-body .user-info-block img {
+  float: left;
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+}
+.center .gift-type .give-modal .modal-body .user-info-block .text-info {
+  float: left;
+  margin-left: 10px;
+}
+.center .gift-type .give-modal .modal-body .user-info-block .text-info p {
+  font-size: 16px;
+  color: #000;
+  padding-top: 5px;
+  line-height: normal;
+}
+.center .gift-type .give-modal .modal-body .user-info-block .text-info p + p {
+  padding-top: 10px;
+  font-size: 14px;
+  color: #999;
+}
+.center .gift-type .give-modal .modal-body .num {
+  color: #0facff;
+  font-size: 20px;
+  padding-right: 5px;
+}
+.center .gift-type .give-modal .modal-body .status-block {
+  text-align: center;
+}
+.center .gift-type .give-modal .modal-body .status-block .success-icon {
+  background: url("../images/langYaDou/give-gift-success-icn.png") no-repeat;
+  width: 68px;
+  height: 82px;
+  background-size: 100%;
+}
+.center .gift-type .give-modal .modal-body .status-block .fail-icon {
+  background: url("../images/langYaDou/give-gift-fail-icon.png") no-repeat;
+  width: 73px;
+  height: 84px;
+  background-size: 100%;
+}
+.center .gift-type .give-modal .modal-body .status-block .tips {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #000;
+}
+.center .gift-type .give-modal .modal-footer {
+  text-align: right;
+  padding: 10px 10px;
+}
+.center .gift-type .give-modal .modal-footer .handle-btn {
+  min-width: 80px;
+  text-align: center;
 }
 .draw-activity {
   background: url("../images/activity/draw-page-bg.jpg") no-repeat;

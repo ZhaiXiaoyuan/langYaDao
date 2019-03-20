@@ -110,8 +110,7 @@
             //
             this.getBannerList();
             this.getGameList();
-            //临时测试
-            this.alertModal({});
+         /*   this.alertModal({});*/
            /* Vue.registerModal({open:true});*/
          /*   Vue.loginModal({open:true});*/
         },

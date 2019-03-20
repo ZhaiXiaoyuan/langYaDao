@@ -129,7 +129,10 @@
     .vip-store{
         padding: 30px 0px;
         .vip-list{
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 0px 5px;
             >li{
                 position: relative;
                 display: inline-block;
@@ -186,8 +189,15 @@
                     font-weight: bold;
                     text-align: center;
                     line-height: 40px;
+                    transition: all 0.2s;
+                    &:active{
+                        transform: scale(0.95);
+                    }
                 }
             }
+        }
+        .to-pay{
+            padding: 0px 20px;
         }
     }
     .safe-box{
@@ -264,7 +274,34 @@
         .coin-convert-modal{
             .el-dialog{
                 width: 360px;
-                border-radius: 10px;
+                border-radius: 6px;
+                .el-dialog__header{
+                    position: relative;
+                    height: 30px;
+                    .el-dialog__headerbtn{
+                        top:10px;
+                        right: 10px;
+                    }
+                }
+                .el-dialog__body{
+                    padding: 5px 10px;
+                }
+            }
+            .modal-body{
+                font-size: 14px;
+                color: #000;
+                .el-form-item{
+                    margin-bottom: 10px;
+                }
+                .input-item{
+                    width: 100px;
+                    input{
+                        height: 28px;
+                        border: none;
+                        border-radius: 0px;
+                        border-bottom: 2px solid @mainBlue;
+                    }
+                }
             }
         }
     }
@@ -394,13 +431,108 @@
                            background: #409eff;
                         }
                     }
+                    .status{
+                        display: none;
+                        padding: 0px 10px;
+                    }
                 }
-                &.disable{
+                &.disabled{
                     .exchange-btn{
+                        display: none;
                         pointer-events: none;
                         opacity: 0.5;
                     }
+                    .status{
+                        display: block;
+                    }
                 }
+            }
+        }
+    }
+    .payment-info{
+        padding-top: 5px;
+        .info-row{
+            font-size: 16px;
+            color: #010101;
+            margin-top: 15px;
+            .num{
+                position: relative;
+                top:1px;
+                font-size: 24px;
+                color: @mainBlue;
+            }
+            &.payment-info{
+                text-align: center;
+                background: #f4f4f4;
+                padding: 20px 0px;
+                .qrcode-item{
+                    .img-box{
+                        background: #f4f4f4;
+                        border-radius: 3px;
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+        .pay-type-list{
+            margin-top: 20px;
+            >li{
+                display: inline-block;
+                .item-bd{
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 130px;
+                    height: 130px;
+                    border-radius: 10px;
+                    border: 1px solid #dadada;
+                    .wechat-icon{
+                        background: url("../images/common/wechat-icon.png") no-repeat;
+                        width: 50px;
+                        height: 50px;
+                        background-size: 100%;
+                    }
+                    .ali-icon{
+                        background: url("../images/common/ali-icon.png") no-repeat;
+                        width: 50px;
+                        height: 50px;
+                        background-size: 100%;
+                    }
+                }
+                .item-ft{
+                    text-align: center;
+                    font-size: 14px;
+                    color: #666;
+                    padding-top: 5px;
+                }
+                &+li{
+                    margin-left: 20px;
+                }
+                &.active{
+                    .item-bd{
+                        border: 1px solid @mainBlue;
+                        &:after{
+                            display: inline-block;
+                            content: '';
+                            position: absolute;
+                            right: -1px;
+                            bottom: -1px;
+                            background: url("../images/common/selected-icon.png") no-repeat;
+                            width: 25px;
+                            height: 24px;
+                            background-size: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        .handle{
+            margin-top: 20px;
+            padding: 0px 20px;
+            button{
+                padding-left: 30px;
+                padding-right: 30px;
             }
         }
     }
@@ -439,100 +571,16 @@
                 }
             }
         }
-        .info-row{
-            font-size: 16px;
-            color: #010101;
-            margin-top: 20px;
-            .num{
-                position: relative;
-                top:1px;
-                font-size: 24px;
-                color: @mainBlue;
-            }
-            &.payment-info{
-                text-align: center;
-                background: #f4f4f4;
-                padding: 20px 0px;
-                .qrcode-item{
-                    .img-box{
-                        background: #f4f4f4;
-                        border-radius: 3px;
-                        padding: 5px;
-                    }
-                }
-            }
-        }
-        .pay-type-list{
-            margin-top: 20px;
-            >li{
-                display: inline-block;
-              .item-bd{
-                  position: relative;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  width: 130px;
-                  height: 130px;
-                  border-radius: 10px;
-                  border: 1px solid #dadada;
-                  .wechat-icon{
-                      background: url("../images/common/wechat-icon.png") no-repeat;
-                      width: 50px;
-                      height: 50px;
-                      background-size: 100%;
-                  }
-                  .ali-icon{
-                      background: url("../images/common/ali-icon.png") no-repeat;
-                      width: 50px;
-                      height: 50px;
-                      background-size: 100%;
-                  }
-              }
-                .item-ft{
-                    text-align: center;
-                    font-size: 14px;
-                    color: #666;
-                    padding-top: 5px;
-                }
-                &+li{
-                    margin-left: 20px;
-                }
-                &.active{
-                    .item-bd{
-                        border: 1px solid @mainBlue;
-                        &:after{
-                            display: inline-block;
-                            content: '';
-                            position: absolute;
-                            right: -1px;
-                            bottom: -1px;
-                            background: url("../images/common/selected-icon.png") no-repeat;
-                            width: 25px;
-                            height: 24px;
-                            background-size: 100%;
-                        }
-                    }
-                }
-            }
-        }
-        .handle{
-            margin-top: 20px;
-            padding: 0px 20px;
-            button{
-                padding-left: 30px;
-                padding-right: 30px;
-            }
-        }
     }
     .gift-type{
         padding:0px 20px;
         .gift-type-list{
-            text-align: center;
             padding: 10px 0px;
             li{
                 display: inline-block;
                 width: 140px;
                 margin: 15px 20px;
+                text-align: center;
                 img{
                     width: 140px;
                     height: 140px;
@@ -542,7 +590,6 @@
                     margin-top: 4px;
                     font-size: 14px;
                     color: #000;
-                    text-align: left;
                 }
                 .handle-btn{
                     margin-top: 8px;
@@ -561,6 +608,119 @@
                     &:active{
                         background: #409eff;
                     }
+                }
+            }
+        }
+        .give-modal{
+            .el-dialog{
+                width: 370px;
+                border-radius: 6px;
+                .el-dialog__header{
+                    position: relative;
+                    padding: 8px 0px;
+                    .el-dialog__headerbtn{
+                        top:10px;
+                        right: 10px;
+                    }
+                }
+                .el-dialog__body{
+                    padding: 0px;
+                }
+            }
+            .modal-content{
+
+            }
+            .modal-header{
+                .title-label{
+                    display: inline-block;
+                    font-size: 16px;
+                    color: #fff;
+                    font-weight: bold;
+                    height: 30px;
+                    line-height: 30px;
+                    border-top-right-radius: 15px;
+                    border-bottom-right-radius: 15px;
+                    padding: 0px 15px;
+                    background: linear-gradient(to right,#f8354d,#f8354d);
+                }
+            }
+            .modal-body{
+                font-size: 14px;
+                color: #000;
+                min-height: 120px;
+                padding: 10px;
+                .form{
+                    padding-top: 20px;
+                    width: 90%;
+                    margin: 0px auto;
+                }
+                .el-form-item{
+                    margin-bottom: 10px;
+                }
+                .input-item{
+                    input{
+                        height: 28px;
+                        border: none;
+                        border-radius: 0px;
+                        border-bottom: 2px solid @mainBlue;
+                    }
+                }
+                .user-info-block{
+                    overflow: hidden;
+                    img{
+                        float: left;
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 5px;
+                    }
+                    .text-info{
+                        float: left;
+                        margin-left: 10px;
+                        p{
+                            font-size: 16px;
+                            color: #000;
+                            padding-top: 5px;
+                            line-height: normal;
+                            &+p{
+                                padding-top: 10px;
+                                font-size: 14px;
+                                color: #999;
+                            }
+                        }
+                    }
+                }
+                .num{
+                    color: @mainBlue;
+                    font-size: 20px;
+                    padding-right: 5px;
+                }
+                .status-block{
+                    text-align: center;
+                    .success-icon{
+                        background: url("../images/langYaDou/give-gift-success-icn.png") no-repeat;
+                        width: 68px;
+                        height: 82px;
+                        background-size: 100%;
+                    }
+                    .fail-icon{
+                        background: url("../images/langYaDou/give-gift-fail-icon.png") no-repeat;
+                        width: 73px;
+                        height: 84px;
+                        background-size: 100%;
+                    }
+                    .tips{
+                        margin-top: 10px;
+                        font-size: 14px;
+                        color: #000;
+                    }
+                }
+            }
+            .modal-footer{
+                text-align: right;
+                padding: 10px 10px;
+                .handle-btn{
+                    min-width: 80px;
+                    text-align: center;
                 }
             }
         }
