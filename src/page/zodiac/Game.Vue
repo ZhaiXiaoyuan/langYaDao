@@ -836,8 +836,10 @@
             },
             exitRoom:function (flag) {
                 this.initiativeExitFlag=flag;
-                this.socketApi.sendSock({"api":this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom","apiParams":{}});
                 console.log('*********exitRoom:'+(this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom")+'*********');
+                console.log('test1:',this.curHost.userId);
+                console.log('test2:',this.curPlayer.userId);
+                this.socketApi.sendSock({"api":this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom","apiParams":{}});
             },
             exitRoomCallback:function () {
                 if(this.initiativeExitFlag){
@@ -1179,7 +1181,7 @@
             //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
-              /*  console.log('game:',resp);*/
+                console.log('game:',resp);
                if(resp.respCode){
                    if(resp.respCode=='2000'){
                        let data={};
