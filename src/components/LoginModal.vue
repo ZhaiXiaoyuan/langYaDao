@@ -33,6 +33,8 @@
     props:{
       options:{
           open:false,
+          ok:null,
+          cancel:null,
       }
     },
     data: function () {
@@ -63,7 +65,6 @@
             Vue.api.login({apiParams:params}).then((resp)=>{
                 if(resp.respCode=='2000'){
                     let data=JSON.parse(resp.respMsg);
-                    console.log('data:',data);
                     //临时测试
                   /*  if(this.form.phone=='18825162417'){
                         data.user.id=1;
@@ -76,6 +77,7 @@
                     this.$cookie.set('account',JSON.stringify(data.user),7);
                     bus.$emit('refreshAccount');
                     fb.setOptions({type:"complete",text:'登录成功'});
+                    this.options.ok&&this.options.ok();
                     //
                     this.close();
                 }else{

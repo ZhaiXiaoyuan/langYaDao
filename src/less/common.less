@@ -391,3 +391,109 @@ body{
         display: inline-block;
     }
 }
+
+.forget-modal{
+    .el-dialog{
+        border-radius: 8px;
+        width: 370px;
+        .el-dialog__title{
+
+        }
+        .el-dialog__header{
+            .el-dialog__headerbtn{
+                top:10px;
+                right: 10px;
+            }
+        }
+        .el-dialog__body{
+
+        }
+        .modal-body{
+            min-height: 139px;
+            .handle{
+                padding-top: 10px;
+                text-align: center;
+                .handle-btn{
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+            .step-1{
+                .form{
+                    width: 95%;
+                    margin: 0px auto;
+                    input{
+                      /*  width: 230px;*/
+                        height: 28px;
+                    }
+                    .code-form-item{
+                        position: relative;
+                        input{
+                            width: 125px;
+                        }
+                        .gen-code{
+                            bottom: 0px;
+                            height: 28px;
+                            line-height: 28px;
+                            font-size: 12px;
+                            background: #f39700;
+                            width: 88px;
+                        }
+                    }
+                }
+            }
+            .title{
+                font-size: 18px;
+                color: #000;
+                text-align: center;
+            }
+            .pwd-input{
+                text-align: center;
+                padding: 20px 0px 10px 0px;
+            }
+            .pwd-input-item{
+                position: relative;
+                display: inline-block;
+                .input-bg{
+                    display: inline-block;
+                    >li{
+                        display: inline-block;
+                        margin: 0px 2px;
+                        width: 30px;
+                        height: 30px;
+                        border-bottom: 2px solid #dadada;
+                    }
+                }
+                input{
+                    position: absolute;
+                    top:0px;
+                    left: 0px;
+                    margin: auto;
+                    width: 108%;
+                    height: 30px;
+                    outline: none;
+                    background: none;
+                    letter-spacing: 28px;
+                    text-indent: 15px;
+                    text-align: left;
+                    border: none;
+                    font-size: 16px;
+                }
+            }
+            .success-icon{
+                background: url("../images/langYaDou/give-gift-success-icn.png");
+                width: 68px;
+                height: 82px;
+                background-size: 100%;
+            }
+            .tips{
+                padding-top: 10px;
+                font-size: 14px;
+                color: #000;
+            }
+            .step-4{
+                text-align: center;
+            }
+        }
+    }
+}

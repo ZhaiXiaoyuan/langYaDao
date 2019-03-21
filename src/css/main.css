@@ -411,6 +411,99 @@ body {
 .cm-pagination-box .el-pagination {
   display: inline-block;
 }
+.forget-modal .el-dialog {
+  border-radius: 8px;
+  width: 370px;
+}
+.forget-modal .el-dialog .el-dialog__header .el-dialog__headerbtn {
+  top: 10px;
+  right: 10px;
+}
+.forget-modal .el-dialog .modal-body {
+  min-height: 139px;
+}
+.forget-modal .el-dialog .modal-body .handle {
+  padding-top: 10px;
+  text-align: center;
+}
+.forget-modal .el-dialog .modal-body .handle .handle-btn {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.forget-modal .el-dialog .modal-body .step-1 .form {
+  width: 95%;
+  margin: 0px auto;
+}
+.forget-modal .el-dialog .modal-body .step-1 .form input {
+  /*  width: 230px;*/
+  height: 28px;
+}
+.forget-modal .el-dialog .modal-body .step-1 .form .code-form-item {
+  position: relative;
+}
+.forget-modal .el-dialog .modal-body .step-1 .form .code-form-item input {
+  width: 125px;
+}
+.forget-modal .el-dialog .modal-body .step-1 .form .code-form-item .gen-code {
+  bottom: 0px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 12px;
+  background: #f39700;
+  width: 88px;
+}
+.forget-modal .el-dialog .modal-body .title {
+  font-size: 18px;
+  color: #000;
+  text-align: center;
+}
+.forget-modal .el-dialog .modal-body .pwd-input {
+  text-align: center;
+  padding: 20px 0px 10px 0px;
+}
+.forget-modal .el-dialog .modal-body .pwd-input-item {
+  position: relative;
+  display: inline-block;
+}
+.forget-modal .el-dialog .modal-body .pwd-input-item .input-bg {
+  display: inline-block;
+}
+.forget-modal .el-dialog .modal-body .pwd-input-item .input-bg > li {
+  display: inline-block;
+  margin: 0px 2px;
+  width: 30px;
+  height: 30px;
+  border-bottom: 2px solid #dadada;
+}
+.forget-modal .el-dialog .modal-body .pwd-input-item input {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: auto;
+  width: 108%;
+  height: 30px;
+  outline: none;
+  background: none;
+  letter-spacing: 28px;
+  text-indent: 15px;
+  text-align: left;
+  border: none;
+  font-size: 16px;
+}
+.forget-modal .el-dialog .modal-body .success-icon {
+  background: url("../images/langYaDou/give-gift-success-icn.png");
+  width: 68px;
+  height: 82px;
+  background-size: 100%;
+}
+.forget-modal .el-dialog .modal-body .tips {
+  padding-top: 10px;
+  font-size: 14px;
+  color: #000;
+}
+.forget-modal .el-dialog .modal-body .step-4 {
+  text-align: center;
+}
 .home {
   min-height: 100%;
 }

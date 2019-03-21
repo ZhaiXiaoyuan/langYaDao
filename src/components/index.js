@@ -12,6 +12,8 @@ import LoginModal from './LoginModal.vue';
 import ScrollLoad from './ScrollLoad';
 import * as socketApi from './socket';
 import AlertModal from './AlertModal.vue';
+import SafeBoxLoginModal from './SafeBoxLoginModal.vue';
+import ForgetModal from './ForgetModal.vue';
 
 
 /*全局组件注册配置*/
@@ -26,7 +28,10 @@ export default {
     Vue.component('RegisterModal',RegisterModal);
     Vue.component('LoginModal',LoginModal);
     Vue.component('ScrollLoad',ScrollLoad);
-      Vue.component('AlertModal',AlertModal);
+    Vue.component('AlertModal',AlertModal);
+    Vue.component('SafeBoxLoginModal',SafeBoxLoginModal);
+    Vue.component('ForgetModal',ForgetModal);
+
 
     /*方法调度方式*/
     let OperationFeedbackConstructor = Vue.extend(OperationFeedback);
@@ -35,6 +40,8 @@ export default {
     let RegisterModalConstructor=Vue.extend(RegisterModal);
     let LoginModalConstructor=Vue.extend(LoginModal);
     let AlertModalConstructor=Vue.extend(AlertModal);
+    let SafeBoxLoginModalConstructor=Vue.extend(SafeBoxLoginModal);
+    let ForgetModalConstructor=Vue.extend(ForgetModal);
     const functionObject={
         /**
          * 操作提示
@@ -150,6 +157,22 @@ export default {
             parentEle.appendChild(instance.$el);
         },
         /**
+         * 保险箱登录弹窗
+         * @param options
+         */
+        safeBoxLogin:function (options) {
+            options={...{
+                open:true,
+            },...options};
+            //
+            let parentEle=document.getElementById('app');
+            //
+            let instance=new SafeBoxLoginModalConstructor({});
+            instance.options=options;
+            instance.$mount();
+            parentEle.appendChild(instance.$el);
+        },
+        /**
          * 提示弹窗
          * @param options
          */
@@ -168,6 +191,22 @@ export default {
             let parentEle=document.getElementById('app');
             //
             let instance=new AlertModalConstructor({});
+            instance.options=options;
+            instance.$mount();
+            parentEle.appendChild(instance.$el);
+        },
+        /**
+         * 重置密码弹窗
+         * @param options
+         */
+        forget:function (options) {
+            options={...{
+                open:true,
+            },...options};
+            //
+            let parentEle=document.getElementById('app');
+            //
+            let instance=new ForgetModalConstructor({});
             instance.options=options;
             instance.$mount();
             parentEle.appendChild(instance.$el);

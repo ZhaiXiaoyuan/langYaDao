@@ -73,10 +73,24 @@ const router= new Router({
 })
 
 //注册全局导航守卫
+let noLoginPage=['home'];
 router.beforeEach((to, from,next) => {
-    let url=window.location.href;
-    console.log('to:',top);
-    next();
+    let name=to.name;
+    console.log('name:',name);
+    let path=to.path;
+    let accountInfo=Vue.getAccountInfo();
+    if(!accountInfo.id){
+        if(noLoginPage.indexOf(name)==-1){
+            Vue.loginModal({open:true,ok:()=>{
+                next();
+            }});
+        }else{
+            next();
+        }
+    }else{
+        next();
+    }
+   /* next();*/
 })
 
 //

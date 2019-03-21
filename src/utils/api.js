@@ -83,6 +83,14 @@ export default {
                 params: params
             });
         },
+        //更新密码
+        updateUserPassword:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/updateUserPassword',
+                params: params
+            });
+        },
         //获取游戏列表
         getGameList:function (params) {
             return Vue.http.ajax({

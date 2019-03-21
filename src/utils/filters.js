@@ -123,7 +123,7 @@ Vue.filter('numFormat',function(num){
     }else{
         result=num;
     }
-    return num>0?result:-result;
+    return result;
 });
 
 /*数字转中文*/

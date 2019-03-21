@@ -3,7 +3,7 @@
         <div class="page-content" id="container">
             <div class="panel session-panel">
                 <div class="nav-block">
-                    <span class="cm-btn btn exit-btn" @click="exitRoom()">退出房间</span>
+                    <span class="cm-btn btn exit-btn" @click="exitRoom(true)">退出房间</span>
                     <span class="cm-btn btn home-btn">{{roomLevel}}</span>
                 </div>
                 <div class="block result-block">
@@ -17,13 +17,13 @@
                         <ul class="session-list">
                             <li v-for="(item,index) in recordList" :key="index">
                                 <span class="label">{{item.title}}</span>
-                                <div v-if="item.result&&((index!=deskInfo.currentRount-1)||showResult)">
+                                <div v-if="item.result">
                                     <div class="result">{{item.result-1|resultDict}}</div>
                                     <p class="score">
                                         个人战绩：<span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord}}
                                     </p>
                                 </div>
-                                <div class="non-content" v-if="!item.result||(index==deskInfo.currentRount-1&&!showResult)">
+                                <div class="non-content" v-if="!item.result">
                                     <i class="icon tips"></i>
                                 </div>
                             </li>
@@ -49,6 +49,9 @@
                                            <i class="point" id="target-point-1"></i>
                                            <i class="icon mouse-icon"></i>
                                        </div>
+                                        <audio id="running-audio-1" class="running-audio" :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-2"  :class="{'current':runningIndex==2}">
                                         <div class="item-content">
@@ -56,6 +59,9 @@
                                             <i class="point" id="target-point-2"></i>
                                             <i class="icon cow-icon"></i>
                                         </div>
+                                        <audio id="running-audio-2" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-3"  :class="{'current':runningIndex==3}">
                                         <div class="item-content">
@@ -63,6 +69,9 @@
                                             <i class="point" id="target-point-3"></i>
                                             <i class="icon tiger-icon"></i>
                                         </div>
+                                        <audio id="running-audio-3" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-4"  :class="{'current':runningIndex==4}">
                                         <div class="item-content">
@@ -70,6 +79,9 @@
                                             <i class="point" id="target-point-4"></i>
                                             <i class="icon rabbit-icon"></i>
                                         </div>
+                                        <audio id="running-audio-4" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-5"  :class="{'current':runningIndex==5}">
                                         <div class="item-content">
@@ -77,6 +89,9 @@
                                             <i class="point" id="target-point-5"></i>
                                             <i class="icon dragon-icon"></i>
                                         </div>
+                                        <audio id="running-audio-5" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-6"  :class="{'current':runningIndex==6}">
                                         <div class="item-content">
@@ -84,6 +99,9 @@
                                             <i class="point" id="target-point-6"></i>
                                             <i class="icon snake-icon"></i>
                                         </div>
+                                        <audio id="running-audio-6" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-7"  :class="{'current':runningIndex==7}">
                                         <div class="item-content">
@@ -91,6 +109,9 @@
                                             <i class="point" id="target-point-7"></i>
                                             <i class="icon horse-icon"></i>
                                         </div>
+                                        <audio id="running-audio-7" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-8"  :class="{'current':runningIndex==8}">
                                         <div class="item-content">
@@ -98,6 +119,9 @@
                                             <i class="point" id="target-point-8"></i>
                                             <i class="icon sheep-icon"></i>
                                         </div>
+                                        <audio id="running-audio-8" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-9"  :class="{'current':runningIndex==9}">
                                         <div class="item-content">
@@ -105,6 +129,9 @@
                                             <i class="point" id="target-point-9"></i>
                                             <i class="icon monkey-icon"></i>
                                         </div>
+                                        <audio id="running-audio-9" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-10"  :class="{'current':runningIndex==10}">
                                         <div class="item-content">
@@ -112,6 +139,9 @@
                                             <i class="point" id="target-point-10"></i>
                                             <i class="icon chicken-icon"></i>
                                         </div>
+                                        <audio id="running-audio-10" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-11"  :class="{'current':runningIndex==11}">
                                         <div class="item-content">
@@ -119,6 +149,9 @@
                                             <i class="point" id="target-point-11"></i>
                                             <i class="icon dog-icon"></i>
                                         </div>
+                                        <audio id="running-audio-11" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                     <div class="item item-12"  :class="{'current':runningIndex==12}">
                                         <div class="item-content">
@@ -126,6 +159,9 @@
                                             <i class="point" id="target-point-12"></i>
                                             <i class="icon pig-icon"></i>
                                         </div>
+                                        <audio id="running-audio-12" class="running-audio"  :src="runningVoice">
+                                            您的浏览器不支持 audio 标签。
+                                        </audio>
                                     </div>
                                 </div>
                             </div>
@@ -298,7 +334,7 @@
                 </div>
                 <div class="handle-btn-list">
                     <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
-                    <span class="cm-btn handle-btn entrance-btn" @click="test()">我的庄园</span>
+                    <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
                 </div>
             </div>
             <div class="panel bet-panel">
@@ -398,7 +434,7 @@
                             <tbody>
                             <tr v-for="(item,index) in playerList" :key="index">
                                 <td class="name">{{item.user.name}}</td>
-                                <td class="level">{{item.vipType?'vip'+item.vipType:'非vip'}}</td>
+                                <td class="level">{{item.vipType?item.vipType:'非vip'}}</td>
                                 <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord|numFormat}}</span></td>
                                 <td class="balance">{{item.user.balance|numFormat}}</td>
                             </tr>
@@ -474,9 +510,18 @@
         </el-dialog>
 
         <!--音频-->
-        <!--<audio src="someaudio.wav">
+        <audio id="success-audio" :src="successVoice">
             您的浏览器不支持 audio 标签。
-        </audio>-->
+        </audio>
+        <audio id="fail-audio" :src="failVoice">
+            您的浏览器不支持 audio 标签。
+        </audio>
+        <audio id="collection-audio" :src="collectionVoice">
+            您的浏览器不支持 audio 标签。
+        </audio>
+        <audio id="set-bet-audio" :src="setBetVoice">
+            您的浏览器不支持 audio 标签。
+        </audio>
     </div>
 </template>
 
@@ -736,11 +781,25 @@
                 showResult:false,
                 showResultClass:'',
                 switchSession:false,
+                loadLatestDataFlag:true,
 
                 originalPosition:{},
                 containerPosition:{},
                 centerPosition:{},
                 coinList:[],
+
+                initiativeExitFlag:false,
+
+                runningVoice:require('../../voice/running.mp3'),
+                runningAudio:null,
+                successVoice:require('../../voice/success.mp3'),
+                successAudio:null,
+                failVoice:require('../../voice/fail.mp3'),
+                failAudio:null,
+                collectionVoice:require('../../voice/collection.mp3'),
+                collectionAudio:null,
+                setBetVoice:require('../../voice/set-bet.mp3'),
+                setBetAudio:null,
             }
         },
         methods: {
@@ -775,9 +834,15 @@
                     }
                 });
             },
-            exitRoom:function () {
-                this.socketApi.sendSock({"api":"exitRoom","apiParams":{}});
-                console.log('*********exitRoom*********');
+            exitRoom:function (flag) {
+                this.initiativeExitFlag=flag;
+                this.socketApi.sendSock({"api":this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom","apiParams":{}});
+                console.log('*********exitRoom:'+(this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom")+'*********');
+            },
+            exitRoomCallback:function () {
+                if(this.initiativeExitFlag){
+                    this.$router.go(-1);
+                }
             },
             gameRender:function (data) {
                 this.deskInfo=data.deskInfoJSONObject;
@@ -793,13 +858,14 @@
                     };
                 }
                 //
-                this.playerList=data.playerInfoJSONArray;
+                let playerList=data.playerInfoJSONArray;
+                let curPlayer={};
                 let temHostList=data.bankerSequenceJSONArray;
                 this.timer=data.deskTimer;
                 this.hostList=[];
-                this.playerList.forEach((item,index)=>{
+                playerList.forEach((item,index)=>{
                     if(item.user.id==this.account.id){
-                        this.curPlayer=item;
+                        curPlayer=item;
                     }
                     if(item.userId==this.deskInfo.currentBankerId){
                         this.curHost=item;
@@ -812,43 +878,49 @@
                     });
 
                 });
+                if(this.loadLatestDataFlag){
+                    this.playerList=playerList;
+                    this.curPlayer=curPlayer;
+                }
                 //擂主更换时重置相关数据
                 if(this.curHost.userId!=this.deskInfo.currentBankerId){
                     this.initData();
                 }
                 //
-                if(this.curHost.userId==this.curPlayer.userId){
+                if(this.curHost.userId==curPlayer.userId){
                     this.type='host';
                 }else{
                     this.type='player';
                 }
-                this.curBetInfo= this.curPlayer.currentRountBetInfo;
-                this.curPlayer.roundRecord.forEach((item)=>{
-                    Object.assign(this.recordList[item.currentRount-1],item);
-                });
+                this.curBetInfo= curPlayer.currentRountBetInfo;
+                if(this.loadLatestDataFlag){
+                    curPlayer.roundRecord.forEach((item)=>{
+                        Object.assign(this.recordList[item.currentRount-1],item);
+                    });
+                }
                 //
                 if(this.deskInfo.deskState=='settlement'){
+                    this.loadLatestDataFlag=false;
                     this.collectCoin();
                 }
                 //结算
                 if(this.deskInfo.deskState=='betweenRound'){
                     //局号变换，说明新开奖，更新相关数据
                     if(this.curResult.round!=this.deskInfo.currentRount){
-                        console.log('this.curResult.round:',this.curResult.round);
-                        console.log('this.deskInfo.currentRount:',this.deskInfo.currentRount);
-                        this.curResult=this.$options.filters.resultDict(this.curPlayer.roundRecord[this.curPlayer.roundRecord.length-1].result-1,'all');
+                        //console.log('this.curResult.round:',this.curResult.round);
+                        //console.log('this.deskInfo.currentRount:',this.deskInfo.currentRount);
+                        this.curResult=this.$options.filters.resultDict(curPlayer.roundRecord[curPlayer.roundRecord.length-1].result-1,'all');
                         this.curResult.round=this.deskInfo.currentRount;
                         this.runningIndex=-1;
 
                         this.resultList=[];
-                        this.playerList.forEach((item,index)=>{
+                        playerList.forEach((item,index)=>{
                             let curRoundResult=item.roundRecord.length>0?item.roundRecord[item.roundRecord.length-1]:{};
                             this.resultList.push({
                                 ...item.user,
                                 ...curRoundResult
                             });
                         });
-                        console.log('this.resultList:',this.resultList);
                         this.runTurntable(this.curResult.value);
                     }
                 }
@@ -880,7 +952,7 @@
                 this.socketApi.sendSock({"api":"applyForBanker","apiParams":{}});
             },
             applyToHostCallback:function () {
-
+                Vue.operationFeedback({type:'complete',text:'申请成功'});
             },
             selectChip:function (value) {
                 this.selectedChip=value;
@@ -952,12 +1024,23 @@
                     this.runningCount++;
                     this.runningIndex=this.runningCount%12+1;
                     if(this.runningCount<this.long){
+                        document.getElementById('running-audio-'+this.runningIndex).play();
                         this.runTurntable();
                     }else{
                         this.runningCount=-1;
                         setTimeout(()=>{
                             this.showResult=true;
                             this.showResultClass='animated bounceIn';
+                            this.loadLatestDataFlag=true;
+                            this.resultList.forEach((item,index)=>{
+                                if(item.id==this.curPlayer.userId){
+                                    if(item.langyaRecord>0){
+                                        this.successAudio.play();
+                                    }else if(item.langyaRecord<0){
+                                        this.failAudio.play();
+                                    }
+                                }
+                            })
                             this.initdeskCoinList();
                         },1000);
                         setTimeout(()=>{
@@ -1032,9 +1115,15 @@
                     setTimeout(()=>{
                         item.from=item.to;
                     },200);
+                    setTimeout(()=>{
+                        this.setBetAudio.play();
+                    },800)
                 };
             },
             collectCoin:function () {
+                if(this.coinList.length>0){
+                    this.collectionAudio.play();
+                }
                 this.coinList.forEach((item)=>{
                     item.from=item.end;
                 });
@@ -1050,11 +1139,15 @@
                 for(let i=0;i<18;i++){
                     this.deskCoinList.push(0);
                 }
-            }
+            },
         },
         created (){
             //初始化数据
             this.initData();
+            //
+       /*     window.onbeforeunload = function(){
+                this.exitRoom();
+            }*/
         },
         mounted () {
             this.account=this.getAccountInfo();
@@ -1074,6 +1167,15 @@
             this.centerPosition.x=this.centerPosition.x-this.containerPosition.x;
             this.centerPosition.y=this.centerPosition.y-this.containerPosition.y;
             this.initdeskCoinList();
+            let runningAudios=document.getElementsByClassName('running-audio');
+            for(let i=0;i<runningAudios.length;i++){
+                runningAudios[i].playbackRate=1.2;
+            }
+            this.successAudio=this.initAudio('success-audio');
+            this.failAudio=this.initAudio('fail-audio');
+            this.failAudio=this.initAudio('fail-audio');
+            this.collectionAudio=this.initAudio('collection-audio');
+            this.setBetAudio=this.initAudio('set-bet-audio');
             //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
@@ -1091,11 +1193,12 @@
                        }catch (err){
 
                        }
-                       console.log('data:',data);
                        if(data.api=='applyForBanker'){
                           this.applyToHostCallback();
                        }else if(data.api=='gamble'){
                            this.setBetCallback();
+                       }else if(data.api=='exitRoom'){
+                           this.exitRoomCallback();
                        }
                    }else{
                        Vue.operationFeedback({type:'warn',text:resp.respMsg});

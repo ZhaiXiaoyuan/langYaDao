@@ -87,6 +87,10 @@
                 </div>
             </div>
         </div>
+
+        <audio id="hall-audio" :src="hallVoice" loop="true">
+            您的浏览器不支持 audio 标签。
+        </audio>
     </div>
 </template>
 
@@ -138,8 +142,10 @@
                 ws:null,
                 requestInterval:null,
 
-                selectedRoomLevel:''
+                selectedRoomLevel:'',
 
+                hallVoice:require('../../voice/hall.mp3'),
+                hallAudio:null,
             }
         },
         methods: {
@@ -209,8 +215,13 @@
                         this.roomDataFb(data.data);
                     }
                 }else if(resp.respCode=='4000'){
-                    this.alertModal({html:resp.respMsg});
-                     console.log('respHall:',resp);
+                    //临时测试
+                    if(resp.respMsg!='用户未进入房间'){
+                        this.alertModal({html:resp.respMsg});
+                    }
+                    //
+                 /*   this.alertModal({html:resp.respMsg});*/
+                    console.log('respHall:',resp);
                 }
             });
         },
@@ -223,6 +234,9 @@
             this.getRoomInfo('中级房');
             this.getRoomInfo('高级房');
             this.getRoomInfo('大师房');
+            //
+            this.hallAudio=this.initAudio('hall-audio');
+            this.hallAudio.play();
             //
             //临时测试
             setTimeout(()=>{ this.getRoomData();},500);

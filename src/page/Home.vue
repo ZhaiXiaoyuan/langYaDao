@@ -43,10 +43,11 @@
                         <span class="sub-title">（积分赢好礼）</span>
                     </div>
                     <div class="block-bd">
-                        <div class="draw-item">
+                        <router-link tag='div' :to="{ path: '/draw'}" class="draw-item">
                             <div class="cm-btn draw-btn"></div>
-                            <p class="score">您的积分余额：xxx</p>
-                        </div>
+                            <p class="score" v-if="account.id">您的积分余额：{{account.bonus}}</p>
+                            <p class="score" v-if="!account.id">马上前往</p>
+                        </router-link>
                     </div>
                 </div>
                 <div class="more-tips">
@@ -68,6 +69,7 @@
 </style>
 <script>
     import Vue from 'vue'
+    import bus from '../components/common/bus'
 
     export default {
         components:{
@@ -75,6 +77,7 @@
         },
         data: function(){
             return {
+                account:{},
                 bannerList:[],
                 gameList:[],
             }
@@ -108,11 +111,21 @@
         },
         mounted () {
             //
+            this.account=this.getAccountInfo();
+            /*刷新用户信息*/
+            bus.$on('refreshAccount', () => {
+                this.account=Vue.getAccountInfo();
+            });
+            //
             this.getBannerList();
             this.getGameList();
+            //临时测试
+          /*  this.forget({});*/
+           /* this.safeBoxLogin({});*/
          /*   this.alertModal({});*/
            /* Vue.registerModal({open:true});*/
          /*   Vue.loginModal({open:true});*/
+
         },
         beforeRouteLeave(to,from,next){
             next();

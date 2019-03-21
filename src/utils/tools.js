@@ -171,7 +171,20 @@ export default {
               // reader.readAsDataURL(file)
               // 转化为blob
               reader.readAsArrayBuffer(file);
-          }
+          },
+        initAudio:function (id) {
+              let audio=document.getElementById(id);
+              function play() {
+                  audio.play();
+              }
+              function pause() {
+                  audio.pause();
+              }
+              function setSpeed(value) {
+                  audio.playbackRate=value;
+              }
+              return{play,pause,setSpeed}
+        },
       }
 
       Object.assign(Vue, Vue.tools);

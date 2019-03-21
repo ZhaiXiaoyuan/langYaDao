@@ -176,9 +176,10 @@
                 this.$router.push({name:page});
             },
             logout:function () {
-                Vue.cookie.set('account','');
+                this.$cookie.set('account','');
                 this.account={};
                 Vue.operationFeedback({type:'complete',text:'退出成功'});
+                this.$router.push({name:'home'})
             }
         },
         created(){
