@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <audio id="hall-audio" :src="hallVoice" loop="true">
+        <audio id="hall-audio" :src="hallVoice" autoplay loop="true">
             您的浏览器不支持 audio 标签。
         </audio>
     </div>
@@ -236,7 +236,7 @@
             this.getRoomInfo('大师房');
             //
             this.hallAudio=this.initAudio('hall-audio');
-            this.hallAudio.play();
+            /*this.hallAudio.play();*/
             //
             //临时测试
             setTimeout(()=>{ this.getRoomData();},500);
