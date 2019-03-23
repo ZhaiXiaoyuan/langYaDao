@@ -777,7 +777,7 @@
                 runningIndex:-1,
                 runningCount:-1,
                 long:0,
-                speed:400,
+                speed:200,
                 showResult:false,
                 showResultClass:'',
                 switchSession:false,
@@ -1021,7 +1021,7 @@
             runTurntable:function (value) {
                 setTimeout(()=>{
                     if(this.runningCount==-1){
-                        this.long=value-1+3*12;
+                        this.long=value-1+5*12;
                     }
                     this.runningCount++;
                     this.runningIndex=this.runningCount%12+1;
@@ -1061,9 +1061,9 @@
 
                     }
                     if(this.runningCount>parseInt((1/12)*this.long)){
-                        this.speed=100;
+                        this.speed=80;
                     }if(this.runningCount>parseInt((11/12)*this.long)){
-                        this.speed=300;
+                        this.speed=200;
                     }else if(this.runningCount>=this.long){
 
                     }
