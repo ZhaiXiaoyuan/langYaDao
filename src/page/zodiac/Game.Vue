@@ -1199,7 +1199,7 @@
                           this.applyToHostCallback();
                        }else if(data.api=='gamble'){
                            this.setBetCallback();
-                       }else if(data.api=='exitRoom'){
+                       }else if(data.api=='exitRoom'||data.api=='quitForBanker'){
                            this.exitRoomCallback();
                        }
                    }else{
