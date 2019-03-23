@@ -522,6 +522,9 @@
         <audio id="set-bet-audio" :src="setBetVoice">
             您的浏览器不支持 audio 标签。
         </audio>
+        <audio id="hall-audio" :src="gameVoice" autoplay loop="true">
+            您的浏览器不支持 audio 标签。
+        </audio>
     </div>
 </template>
 
@@ -800,6 +803,7 @@
                 collectionAudio:null,
                 setBetVoice:require('../../voice/set-bet.mp3'),
                 setBetAudio:null,
+                gameVoice:require('../../voice/game.mp3'),
             }
         },
         methods: {
@@ -839,7 +843,7 @@
                 console.log('*********exitRoom:'+(this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom")+'*********');
                 console.log('test1:',this.curHost.userId);
                 console.log('test2:',this.curPlayer.userId);
-                this.socketApi.sendSock({"api":this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom","apiParams":{}});
+                this.socketApi.sendSock({"api":this.curHost&&this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom","apiParams":{}});
             },
             exitRoomCallback:function () {
                 if(this.initiativeExitFlag){
@@ -1181,7 +1185,7 @@
             //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
-               /* console.log('game:',resp);*/
+                console.log('game:',resp);
                if(resp.respCode){
                    if(resp.respCode=='2000'){
                        let data={};
