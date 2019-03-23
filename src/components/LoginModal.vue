@@ -59,7 +59,8 @@
             }
             let params={
                 ...this.form,
-                location:this.userPosition.city,
+               /* location:this.userPosition.city,*/
+                location:'广州'
             }
             let fb=Vue.operationFeedback({text:'登录中...'});
             Vue.api.login({apiParams:params}).then((resp)=>{
