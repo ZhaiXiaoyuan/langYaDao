@@ -34,80 +34,17 @@
                 </div>
                 <div class="draw-panel">
                     <div class="draw-table">
-                        <div class="disc">
+                        <div class="disc" :class="rotateClass">
                             <div class="line"></div>
                             <div class="line line-2"></div>
                             <div class="line line-3"></div>
                             <div class="line line-4"></div>
                             <div class="prize-item-list">
-                                <div class="prize-item item-1">
+                                <div class="prize-item" v-for="(item,index) in typeList" :class="'item-'+(index+1)" :key="index">
                                     <div class="item-content">
-                                        <p class="name">话费卡150元</p>
+                                        <p class="name">{{item.name}}</p>
                                         <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
-                                        </div>
-                                        <i class="icon point"></i>
-                                    </div>
-                                </div>
-                                <div class="prize-item item-2">
-                                    <div class="item-content">
-                                        <p class="name">话费卡150元</p>
-                                        <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
-                                        </div>
-                                        <i class="icon point"></i>
-                                    </div>
-                                </div>
-                                <div class="prize-item item-3">
-                                    <div class="item-content">
-                                        <p class="name">话费卡150元</p>
-                                        <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
-                                        </div>
-                                        <i class="icon point"></i>
-                                    </div>
-                                </div>
-                                <div class="prize-item item-4">
-                                    <div class="item-content">
-                                        <p class="name">话费卡150元</p>
-                                        <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
-                                        </div>
-                                        <i class="icon point"></i>
-                                    </div>
-                                </div>
-                                <div class="prize-item item-5">
-                                    <div class="item-content">
-                                        <p class="name">话费卡150元</p>
-                                        <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
-                                        </div>
-                                        <i class="icon point"></i>
-                                    </div>
-                                </div>
-                                <div class="prize-item item-6">
-                                    <div class="item-content">
-                                        <p class="name">话费卡150元</p>
-                                        <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
-                                        </div>
-                                        <i class="icon point"></i>
-                                    </div>
-                                </div>
-                                <div class="prize-item item-7">
-                                    <div class="item-content">
-                                        <p class="name">话费卡150元</p>
-                                        <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
-                                        </div>
-                                        <i class="icon point"></i>
-                                    </div>
-                                </div>
-                                <div class="prize-item item-8">
-                                    <div class="item-content">
-                                        <p class="name">话费卡150元</p>
-                                        <div class="pic">
-                                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552423152010&di=5fe222b873651df1183b08ab7e44090f&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F52%2F85%2F16pic_5285949_b.jpg" alt="">
+                                            <img :src="basicConfig.imgBasicUrl+item.prizePic"alt="">
                                         </div>
                                         <i class="icon point"></i>
                                     </div>
@@ -116,16 +53,16 @@
                         </div>
                         <i class="icon light"></i>
                         <div class="start">
-                            <div class="start-btn">
+                            <div class="start-btn" @click="draw()">
                                 <i class="icon start-text-icon"></i>
-                                <p class="cost">20积分/次</p>
+                                <p class="cost">{{configData.bonusLotteryPrice}}积分/次</p>
                             </div>
                         </div>
                         <i class="icon pointer"></i>
                     </div>
                     <div class="score-block">
-                        <p>您的积分：<span class="num">23423324</span></p>
-                        <p>可抽奖数：<span class="num">20</span></p>
+                        <p>您的积分：<span class="num">{{account.bonus}}</span></p>
+                        <p>可抽奖数：<span class="num">{{drawCount}}</span></p>
                     </div>
                 </div>
             </div>
@@ -148,13 +85,71 @@
         },
         data: function(){
             return {
-
+                account:{bonus:0},
+                configData:{bonusLotteryPrice:1},
+                typeList:[],
+                rotateClass:{},
+            }
+        },
+        computed: {
+            drawCount() {
+                return Math.floor(this.account.bonus/this.configData.bonusLotteryPrice);
             }
         },
         methods: {
-
+            getUserInfo:function () {
+                Vue.api.getUserInfo({apiParams:{id:this.account.phone,type:'phone'}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        this.account={...this.account,...data.user};
+                        console.log('this.account:',this.account);
+                    }
+                });
+            },
+            getConfigData:function () {
+                Vue.api.getBaseGlobalVariable({apiParams:{}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        this.configData=JSON.parse(resp.respMsg);
+                        console.log('this.configData:',this.configData);
+                    }
+                });
+            },
+            getTypeList:function () {
+                Vue.api.getPrizeTypeList({apiParams:{pageIndex:1,pageSize:8}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        let list=typeof data.bonusLotteryList=='string'?JSON.parse(data.bonusLotteryList):data.bonusLotteryList;
+                        this.typeList=list;
+                        this.typeList.forEach((item,index)=>{
+                            item.angle=22.5+index*45+'deg';
+                        });
+                        console.log('typeList:', this.typeList);
+                    }
+                });
+            },
+            draw:function () {
+                Vue.api.drawABonusLottery({apiParams:{userId:this.account.id}}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        this.account={...this.account,...JSON.parse(data.user)}
+                        console.log('data:',data);
+                    }
+                });
+            },
+            roate:function (index) {
+                this.rotateClass={transform:'rotate('+(this.typeList[index].angle+360*5)+')'}
+            },
+            test:function () {
+                
+            }
         },
         mounted () {
+            //
+            this.account=this.getAccountInfo();
+            //
+            this.getUserInfo();
+            this.getConfigData();
+            this.getTypeList();
 
         },
     }

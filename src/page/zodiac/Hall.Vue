@@ -242,7 +242,7 @@
             setTimeout(()=>{ this.getRoomData();},500);
             this.requestInterval=setInterval(()=>{
                 this.getRoomData();
-                },5000);
+                },2000);
         },
         beforeDestroy(){
             clearInterval(this.requestInterval);

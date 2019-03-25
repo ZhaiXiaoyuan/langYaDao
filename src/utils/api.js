@@ -236,6 +236,30 @@ export default {
                 params: params
             });
         },
+        //获取抽奖礼物种类列表
+        getPrizeTypeList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/bonusLottery/getBonusLotteryList',
+                params: params
+            });
+        },
+        //获取抽奖礼物种类列表
+        getPrizeTypeList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/bonusLottery/getBonusLotteryList',
+                params: params
+            });
+        },
+        //抽奖
+        drawABonusLottery:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/bonusLottery/drawABonusLottery',
+                params: params
+            });
+        },
     }
   },
 

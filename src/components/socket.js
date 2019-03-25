@@ -4,6 +4,7 @@
 var websock = {};
 var global_callback = null;
 var serverPort = '5000';	//webSocket连接端口
+var options={};
 
 
 function getWebIP(){
@@ -11,7 +12,11 @@ function getWebIP(){
     return curIP;
 }
 
-function initWebSocket(url){ //初始化weosocket
+function initWebSocket(url,options){ //初始化weosocket
+    //
+    if(options){
+        options=options;
+    }
     //ws地址
     var wsuri = "ws://" +getWebIP()+ ":" + serverPort;
     websock = new WebSocket(url);
@@ -62,6 +67,7 @@ function websocketsend(agentData){
 
 //关闭
 function websocketclose(e){
+    options.closeCallback&&options.closeCallback();
     console.log("connection closed (" + e.code + ")");
 }
 

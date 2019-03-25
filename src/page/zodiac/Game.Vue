@@ -1185,7 +1185,7 @@
             //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);
-                console.log('game:',resp);
+          /*      console.log('game:',resp);*/
                if(resp.respCode){
                    if(resp.respCode=='2000'){
                        let data={};
@@ -1213,7 +1213,7 @@
                }else if(resp.api=='deskFrame'){
                    let data=JSON.parse(resp.data);
                    this.gameRender(data);
-                  /* console.log('data:',data);*/
+                /*   console.log('data:',data);*/
                }
             });
 
