@@ -56,8 +56,8 @@
             </div>
             <div class="tool-panel">
                 <ul class="btn-list">
-                    <li><i class="icon service-icon"></i></li>
-                    <li><i class="icon to-top-icon"></i></li>
+                    <li class="cm-btn"><i class="icon service-icon"></i></li>
+                    <li class="cm-btn" @click="goAnchor('#header')"><i class="icon to-top-icon"></i></li>
                 </ul>
             </div>
         </div>
@@ -120,15 +120,13 @@
             this.getBannerList();
             this.getGameList();
             //临时测试
-          /*  this.forget({});*/
+        /*    this.safeLogin({});*/
+           /* this.forget({});*/
            /* this.safeBoxLogin({});*/
          /*   this.alertModal({});*/
            /* Vue.registerModal({open:true});*/
          /*   Vue.loginModal({open:true});*/
 
-        },
-        beforeRouteLeave(to,from,next){
-            next();
         },
     }
 </script>

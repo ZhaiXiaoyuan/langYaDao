@@ -78,5 +78,8 @@
                 this.type=this.$route.params.type;
             }
         },
+        beforeRouteEnter(to,from,next){
+            Vue.routeCheck(to,from,next)
+        },
     }
 </script>

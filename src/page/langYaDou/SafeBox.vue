@@ -117,6 +117,7 @@
                     loading:false
                 },
                 entryList:[],
+                unreadList:[],
 
                 coinConvertModalFlag:false,
                 convertModalType:'',//in,out
@@ -145,6 +146,7 @@
                     userType:'gainer',
                     pageIndex:this.pager.pageIndex,
                     pageSize:this.pager.pageSize,
+                    readState:'',
                 }
                 this.pager.loading=true;
                 Vue.api.getGiftMessageList({apiParams:params}).then((resp)=>{
@@ -153,6 +155,20 @@
                         let list=typeof data.giftMessageList=='string'?JSON.parse(data.giftMessageList):data.giftMessageList;
                         this.entryList=list;
                         this.pager.total=data.count;
+                        //
+                        this.unreadList=[];
+                        this.entryList.forEach((item,index)=>{
+                            if(item.giftMessage.readState=='notRead'){
+                                this.unreadList.push({id:item.giftMessage.id});
+                            }
+                        });
+                        if(this.unreadList.length>0){
+                            Vue.api.readGiftMessageInBatch({apiParams:{idArray:this.unreadList}}).then((resp)=>{
+                                if(resp.respCode=='2000'){
+
+                                }
+                            });
+                        }
                     }
                     this.pager.loading=false;
                 });
@@ -260,6 +276,9 @@
             this.getList();
             //临时测试
        /*     this.openConvertModal('in');*/
+        },
+        beforeRouteEnter(to,from,next){
+            Vue.routeCheck(to,from,next)
         },
     }
 </script>

@@ -3,7 +3,8 @@
         <div class="page-content" id="container">
             <div class="panel session-panel">
                 <div class="nav-block">
-                    <span class="cm-btn btn exit-btn" @click="exitRoom(true)">退出房间</span>
+                    <span class="cm-btn btn exit-btn" v-if="type=='player'" @click="exitRoom(true)">退出房间</span>
+                    <span class="cm-btn btn exit-btn" v-if="type=='host'" @click="quit(true)">退出房间</span>
                     <span class="cm-btn btn home-btn">{{roomLevel}}</span>
                 </div>
                 <div class="block result-block">
@@ -334,6 +335,7 @@
                 </div>
                 <div class="handle-btn-list">
                     <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
+                    <span class="cm-btn handle-btn apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
                     <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
                 </div>
             </div>
@@ -407,9 +409,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="handle">
+                           <!-- <div class="handle">
                                 <div class="cm-btn apply-btn" @click="savePreset()">提交结果</div>
-                            </div>
+                            </div>-->
                         </div>
                         <!--start:擂主竞猜区内容-->
                     </div>
@@ -433,7 +435,25 @@
                         <table>
                             <tbody>
                             <tr v-for="(item,index) in playerList" :key="index">
-                                <td class="name">{{item.user.name}}</td>
+                                <td class="name">
+                                    <el-tooltip placement="left" class="user-tooltips" offset="-60">
+                                        <div slot="content" class="tips-content">
+                                            <div class="wrap">
+                                                <img class="avatar" :src="item.headPic?basicConfig.imgBasicUrl+item.headPic:defaultAvatar" alt="">
+                                                <div class="text-info">
+                                                    <p class="name">昵称：{{item.user.name}}</p>
+                                                    <p>会员：{{item.vipType?item.vipType:'非vip'}}</p>
+                                                    <p>余额：{{item.user.balance}}</p>
+                                                </div>
+                                            </div>
+                                            <p class="remark">个性签名：{{item.user.remark}}</p>
+                                            <div class="handle" v-if="curPlayer.userId!=item.user.id" @click="kickPlayer(item)">
+                                                <span class="cm-btn handle-btn">踢走该用户</span>
+                                            </div>
+                                        </div>
+                                        <span> {{item.user.name}}</span>
+                                    </el-tooltip>
+                                </td>
                                 <td class="level">{{item.vipType?item.vipType:'非vip'}}</td>
                                 <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord|numFormat}}</span></td>
                                 <td class="balance">{{item.user.balance|numFormat}}</td>
@@ -450,7 +470,7 @@
                             <tr v-for="(item,index) in hostList" :key="index">
                                 <td class="index">{{index+1}}</td>
                                 <td class="name">{{item.user.name}}</td>
-                                <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord}}</span></td>
+                                <td class="count"><span class="win" :class="{'lose':item.langyaRecord<0}"><span v-if="item.langyaRecord>0">+</span>{{item.langyaRecord|numFormat}}</span></td>
                                 <td class="balance">{{item.user.balance|numFormat}}</td>
                             </tr>
                             </tbody>
@@ -678,7 +698,7 @@
                         outsideName:'丑牛',
                         middleName:'神龟',
                         insideName:'坤',
-                        icon:'pig-icon',
+                        icon:'cowg-icon',
                         resultText:'',
                         value:2
                     },
@@ -804,6 +824,8 @@
                 setBetVoice:require('../../voice/set-bet.mp3'),
                 setBetAudio:null,
                 gameVoice:require('../../voice/game.mp3'),
+
+                defaultAvatar:require('../../images/common/default-avatar.png'),
             }
         },
         methods: {
@@ -840,17 +862,28 @@
             },
             exitRoom:function (flag) {
                 this.initiativeExitFlag=flag;
-                console.log('*********exitRoom:'+(this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom")+'*********');
-                console.log('test1:',this.curHost.userId);
-                console.log('test2:',this.curPlayer.userId);
-                this.socketApi.sendSock({"api":this.curHost&&this.curHost.userId==this.curPlayer.userId?"quitForBanker":"exitRoom","apiParams":{}});
+                console.log('*********exitRoom*********');
+                this.socketApi.sendSock({"api":"exitRoom","apiParams":{}});
             },
             exitRoomCallback:function () {
                 if(this.initiativeExitFlag){
                     this.$router.go(-1);
                 }
             },
+            quit:function (flag) {
+                this.initiativeExitFlag=flag;
+                this.socketApi.sendSock({"api":"quitForBanker","apiParams":{}});
+            },
+            quitCallback:function () {
+                this.type='player';
+                if(!this.initiativeExitFlag){
+                    Vue.operationFeedback({type:'complete',text:'成功申请中途退出，下一轮生效'});
+                }else{
+                    this.exitRoom(true);
+                }
+            },
             gameRender:function (data) {
+              /*  console.log('data:',data);*/
                 this.deskInfo=data.deskInfoJSONObject;
                 if(this.deskInfo.deskState=='countdown'){
                     for(let i=0;i<this.deskCoinList.length;i++){
@@ -864,11 +897,14 @@
                     };
                 }
                 //
+                //
                 let playerList=data.playerInfoJSONArray;
                 let curPlayer={};
                 let temHostList=data.bankerSequenceJSONArray;
                 this.timer=data.deskTimer;
-                this.hostList=[];
+                if(this.loadLatestDataFlag){
+                    this.hostList=[];
+                }
                 playerList.forEach((item,index)=>{
                     if(item.user.id==this.account.id){
                         curPlayer=item;
@@ -876,12 +912,13 @@
                     if(item.userId==this.deskInfo.currentBankerId){
                         this.curHost=item;
                     }
-
-                    temHostList.forEach((hostItem)=>{
-                        if(hostItem.userId==item.userId){
-                            this.hostList.push(item);
-                        }
-                    });
+                    if(this.loadLatestDataFlag){
+                        temHostList.forEach((hostItem)=>{
+                            if(hostItem.userId==item.userId){
+                                this.hostList.push(item);
+                            }
+                        });
+                    }
 
                 });
                 if(this.loadLatestDataFlag){
@@ -903,6 +940,15 @@
                     curPlayer.roundRecord.forEach((item)=>{
                         Object.assign(this.recordList[item.currentRount-1],item);
                     });
+                }
+                //
+                if(this.type=='host'){
+                    let presetResult=data.presetResultJSONArray;
+                    if(presetResult.length>=6){
+                        for(let i=0;i<6;i++){
+                            this.presetList[i]={...this.presetList[i],...this.$options.filters.resultDict(presetResult[i].result-1,'all')};
+                        }
+                    }
                 }
                 //
                 if(this.deskInfo.deskState=='settlement'){
@@ -947,7 +993,7 @@
                     }
                     this.selectedOption=item;
                     let params={kind:item.id,jetton:this.selectedChip};
-                    console.log('params:',params);
+                  /*  console.log('params:',params);*/
                     this.socketApi.sendSock({"api":"gamble","apiParams":params});
                 }else{
                     Vue.operationFeedback({type:'warn',text:'现在还不能下注，请稍作等待'});
@@ -971,12 +1017,24 @@
                     return;
                 }
                 this.curPreset=item;
+              /*  console.log('curPreset:',this.curPreset);*/
             },
             selectPresetOption:function (item) {
                 this.curPreset.value=item.value;
                 this.curPreset.outsideName=item.outsideName;
                 this.curPreset.middleName=item.middleName;
                 this.curPreset.insideName=item.insideName;
+                for(let i=0;i<this.presetList.length;i++){
+                    let preset=this.presetList[i];
+                 /*   console.log('preset:',preset);*/
+                    if(!preset.value){
+                        this.curPreset=preset;
+                        break;
+                    }
+                    if(i==this.presetList.length-1){
+                       this.savePreset();
+                    }
+                }
             },
             savePreset:function () {
                 if(this.deskInfo.deskState!='bankerSetting'){
@@ -995,7 +1053,9 @@
                 }
                 this.socketApi.sendSock({"api":"presetResult","apiParams":{presetResultJSONArrayString:list}});
             },
-
+            savePresetCallback:function () {
+                Vue.operationFeedback({type:'complete',text:'设置成功'});
+            },
             initData:function () {
                 this.curHost={ user:{}};
                 this.presetList=[
@@ -1148,6 +1208,17 @@
                     this.deskCoinList.push(0);
                 }
             },
+            kickPlayer:function (item) {
+                console.log('item:',item);
+                this.socketApi.sendSock({"api":"kickPlayer","apiParams":{kickUserId:item.user.id}});
+            },
+            kickPlayerCallback:function () {
+                Vue.operationFeedback({type:'complete',text:'操作成功'});
+            },
+            beKickedCallback:function () {
+                this.alertModal({html:'您已被踢出当前桌子'});
+                this.$router.go(-1);
+            },
         },
         created (){
             //初始化数据
@@ -1205,8 +1276,17 @@
                           this.applyToHostCallback();
                        }else if(data.api=='gamble'){
                            this.setBetCallback();
-                       }else if(data.api=='exitRoom'||data.api=='quitForBanker'){
+                       }else if(data.api=='exitRoom'){
                            this.exitRoomCallback();
+                       }else if(data.api=='quitForBanker'){
+                           this.quitCallback();
+                       }else if(data.api=='kickPlayer'){
+                           this.kickPlayerCallback();
+                       }else if(data.api=='presetResult'){
+                           this.savePresetCallback();
+                       }
+                       if(resp.respMsg=='您已被踢出当前桌子'){
+                           this.beKickedCallback();
                        }
                    }else{
                        Vue.operationFeedback({type:'warn',text:resp.respMsg});
@@ -1215,7 +1295,7 @@
                }else if(resp.api=='deskFrame'){
                    let data=JSON.parse(resp.data);
                    this.gameRender(data);
-                /*   console.log('data:',data);*/
+                  /* console.log('data:',data);*/
                }
             });
 
@@ -1233,6 +1313,9 @@
         beforeRouteLeave(to,from,next){
             this.exitRoom();
             next();
+        },
+        beforeRouteEnter(to,from,next){
+            Vue.routeCheck(to,from,next)
         },
     }
 </script>

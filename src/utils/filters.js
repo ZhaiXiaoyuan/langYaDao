@@ -33,76 +33,11 @@ Vue.filter('moneyFormat',function(str){
     return (str/100).toFixed(2);
 });
 
-/*订单状态*/
-Vue.filter('orderStatus',function(str){
-    str+='';
-    let result='';
-    switch (str){
-        //"waitPay","waitSent","waitReach","borrowing", "waitReturn","waitInventory","waitSettlement","finish","cancel"
-        //待付款，待发货，待收货，借阅中，待归还，待入库，待结算，已结算，取消
-        case 'waitPay':
-            result='待付款';
-            break;
-        case 'waitSent':
-            result='待发货';
-            break;
-        case 'waitReach':
-            result='待收货';
-            break;
-        case 'borrowing':
-            result='借阅中';
-            break;
-        case 'waitReturn':
-            result='待归还';
-            break;
-        case 'waitInventory':
-            result='待入库';
-            break;
-        case 'waitSettlement':
-            result='待结算';
-            break;
-        case 'finish':
-            result='已结算';
-            break;
-        case 'cancel':
-            result='已取消';
-            break;
-    }
-    return result;
-});
-
 /*值空时显示字符*/
 Vue.filter('empty',function(str){
     return str?str:'-';
 });
 
-/*建议状态*/
-Vue.filter('adviceStatus',function(str){
-    str+='';
-    let result='';
-    switch (str){
-        //unaudited:未审核,operatorApproved:运营通过,operatorDisapproved:运营不通过,adminApproved:管理员通过,adminDisapproved:管理员不通过,paid:已发放奖励
-        case 'unaudited':
-            result='未处理';
-            break;
-        case 'operatorApproved':
-            result='已采纳';
-            break;
-        case 'operatorDisapproved':
-            result='未采纳';
-            break;
-        case 'adminApproved':
-            result='已采纳';
-            break;
-        case 'adminDisapproved':
-            result='未采纳';
-            break;
-        case 'paid':
-            result='已采纳';
-            break;
-    }
-    return result;
-});
 
 
 /*数值格式*/
@@ -149,7 +84,7 @@ Vue.filter('resultDict',function(index,property){
             outsideName:'丑牛',
             middleName:'神龟',
             insideName:'坤',
-            icon:'pig-icon',
+            icon:'cow-icon',
             middleIcon:'turtle',
             resultText:'神龟，丑牛，坤',
             value:2

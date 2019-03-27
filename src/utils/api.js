@@ -91,6 +91,22 @@ export default {
                 params: params
             });
         },
+        //更新保险箱密码
+        updateUserSafeBoxPassword:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/updateUserSafeBoxPassword',
+                params: params
+            });
+        },
+        //保险箱登录
+        safeBoxLogin:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/safeBoxLogin',
+                params: params
+            });
+        },
         //获取游戏列表
         getGameList:function (params) {
             return Vue.http.ajax({
@@ -103,7 +119,7 @@ export default {
         getOpenIdInfo:function (params) {
             return Vue.http.ajax({
                 method: 'post',
-                url: basicUrl+'//weixin/getOpenIdInfo',
+                url: basicUrl+'/weixin/getOpenIdInfo',
                 params: params
             });
         },
@@ -153,6 +169,14 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/gift/getGiftList',
+                params: params
+            });
+        },
+        //批量阅读礼物订单
+        readGiftMessageInBatch:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/gift/readGiftMessageInBatch',
                 params: params
             });
         },
@@ -257,6 +281,14 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/bonusLottery/drawABonusLottery',
+                params: params
+            });
+        },
+        //获取抽奖记录
+        getBonusLotteryRecordList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/bonusLottery/getBonusLotteryRecordList',
                 params: params
             });
         },

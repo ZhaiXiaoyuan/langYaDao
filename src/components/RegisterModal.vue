@@ -24,11 +24,17 @@
                 </div>
                 <div class="input-item wechat-input-item">
                     <span class="label">绑定微信：</span>
-                    <div class="value">
+                    <div class="value" v-if="!wetchatInfo.id">
                         <div class="img-box">
-                            <qrcode :value="qrCodeDomain+'/weixin/getWeixinCode?state='+randomId" :options="{ width: 110 }"></qrcode>
+                            <qrcode :value="qrCodeDomain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_userinfo'" :options="{ width: 110 }"></qrcode>
                         </div>
                         <p class="tips">打开微信扫一扫</p>
+                    </div>
+                    <div class="value" v-if="wetchatInfo.id">
+                        <div class="img-box">
+                            <img :src="wetchatInfo.headimgurl" alt="">
+                        </div>
+                        <p class="tips">{{wetchatInfo.nickname}}</p>
                     </div>
                 </div>
                 <el-button class="submit-btn" type="primary" @click="register()">完成注册</el-button>
@@ -59,6 +65,8 @@
           phoneCodeData:null,
           qrCodeDomain:Vue.appConfig.domain,
           randomId:new Date().getTime()+Math.random(),
+          wetchatInfo:{},
+          getWetchatInfoInterval:null,
       }
     },
     computed: {},
@@ -101,8 +109,8 @@
           }*/
           let fb=Vue.operationFeedback({text:'注册中...'});
           //临时测试
-       /*   this.phoneCodeData.bizId='whosyourdaddy';*/
-         /* Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
+          this.phoneCodeData.bizId='whosyourdaddy';
+          Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
               if(resp.respCode=='2000'){
                   let params={
                       ...this.form,
@@ -124,23 +132,6 @@
               }else{
                   fb.setOptions({type:"warn",text:resp.respMsg});
               }
-          });*/
-          let params={
-              ...this.form,
-              wxOpenId:''
-          }
-          Vue.api.register({apiParams:params}).then((resp)=>{
-              if(resp.respCode=='2000'){
-                  fb.setOptions({type:"complete",text:'注册成功'});
-                  //
-                  this.close();
-                  //
-                  setTimeout(()=>{
-                      Vue.loginModal({open:true});
-                  },3000)
-              }else{
-                  fb.setOptions({type:"warn",text:resp.respMsg});
-              }
           });
         },
       close:function () {
@@ -148,12 +139,29 @@
         this.$el.remove();
         this.$destroy();
       },
+      getwetChatInfo:function () {
+          Vue.api.getOpenIdInfo({apiParams:{"state":this.randomId}}).then((resp)=>{
+        /*      console.log('resp:',resp);*/
+              if(resp.respCode=='2000'){
+                  this.wetchatInfo=JSON.parse(resp.respMsg);
+                  console.log('this.wetchatInfo:',this.wetchatInfo);
+                  clearInterval(this.getWetchatInfoInterval);
+              }else{
+
+              }
+          });
+      }
     },
     created: function () {
 
     },
     mounted: function () {
-        console.log('test:',this.randomId);
-    }
+        this.getWetchatInfoInterval=setInterval(()=>{
+            this.getwetChatInfo();
+        },3000)
+    },
+    beforeDestroy:function () {
+        clearInterval(this.getWetchatInfoInterval);
+    },
   };
 </script>

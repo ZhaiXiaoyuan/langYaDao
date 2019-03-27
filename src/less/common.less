@@ -159,6 +159,7 @@ body{
 }
 .cm-btn{
     cursor: pointer;
+    user-select: none;
 }
 .cm-disabled{
     opacity: 0.5;
@@ -493,6 +494,93 @@ body{
             }
             .step-4{
                 text-align: center;
+            }
+        }
+    }
+}
+.safe-login-modal{
+    .el-dialog{
+
+        .el-dialog__body{
+            padding: 10px 20px 20px 20px;
+        }
+        .modal-body{
+            .step-1{
+                text-align: center;
+                font-size: 14px;
+                color: #000;
+               .el-icon-warning{
+                   font-size: 40px;
+                   color: #F56C6C;
+               }
+            }
+            .handle{
+                margin-top: 10px;
+                .text-btn{
+                    font-size: 12px;
+                    color: #999;
+                }
+            }
+        }
+    }
+}
+
+.el-tooltip__popper{
+  /*  top:193px !important;
+    left: 1007px !important;
+    display: block !important;*/
+    background: url("../images/zodiac/user-info-block-bg.png") no-repeat !important;
+    width: 284px;
+    height: 200px;
+    background-size: 100%;
+    font-family: 'hytangmeiren';
+    .popper__arrow{
+        display: none !important;
+    }
+    .tips-content{
+        padding: 15px;
+        .avatar{
+            width: 58px;
+            height: 58px;
+            border-radius: 8px;
+            float: left;
+            border: 1px solid #eaeaea;
+        }
+        .text-info{
+            float: left;
+            margin-left: 10px;
+            font-size: 12px;
+            color: #2096e0;
+            line-height: 18px;
+            .name{
+                font-size: 14px;
+            }
+        }
+        .wrap{
+            overflow: hidden;
+        }
+        .remark{
+            margin-top: 8px;
+            font-size: 12px;
+            color: #f99609;
+        }
+        .handle{
+            margin-top: 20px;
+            text-align: center;
+            .handle-btn{
+                display: inline-block;
+                background: url("../images/zodiac/kick-btn.png") no-repeat;
+                width: 155px;
+                height: 35px;
+                background-size: 100%;
+                text-align: center;
+                line-height: 29px;
+                font-size: 20px;
+                color: #fff;
+                text-shadow: #490000 0.1em 0.1em 0.08em;
+                &:active{
+                    transform: scale(0.96);
+                }
             }
         }
     }

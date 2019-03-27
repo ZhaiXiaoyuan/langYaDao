@@ -12,7 +12,7 @@
                 <el-button class="submit-btn" type="primary" style="margin-top: 30px;" @click="login()">登录</el-button>
                 <div class="switch">
                     <span class="cm-btn switch-btn" @click="toRegister()">账号注册</span>
-                    <span class="cm-btn switch-btn">忘记密码</span>
+                    <span class="cm-btn switch-btn" @click="toSetPwd()">忘记密码</span>
                 </div>
             </div>
         </div>
@@ -65,15 +65,7 @@
             Vue.api.login({apiParams:params}).then((resp)=>{
                 if(resp.respCode=='2000'){
                     let data=JSON.parse(resp.respMsg);
-                    //临时测试
-                  /*  if(this.form.phone=='18825162417'){
-                        data.user.id=1;
-                    }else if(this.form.phone=='18825162416'){
-                        data.user.id=2;
-                    }else if(this.form.phone=='18825162415'){
-                        data.user.id=2;
-                    }*/
-                    //
+                    data.user.isFirstLogin=data.isFirstLogin;
                     this.$cookie.set('account',JSON.stringify(data.user),7);
                     bus.$emit('refreshAccount');
                     fb.setOptions({type:"complete",text:'登录成功'});
@@ -92,6 +84,10 @@
       },
       toRegister:function () {
           Vue.registerModal({open:true});
+          this.close();
+      },
+      toSetPwd:function () {
+          Vue.forget({});
           this.close();
       }
     },

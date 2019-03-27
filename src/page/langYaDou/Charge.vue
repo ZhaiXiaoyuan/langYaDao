@@ -132,6 +132,9 @@
         },
         destroyed(){
             clearTimeout(this.orderListener);
-        }
+        },
+        beforeRouteEnter(to,from,next){
+            Vue.routeCheck(to,from,next)
+        },
     }
 </script>

@@ -12,8 +12,8 @@ import LoginModal from './LoginModal.vue';
 import ScrollLoad from './ScrollLoad';
 import * as socketApi from './socket';
 import AlertModal from './AlertModal.vue';
-import SafeBoxLoginModal from './SafeBoxLoginModal.vue';
 import ForgetModal from './ForgetModal.vue';
+import SafeLoginModal from './SafeLoginModal.vue';
 
 
 /*全局组件注册配置*/
@@ -29,8 +29,8 @@ export default {
     Vue.component('LoginModal',LoginModal);
     Vue.component('ScrollLoad',ScrollLoad);
     Vue.component('AlertModal',AlertModal);
-    Vue.component('SafeBoxLoginModal',SafeBoxLoginModal);
     Vue.component('ForgetModal',ForgetModal);
+    Vue.component('SafeLoginModal',SafeLoginModal);
 
 
     /*方法调度方式*/
@@ -40,8 +40,8 @@ export default {
     let RegisterModalConstructor=Vue.extend(RegisterModal);
     let LoginModalConstructor=Vue.extend(LoginModal);
     let AlertModalConstructor=Vue.extend(AlertModal);
-    let SafeBoxLoginModalConstructor=Vue.extend(SafeBoxLoginModal);
     let ForgetModalConstructor=Vue.extend(ForgetModal);
+    let SafeLoginModalConstructor=Vue.extend(SafeLoginModal);
     const functionObject={
         /**
          * 操作提示
@@ -207,6 +207,25 @@ export default {
             let parentEle=document.getElementById('app');
             //
             let instance=new ForgetModalConstructor({});
+            instance.options=options;
+            instance.$mount();
+            parentEle.appendChild(instance.$el);
+        },
+        /**
+         * 保险箱登录弹窗
+         * @param options
+         */
+        safeLogin:function (options) {
+            options={...{
+                open:true,
+                type:'normal',//normal、safeBox
+                step:0,
+                ok:null,
+            },...options};
+            //
+            let parentEle=document.getElementById('app');
+            //
+            let instance=new SafeLoginModalConstructor({});
             instance.options=options;
             instance.$mount();
             parentEle.appendChild(instance.$el);

@@ -36,6 +36,9 @@
         mounted () {
 
         },
+        beforeRouteEnter(to,from,next){
+            Vue.routeCheck(to,from,next)
+        },
         beforeRouteLeave(to,from,next){
             this.socketApi.close();
             next();

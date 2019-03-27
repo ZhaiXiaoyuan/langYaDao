@@ -19,7 +19,7 @@
             </div>
             <div class="step-2" v-if="step==2">
                 <div class="form">
-                    <p class="title">请设置琅琊豆中心密码</p>
+                    <p class="title">请设置{{typeText}}密码</p>
                     <div class="pwd-input">
                         <div class="pwd-input-item">
                             <ul class="input-bg"><li v-for="(item) in 6"></li></ul>
@@ -33,7 +33,7 @@
             </div>
             <div class="step-3" v-if="step==3">
                 <div class="form">
-                    <p class="title">请再次输入琅琊豆中心密码</p>
+                    <p class="title">请再次输入{{typeText}}密码</p>
                     <div class="pwd-input">
                         <div class="pwd-input-item">
                             <ul class="input-bg"><li v-for="(item) in 6"></li></ul>
@@ -42,12 +42,12 @@
                     </div>
                 </div>
                 <div class="handle">
-                    <el-button class="handle-btn" :class="{'cm-disabled':!form.rePassword||form.rePassword.length<6}" type="primary" @click="setStep(4)">下一步</el-button>
+                    <el-button class="handle-btn" :class="{'cm-disabled':!form.rePassword||form.rePassword.length<6}" type="primary" @click="save(4)">下一步</el-button>
                 </div>
             </div>
             <div class="step-4" v-if="step==4">
                 <i class="icon success-icon"></i>
-                <p class="tips">设置保险箱密码成功</p>
+                <p class="tips">设置{{typeText}}密码成功</p>
             </div>
         </div>
     </el-dialog>
@@ -72,12 +72,13 @@
     },
     data: function () {
       return {
+          typeText:'',
           form:{
               phone:'',
               code:'',
               password:''
           },
-          phoneCodeData:null,
+          phoneCodeData:{},
           step:1,
       }
     },
@@ -87,28 +88,42 @@
     },
     methods: {
       save:function () {
-          if(!this.form.phone){
-              Vue.operationFeedback({type:'warn',text:'请输入手机号'});
+          if(this.form.rePassword!=this.form.password){
+              Vue.operationFeedback({type:'warn',text:'两次密码输入不一致'});
               return;
           }
-            if(!this.form.password){
-                Vue.operationFeedback({type:'warn',text:'请输入密码'});
-                return;
-            }
             let params={
                 ...this.form,
-                location:this.userPosition.city,
+                phoneNumber:this.form.phone,
+                verifyCode:this.form.code,
+                password:this.form.password,
+                bizId:this.phoneCodeData.bizId
             }
-            Vue.api.updateUserPassword({apiParams:params}).then((resp)=>{
-                if(resp.respCode=='2000'){
-
-                }else{
-                    Vue.operationFeedback({type:"warn",text:resp.respMsg});
-                }
-            });
+          if(this.options.type=='normal'){
+              Vue.api.updateUserPassword({apiParams:params}).then((resp)=>{
+                  if(resp.respCode=='2000'){
+                      this.setStep(4);
+                      this.close();
+                  }else{
+                      Vue.operationFeedback({type:"warn",text:resp.respMsg});
+                  }
+              });
+          }else if(this.options.type=='safeBox'){
+              Vue.api.updateUserSafeBoxPassword({apiParams:params}).then((resp)=>{
+                  if(resp.respCode=='2000'){
+                      this.setStep(4);
+                      setTimeout(()=>{
+                          this.options.ok&&this.options.ok();
+                          this.close();
+                      },1000);
+                  }else{
+                      Vue.operationFeedback({type:"warn",text:resp.respMsg});
+                  }
+              });
+          }
         },
       setStep:function (value) {
-            this.step=value;
+          this.step=value;
       },
       close:function () {
         this.options.open=false;
@@ -124,9 +139,10 @@
               Vue.operationFeedback({type:'warn',text:'请输入验证码'});
               return;
           }
+          //临时测试
+          this.phoneCodeData.bizId='whosyourdaddy';
           Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
-              //临时测试
-              if(true||resp.respCode=='2000'){
+              if(resp.respCode=='2000'){
                   this.setStep(2);
               }else{
                   Vue.operationFeedback({type:'warn',text:resp.respMsg});
@@ -138,7 +154,12 @@
 
     },
     mounted: function () {
-
+        //
+        if(this.options.type=='normal'){
+            this.typeText='';
+        }else if(this.options.type=='safeBox'){
+            this.typeText='琅琊豆中心';
+        }
     }
   };
 </script>

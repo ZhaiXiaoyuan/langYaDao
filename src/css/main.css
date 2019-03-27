@@ -196,6 +196,10 @@ body {
 }
 .cm-btn {
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .cm-disabled {
   opacity: 0.5;
@@ -504,6 +508,87 @@ body {
 .forget-modal .el-dialog .modal-body .step-4 {
   text-align: center;
 }
+.safe-login-modal .el-dialog .el-dialog__body {
+  padding: 10px 20px 20px 20px;
+}
+.safe-login-modal .el-dialog .modal-body .step-1 {
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+}
+.safe-login-modal .el-dialog .modal-body .step-1 .el-icon-warning {
+  font-size: 40px;
+  color: #F56C6C;
+}
+.safe-login-modal .el-dialog .modal-body .handle {
+  margin-top: 10px;
+}
+.safe-login-modal .el-dialog .modal-body .handle .text-btn {
+  font-size: 12px;
+  color: #999;
+}
+.el-tooltip__popper {
+  /*  top:193px !important;
+    left: 1007px !important;
+    display: block !important;*/
+  background: url("../images/zodiac/user-info-block-bg.png") no-repeat !important;
+  width: 284px;
+  height: 200px;
+  background-size: 100%;
+  font-family: 'hytangmeiren';
+}
+.el-tooltip__popper .popper__arrow {
+  display: none !important;
+}
+.el-tooltip__popper .tips-content {
+  padding: 15px;
+}
+.el-tooltip__popper .tips-content .avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 8px;
+  float: left;
+  border: 1px solid #eaeaea;
+}
+.el-tooltip__popper .tips-content .text-info {
+  float: left;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #2096e0;
+  line-height: 18px;
+}
+.el-tooltip__popper .tips-content .text-info .name {
+  font-size: 14px;
+}
+.el-tooltip__popper .tips-content .wrap {
+  overflow: hidden;
+}
+.el-tooltip__popper .tips-content .remark {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #f99609;
+}
+.el-tooltip__popper .tips-content .handle {
+  margin-top: 20px;
+  text-align: center;
+}
+.el-tooltip__popper .tips-content .handle .handle-btn {
+  display: inline-block;
+  background: url("../images/zodiac/kick-btn.png") no-repeat;
+  width: 155px;
+  height: 35px;
+  background-size: 100%;
+  text-align: center;
+  line-height: 29px;
+  font-size: 20px;
+  color: #fff;
+  text-shadow: #490000 0.1em 0.1em 0.08em;
+}
+.el-tooltip__popper .tips-content .handle .handle-btn:active {
+  -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+          transform: scale(0.96);
+}
 .home {
   min-height: 100%;
 }
@@ -715,6 +800,10 @@ body {
   background: url("../images/zodiac/hall-bg.jpg") no-repeat;
   background-size: cover;
   min-height: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .zodiac-hall .page-content {
   position: relative;
@@ -969,6 +1058,10 @@ body {
   background-size: cover;
   min-height: 100%;
   padding-top: 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .zodiac-game .page-content {
   position: relative;
@@ -2464,6 +2557,7 @@ body {
   text-align: center;
 }
 .zodiac-game .data-panel table .name {
+  position: relative;
   width: 33%;
 }
 .zodiac-game .data-panel table .level {
@@ -4013,8 +4107,7 @@ body {
   background: url("../images/activity/draw-table.png") no-repeat;
   width: 354px;
   height: 354px;
-  -webkit-transition: all 5s;
-  transition: all 5s;
+  /*      transition: all 12s;*/
 }
 .draw-activity .page-content .main-content .draw-panel .draw-table .disc .line {
   display: none;
@@ -4199,6 +4292,8 @@ body {
   text-align: center;
   padding-top: 26px;
   cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 .draw-activity .page-content .main-content .draw-panel .draw-table .start .start-btn .start-text-icon {
   background: url("../images/activity/start-text-icon.png ") no-repeat;
@@ -4209,6 +4304,11 @@ body {
 .draw-activity .page-content .main-content .draw-panel .draw-table .start .start-btn .cost {
   font-size: 12px;
   color: #fff;
+}
+.draw-activity .page-content .main-content .draw-panel .draw-table .start .start-btn:active {
+  -webkit-transform: scale(0.95);
+      -ms-transform: scale(0.95);
+          transform: scale(0.95);
 }
 .draw-activity .page-content .main-content .draw-panel .draw-table .pointer {
   position: absolute;
@@ -4236,4 +4336,130 @@ body {
 }
 .draw-activity .page-content .main-content .draw-panel .score-block .num {
   color: #ffe371;
+}
+.draw-activity .win-modal .el-dialog {
+  border-radius: 8px;
+  background: url("../images/activity/win-modal-bg.png") no-repeat;
+  width: 441px;
+  height: 441px;
+  background-size: 100%;
+  box-shadow: none;
+}
+.draw-activity .win-modal .el-dialog .el-dialog__header .el-dialog__headerbtn {
+  display: none;
+  top: 10px;
+  right: 10px;
+}
+.draw-activity .win-modal .el-dialog .modal-body {
+  padding-top: 60px;
+  text-align: center;
+}
+.draw-activity .win-modal .el-dialog .modal-body .img-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0px auto;
+  width: 130px;
+  height: 130px;
+}
+.draw-activity .win-modal .el-dialog .modal-body .img-box img {
+  max-width: 100%;
+}
+.draw-activity .win-modal .el-dialog .modal-body .title {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ffe432;
+  text-align: center;
+  font-weight: bold;
+  /*  transform: scale(1);*/
+}
+.draw-activity .win-modal .el-dialog .modal-footer {
+  margin-top: 60px;
+  text-align: center;
+}
+.draw-activity .win-modal .el-dialog .modal-footer .handle-btn {
+  display: inline-block;
+  height: 40px;
+  padding: 0px 30px;
+  font-size: 20px;
+  color: #fff;
+  background: #f39700;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 34px;
+  font-family: 'hytangmeiren';
+}
+.draw-activity .win-modal .el-dialog .modal-footer .handle-btn:active {
+  opacity: 0.9;
+}
+.draw-activity .tips-modal .el-dialog {
+  width: 370px;
+  border-radius: 6px;
+}
+.draw-activity .tips-modal .el-dialog .el-dialog__header {
+  position: relative;
+  padding: 8px 0px;
+}
+.draw-activity .tips-modal .el-dialog .el-dialog__header .el-dialog__headerbtn {
+  top: 10px;
+  right: 10px;
+}
+.draw-activity .tips-modal .el-dialog .el-dialog__body {
+  padding: 0px;
+}
+.draw-activity .tips-modal .modal-header .title-label {
+  display: inline-block;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 0px 15px;
+  background: -webkit-linear-gradient(left, #f8354d, #f8354d);
+  background: linear-gradient(to right, #f8354d, #f8354d);
+}
+.draw-activity .tips-modal .modal-body {
+  font-size: 14px;
+  color: #000;
+  min-height: 120px;
+  padding: 10px;
+}
+.draw-activity .tips-modal .modal-body .status-block {
+  text-align: center;
+}
+.draw-activity .tips-modal .modal-body .status-block .no-bonus-icon {
+  background: url("../images/activity/no-score-icon.png") no-repeat;
+  width: 60px;
+  height: 76px;
+  background-size: 100%;
+}
+.draw-activity .tips-modal .modal-body .status-block .fail-icon {
+  background: url("../images/langYaDou/give-gift-fail-icon.png") no-repeat;
+  width: 73px;
+  height: 84px;
+  background-size: 100%;
+}
+.draw-activity .tips-modal .modal-body .status-block .tips {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #000;
+}
+.draw-activity .tips-modal .modal-footer {
+  text-align: right;
+  padding: 10px 10px;
+}
+.draw-activity .tips-modal .modal-footer .handle-btn {
+  min-width: 80px;
+  text-align: center;
 }

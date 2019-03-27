@@ -205,5 +205,8 @@
             //
             this.getList();
         },
+        beforeRouteEnter(to,from,next){
+            Vue.routeCheck(to,from,next)
+        },
     }
 </script>

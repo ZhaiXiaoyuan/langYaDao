@@ -73,25 +73,38 @@ const router= new Router({
 })
 
 //注册全局导航守卫
-let noLoginPage=['home'];
-router.beforeEach((to, from,next) => {
+/*let noLoginPage=['home'];
+function safeLoginCheck(path,next) {
+    let safeAccount=Vue.getSafeAccounInfo();
+    if(path.indexOf('coin')>-1&&!safeAccount.token){
+        alert(233);
+        Vue.safeLogin({ok:()=>{
+            next();
+        }});
+    }else{
+        next();
+    }
+}*/
+/*router.beforeEach((to, from,next) => {
     let name=to.name;
-    console.log('name:',name);
     let path=to.path;
-    let accountInfo=Vue.getAccountInfo();
-    if(!accountInfo.id){
-        if(noLoginPage.indexOf(name)==-1){
+    let toPath=from.path;
+    console.log('path:',path);
+    console.log('toPath',toPath);
+    let account=Vue.getAccountInfo();
+    if(noLoginPage.indexOf(name)==-1){
+        if(!account.id){
             Vue.loginModal({open:true,ok:()=>{
-                next();
+                safeLoginCheck(path,next);
             }});
         }else{
-            next();
+            safeLoginCheck(path,next);
         }
     }else{
         next();
     }
-   /* next();*/
-})
+   /!* next();*!/
+})*/
 
 //
 export default router

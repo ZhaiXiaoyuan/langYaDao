@@ -12,8 +12,13 @@
                 <li :class="{'active':page=='vipStore'}" class="vip-link">
                     <router-link tag="i" :to="{ path: '/center/vip/vipStore'}" class="icon vip-icon"></router-link>
                 </li>
-                <router-link tag="li" :to="{ path: '/center/coin/charge'}" :class="{'active':page=='charge'}"><span>琅琊豆中心</span></router-link>
-                <li class="new"><span>消息</span></li>
+                <router-link tag="li" :to="{ path: '/center/coin/charge'}" :class="{'active':page=='charge'}"><span>充值中心</span></router-link>
+                <li :class="{'new':msg.giftMessage}">
+                    <span @click="msgBlockFlag=!msgBlockFlag">消息</span>
+                    <div class="msg-block" v-if="msgBlockFlag&&msg.giftMessage" @click="goToMsgDetail()">
+                        您收到来自{{msg.buyerName}}（{{msg.giftMessage.buyer}}）的礼物 {{msg.giftName}}×{{msg.giftMessage.count}} ，点击消息到我的礼物查收
+                    </div>
+                </li>
                 <li v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true})">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true})">登录</span></li>
                 <li class="account-info" v-if="account.id">
                     <div class="wrap">
@@ -36,7 +41,7 @@
         width: 100%;
         background: #fff;
         transition: top 0.8s;
-        overflow: hidden;
+      /*  overflow: hidden;*/
         .header-content{
             position: relative;
             z-index: 200;
@@ -84,8 +89,10 @@
                 color: #000;
                 cursor: pointer;
                 padding: 0px 13px;
+                user-select: none;
                 .gap{}
                 &.new{
+                    position: relative;
                     >span{
                         position: relative;
                         &:before{
@@ -149,6 +156,21 @@
                 margin: auto;
             }
         }
+        .msg-block{
+            position: absolute;
+            top: 37px;
+            left: -128px;
+            z-index: 1000;
+            background: url("../../images/common/msg-block-bg.png") no-repeat;
+            width: 300px;
+            height: 65px;
+            background-size: 100%;
+            line-height: normal;
+            font-size: 12px;
+            color: #666;
+            padding: 17px 15px 10px 15px;
+            line-height: 18px;
+        }
     }
 </style>
 <script>
@@ -163,6 +185,10 @@
                 account:{},
                 showMenu:false,
                 defaultAvatar:require('../../images/common/default-avatar.png'),
+                msgBlockFlag:false,
+                entryList:[],
+                msg:{},
+                getMsgInterval:null,
             }
         },
         watch:{
@@ -177,9 +203,37 @@
             },
             logout:function () {
                 this.$cookie.set('account','');
+                bus.$emit('refreshAccount');
+                this.$cookie.set('safeAccount','');
+                bus.$emit('refreshSafeAccount');
                 this.account={};
                 Vue.operationFeedback({type:'complete',text:'退出成功'});
                 this.$router.push({name:'home'})
+            },
+            getList:function () {
+                let params={
+                    userId:this.account.id,
+                    state:'notExchanged',
+                    userType:'gainer',
+                    pageIndex:1,
+                    pageSize:1,
+                    readState:'notRead'
+                }
+                Vue.api.getGiftMessageList({apiParams:params}).then((resp)=>{
+                    if(resp.respCode=='2000'){
+                        let data=JSON.parse(resp.respMsg);
+                        let list=typeof data.giftMessageList=='string'?JSON.parse(data.giftMessageList):data.giftMessageList;
+                        if(list.length>0){
+                            this.msg=list[0];
+                        }else{
+                            this.msg={};
+                        }
+                    }
+                });
+            },
+            goToMsgDetail:function () {
+                this.msgBlockFlag=false;
+                this.$router.push({name:'safeBox'});
             }
         },
         created(){
@@ -191,8 +245,22 @@
             /*刷新用户信息*/
             bus.$on('refreshAccount', () => {
                 this.account=Vue.getAccountInfo();
-                console.log('this.account:',this.account);
+                clearInterval(this.getMsgInterval);
+                if(this.account.id&&!this.getMsgInterval){
+                    this.getMsgInterval=setInterval(()=>{
+                        this.getList();
+                    },5000);
+                }
             });
+            if(this.account.id){
+                clearInterval(this.getMsgInterval);
+                this.getMsgInterval=setInterval(()=>{
+                    this.getList();
+                },10000);
+            }
+        },
+        beforeDestroy:function () {
+            clearInterval(this.getMsgInterval);
         }
     }
 </script>

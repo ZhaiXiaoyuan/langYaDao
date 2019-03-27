@@ -194,7 +194,40 @@
             enterRoomFb:function (data) {
                 console.log('data:',data);
                 this.$router.push({path:'/zodiac/game?roomLevel='+this.selectedRoomLevel});
-            }
+            },
+            fullScreen:function () {
+                var docElm = document.documentElement;
+                //W3C
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                //FireFox
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                }
+                //Chrome等
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
+                //IE11
+                else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            },
+            partScree:function () {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                }
+                else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+                else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            },
         },
         created (){
             this.socketApi.setListener((e)=>{
@@ -215,7 +248,6 @@
                         this.roomDataFb(data.data);
                     }
                 }else if(resp.respCode=='4000'){
-                    //临时测试
                     if(resp.respMsg!='用户未进入房间'){
                         this.alertModal({html:resp.respMsg});
                     }
@@ -226,6 +258,7 @@
             });
         },
         mounted () {
+        /*    this.fullScreen();*/
             //
             this.account=this.getAccountInfo();
             console.log('this.account:',this.account);
@@ -247,8 +280,9 @@
         beforeDestroy(){
             clearInterval(this.requestInterval);
         },
-        beforeRouteLeave(to,from,next){
-            next();
+        beforeRouteEnter(to,from,next){
+            Vue.routeCheck(to,from,next)
         },
+
     }
 </script>

@@ -141,6 +141,14 @@ export default {
                 return{};
             }
         },
+        getSafeAccounInfo:function () {
+            let safeAccount=Vue.cookie.get('safeAccount');
+            if(safeAccount){
+                return JSON.parse(safeAccount);
+            }else{
+                return{};
+            }
+        },
         moneyFormat:function (str) {
             return (str/100).toFixed(2);
         },
@@ -184,6 +192,32 @@ export default {
                   audio.playbackRate=value;
               }
               return{play,pause,setSpeed}
+        },
+        safeLoginCheck:function (path,next) {
+            let safeAccount=this.getSafeAccounInfo();
+            if(path.indexOf('coin')>-1&&!safeAccount.token){
+                Vue.safeLogin({ok:()=>{
+                    next();
+                }});
+            }else{
+                next();
+            }
+        },
+        routeCheck:function (to,from,next) {
+            let path=to.path;
+            let account=this.getAccountInfo();
+            if(!account.id){
+                Vue.loginModal({open:true,ok:()=>{
+                    this.safeLoginCheck(path,next);
+                }});
+            }else{
+                this.safeLoginCheck(path,next);
+            }
+        },
+          /*锚点*/
+        goAnchor:function (selector) {
+            console.log('test:',document.querySelector(selector).offsetTop);
+            document.querySelector("#page-content").scrollTop = document.querySelector(selector).offsetTop;
         },
       }
 
