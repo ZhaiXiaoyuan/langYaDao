@@ -25,12 +25,12 @@
             this.account=this.getAccountInfo();
             //
            //临时测试
-            /*this.socketApi.initWebSocket("ws://api.linqi.tech:8600/"+this.account.id);*/
-            this.socketApi.initWebSocket("ws://192.168.0.100:8600/"+this.account.id,{
+            this.socketApi.initWebSocket("ws://api.linqi.tech:8600/"+this.account.id);
+           /* this.socketApi.initWebSocket("ws://192.168.0.100:8600/"+this.account.id,{
                 closeCallback:()=>{
 
                 }
-            });
+            });*/
             //
         },
         mounted () {

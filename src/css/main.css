@@ -4013,6 +4013,8 @@ body {
   background: url("../images/activity/draw-table.png") no-repeat;
   width: 354px;
   height: 354px;
+  -webkit-transition: all 5s;
+  transition: all 5s;
 }
 .draw-activity .page-content .main-content .draw-panel .draw-table .disc .line {
   display: none;

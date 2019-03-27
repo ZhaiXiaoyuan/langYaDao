@@ -170,7 +170,7 @@
                                     <div class="item item-1" :class="{'current':this.runningCount==-1&&(runningIndex==12||runningIndex==1||runningIndex==2)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point" id="target-point-13"></i>
+                                            <i class="point" id="target-point-16"></i>
                                             <i class="icon turtle-icon"></i>
                                             <span class="name">神龟</span>
                                         </div>
@@ -178,7 +178,7 @@
                                     <div class="item item-2" :class="{'current':this.runningCount==-1&&(runningIndex==3||runningIndex==4||runningIndex==5)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point" id="target-point-14"></i>
+                                            <i class="point" id="target-point-13"></i>
                                             <i class="icon kirin-icon"></i>
                                             <span class="name">麒麟</span>
                                         </div>
@@ -186,7 +186,7 @@
                                     <div class="item item-3"  :class="{'current':this.runningCount==-1&&(runningIndex==6||runningIndex==7||runningIndex==8)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point" id="target-point-15"></i>
+                                            <i class="point" id="target-point-14"></i>
                                             <i class="icon phoenix-icon"></i>
                                             <span class="name">凤凰</span>
                                         </div>
@@ -194,7 +194,7 @@
                                     <div class="item item-4"  :class="{'current':this.runningCount==-1&&(runningIndex==9||runningIndex==10||runningIndex==11)}">
                                         <div class="item-content">
                                             <div class="current-mask"></div>
-                                            <i class="point" id="target-point-16"></i>
+                                            <i class="point" id="target-point-15"></i>
                                             <i class="icon pixiu-icon"></i>
                                             <span class="name">貔貅</span>
                                         </div>
@@ -946,7 +946,9 @@
                         return;
                     }
                     this.selectedOption=item;
-                    this.socketApi.sendSock({"api":"gamble","apiParams":{kind:item.id,jetton:this.selectedChip}});
+                    let params={kind:item.id,jetton:this.selectedChip};
+                    console.log('params:',params);
+                    this.socketApi.sendSock({"api":"gamble","apiParams":params});
                 }else{
                     Vue.operationFeedback({type:'warn',text:'现在还不能下注，请稍作等待'});
                 }
