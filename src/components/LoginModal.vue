@@ -7,7 +7,7 @@
                     <el-input placeholder="输入手机号" v-model="form.phone" clearable></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="输入密码" v-model="form.password" type="password" clearable></el-input>
+                    <el-input placeholder="输入密码" v-model="form.password" type="password" clearable auto-complete="off"></el-input>
                 </div>
                 <el-button class="submit-btn" type="primary" style="margin-top: 30px;" @click="login()">登录</el-button>
                 <div class="switch">

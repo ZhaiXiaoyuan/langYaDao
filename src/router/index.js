@@ -63,6 +63,11 @@ const routes= [
         name:'draw',
         component: resolve => require(['../page/activity/Draw.vue'], resolve)
     },
+    {
+        path: '/scanTips',
+        name:'scanTips',
+        component: resolve => require(['../page/tips/ScanTips.vue'], resolve)
+    },
 ]
 const router= new Router({
     routes:routes,

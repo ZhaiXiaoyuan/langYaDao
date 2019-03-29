@@ -29,6 +29,7 @@
                 </li>
             </div>
         </div>
+        <voice-switch></voice-switch>
     </div>
 </template>
 <style lang="less" rel="stylesheet/less">

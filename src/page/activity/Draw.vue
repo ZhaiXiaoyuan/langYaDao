@@ -155,6 +155,7 @@
                 let params={
                     pageIndex:this.pager.pageIndex,
                     pageSize:this.pager.pageSize,
+                    userId:this.account.id
                 }
                 this.pager.loading=true;
                 Vue.api.getBonusLotteryRecordList({apiParams:params}).then((resp)=>{

@@ -542,7 +542,7 @@
         <audio id="set-bet-audio" :src="setBetVoice">
             您的浏览器不支持 audio 标签。
         </audio>
-        <audio id="hall-audio" :src="gameVoice" autoplay loop="true">
+        <audio id="game-audio" :src="gameVoice" autoplay loop="true">
             您的浏览器不支持 audio 标签。
         </audio>
     </div>
@@ -553,6 +553,7 @@
 </style>
 <script>
     import Vue from 'vue'
+    import bus from '../../components/common/bus'
     import 'swiper/dist/css/swiper.css'
 
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -824,6 +825,7 @@
                 setBetVoice:require('../../voice/set-bet.mp3'),
                 setBetAudio:null,
                 gameVoice:require('../../voice/game.mp3'),
+                gameAudio:null,
 
                 defaultAvatar:require('../../images/common/default-avatar.png'),
             }
@@ -924,6 +926,7 @@
                 if(this.loadLatestDataFlag){
                     this.playerList=playerList;
                     this.curPlayer=curPlayer;
+                    console.log('this.playerList:',this.playerList);
                 }
                 //擂主更换时重置相关数据
                 if(this.curHost.userId!=this.deskInfo.currentBankerId){
@@ -1246,15 +1249,37 @@
             this.centerPosition.x=this.centerPosition.x-this.containerPosition.x;
             this.centerPosition.y=this.centerPosition.y-this.containerPosition.y;
             this.initdeskCoinList();
-            let runningAudios=document.getElementsByClassName('running-audio');
-            for(let i=0;i<runningAudios.length;i++){
-                runningAudios[i].playbackRate=1.2;
-            }
+
+            //
             this.successAudio=this.initAudio('success-audio');
-            this.failAudio=this.initAudio('fail-audio');
             this.failAudio=this.initAudio('fail-audio');
             this.collectionAudio=this.initAudio('collection-audio');
             this.setBetAudio=this.initAudio('set-bet-audio');
+            this.gameAudio=this.initAudio('game-audio');
+            let voiceFlag=this.getVoiceFlag();
+            let runningAudios=document.getElementsByClassName('running-audio');
+            for(let i=0;i<runningAudios.length;i++){
+                runningAudios[i].playbackRate=1.2;
+                runningAudios[i].muted=!voiceFlag;
+            }
+            this.successAudio.setMuted(voiceFlag);
+            this.failAudio.setMuted(voiceFlag);
+            this.collectionAudio.setMuted(voiceFlag);
+            this.setBetAudio.setMuted(voiceFlag);
+            this.gameAudio.setMuted(voiceFlag);
+            bus.$on('refreshVoiceFlag', () => {
+                voiceFlag=this.getVoiceFlag();
+                this.successAudio.setMuted(voiceFlag);
+                this.failAudio.setMuted(voiceFlag);
+                this.collectionAudio.setMuted(voiceFlag);
+                this.setBetAudio.setMuted(voiceFlag);
+                this.gameAudio.setMuted(voiceFlag);
+                for(let i=0;i<runningAudios.length;i++){
+                    runningAudios[i].muted=!voiceFlag;
+                }
+            });
+
+
             //
             this.socketApi.setListener((e)=>{
                 let resp=JSON.parse(e.data);

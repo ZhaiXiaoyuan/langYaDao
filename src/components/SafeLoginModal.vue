@@ -17,7 +17,7 @@
                     <div class="pwd-input">
                         <div class="pwd-input-item">
                             <ul class="input-bg"><li v-for="(item) in 6"></li></ul>
-                            <input type="password" v-model="password" maxlength="6">
+                            <input type="text" v-model="password" maxlength="6" autocomplete="off" onfocus="this.type='password'">
                         </div>
                     </div>
                 </div>

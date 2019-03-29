@@ -191,7 +191,10 @@ export default {
               function setSpeed(value) {
                   audio.playbackRate=value;
               }
-              return{play,pause,setSpeed}
+              function setMuted(flag) {
+                  audio.muted=!flag
+              }
+              return{play,pause,setSpeed,setMuted}
         },
         safeLoginCheck:function (path,next) {
             let safeAccount=this.getSafeAccounInfo();
@@ -213,6 +216,11 @@ export default {
             }else{
                 this.safeLoginCheck(path,next);
             }
+        },
+        getVoiceFlag:function () {
+            let voiceFlag=localStorage.getItem('voiceFlag');
+            voiceFlag=voiceFlag=='true'?true:false;
+            return voiceFlag;
         },
           /*锚点*/
         goAnchor:function (selector) {

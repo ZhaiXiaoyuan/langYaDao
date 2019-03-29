@@ -6,10 +6,10 @@
                     <el-input placeholder="输入昵称" v-model="form.name" clearable></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="输入密码" v-model="form.password" type="password" clearable></el-input>
+                    <el-input placeholder="输入密码" v-model="form.password" type="password" clearable auto-complete="off"></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="重复密码"  v-model="form.rePassword"  type="password" clearable></el-input>
+                    <el-input placeholder="重复密码"  v-model="form.rePassword"  type="password" clearable auto-complete="off"></el-input>
                 </div>
                 <div class="input-item">
                     <el-input placeholder="输入手机号"  v-model="form.phone" clearable></el-input>

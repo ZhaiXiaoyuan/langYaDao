@@ -14,6 +14,7 @@ import * as socketApi from './socket';
 import AlertModal from './AlertModal.vue';
 import ForgetModal from './ForgetModal.vue';
 import SafeLoginModal from './SafeLoginModal.vue';
+import VoiceSwitch from './VoiceSwitch.vue';
 
 
 /*全局组件注册配置*/
@@ -31,6 +32,7 @@ export default {
     Vue.component('AlertModal',AlertModal);
     Vue.component('ForgetModal',ForgetModal);
     Vue.component('SafeLoginModal',SafeLoginModal);
+    Vue.component('VoiceSwitch',VoiceSwitch);
 
 
     /*方法调度方式*/

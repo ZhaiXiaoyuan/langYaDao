@@ -99,6 +99,7 @@
 </style>
 <script>
     import Vue from 'vue'
+    import bus from '../../components/common/bus';
     import 'swiper/dist/css/swiper.css'
 
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -228,6 +229,13 @@
                     document.msExitFullscreen();
                 }
             },
+            switchChange:function (flag) {
+                if(flag){
+                    this.hallAudio.play();
+                }else{
+                    this.hallAudio.pause();
+                }
+            }
         },
         created (){
             this.socketApi.setListener((e)=>{
@@ -269,7 +277,10 @@
             this.getRoomInfo('大师房');
             //
             this.hallAudio=this.initAudio('hall-audio');
-            /*this.hallAudio.play();*/
+            this.hallAudio.setMuted(this.getVoiceFlag());
+            bus.$on('refreshVoiceFlag', () => {
+                this.hallAudio.setMuted(this.getVoiceFlag());
+            });
             //
             //临时测试
             setTimeout(()=>{ this.getRoomData();},500);

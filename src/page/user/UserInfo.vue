@@ -22,7 +22,8 @@
            </div>
            <div class="info-row">
                <span class="label">绑定微信：</span>
-               <div class="value">未绑定<span class="cm-btn link-btn">（去绑定）</span></div>
+               <div class="value" v-if="account.wechatBind=='false'">未绑定<span class="cm-btn link-btn">（去绑定）</span></div>
+               <div class="value" v-if="account.wechatBind!='false'">已绑定</div>
            </div>
            <div class="info-row">
                <span class="label">个性签名：</span>
@@ -60,7 +61,7 @@
                 Vue.api.getUserInfo({apiParams:{id:this.account.phone,type:'phone'}}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
-                        this.account={...this.account,...data.user};
+                        this.account={...this.account,...data.user,wechatBind:data.wechatBind};
                         this.form={...this.account};
                         console.log('this.account:',this.account);
                         //
@@ -71,7 +72,7 @@
                 });
             },
             getVipInfo:function (id) {
-                Vue.api.getVipTypeInfo({apiParams:{id:id}}).then((resp)=>{
+                Vue.api.getVipTypeInfo({apiParams:{id:id,userId:this.account.id}}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
                         this.vipInfo=data;
