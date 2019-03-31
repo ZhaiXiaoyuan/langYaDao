@@ -345,7 +345,7 @@
                     <div class="block-bd">
                         <div class="balance">琅琊豆余额:{{curPlayer.user.balance}}</div>
                         <ul class="choice-list" v-if="type=='player'">
-                            <li v-for="(item,index) in roomConfig.chipList" :key="index" class="cm-btn" :class="{'selected':selectedChip==item}" @click="selectChip(item)">{{item}}</li>
+                            <li v-for="(item,index) in roomConfig.chipList" :key="index" class="cm-btn" :class="{'selected':selectedChip==item}" @click="selectChip(item)">{{item|numFormat}}</li>
                         </ul>
                         <div class="area options-area" v-if="type=='player'">
                             <div class="area-hd">
@@ -806,6 +806,7 @@
                 showResultClass:'',
                 switchSession:false,
                 loadLatestDataFlag:true,
+                loadLatestBalance:true,
 
                 originalPosition:{},
                 containerPosition:{},
@@ -857,7 +858,7 @@
                             for(let i=1;i<=6;i++){
                                 this.roomConfig.chipList.push(parseInt(this.roomConfig['筹码'+i]));
                             }
-                            this.roomConfig.chipList.sort();
+                            /*this.roomConfig.chipList.sort();*/
                         }
                     }
                 });
@@ -897,6 +898,7 @@
                         }
                         this.deskCoinList[i]=this.deskInfo.currentRountJettonStatistics[i+1];
                     };
+                    this.loadLatestBalance=false;
                 }
                 //
                 //
@@ -925,8 +927,9 @@
                 });
                 if(this.loadLatestDataFlag){
                     this.playerList=playerList;
-                    this.curPlayer=curPlayer;
-                    console.log('this.playerList:',this.playerList);
+                    if(this.loadLatestBalance){
+                        this.curPlayer=curPlayer;
+                    }
                 }
                 //擂主更换时重置相关数据
                 if(this.curHost.userId!=this.deskInfo.currentBankerId){
@@ -1103,6 +1106,7 @@
                             this.showResult=true;
                             this.showResultClass='animated bounceIn';
                             this.loadLatestDataFlag=true;
+                            this.loadLatestBalance=true;
                             this.resultList.forEach((item,index)=>{
                                 if(item.id==this.curPlayer.userId){
                                     if(item.langyaRecord>0){

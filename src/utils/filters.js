@@ -47,7 +47,7 @@ Vue.filter('numFormat',function(num){
     let num1=null;
     let num2=null;
     let abs=Math.abs(num);
-    if(abs>=1000000){
+    if(abs>=100000){
         num1=Math.floor(num/10000);
       /*  num2=num%10000;*/
         result=num1+unit;
