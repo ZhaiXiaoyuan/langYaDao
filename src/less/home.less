@@ -190,4 +190,87 @@
         }
     }
 }
-
+@media screen and(max-width: 1000px){
+    .home{
+        .banner-panel{
+            height: 4rem;
+            .el-carousel__arrow{
+                width: 0.8rem;
+                height: 0.8rem;
+                &.el-carousel__arrow--left{
+                    left: 0.2rem;
+                }
+                &.el-carousel__arrow--right{
+                    right: 0.2rem;
+                }
+            }
+            .el-carousel__indicators{
+                bottom: 0.1rem;
+            }
+        }
+        .content-panel{
+            margin-top: 0.2rem;
+        }
+        .horizontal-block{
+            display: block;
+            width: 95%;
+            margin: 0rem auto;
+            text-align: center;
+            .block-bd{
+              /*  text-align: center;*/
+                padding-bottom: 0.2rem;
+            }
+            .item-list{
+               /* display: inline-block;*/
+                text-align: left;
+                margin: 0rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 0rem 0.3rem;
+                >li{
+                    display: inline-block;
+                    width: 3.08rem;
+                  /*  margin: 0.08rem;*/
+                    margin: 0rem;
+                    .cover{
+                        height: 2.24rem;
+                        border-radius: 10px;
+                    }
+                }
+                .waiting-item{
+                    cursor: auto;
+                    .cover{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #f5f5f5;
+                        text-align: center;
+                        p{
+                            margin-top: 6px;
+                            font-size: 18px;
+                            color: #bcbcbc;
+                        }
+                    }
+                }
+            }
+        }
+        .more-tips{
+            padding:0.2rem 0rem;
+        }
+        .vertical-block{
+            float: none;
+            display: block;
+            width: 95%;
+            margin: 0.2rem auto 0rem auto;
+            .block-bd{
+                padding: 0.2rem 0.3rem 0.4rem 0.3rem;
+            }
+        }
+        .tool-panel{
+            right: 0rem;
+            bottom: 1rem;
+            box-shadow:1px 1px 5px rgba(0,0,0,0.2);
+        }
+    }
+}

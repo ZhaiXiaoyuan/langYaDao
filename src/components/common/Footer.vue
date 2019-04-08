@@ -40,9 +40,16 @@
     }
     @media screen and(max-width: 1000px){
         .footer{
-              height: 0.88rem;
-              line-height: 0.88rem;
-              font-size: 0.24rem;
+            padding: 0.2rem 0.4rem;
+           /* height: 1.2rem;*/
+            line-height: 0.24rem;
+            font-size: 0.24rem;
+            p+p{
+                margin-top: 0.1rem;
+                line-height: 0.32rem;
+                color: #999;
+               /* transform: scale(0.95);*/
+            }
         }
     }
 </style>

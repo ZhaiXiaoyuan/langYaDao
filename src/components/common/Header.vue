@@ -1,35 +1,43 @@
 <template>
-    <div class="header" id="header" :class="{'active':showMenu}">
+    <div class="header" id="header" :class="{'active':showMenu,'inactive':!showMenu}">
         <div class="cm-container header-content">
             <i class="icon logo-icon"></i>
-            <ul class="nav-list">
-                <li class="cm-btn" @click="go('home')" :class="{'active':page=='home'}"><span>琅琊岛</span></li>
-               <!-- <li class="cm-btn"><span>琅琊谷</span></li>
-                <li class="cm-btn"><span>琅琊村</span></li>
-                <li class="cm-btn"><span>琅琊秀</span></li>-->
-            </ul>
-            <div class="fun-nav-list">
-                <li :class="{'active':page=='vipStore'}" class="vip-link">
-                    <router-link tag="i" :to="{ path: '/center/vip/vipStore'}" class="icon vip-icon"></router-link>
-                </li>
-                <router-link tag="li" :to="{ path: '/center/coin/charge'}" :class="{'active':page=='charge'}"><span>充值中心</span></router-link>
-                <li :class="{'new':msg.giftMessage}">
-                    <span @click="msgBlockFlag=!msgBlockFlag">消息</span>
-                    <div class="msg-block" v-if="msgBlockFlag&&msg.giftMessage" @click="goToMsgDetail()">
-                        您收到来自{{msg.buyerName}}（{{msg.giftMessage.buyer}}）的礼物 {{msg.giftName}}×{{msg.giftMessage.count}} ，点击消息到我的礼物查收
+            <div class="nav-panel">
+                <div class="panel-bd">
+                    <ul class="nav-list">
+                        <li class="cm-btn" @click="go({name:'home'})" :class="{'active':page=='home'}"><span>琅琊岛</span></li>
+                     <!--   <li class="cm-btn"><span>琅琊谷</span></li>
+                        <li class="cm-btn"><span>琅琊村</span></li>
+                        <li class="cm-btn"><span>琅琊秀</span></li>-->
+                    </ul>
+                    <div class="fun-nav-list">
+                        <li :class="{'active':page=='vipStore'}" class="vip-link" @click="go({name:'vipStore',params:{type:'vip'}})">
+                            <i tag="i" class="icon vip-icon"></i>
+                        </li>
+                        <li @click="go({name:'charge',params:{type:'coin'}})" :class="{'active':page=='charge'}"><span>充值中心</span></li>
+                        <li :class="{'new':msg.giftMessage}">
+                            <span @click="msgBlockFlag=!msgBlockFlag">消息</span>
+                            <div class="msg-block" v-if="msgBlockFlag&&msg.giftMessage" @click="goToMsgDetail()">
+                                您收到来自{{msg.buyerName}}（{{msg.giftMessage.buyer}}）的礼物 {{msg.giftName}}×{{msg.giftMessage.count}} ，点击消息到我的礼物查收
+                            </div>
+                        </li>
+                        <li v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true});showMenu=!showMenu;">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true});showMenu=!showMenu;">登录</span></li>
+                        <li class="account-info" v-if="account.id">
+                            <div class="wrap">
+                                <img :src="account.headPic?basicConfig.imgBasicUrl+account.headPic:defaultAvatar" alt="">
+                                <span tag="span" @click="go({name:'userInfo',params:{type:'user'}})">{{account.name}}</span>
+                                <span class="cmb-tn logout-btn" @click="logout();showMenu=!showMenu;">退出</span>
+                            </div>
+                        </li>
                     </div>
-                </li>
-                <li v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true})">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true})">登录</span></li>
-                <li class="account-info" v-if="account.id">
-                    <div class="wrap">
-                        <img :src="account.headPic?basicConfig.imgBasicUrl+account.headPic:defaultAvatar" alt="">
-                        <router-link tag="span" :to="{ path: '/center/user/userInfo'}" >{{account.name}}</router-link>
-                        <span class="cmb-tn logout-btn" @click="logout()">退出</span>
-                    </div>
-                </li>
+                </div>
+                <div class="mask" @click="showMenu=false"></div>
+            </div>
+            <div class="menu-btn" @click="showMenu=!showMenu">
+                <i class="icon menu-icon"></i>
             </div>
         </div>
-        <voice-switch></voice-switch>
+       <!-- <voice-switch></voice-switch>-->
     </div>
 </template>
 <style lang="less" rel="stylesheet/less">
@@ -45,7 +53,7 @@
       /*  overflow: hidden;*/
         .header-content{
             position: relative;
-            z-index: 200;
+            z-index: 1;
             height: 100%;
         }
         .logo-icon{
@@ -91,7 +99,9 @@
                 cursor: pointer;
                 padding: 0px 13px;
                 user-select: none;
-                .gap{}
+                .gap{
+                    padding: 0px 5px;
+                }
                 &.new{
                     position: relative;
                     >span{
@@ -166,11 +176,159 @@
             width: 300px;
             height: 65px;
             background-size: 100%;
-            line-height: normal;
             font-size: 12px;
             color: #666;
             padding: 17px 15px 10px 15px;
             line-height: 18px;
+            word-break: break-all;
+        }
+        .menu-btn{
+            display: none;
+            position: absolute;
+            top:0rem;
+            right: 0.2rem;
+            bottom: 0rem;
+            margin: auto;
+            width: 0.6rem;
+            height:0.6rem;
+            .menu-icon{
+                background: url("../../images/common/menu-icon.png") no-repeat;
+                width: 100%;
+                height: 100%;
+                background-size: 100% 100%;
+            }
+        }
+    }
+    @media screen and(max-width: 1000px){
+        .header{
+            height: 1.2rem;
+            padding: 0rem 0.2rem;
+            .logo-icon{
+                width: 2.235rem;
+                height: 0.57rem;
+            }
+            .menu-btn{
+                display: inline-block;
+            }
+            .nav-panel{
+                /*display: none;*/
+                position: fixed;
+                z-index: 100;
+                top:0rem;
+                right: -100%;
+                width: 100%;
+                height: 100%;
+                .nav-list{
+                    margin: 0rem;
+                    display: block;
+                    height: auto;
+                    padding-top: 0.4rem;
+                    >li{
+                        display: block;
+                        text-align: center;
+                        height: auto;
+                        line-height: 1rem;
+                    }
+                }
+                .fun-nav-list{
+                    float: none;
+                    width: 100%;
+                    >li{
+                        display: block;
+                        height: auto;
+                        text-align: center;
+                        margin-left: 0rem;
+                        line-height: 1rem;
+                        &.active{
+                            background-size: auto 55%;
+                        }
+                        &.vip-link{
+                         /*   &.active{
+                                background-size: auto 48%;
+                            }*/
+                        }
+                        &.account-info{
+                            .wrap{
+                                padding-left: 0rem;
+                                line-height: normal;
+                            }
+                            img{
+                                display: inline-block;
+                                position: relative;
+                                width: 1.2rem;
+                                height: 1.2rem;
+                            }
+                            span{
+                                display: block;
+                                line-height: 0.6rem;
+                            }
+                        }
+                    }
+                    &:before{
+                        display: none;
+                    }
+                }
+                .panel-bd{
+                    position: absolute;
+                    top:0rem;
+                    right: -4rem;
+                    z-index: 2;
+                    background: rgba(255,255,255,1);
+                    width: 4rem;
+                    height: 100%;
+                    transition: all 0.3s;
+                    transition-delay: 0.2s;
+                }
+                .mask{
+                    opacity: 0;
+                    position: absolute;
+                    z-index: 1;
+                    top:0rem;
+                    left: 0rem;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.5);
+                    transition: opacity 0.3s;
+                }
+            }
+            .msg-block{
+                top: 0.6rem;
+                left: -0.2rem;
+                z-index: 1000;
+                width: 4.2rem;
+                height: 2rem;
+                background-size: 100% 100%;
+                text-align: left;
+                padding: 17px 15px 10px 15px;
+                display: flex;
+                align-items: center;
+            }
+            &.active{
+                .nav-panel{
+                  /*  display:block;*/
+                    right: 0rem;
+                    .panel-bd{
+                        right: 0rem;
+                    }
+                    .mask{
+                        opacity: 1;
+                    }
+                }
+            }
+            &.inactive{
+                .nav-panel{
+                    /*  display:block;*/
+                    right: -100%;
+                    transition: right 0.3s;
+                    transition-delay: 0.5s;
+                    .panel-bd{
+                        right: -4rem;
+                    }
+                    .mask{
+                        opacity: 0;
+                    }
+                }
+            }
         }
     }
 </style>
@@ -198,9 +356,9 @@
             },
         },
         methods:{
-            go:function (page) {
+            go:function (options) {
                 this.showMenu=false;
-                this.$router.push({name:page});
+                this.$router.push(options);
             },
             logout:function () {
                 this.$cookie.set('account','');
@@ -234,7 +392,7 @@
             },
             goToMsgDetail:function () {
                 this.msgBlockFlag=false;
-                this.$router.push({name:'safeBox'});
+                this.go({name:'safeBox',params:{type:'coin'}});
             }
         },
         created(){

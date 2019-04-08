@@ -17,6 +17,11 @@
         height: 100%;
         overflow: auto;
     }
+    @media screen and(max-width: 1000px){
+        #page-content{
+            padding-top: 0rem;
+        }
+    }
 </style>
 <script>
     import Vue from 'vue'

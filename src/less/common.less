@@ -161,6 +161,14 @@ body{
     cursor: pointer;
     user-select: none;
 }
+.cm-scale-btn{
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s;
+    &:active{
+        transform: scale(0.95);
+    }
+}
 .cm-disabled{
     opacity: 0.5;
     pointer-events: none;

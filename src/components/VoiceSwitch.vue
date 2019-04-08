@@ -16,6 +16,7 @@
         align-items: center;
         justify-content: center;
         position: absolute;
+        z-index: 2;
         top:0px;
         bottom: 0px;
         margin: auto;
