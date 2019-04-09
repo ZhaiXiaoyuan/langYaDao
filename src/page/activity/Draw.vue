@@ -3,7 +3,7 @@
         <div class="page-content">
             <i class="icon title-icon"></i>
             <div class="main-content">
-                <div class="info-panel">
+              <!--  <div class="info-panel">
                     <div class="block">
                         <div class="block-hd">抽奖历史</div>
                         <div class="block-bd">
@@ -31,7 +31,7 @@
                             抽奖规则
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="draw-panel">
                     <div class="draw-table">
                         <div class="disc" :style="rotateStyle">
@@ -97,7 +97,7 @@
             </div>
         </el-dialog>
 
-        <audio id="draw-audio" :src="drawVoice">
+        <audio id="draw-audio" :src="drawVoice" preload="auto">
             您的浏览器不支持 audio 标签。
         </audio>
     </div>
@@ -108,7 +108,7 @@
 </style>
 <script>
     import Vue from 'vue'
-    import 'swiper/dist/css/swiper.css'
+    import bus from '../../components/common/bus'
 
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
@@ -237,9 +237,6 @@
                     this.getList();
                 },9000)
             },
-            test:function () {
-
-            }
         },
         mounted () {
             //
@@ -252,6 +249,16 @@
             //
             this.drawAudio=this.initAudio('draw-audio');
             this.drawAudio.setSpeed(0.95);
+            let voiceFlag=this.getVoiceFlag();
+            this.drawAudio.setMuted(voiceFlag);
+            bus.$on('refreshVoiceFlag', () => {
+                voiceFlag=this.getVoiceFlag();
+                this.drawAudio.setMuted(voiceFlag);
+            });
+
+           /* document.addEventListener("WeixinJSBridgeReady", ()=>{
+                this.drawAudio.play()
+            }, false);*/
 
         },
         beforeRouteEnter(to,from,next){

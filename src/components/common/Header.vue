@@ -37,7 +37,7 @@
                 <i class="icon menu-icon"></i>
             </div>
         </div>
-       <!-- <voice-switch></voice-switch>-->
+        <voice-switch></voice-switch>
     </div>
 </template>
 <style lang="less" rel="stylesheet/less">
@@ -328,6 +328,9 @@
                         opacity: 0;
                     }
                 }
+            }
+            .voice-switch{
+                right: 1.2rem;
             }
         }
     }

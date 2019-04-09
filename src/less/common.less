@@ -245,6 +245,13 @@ body{
     font-style: normal;
 }
 
+
+/*
+.el-input__suffix{
+    background: red;
+}
+*/
+
 /*登录注册弹窗组件样式*/
 .register-modal{
     .el-dialog{
@@ -590,6 +597,152 @@ body{
                     transform: scale(0.96);
                 }
             }
+        }
+    }
+}
+
+@media screen and(max-width: 1000px){
+    .register-modal{
+        .el-dialog{
+            margin-top: 3vh !important;
+            .el-dialog__title{
+                font-size: 0.36rem;
+            }
+            .el-dialog__header{
+                padding: 0.3rem 0.2rem 0.3rem 0.2rem;
+            }
+            .el-dialog__body{
+                padding: 0rem 0.3rem 0rem 0.3rem;
+            }
+            .modal-body{
+               padding-top: 0.2rem;
+            }
+            .logo-md-icon{
+                width: 2rem;
+                height: 2rem;
+                margin: 0.2rem auto;
+            }
+            .form{
+                padding-bottom: 0.8rem;
+                .input-item{
+                    &.wechat-input-item{
+                        .value{
+                            text-align: center;
+                            .img-box{
+                                width: 2rem;
+                                height: 2rem;
+                                padding: 0.08rem;
+                                canvas{
+                                    width: 100% !important;
+                                    height: 100% !important;
+                                }
+                            }
+                        }
+                    }
+                    &+.input-item{
+                        margin-top: 0.1rem;
+                    }
+                }
+                .submit-btn{
+                    margin-top: 0.1rem;
+                }
+            }
+        }
+    }
+    .login-modal{
+        .el-dialog{
+            margin-top: 10vh !important;
+        }
+    }
+    .forget-modal{
+        .el-dialog{
+
+            .el-dialog__header{
+                .el-dialog__headerbtn{
+                    top:10px;
+                    right: 10px;
+                }
+            }
+            .el-dialog__body{
+                padding: 0.5rem 0.24rem;
+            }
+            .modal-body{
+                .handle{
+
+                }
+                .step-1{
+                    .form{
+                        width: 95%;
+                        margin: 0px auto;
+                        .code-form-item{
+                            position: relative;
+                            input{
+                                width: 1.94rem;
+                            }
+                            .gen-code{
+                                width: 1.6rem;
+                            }
+                        }
+                    }
+                }
+                .title{
+                    font-size: 18px;
+                    color: #000;
+                    text-align: center;
+                }
+                .pwd-input{
+                    text-align: center;
+                    padding: 20px 0px 10px 0px;
+                }
+                .pwd-input-item{
+                    position: relative;
+                    display: inline-block;
+                    .input-bg{
+                        display: inline-block;
+                        >li{
+                            display: inline-block;
+                            margin: 0px 2px;
+                            width: 30px;
+                            height: 30px;
+                            border-bottom: 2px solid #dadada;
+                        }
+                    }
+                    input{
+                        position: absolute;
+                        top:0px;
+                        left: 0px;
+                        margin: auto;
+                        width: 108%;
+                        height: 30px;
+                        outline: none;
+                        background: none;
+                        letter-spacing: 28px;
+                        text-indent: 15px;
+                        text-align: left;
+                        border: none;
+                        font-size: 16px;
+                    }
+                }
+                .success-icon{
+                    background: url("../images/langYaDou/give-gift-success-icn.png");
+                    width: 68px;
+                    height: 82px;
+                    background-size: 100%;
+                }
+                .tips{
+                    padding-top: 10px;
+                    font-size: 14px;
+                    color: #000;
+                }
+                .step-4{
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .el-message-box__wrapper{
+        .el-message-box{
+            width: 80%;
         }
     }
 }

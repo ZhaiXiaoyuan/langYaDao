@@ -119,12 +119,12 @@
             //
             this.getBannerList();
             this.getGameList();
-            //临时测试
+
         /*    this.safeLogin({});*/
-           /* this.forget({});*/
-           /* this.safeBoxLogin({});*/
+         /*   this.forget({});*/
+          /*  this.safeBoxLogin({});*/
          /*   this.alertModal({});*/
-            Vue.registerModal({open:true});
+        /*    Vue.registerModal({open:true});*/
          /*   Vue.loginModal({open:true});*/
 
         },

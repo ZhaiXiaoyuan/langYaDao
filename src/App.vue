@@ -19,7 +19,7 @@
     }
     @media screen and(max-width: 1000px){
         #page-content{
-            padding-top: 0rem;
+            padding-top: 0.2rem;
         }
     }
 </style>

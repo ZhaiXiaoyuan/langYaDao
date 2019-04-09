@@ -1,13 +1,13 @@
 <template>
-    <el-dialog class="register-modal" title="" :visible.sync="options.open" center @close="close()">
+    <el-dialog class="register-modal login-modal" title="" :visible.sync="options.open" center @close="close()">
         <div class="modal-body" style="padding-top: 0px;border-top: none;">
             <i class="icon logo-md-icon"></i>
             <div class="form">
                 <div class="input-item">
-                    <el-input placeholder="输入手机号" v-model="form.phone" clearable></el-input>
+                    <el-input placeholder="输入手机号" type="text" v-model="form.phone"></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="输入密码" v-model="form.password" type="password" clearable auto-complete="off"></el-input>
+                    <el-input placeholder="输入密码" v-model="form.password" type="password"  auto-complete="off"></el-input>
                 </div>
                 <el-button class="submit-btn" type="primary" style="margin-top: 30px;" @click="login()">登录</el-button>
                 <div class="switch">
