@@ -217,6 +217,7 @@
                         this.drawing=false;
                     }
                 });
+                this.drawAudio.play();
             },
             rotate:function (index) {
                 let item=this.typeList[index];
@@ -225,7 +226,6 @@
                 this.rotateStyle={transform:'rotate('+(rotateAngle)+'deg)',transition:'all 8s'};
                 this.oldAngle=item.angle;
                 this.oldRotateAngle=rotateAngle;
-                this.drawAudio.play();
                 setTimeout(()=>{
                     if(item.name=='谢谢惠顾'){
                         this.tipsModalFlag=true;
