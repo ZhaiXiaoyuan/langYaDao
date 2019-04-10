@@ -7,7 +7,7 @@
                     <span class="cm-btn btn exit-btn" v-if="type=='host'" @click="quit(true)">退出房间</span>
                     <span class="cm-btn btn home-btn">{{roomLevel}}</span>
                 </div>
-                <div class="block result-block">
+                <div class="block result-block block-modal" :class="{'active':blockModalType=='result'}">
                     <div class="block-hd"><p class="title">战绩专区</p></div>
                     <div class="block-bd">
                         <div class="host-item">
@@ -30,6 +30,16 @@
                             </li>
                         </ul>
                     </div>
+                    <span class="cm-btn close-btn" @click="blockModal(false)">
+                        <i class="icon"></i>
+                    </span>
+                </div>
+                <div class="handle-btn-list">
+                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
+                    <span class="cm-btn handle-btn apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
+                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="blockModal('data')">玩家信息</span>
+                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="blockModal('result')">战绩专区</span>
+                    <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
                 </div>
             </div>
             <div class="panel turntable-panel">
@@ -333,11 +343,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="handle-btn-list">
-                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
-                    <span class="cm-btn handle-btn apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
-                    <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
-                </div>
             </div>
             <div class="panel bet-panel">
                 <div class="block bet-block">
@@ -417,7 +422,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel data-panel">
+            <div class="panel data-panel block-modal" :class="{'active':blockModalType=='data'}">
                 <div class="block player-block">
                     <div class="block-hd">
                         <table>
@@ -436,7 +441,7 @@
                             <tbody>
                             <tr v-for="(item,index) in playerList" :key="index">
                                 <td class="name">
-                                    <el-tooltip placement="left" class="user-tooltips" offset="-60">
+                                    <el-tooltip placement="bottom" class="user-tooltips" offset="0">
                                         <div slot="content" class="tips-content">
                                             <div class="wrap">
                                                 <img class="avatar" :src="item.headPic?basicConfig.imgBasicUrl+item.headPic:defaultAvatar" alt="">
@@ -485,6 +490,9 @@
                         <p>单局最大胜利：{{curPlayer.maxWin}}</p>
                     </div>
                 </div>
+                <span class="cm-btn close-btn" @click="blockModal(false)">
+                        <i class="icon"></i>
+                 </span>
             </div>
             <!--start:琅琊豆效果-->
             <span class="coin-item" v-for="(item,index) in coinList" :key="index" :style="item.from"><i class="icon coin-icon"></i></span>
@@ -814,6 +822,8 @@
                 coinList:[],
 
                 initiativeExitFlag:false,
+
+                blockModalType:'',//result,data
 
                 runningVoice:require('../../voice/running.mp3'),
                 runningAudio:null,
@@ -1226,6 +1236,9 @@
                 this.alertModal({html:'您已被踢出当前桌子'});
                 this.$router.go(-1);
             },
+            blockModal:function (value) {
+                this.blockModalType=value;
+            }
         },
         created (){
             //初始化数据
@@ -1237,7 +1250,7 @@
         },
         mounted () {
             this.account=this.getAccountInfo();
-          /*  console.log(' this.account:', this.account);*/
+            console.log(' this.account:', this.account);
             //
             this.roomLevel=this.$route.query.roomLevel;
             if(this.$route.params.type){

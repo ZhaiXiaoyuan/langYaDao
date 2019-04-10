@@ -547,20 +547,23 @@ body {
   color: #999;
 }
 .el-tooltip__popper {
-  /*  top:193px !important;
-    left: 1007px !important;
+  /* top:225px !important;
+    left: 10px !important;
     display: block !important;*/
   background: url("../images/zodiac/user-info-block-bg.png") no-repeat !important;
   width: 284px;
   height: 200px;
   background-size: 100%;
   font-family: 'hytangmeiren';
+  -webkit-transform: translate(110px, -60px);
+      -ms-transform: translate(110px, -60px);
+          transform: translate(110px, -60px);
 }
 .el-tooltip__popper .popper__arrow {
   display: none !important;
 }
 .el-tooltip__popper .tips-content {
-  padding: 15px;
+  padding: 15px 15px 15px 25px;
 }
 .el-tooltip__popper .tips-content .avatar {
   width: 58px;
@@ -1304,18 +1307,59 @@ body {
 }
 .zodiac-game .page-content {
   position: relative;
-  width: 1320px;
+  width: 1280px;
   margin: 0px auto;
   overflow: hidden;
   padding-bottom: 30px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .zodiac-game .panel + .panel {
-  margin-left: 15px;
+  /*margin-left: 15px;*/
 }
 .zodiac-game .session-panel {
-  float: left;
+  position: relative;
+  /* float: left;*/
   width: 250px;
   height: 100%;
+}
+.zodiac-game .session-panel .handle-btn-list {
+  /* display: flex;
+            position: absolute;
+            width: 123%;
+            bottom:20px;
+            left: -70px;
+            z-index: 10;*/
+  margin-top: 30px;
+}
+.zodiac-game .session-panel .handle-btn-list .handle-btn {
+  display: block;
+  width: 178px;
+  height: 56px;
+  background-size: cover;
+  font-size: 24px;
+  color: #fff;
+  font-family: 'hytangmeiren';
+  text-align: center;
+  line-height: 42px;
+}
+.zodiac-game .session-panel .handle-btn-list .handle-btn + .handle-btn {
+  margin-left: 0px;
+  margin-top: 15px;
+}
+.zodiac-game .session-panel .handle-btn-list .apply-btn {
+  background: url("../images/zodiac/handle-btn-1.png");
+  text-shadow: #ef4242 0.05em 0.12em 0.01em;
+}
+.zodiac-game .session-panel .handle-btn-list .entrance-btn {
+  background: url("../images/zodiac/handle-btn-2.png");
+  text-shadow: #013200 0.05em 0.12em 0.01em;
 }
 .zodiac-game .block .block-hd {
   display: -webkit-box;
@@ -1625,22 +1669,24 @@ body {
   background-size: 100%;
 }
 .zodiac-game .turntable-panel {
-  float: left;
-  padding-top: 20px;
+  position: relative;
+  /*    float: left;*/
+  /*  padding-top: 20px;*/
 }
 .zodiac-game .turntable-panel .table-block {
   position: relative;
   background: url("../images/zodiac/turntable-bg.png") no-repeat;
-  width: 473px;
-  height: 514px;
-  background-size: 100%;
+  width: 614.9px;
+  height: 668.2px;
+  background-size: 100% 100%;
+  /* border: 1px solid red;*/
 }
 .zodiac-game .turntable-panel .table-block .block-bd {
   position: absolute;
-  width: 454px;
-  height: 454px;
-  top: 51px;
-  left: 10px;
+  width: 590.2px;
+  height: 590.2px;
+  top: 66.3px;
+  left: 13px;
 }
 .zodiac-game .turntable-panel .table-block .layers {
   position: relative;
@@ -1701,8 +1747,8 @@ body {
 }
 .zodiac-game .turntable-panel .table-block .outside-layer {
   position: absolute;
-  width: 453px;
-  height: 453px;
+  width: 588.9px;
+  height: 588.9px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -1717,8 +1763,9 @@ body {
 .zodiac-game .turntable-panel .table-block .outside-layer .item {
   position: absolute;
   background: url("../images/zodiac/outside-item-bg.png") no-repeat;
-  width: 108px;
-  height: 70px;
+  width: 140.4px;
+  height: 91px;
+  background-size: 100% 100%;
   /* &.current{
                         .current-mask{
                             opacity: 1;
@@ -1749,179 +1796,179 @@ body {
   left: 0px;
   z-index: 0;
   background: url("../images/zodiac/current-outside-item.png") no-repeat;
-  width: 108px;
-  height: 70px;
+  width: 140.4px;
+  height: 91px;
   background-size: 100%;
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item .icon {
   z-index: 2;
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-1 {
-  top: 1px;
-  left: 172px;
+  top: 1.3px;
+  left: 223.6px;
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-1 .icon {
-  width: 40px;
-  height: 58px;
+  width: 52px;
+  height: 75.4px;
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-2 {
-  top: 27px;
-  left: 267px;
+  top: 35.1px;
+  left: 347.1px;
   -webkit-transform: rotate(30deg);
       -ms-transform: rotate(30deg);
           transform: rotate(30deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-2 .icon {
-  width: 52px;
-  height: 47px;
+  width: 67.6px;
+  height: 61.1px;
   -webkit-transform: rotate(-30deg);
       -ms-transform: rotate(-30deg);
           transform: rotate(-30deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-3 {
-  top: 96px;
-  left: 336px;
+  top: 124.8px;
+  left: 436.8px;
   -webkit-transform: rotate(60deg);
       -ms-transform: rotate(60deg);
           transform: rotate(60deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-3 .icon {
-  width: 46px;
-  height: 55px;
+  width: 59.8px;
+  height: 71.5px;
   -webkit-transform: rotate(-60deg);
       -ms-transform: rotate(-60deg);
           transform: rotate(-60deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-4 {
-  top: 191px;
-  left: 361px;
+  top: 248.3px;
+  left: 469.3px;
   -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
           transform: rotate(90deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-4 .icon {
-  width: 49px;
-  height: 58px;
+  width: 63.7px;
+  height: 75.4px;
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-5 {
-  bottom: 97px;
-  left: 336px;
+  bottom: 126.1px;
+  left: 436.8px;
   -webkit-transform: rotate(120deg);
       -ms-transform: rotate(120deg);
           transform: rotate(120deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-5 .icon {
-  width: 57px;
-  height: 59px;
+  width: 74.1px;
+  height: 76.7px;
   -webkit-transform: rotate(-120deg);
       -ms-transform: rotate(-120deg);
           transform: rotate(-120deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-6 {
-  bottom: 28px;
-  left: 267px;
+  bottom: 36.4px;
+  left: 347.1px;
   -webkit-transform: rotate(150deg);
       -ms-transform: rotate(150deg);
           transform: rotate(150deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-6 .icon {
-  width: 38px;
-  height: 54px;
+  width: 49.4px;
+  height: 70.2px;
   -webkit-transform: rotate(-150deg);
       -ms-transform: rotate(-150deg);
           transform: rotate(-150deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-7 {
-  bottom: 2px;
-  left: 173px;
+  bottom: 2.6px;
+  left: 224.9px;
   -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-7 .icon {
-  width: 48px;
-  height: 59px;
+  width: 62.4px;
+  height: 76.7px;
   -webkit-transform: rotate(-180deg);
       -ms-transform: rotate(-180deg);
           transform: rotate(-180deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-8 {
-  bottom: 27px;
-  right: 268px;
+  bottom: 35.1px;
+  right: 348.4px;
   -webkit-transform: rotate(210deg);
       -ms-transform: rotate(210deg);
           transform: rotate(210deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-8 .icon {
-  width: 50px;
-  height: 59px;
+  width: 65px;
+  height: 76.7px;
   -webkit-transform: rotate(-210deg);
       -ms-transform: rotate(-210deg);
           transform: rotate(-210deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-9 {
-  bottom: 97px;
-  right: 338px;
+  bottom: 126.1px;
+  right: 439.4px;
   -webkit-transform: rotate(240deg);
       -ms-transform: rotate(240deg);
           transform: rotate(240deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-9 .icon {
-  width: 51px;
-  height: 46px;
+  width: 66.3px;
+  height: 59.8px;
   -webkit-transform: rotate(-240deg);
       -ms-transform: rotate(-240deg);
           transform: rotate(-240deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-10 {
-  top: 191px;
-  right: 363px;
+  top: 248.3px;
+  right: 471.9px;
   -webkit-transform: rotate(270deg);
       -ms-transform: rotate(270deg);
           transform: rotate(270deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-10 .icon {
-  width: 52px;
-  height: 58px;
+  width: 67.6px;
+  height: 75.4px;
   -webkit-transform: rotate(-270deg);
       -ms-transform: rotate(-270deg);
           transform: rotate(-270deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-11 {
-  top: 96px;
-  right: 338px;
+  top: 124.8px;
+  right: 439.4px;
   -webkit-transform: rotate(300deg);
       -ms-transform: rotate(300deg);
           transform: rotate(300deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-11 .icon {
-  width: 52px;
-  height: 53px;
+  width: 67.6px;
+  height: 68.9px;
   -webkit-transform: rotate(-300deg);
       -ms-transform: rotate(-300deg);
           transform: rotate(-300deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-12 {
-  top: 26px;
-  right: 268px;
+  top: 33.8px;
+  right: 348.4px;
   -webkit-transform: rotate(330deg);
       -ms-transform: rotate(330deg);
           transform: rotate(330deg);
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item-12 .icon {
-  width: 49px;
-  height: 49px;
+  width: 63.7px;
+  height: 63.7px;
   -webkit-transform: rotate(-330deg);
       -ms-transform: rotate(-330deg);
           transform: rotate(-330deg);
 }
 .zodiac-game .turntable-panel .table-block .middle-layer {
   position: absolute;
-  width: 310px;
-  height: 310px;
+  width: 403px;
+  height: 403px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -1936,8 +1983,9 @@ body {
 .zodiac-game .turntable-panel .table-block .middle-layer .item {
   position: absolute;
   background: url("../images/zodiac/middle-item-bg.png") no-repeat;
-  width: 211px;
-  height: 96px;
+  width: 274.3px;
+  height: 124.8px;
+  background-size: 100% 100%;
   /* &.current{
                         .current-mask{
                             opacity: 1;
@@ -1968,8 +2016,8 @@ body {
   left: 0px;
   z-index: 0;
   background: url("../images/zodiac/current-middle-item.png") no-repeat;
-  width: 211px;
-  height: 96px;
+  width: 274.3px;
+  height: 124.8px;
   background-size: 100%;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item .icon {
@@ -1978,26 +2026,26 @@ body {
 .zodiac-game .turntable-panel .table-block .middle-layer .item .name {
   position: absolute;
   z-index: 1;
-  font-size: 16px;
+  font-size: 20.8px;
   color: #fff;
   font-family: 'hytangmeiren';
   text-shadow: -2px 0 #037b00, 0 2px #037b00, 2px 0 #037b00, 0 -2px #037b00;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-1 {
   top: 0px;
-  left: 48px;
+  left: 62.4px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-1 .icon {
   position: relative;
-  top: -8px;
+  top: -10.4px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-1 .name {
-  top: 40px;
-  left: 51px;
+  top: 52px;
+  left: 66.3px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-2 {
-  top: 106px;
-  left: 155px;
+  top: 137.8px;
+  left: 201.5px;
   -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
           transform: rotate(90deg);
@@ -2007,19 +2055,19 @@ body {
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
   position: relative;
-  bottom: 10px;
-  right: 10px;
+  bottom: 13px;
+  right: 13px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-2 .name {
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
-  top: 30px;
-  left: 115px;
+  top: 39px;
+  left: 149.5px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-3 {
   bottom: 0px;
-  left: 48px;
+  left: 62.4px;
   -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
@@ -2029,18 +2077,18 @@ body {
       -ms-transform: rotate(-180deg);
           transform: rotate(-180deg);
   position: relative;
-  bottom: 6px;
+  bottom: 7.8px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-3 .name {
   -webkit-transform: rotate(-180deg);
       -ms-transform: rotate(-180deg);
           transform: rotate(-180deg);
-  bottom: 31px;
-  left: 51px;
+  bottom: 40.3px;
+  left: 66.3px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-4 {
-  top: 106px;
-  right: 155px;
+  top: 137.8px;
+  right: 201.5px;
   -webkit-transform: rotate(270deg);
       -ms-transform: rotate(270deg);
           transform: rotate(270deg);
@@ -2050,20 +2098,20 @@ body {
       -ms-transform: rotate(-270deg);
           transform: rotate(-270deg);
   position: relative;
-  bottom: 6px;
-  left: 10px;
+  bottom: 7.8px;
+  left: 13px;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item-4 .name {
   -webkit-transform: rotate(-270deg);
       -ms-transform: rotate(-270deg);
           transform: rotate(-270deg);
-  bottom: 42px;
-  left: 64px;
+  bottom: 54.6px;
+  left: 83.2px;
 }
 .zodiac-game .turntable-panel .table-block .inside-layer {
   position: absolute;
-  width: 152px;
-  height: 152px;
+  width: 197.6px;
+  height: 197.6px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -2078,8 +2126,9 @@ body {
 .zodiac-game .turntable-panel .table-block .inside-layer .item {
   position: absolute;
   background: url("../images/zodiac/inside-item-bg.png") no-repeat;
-  width: 36px;
-  height: 23px;
+  width: 46.8px;
+  height: 29.9px;
+  background-size: 100% 100%;
   /* &.current{
                         .current-mask{
                             opacity: 1;
@@ -2110,8 +2159,8 @@ body {
   left: 0px;
   z-index: 0;
   background: url("../images/zodiac/current-inside-item.png") no-repeat;
-  width: 36px;
-  height: 23px;
+  width: 46.8px;
+  height: 29.9px;
   background-size: 100%;
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item .icon {
@@ -2119,90 +2168,90 @@ body {
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item .name {
   position: relative;
-  top: -2px;
+  top: -2.6px;
   z-index: 1;
-  font-size: 16px;
+  font-size: 20.8px;
   color: #fff;
   font-family: 'hytangmeiren';
-  text-shadow: -2px 0 #a63900, 0 2px #a63900, 2px 0 #a63900, 0 -2px #a63900;
+  text-shadow: -1px 0 #a63900, 0 1px #a63900, 1px 0 #a63900, 0 -1px #a63900;
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-1 {
-  top: 1px;
-  left: 57.5px;
+  top: 1.3px;
+  left: 74.75px;
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-2 {
-  top: 9.5px;
-  left: 88.5px;
+  top: 12.35px;
+  left: 115.05px;
   -webkit-transform: rotate(30deg);
       -ms-transform: rotate(30deg);
           transform: rotate(30deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-3 {
-  top: 33px;
-  left: 112px;
+  top: 42.9px;
+  left: 145.6px;
   -webkit-transform: rotate(60deg);
       -ms-transform: rotate(60deg);
           transform: rotate(60deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-4 {
-  top: 64px;
-  left: 120px;
+  top: 83.2px;
+  left: 156px;
   -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
           transform: rotate(90deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-5 {
-  bottom: 32px;
-  left: 112px;
+  bottom: 41.6px;
+  left: 145.6px;
   -webkit-transform: rotate(120deg);
       -ms-transform: rotate(120deg);
           transform: rotate(120deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-6 {
-  bottom: 9.5px;
-  left: 88.5px;
+  bottom: 12.35px;
+  left: 115.05px;
   -webkit-transform: rotate(150deg);
       -ms-transform: rotate(150deg);
           transform: rotate(150deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-7 {
-  bottom: 1px;
-  left: 57.5px;
+  bottom: 1.3px;
+  left: 74.75px;
   -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-8 {
-  bottom: 9.5px;
-  right: 88.5px;
+  bottom: 12.35px;
+  right: 115.05px;
   -webkit-transform: rotate(210deg);
       -ms-transform: rotate(210deg);
           transform: rotate(210deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-9 {
-  bottom: 32px;
-  right: 112px;
+  bottom: 41.6px;
+  right: 145.6px;
   -webkit-transform: rotate(240deg);
       -ms-transform: rotate(240deg);
           transform: rotate(240deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-10 {
-  top: 64px;
-  right: 120px;
+  top: 83.2px;
+  right: 156px;
   -webkit-transform: rotate(270deg);
       -ms-transform: rotate(270deg);
           transform: rotate(270deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-11 {
-  top: 32px;
-  right: 111px;
+  top: 41.6px;
+  right: 144.3px;
   -webkit-transform: rotate(300deg);
       -ms-transform: rotate(300deg);
           transform: rotate(300deg);
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item-12 {
-  top: 9px;
-  right: 88px;
+  top: 11.7px;
+  right: 114.4px;
   -webkit-transform: rotate(330deg);
       -ms-transform: rotate(330deg);
           transform: rotate(330deg);
@@ -2216,29 +2265,29 @@ body {
   bottom: 0px;
   margin: auto;
   background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
-  width: 450px;
-  height: 148px;
+  width: 585px;
+  height: 192.4px;
   background-size: 100%;
   text-align: center;
   font-family: 'hytangmeiren';
   text-shadow: -3px 0 #225599, 0 3px #225599, 3px 0 #225599, 0 -3px #225599;
   color: #fefeff;
-  padding-top: 15px;
+  padding-top: 19.5px;
 }
 .zodiac-game .turntable-panel .table-block .tips-layer .index {
-  font-size: 50px;
+  font-size: 65px;
 }
 .zodiac-game .turntable-panel .table-block .tips-layer .time {
   color: #fff000;
-  font-size: 26px;
+  font-size: 33.8px;
 }
 .zodiac-game .turntable-panel .table-block .tips-layer .time span {
   color: #fefeff;
 }
 .zodiac-game .turntable-panel .table-block .timer-layer {
   position: absolute;
-  width: 96px;
-  height: 96px;
+  width: 124.8px;
+  height: 124.8px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -2258,9 +2307,9 @@ body {
           justify-content: center;
   text-align: center;
   font-family: 'hytangmeiren';
-  font-size: 24px;
-  text-shadow: -2px 0 #225599, 0 2px #225599, 2px 0 #225599, 0 -2px #225599;
-  line-height: 25px;
+  font-size: 31.2px;
+  text-shadow: -1px 0 #225599, 0 1px #225599, 1px 0 #225599, 0 -1px #225599;
+  line-height: 32.5px;
 }
 .zodiac-game .turntable-panel .table-block .timer-layer .index {
   color: #fff;
@@ -2269,13 +2318,13 @@ body {
   color: #fff000;
 }
 .zodiac-game .turntable-panel .table-block .timer-layer .waiting {
-  font-size: 18px;
+  font-size: 23.4px;
 }
 .zodiac-game .turntable-panel .table-block .result-layer {
   position: absolute;
   z-index: 10;
-  width: 339px;
-  height: 339px;
+  width: 440.7px;
+  height: 440.7px;
   top: 0px;
   left: 0px;
   right: 0px;
@@ -2349,8 +2398,8 @@ body {
   top: 0px;
   left: 0px;
   background: url("../images/zodiac/radiation-icon.png") no-repeat;
-  width: 339px;
-  height: 339px;
+  width: 440.7px;
+  height: 440.7px;
   background-size: 100%;
   -webkit-animation: light-ani 20s infinite;
           animation: light-ani 20s infinite;
@@ -2364,8 +2413,8 @@ body {
   bottom: 0px;
   margin: auto;
   background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
-  width: 358px;
-  height: 358px;
+  width: 465.4px;
+  height: 465.4px;
   background-size: 100%;
   -webkit-animation: circle-ani 3s infinite;
           animation: circle-ani 3s infinite;
@@ -2383,9 +2432,9 @@ body {
   position: absolute;
   z-index: 4;
   left: 0px;
-  bottom: 58px;
+  bottom: 75.4px;
   width: 100%;
-  height: 58px;
+  height: 75.4px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2404,54 +2453,54 @@ body {
   overflow: hidden;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .item + .item {
-  margin-left: 10px;
+  margin-left: 13px;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .middle-result-item {
   background: url("../images/zodiac/middle-result-bg.png") no-repeat;
-  width: 58px;
-  height: 58px;
+  width: 75.4px;
+  height: 75.4px;
   background-size: 100%;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .middle-result-item .icon {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 5.2px;
+  right: 5.2px;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .middle-result-item .name {
   position: absolute;
   z-index: 1;
-  font-size: 18px;
+  font-size: 23.4px;
   color: #fff;
   font-family: 'hytangmeiren';
   text-shadow: -2px 0 #037b00, 0 2px #037b00, 2px 0 #037b00, 0 -2px #037b00;
-  left: 6px;
-  bottom: 6px;
+  left: 7.8px;
+  bottom: 7.8px;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .outside-result-item {
   background: url("../images/zodiac/outside-result-bg.png") no-repeat;
-  width: 50px;
-  height: 36px;
-  background-size: 100%;
-  line-height: 32px;
+  width: 65px;
+  height: 46.8px;
+  background-size: 100% 100%;
+  line-height: 41.6px;
   text-align: center;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .outside-result-item .name {
-  margin-top: -2px;
-  font-size: 18px;
+  margin-top: -2.6px;
+  font-size: 23.4px;
   color: #fff;
   font-family: 'hytangmeiren';
   text-shadow: -2px 0 #00569e, 0 2px #00569e, 2px 0 #00569e, 0 -2px #00569e;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .inside-result-item {
   background: url("../images/zodiac/inside-result-bg.png") no-repeat;
-  width: 42px;
-  height: 36px;
-  background-size: 100%;
-  line-height: 32px;
+  width: 54.6px;
+  height: 46.8px;
+  background-size: 100% 100%;
+  line-height: 41.6px;
   text-align: center;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .inside-result-item .name {
-  font-size: 20px;
+  font-size: 26px;
   color: #fff;
   font-family: 'hytangmeiren';
   text-shadow: -2px 0 #a63900, 0 2px #a63900, 2px 0 #a63900, 0 -2px #a63900;
@@ -2459,34 +2508,8 @@ body {
 .zodiac-game .turntable-panel .table-block.show-result .item.current .current-mask {
   opacity: 1 !important;
 }
-.zodiac-game .turntable-panel .handle-btn-list {
-  margin-top: 20px;
-  text-align: center;
-}
-.zodiac-game .turntable-panel .handle-btn-list .handle-btn {
-  display: inline-block;
-  width: 178px;
-  height: 56px;
-  background-size: cover;
-  font-size: 24px;
-  color: #fff;
-  font-family: 'hytangmeiren';
-  text-align: center;
-  line-height: 42px;
-}
-.zodiac-game .turntable-panel .handle-btn-list .handle-btn + .handle-btn {
-  margin-left: 15px;
-}
-.zodiac-game .turntable-panel .handle-btn-list .apply-btn {
-  background: url("../images/zodiac/handle-btn-1.png");
-  text-shadow: #ef4242 0.05em 0.12em 0.01em;
-}
-.zodiac-game .turntable-panel .handle-btn-list .entrance-btn {
-  background: url("../images/zodiac/handle-btn-2.png");
-  text-shadow: #013200 0.05em 0.12em 0.01em;
-}
 .zodiac-game .bet-panel {
-  float: left;
+  float: right;
   width: 296px;
   height: 100%;
 }
@@ -2783,6 +2806,8 @@ body {
 .zodiac-game .data-panel {
   float: left;
   width: 256px;
+  /*   background: #d7effd;
+        border-radius: 10px;*/
 }
 .zodiac-game .data-panel .block {
   padding: 0px 10px;
@@ -2982,6 +3007,56 @@ body {
   color: #e28000;
   font-size: 18px;
   line-height: 28px;
+}
+.zodiac-game .block-modal {
+  position: absolute;
+  top: 0px;
+  left: -115%;
+  -webkit-transition: left 0.3s;
+  transition: left 0.3s;
+}
+.zodiac-game .block-modal .close-btn {
+  position: absolute;
+  top: 0px;
+  bottom: -5%;
+  right: -35px;
+  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #d7effd;
+  width: 40px;
+  height: 40px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.zodiac-game .block-modal .close-btn .icon {
+  background: url("../images/zodiac/block-modal-close-btn.png") no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: 100% 100%;
+  -webkit-transition: transfom 0.3s;
+  transition: transfom 0.3s;
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.zodiac-game .block-modal.active {
+  left: 0px;
+}
+.zodiac-game .block-modal.active .close-btn .icon {
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
 }
 .zodiac-game .stylie {
   -webkit-animation-name: stylie-keyframes;

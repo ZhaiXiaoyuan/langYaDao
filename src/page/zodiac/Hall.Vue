@@ -126,18 +126,22 @@
                 juniorRoom:{
                     name:'初级房',
                     curCount:0,
+                    桌子数:0,
                 },
                 middleRoom:{
                     name:'中级房',
                     curCount:0,
+                    桌子数:0,
                 },
                 advanceRoom:{
                     name:'高级房',
                     curCount:0,
+                    桌子数:0,
                 },
                 masterRoom:{
                     name:'大师房',
                     curCount:0,
+                    桌子数:0,
                 },
 
                 ws:null,
@@ -147,6 +151,7 @@
 
                 hallVoice:require('../../voice/hall.mp3'),
                 hallAudio:null,
+                requesting:false,
             }
         },
         methods: {
@@ -282,8 +287,7 @@
                 this.hallAudio.setMuted(this.getVoiceFlag());
             });
             //
-            //临时测试
-            setTimeout(()=>{ this.getRoomData();},500);
+            this.getRoomData();
             this.requestInterval=setInterval(()=>{
                 this.getRoomData();
                 },2000);

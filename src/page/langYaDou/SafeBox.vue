@@ -274,8 +274,6 @@
             //
             this.getUserInfo();
             this.getList();
-            //临时测试
-       /*     this.openConvertModal('in');*/
         },
         beforeRouteEnter(to,from,next){
             Vue.routeCheck(to,from,next)
