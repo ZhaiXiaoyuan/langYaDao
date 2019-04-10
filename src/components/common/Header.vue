@@ -1,7 +1,7 @@
 <template>
     <div class="header" id="header" :class="{'active':showMenu,'inactive':!showMenu}">
         <div class="cm-container header-content">
-            <i class="icon logo-icon"></i>
+            <i class="icon logo-icon" @click="go({name:'home'})"></i>
             <div class="nav-panel">
                 <div class="panel-bd">
                     <ul class="nav-list">
@@ -23,9 +23,9 @@
                         </li>
                         <li v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true});showMenu=!showMenu;">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true});showMenu=!showMenu;">登录</span></li>
                         <li class="account-info" v-if="account.id">
-                            <div class="wrap">
+                            <div class="wrap" @click="go({name:'userInfo',params:{type:'user'}})">
                                 <img :src="account.headPic?basicConfig.imgBasicUrl+account.headPic:defaultAvatar" alt="">
-                                <span tag="span" @click="go({name:'userInfo',params:{type:'user'}})">{{account.name}}</span>
+                                <span tag="span">{{account.name}}</span>
                                 <span class="cmb-tn logout-btn" @click="logout();showMenu=!showMenu;">退出</span>
                             </div>
                         </li>
@@ -33,11 +33,11 @@
                 </div>
                 <div class="mask" @click="showMenu=false"></div>
             </div>
+            <voice-switch></voice-switch>
             <div class="menu-btn" @click="showMenu=!showMenu">
                 <i class="icon menu-icon"></i>
             </div>
         </div>
-        <voice-switch></voice-switch>
     </div>
 </template>
 <style lang="less" rel="stylesheet/less">
@@ -198,6 +198,9 @@
                 background-size: 100% 100%;
             }
         }
+        .voice-switch{
+            right: -100px;
+        }
     }
     @media screen and(max-width: 1000px){
         .header{
@@ -207,6 +210,7 @@
                 width: 2.235rem;
                 height: 0.57rem;
             }
+
             .menu-btn{
                 display: inline-block;
             }
@@ -330,7 +334,8 @@
                 }
             }
             .voice-switch{
-                right: 1.2rem;
+                right: 1rem;
+                z-index: 1;
             }
         }
     }

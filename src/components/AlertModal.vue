@@ -1,5 +1,5 @@
 <template>
-    <el-dialog custom-class="alert-modal" :visible.sync="options.open" center>
+    <el-dialog custom-class="alert-modal" :visible.sync="options.open" center :modal-append-to-body="false">
         <div class="modal-header">
             <span class="title">{{options.title}}</span>
             <span class="cm-btn close-btn" @click="close()"></span>

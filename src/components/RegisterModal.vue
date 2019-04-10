@@ -1,5 +1,5 @@
 <template>
-    <el-dialog class="register-modal" title="注册成为琅琊岛会员" :visible.sync="options.open" center @close="close()" top="10vh">
+    <el-dialog class="register-modal" title="注册成为琅琊岛会员" :visible.sync="options.open" center @close="close()" top="10vh" :modal-append-to-body="false">
         <div class="modal-body">
             <div class="form">
                 <div class="input-item">

@@ -3,8 +3,9 @@
         <div class="page-content">
             <i class="icon title-icon"></i>
             <div class="main-content">
-              <!--  <div class="info-panel">
-                    <div class="block">
+                <div class="info-panel" :class="{'show-record':infoModalType=='record','show-rule':infoModalType=='rule'}">
+                    <span class="cm-btn close-btn" @click="infoModal(false)">&times;</span>
+                    <div class="block record-block">
                         <div class="block-hd">抽奖历史</div>
                         <div class="block-bd">
                             <table class="record-list">
@@ -25,13 +26,14 @@
                             </table>
                         </div>
                     </div>
-                    <div class="block">
+                    <div class="block rule-block">
                         <div class="block-hd">抽奖规则</div>
                         <div class="block-bd">
                             抽奖规则
                         </div>
                     </div>
-                </div>-->
+                    <div class="mask"  @click="infoModal(false)"></div>
+                </div>
                 <div class="draw-panel">
                     <div class="draw-table">
                         <div class="disc" :style="rotateStyle">
@@ -65,10 +67,14 @@
                         <p>可抽奖数：<span class="num">{{drawCount}}</span></p>
                     </div>
                 </div>
+                <div class="handle-btn-list">
+                    <span class="cmb-tn handle-btn" @click="infoModal('rule')">抽奖规则</span>
+                    <span class="cmb-tn handle-btn" @click="infoModal('record')">抽奖历史</span>
+                </div>
             </div>
         </div>
 
-        <el-dialog class="win-modal" title="" :visible.sync="winModalFlag"top="25vh">
+        <el-dialog class="win-modal" title="" :visible.sync="winModalFlag"top="25vh" :modal-append-to-body="false">
             <div class="modal-body">
                 <div class="img-box">
                     <img :src="basicConfig.imgBasicUrl+bonusLottery.prizePic" alt="">
@@ -79,7 +85,7 @@
                 <span class="cm-btn handle-btn" @click="winModalFlag=false">确定</span>
             </div>
         </el-dialog>
-        <el-dialog class="tips-modal" title="" :visible.sync="tipsModalFlag"top="25vh">
+        <el-dialog class="tips-modal" title="" :visible.sync="tipsModalFlag"top="25vh" :modal-append-to-body="false">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="status-block" v-if="tipsModalType=='fail'">
@@ -142,6 +148,8 @@
                     loading:false
                 },
                 entryList:[],
+
+                infoModalType:'',//record、rule
             }
         },
         computed: {
@@ -196,28 +204,27 @@
                     }
                 });
             },
-            draw:function () {
+            draw:async function () {
                 if(this.drawCount<1){
                     this.tipsModalFlag=true;
                     this.tipsModalType='noBonus';
                     return;
                 }
                 this.drawing=true;
-                Vue.api.drawABonusLottery({apiParams:{userId:this.account.id}}).then((resp)=>{
-                    if(resp.respCode=='2000'){
-                        let data=JSON.parse(resp.respMsg);
-                        this.account={...this.account,...JSON.parse(data.user)};
-                        this.bonusLottery=JSON.parse(data.BonusLottery);
-                        this.typeList.forEach((item,index)=>{
-                            if(item.name==this.bonusLottery.name){
-                                this.rotate(index);
-                            }
-                        });
-                    }else{
-                        this.drawing=false;
-                    }
-                });
                 this.drawAudio.play();
+                let resp=await Vue.api.drawABonusLottery({apiParams:{userId:this.account.id}});
+                if(resp.respCode=='2000'){
+                    let data=JSON.parse(resp.respMsg);
+                    this.account={...this.account,...JSON.parse(data.user)};
+                    this.bonusLottery=JSON.parse(data.BonusLottery);
+                    this.typeList.forEach((item,index)=>{
+                        if(item.name==this.bonusLottery.name){
+                            this.rotate(index);
+                        }
+                    });
+                }else{
+                    this.drawing=false;
+                }
             },
             rotate:function (index) {
                 let item=this.typeList[index];
@@ -237,6 +244,9 @@
                     this.getList();
                 },9000)
             },
+            infoModal:function (type) {
+                this.infoModalType=type;
+            }
         },
         mounted () {
             //

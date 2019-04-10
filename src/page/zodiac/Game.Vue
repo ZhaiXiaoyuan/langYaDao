@@ -491,7 +491,7 @@
         </div>
         <!--end:琅琊豆效果-->
         <!--结果弹窗-->
-        <el-dialog class="result-modal" title="" :visible.sync="resultModalFlag" center top="25vh">
+        <el-dialog class="result-modal" title="" :visible.sync="resultModalFlag" center top="25vh" :modal-append-to-body="false">
             <div class="modal-header">
                 <div class="title">本局结算</div>
                 <span class="cm-btn close-btn" @click="resultModalFlag=false"></span>

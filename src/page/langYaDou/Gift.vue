@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <el-dialog class="give-modal" title="" :visible.sync="giveModalFlag"top="25vh" @close="closeGiveModal">
+        <el-dialog class="give-modal" title="" :visible.sync="giveModalFlag"top="25vh" @close="closeGiveModal" :modal-append-to-body="false">
             <div class="modal-content" v-if="giveStep==1">
                 <div class="modal-header"><span class="title-label">赠送礼物</span></div>
                 <div class="modal-body">

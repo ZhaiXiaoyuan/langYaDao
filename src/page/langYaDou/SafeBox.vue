@@ -69,7 +69,7 @@
             </div>
         </div>
 
-        <el-dialog class="coin-convert-modal" title="" :visible.sync="coinConvertModalFlag"top="10vh">
+        <el-dialog class="coin-convert-modal" title="" :visible.sync="coinConvertModalFlag"top="10vh" :modal-append-to-body="false">
             <div class="modal-body">
                 <el-form ref="form" :model="form" label-width="90px" v-if="convertModalType=='in'">
                     <el-form-item label="流动余额：">

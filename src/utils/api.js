@@ -282,7 +282,7 @@ export default {
                 method: 'post',
                 url: basicUrl+'/bonusLottery/drawABonusLottery',
                 params: params
-            });
+            });;
         },
         //获取抽奖记录
         getBonusLotteryRecordList:function (params) {

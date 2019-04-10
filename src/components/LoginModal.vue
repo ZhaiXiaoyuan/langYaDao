@@ -1,5 +1,5 @@
 <template>
-    <el-dialog class="register-modal login-modal" title="" :visible.sync="options.open" center @close="close()">
+    <el-dialog class="register-modal login-modal" title="" :visible.sync="options.open" center @close="close()" :modal-append-to-body="false">
         <div class="modal-body" style="padding-top: 0px;border-top: none;">
             <i class="icon logo-md-icon"></i>
             <div class="form">

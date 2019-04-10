@@ -1,5 +1,5 @@
 <template>
-    <el-dialog class="forget-modal" title="" :visible.sync="options.open" center @close="close()" top="30vh">
+    <el-dialog class="forget-modal" title="" :visible.sync="options.open" center @close="close()" top="30vh" :modal-append-to-body="false">
         <div class="modal-body" style="padding-top: 0px;border-top: none;">
             <div class="step-1" v-if="step==1">
                 <div class="form">
