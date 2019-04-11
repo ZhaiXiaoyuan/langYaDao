@@ -76,7 +76,7 @@
                         <span class="num">{{account.balance}}</span><span>琅琊豆</span>
                     </el-form-item>
                     <el-form-item label="转入数额：">
-                        <el-input v-model="form.count" class="input-item"></el-input><span>琅琊豆</span>
+                        <el-input v-model="form.count" class="input-item" @blur="blurAdjust($event)"></el-input><span>琅琊豆</span>
                     </el-form-item>
                 </el-form>
                 <el-form ref="form" :model="form" label-width="100px" v-if="convertModalType=='out'">
@@ -84,7 +84,7 @@
                         <span class="num">{{account.safeBoxBalance}}</span><span>琅琊豆</span>
                     </el-form-item>
                     <el-form-item label="转入数额：">
-                        <el-input v-model="form.count" class="input-item"></el-input><span>琅琊豆</span>
+                        <el-input v-model="form.count" class="input-item" @blur="blurAdjust($event)"></el-input><span>琅琊豆</span>
                     </el-form-item>
                 </el-form>
             </div>

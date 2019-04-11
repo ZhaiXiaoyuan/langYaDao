@@ -3,32 +3,32 @@
         <div class="modal-body">
             <div class="form">
                 <div class="input-item">
-                    <el-input placeholder="输入昵称" v-model="form.name" ></el-input>
+                    <el-input placeholder="输入昵称" v-model="form.name"  @blur="blurAdjust($event)"></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="输入密码" v-model="form.password" type="password"  auto-complete="off"></el-input>
+                    <el-input placeholder="输入密码" v-model="form.password" type="password"  auto-complete="off"  @blur="blurAdjust($event)"></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="重复密码"  v-model="form.rePassword"  type="password"  auto-complete="off"></el-input>
+                    <el-input placeholder="重复密码"  v-model="form.rePassword"  type="password"  auto-complete="off"  @blur="blurAdjust($event)"></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="输入手机号"  v-model="form.phone" ></el-input>
+                    <el-input placeholder="输入手机号"  v-model="form.phone"  @blur="blurAdjust($event)"></el-input>
                 </div>
                 <div class="input-item code-input-item">
-                    <el-input placeholder="输入验证码"  v-model="form.code" ></el-input>
+                    <el-input placeholder="输入验证码"  v-model="form.code"  @blur="blurAdjust($event)"></el-input>
                     <gen-code :phone="form.phone" :options="{ok:(data)=>{phoneCodeData=data;}}"></gen-code>
                 </div>
                 <div class="input-item unit-input-item">
-                    <el-input placeholder="个性签名"  v-model="form.selfIntroduction" ></el-input>
+                    <el-input placeholder="个性签名"  v-model="form.selfIntroduction"  @blur="blurAdjust($event)"></el-input>
                     <span class="counter">0/30</span>
                 </div>
-                <div class="input-item wechat-input-item">
+                <div class="input-item wechat-input-item" v-if="!version.mobile||(version.mobile&&version.weixin)">
                     <span class="label">绑定微信：</span>
                     <div class="value" v-if="!wetchatInfo.id">
                         <div class="img-box">
                             <qrcode :value="qrCodeDomain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_userinfo'" tag="img" :options="{ width: 110 }"></qrcode>
                         </div>
-                        <p class="tips">打开微信扫一扫</p>
+                        <p class="tips">{{version.weixin?'长按识别二维码':'打开微信扫一扫'}}</p>
                     </div>
                     <div class="value" v-if="wetchatInfo.id">
                         <div class="img-box">
@@ -67,6 +67,7 @@
           randomId:new Date().getTime()+Math.random(),
           wetchatInfo:{},
           getWetchatInfoInterval:null,
+          version:Vue.tools.browserVersions(),
       }
     },
     computed: {},
@@ -156,9 +157,14 @@
 
     },
     mounted: function () {
-        this.getWetchatInfoInterval=setInterval(()=>{
-            this.getwetChatInfo();
-        },3000)
+        if(!this.version.mobile||(this.version.mobile&&this.version.weixin)){
+            this.getWetchatInfoInterval=setInterval(()=>{
+                this.getwetChatInfo();
+            },3000);
+        }
+
+        //临时测试
+        console.log('test:',this.version);
     },
     beforeDestroy:function () {
         clearInterval(this.getWetchatInfoInterval);

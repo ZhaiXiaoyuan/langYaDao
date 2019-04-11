@@ -5,10 +5,10 @@
                 <div class="form">
                     <el-form ref="form" :model="form" class="form" label-width="70px">
                         <el-form-item label="手机号：">
-                            <el-input v-model="form.phone" class="input-item" placeholder="请输入注册手机号"></el-input>
+                            <el-input v-model="form.phone" class="input-item" placeholder="请输入注册手机号"  @blur="blurAdjust($event)"></el-input>
                         </el-form-item>
                         <el-form-item label="验证码：" class="code-form-item">
-                            <el-input v-model="form.code" placeholder="输入验证码"></el-input>
+                            <el-input v-model="form.code" placeholder="输入验证码"  @blur="blurAdjust($event)"></el-input>
                             <gen-code :phone="form.phone" :options="{ok:(data)=>{phoneCodeData=data;}}"></gen-code>
                         </el-form-item>
                     </el-form>

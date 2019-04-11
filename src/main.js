@@ -11,6 +11,7 @@ import config from './utils/config'
 import api from './utils/api'
 import tools from './utils/tools'
 import './utils/filters'
+/*import './utils/directives'*/
 import components from './components'
 import animate from 'animate.css';
 import VueQrcode from '@chenfengyuan/vue-qrcode';

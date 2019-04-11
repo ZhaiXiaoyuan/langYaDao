@@ -31,7 +31,11 @@ export default {
       if(options.method.toUpperCase() == 'GET'){
         let res = await Vue.http.get(options.url, {params: options.params});
         if(typeof res.body == 'string'){
-          return JSON.parse(res.body);
+            try{
+                return JSON.parse(res.body);
+            }catch (e){
+                return res.body;
+            }
         }else{
           return res.body;
         }
@@ -268,14 +272,6 @@ export default {
                 params: params
             });
         },
-        //获取抽奖礼物种类列表
-        getPrizeTypeList:function (params) {
-            return Vue.http.ajax({
-                method: 'post',
-                url: basicUrl+'/bonusLottery/getBonusLotteryList',
-                params: params
-            });
-        },
         //抽奖
         drawABonusLottery:function (params) {
             return Vue.http.ajax({
@@ -289,6 +285,14 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/bonusLottery/getBonusLotteryRecordList',
+                params: params
+            });
+        },
+        //微信授权
+        getWeixinCode:function (params) {
+            return Vue.http.ajax({
+                method: 'get',
+                url: basicUrl+'/weixin/getWeixinCode?state='+params.state+'&scope='+params.scope,
                 params: params
             });
         },

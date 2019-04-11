@@ -4,10 +4,10 @@
             <i class="icon logo-md-icon"></i>
             <div class="form">
                 <div class="input-item">
-                    <el-input placeholder="输入手机号" type="text" v-model="form.phone"></el-input>
+                    <el-input placeholder="输入手机号" type="text" v-model="form.phone"  @blur="blurAdjust($event)"></el-input>
                 </div>
                 <div class="input-item">
-                    <el-input placeholder="输入密码" v-model="form.password" type="password"  auto-complete="off"></el-input>
+                    <el-input placeholder="输入密码" v-model="form.password" type="password"  auto-complete="off" @blur="blurAdjust($event)"></el-input>
                 </div>
                 <el-button class="submit-btn" type="primary" style="margin-top: 30px;" @click="login()">登录</el-button>
                 <div class="switch">

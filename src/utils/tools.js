@@ -217,6 +217,17 @@ export default {
                 this.safeLoginCheck(path,next);
             }
         },
+        weixinCheck:function () {
+            let version=this.browserVersions();
+            if(version.mobile&&version.weixin){
+                let randomId=new Date().getTime()+Math.random();
+                let account=this.getAccountInfo();
+                if(!account.peymentOpenId){
+                    localStorage.setItem('randomId',randomId);
+                    window.location.href=Vue.appConfig.domain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_base';
+                }
+            }
+        },
         getVoiceFlag:function () {
             let voiceFlag=localStorage.getItem('voiceFlag');
             voiceFlag=voiceFlag=='true'?true:false;
@@ -227,6 +238,41 @@ export default {
             console.log('test:',document.querySelector(selector).offsetTop);
             document.querySelector("#page-content").scrollTop = document.querySelector(selector).offsetTop;
         },
+        blurAdjust:function (e) {
+            setTimeout(()=>{
+                if(document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA'){
+                    return
+                }
+                let result = 'pc';
+                if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+                    result = 'ios'
+                }else if(/(Android)/i.test(navigator.userAgent)) {  //判断Android
+                    result = 'android'
+                }
+
+                if( result = 'ios' ){
+                    document.activeElement.scrollIntoViewIfNeeded(true);
+                }
+            },100);
+        },
+        browserVersions:function () {
+            var u = navigator.userAgent,
+                app = navigator.appVersion;
+            return {
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+                iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+                qq: u.match(/\sQQ/i) == " qq" //是否QQ
+            };
+        }
       }
 
       Object.assign(Vue, Vue.tools);

@@ -31,7 +31,7 @@
                 <div class="modal-body">
                     <el-form ref="form" :model="form" class="form" label-width="70px">
                         <el-form-item label="受赠人：">
-                            <el-input v-model="form.keyword" class="input-item" placeholder="输入受赠人ID或手机号码"></el-input>
+                            <el-input v-model="form.keyword" class="input-item" placeholder="输入受赠人ID或手机号码"  @blur="blurAdjust($event)"></el-input>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -50,7 +50,7 @@
                     </div>
                     <el-form ref="form" :model="form" class="form" label-width="60px">
                         <el-form-item label="数量：">
-                            <el-input-number v-model="form.count" :min="1" :max="1000" label=""></el-input-number>
+                            <el-input-number v-model="form.count" :min="1" :max="1000" label=""  @blur="blurAdjust($event)"></el-input-number>
                         </el-form-item>
                         <el-form-item label="消耗：">
                            <span class="num">{{coinCount}}</span><span>琅琊豆</span>

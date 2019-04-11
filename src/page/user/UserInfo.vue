@@ -28,7 +28,7 @@
            <div class="info-row">
                <span class="label">个性签名：</span>
                <div class="value" style="width: 100%;">
-                   <el-input v-model="form.selfIntroduction" placeholder="输入个性签名" ></el-input>
+                   <el-input v-model="form.selfIntroduction" placeholder="输入个性签名" @blur="blurAdjust($event)"></el-input>
                </div>
            </div>
            <div class="handle-row">
