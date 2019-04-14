@@ -21,6 +21,7 @@
                     </swiper>
                 </div>
             </div>
+            <div class="cm-btn desc-btn" @click="descModal()">玩法介绍</div>
             <div class="panel room-panel">
                 <div class="block level-block">
                     <div class="block-hd">
@@ -240,6 +241,12 @@
                 }else{
                     this.hallAudio.pause();
                 }
+            },
+            descModal:function () {
+                this.alertModal({html:'我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍绍绍我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍绍绍我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍绍绍我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍是玩法介绍我是玩法介我是玩法介绍我是我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍绍绍我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍绍绍我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是玩法介绍我是玩法介我是玩法介绍我是',
+                    yes:null,
+                    type:'scroll',
+                });
             }
         },
         created (){
@@ -291,6 +298,8 @@
             this.requestInterval=setInterval(()=>{
                 this.getRoomData();
                 },2000);
+            //
+          /*  this.descModal()*/
         },
         beforeDestroy(){
             clearInterval(this.requestInterval);

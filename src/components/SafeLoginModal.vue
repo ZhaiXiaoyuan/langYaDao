@@ -1,5 +1,5 @@
 <template>
-    <el-dialog class="forget-modal safe-login-modal" title="" :visible.sync="options.open" center @close="close()" top="30vh" :modal-append-to-body="false">
+    <el-dialog class="forget-modal safe-login-modal" title="" :visible.sync="options.open" center @close="close()" top="20vh" :modal-append-to-body="false">
         <div class="modal-body" style="padding-top: 0px;border-top: none;">
             <div class="step-1" v-if="options.step==1">
                 <i class="icon el-icon-warning"></i>

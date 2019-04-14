@@ -3,6 +3,7 @@
     background-size: cover;
     min-height: 100%;
     user-select: none;
+    font-family: 'hytangmeiren';
     .page-content{
         position: relative;
         width: 1310px;
@@ -34,6 +35,9 @@
                     font-family: 'hytangmeiren';
                 }
             }
+        }
+        .desc-btn{
+            display: none;
         }
         .carousel-block{
             display: flex;
@@ -219,6 +223,133 @@
                     border-radius: 0;
                     background: rgba(0,0,0,0.1);
                 }
+            }
+        }
+    }
+}
+@media screen and(max-width: 1000px){
+    .zodiac-hall{
+        background: url("../images/zodiac/m-hall-bg.jpg") no-repeat;
+        background-size: 100% auto;
+        .page-content{
+            width: 100%;
+            padding: 0.2rem 0rem;
+            .logo-icon{
+                background: url("../images/zodiac/m-logo-icon.png") no-repeat;
+                width: 4.71rem;
+                height: 1.07rem;
+                background-size: 100% 100%;
+                margin: 0rem 0rem 0rem 0.3rem;
+            }
+            .carousel-block{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0.08rem auto 0rem auto;
+                background: url("../images/zodiac/zodiac-carousel-bg.png") no-repeat;
+                width: 7.28rem;
+                height: 1.45rem;
+                background-size: cover;
+                .swiper-box{
+                    margin-left: 0.04rem;
+                    width: 88% !important;
+                }
+                .zodiac-item{
+                    width: 1.2rem;
+                    height: 0.91rem;
+                }
+                .zodiac-list{
+                    white-space:nowrap;
+                    transition: margin-left 0.3s;
+                    >li{
+                        display: inline-block;
+                    }
+                }
+                .view-box{
+                    width: 87%;
+                    /* border: 1px solid red;*/
+                    overflow: hidden;
+                    border-bottom-right-radius: 36px;
+                }
+            }
+            .desc-btn{
+                position: absolute;
+                top:0.4rem;
+                right: 0rem;
+                display: inline-block;
+                background: url("../images/zodiac/m-desc-btn.png") no-repeat;
+                width: 1.58rem;
+                height: 0.64rem;
+                background-size: 100% 100%;
+                font-size: 0.3rem;
+                color: #fff;
+                text-shadow: #34a0e2 0.1em 0.15em 0.1em;
+                text-align: center;
+                line-height: 0.5rem;
+                padding-left: 0.1rem;
+            }
+            .room-panel{
+                margin-top: 0rem;
+            }
+            .level-block{
+                float: none;
+                background: none;
+                width: auto;
+                height: auto;
+                .block-hd{
+                    display: none;
+                }
+            }
+            .room-list{
+                margin-top: 0rem;
+                text-align: center;
+                >li{
+                    display: inline-block;
+                    width: 3.32rem;
+                    height: 3.37rem;
+                    cursor: pointer;
+                    font-family: 'hytangmeiren';
+                    margin: 0.08rem 0.16rem;
+                    .title{
+                        margin-top: 0.48rem;
+                        font-size: 0.58rem;
+                        color: #fff;
+                    }
+                    .limit{
+                        margin-top: 0.24rem;
+                        font-size: 0.24rem;
+                        transform: scale(0.9);
+                    }
+                    .count{
+                        font-size: 0.28rem;
+                    }
+                    &+li{
+                        margin-left: inherit;
+                    }
+                }
+                .level1{
+                    background: url("../images/zodiac/m-level1-room-entrance.png") no-repeat;
+                    background-size: 100% 100%;
+                    color: #317ec0;
+                }
+                .level2{
+                    background: url("../images/zodiac/level2-room-entrance.png") no-repeat;
+                    color: #21908f;
+                    background-size: 100% 100%;
+                }
+                .level3{
+                    background: url("../images/zodiac/level3-room-entrance.png") no-repeat;
+                    color: #359633;
+                    background-size: 100% 100%;
+                }
+                .level4{
+                    background: url("../images/zodiac/level4-room-entrance.png") no-repeat;
+                    color: #a87920;
+                    background-size: 100% 100%;
+                }
+            }
+            .introduce-block{
+                display: none;
             }
         }
     }

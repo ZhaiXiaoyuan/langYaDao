@@ -41,11 +41,13 @@ export default {
         }
       }else if(options.method.toUpperCase() == 'POST'){
         let res = await Vue.http.post(options.url, options.params,);
+        let body={};
         if(typeof res.body == 'string'){
-          return JSON.parse(res.body);
+            body= JSON.parse(res.body);
         }else{
-          return res.body;
+            body=res.body;
         }
+        return body
       }
     }
 

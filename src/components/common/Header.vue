@@ -409,21 +409,23 @@
             //
             this.page=this.$route.name;
             //
-            /*刷新用户信息*/
-            bus.$on('refreshAccount', () => {
-                this.account=Vue.getAccountInfo();
-                clearInterval(this.getMsgInterval);
-                if(this.account.id&&!this.getMsgInterval){
-                    this.getMsgInterval=setInterval(()=>{
-                        this.getList();
-                    },5000);
-                }
-            });
             if(this.account.id){
                 clearInterval(this.getMsgInterval);
                 this.getMsgInterval=setInterval(()=>{
                     this.getList();
-                },10000);
+                },5000);
+            }else{
+                /*刷新用户信息*/
+                bus.$on('refreshAccount', () => {
+                    this.account=Vue.getAccountInfo();
+                    clearInterval(this.getMsgInterval);
+                    console.log('dddd:',this.getMsgInterval);
+                    if(this.account.id&&!this.getMsgInterval){
+                        this.getMsgInterval=setInterval(()=>{
+                            this.getList();
+                        },5000);
+                    }
+                });
             }
         },
         beforeDestroy:function () {

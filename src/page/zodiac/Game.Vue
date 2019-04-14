@@ -1,11 +1,12 @@
 <template>
     <div class="cm-page zodiac-game">
         <div class="page-content" id="container">
+            <!--<i class="icon game-logo-icon"></i>-->
             <div class="panel session-panel">
                 <div class="nav-block">
                     <span class="cm-btn btn exit-btn" v-if="type=='player'" @click="exitRoom(true)">退出房间</span>
                     <span class="cm-btn btn exit-btn" v-if="type=='host'" @click="quit(true)">退出房间</span>
-                    <span class="cm-btn btn home-btn">{{roomLevel}}</span>
+                    <span class="cm-btn btn home-btn" @click="fullScreen()">{{roomLevel}}</span>
                 </div>
                 <div class="block result-block block-modal" :class="{'active':blockModalType=='result'}">
                     <div class="block-hd"><p class="title">战绩专区</p></div>
@@ -35,11 +36,17 @@
                     </span>
                 </div>
                 <div class="handle-btn-list">
-                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
-                    <span class="cm-btn handle-btn apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
-                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="blockModal('data')">玩家信息</span>
-                    <span class="cm-btn handle-btn apply-btn" v-if="type=='player'" @click="blockModal('result')">战绩专区</span>
+                    <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
+                    <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
+                    <span class="cm-btn handle-btn apply-btn m-player-btn" v-if="type=='player'" @click="blockModal('data')">玩家信息</span>
+                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-result-modal-btn" v-if="type=='player'" @click="blockModal('result')"><span class="pc-text">战绩专区</span><span class="m-text">战绩区</span></span>
                     <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
+                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='player'" @click="blockModal('setBet')">竞猜区</span>
+                </div>
+                <div class="sub-handle-btn-list">
+                    <span class="cm-scale-btn handle-btn" @click="blockModal('data','player')">所有玩家</span>
+                    <span class="cm-scale-btn handle-btn" @click="blockModal('data','host')">擂主轮选</span>
+                    <span class="cm-scale-btn handle-btn" @click="blockModal('data','user')">个人战绩</span>
                 </div>
             </div>
             <div class="panel turntable-panel">
@@ -344,11 +351,14 @@
                     </div>
                 </div>
             </div>
-            <div class="panel bet-panel">
+            <div class="panel bet-panel m-set-bet-modal" :class="{'active':blockModalType=='setBet'}">
                 <div class="block bet-block">
-                    <div class="block-hd"><p class="title">竞猜区</p></div>
+                    <div class="m-modal-btn close-btn" @click="blockModal(false,false)">游戏区</div>
+                    <div class="block-hd">
+                        <p class="title">竞猜区</p>
+                    </div>
                     <div class="block-bd">
-                        <div class="balance">琅琊豆余额:{{curPlayer.user.balance}}</div>
+                        <div class="balance"><span class="pc-text">琅琊豆余额:</span>{{curPlayer.user.balance}}</div>
                         <ul class="choice-list" v-if="type=='player'">
                             <li v-for="(item,index) in roomConfig.chipList" :key="index" class="cm-btn" :class="{'selected':selectedChip==item}" @click="selectChip(item)">{{item|numFormat}}</li>
                         </ul>
@@ -422,7 +432,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel data-panel block-modal" :class="{'active':blockModalType=='data'}">
+            <div class="panel data-panel block-modal m-dialog-modal" :class="{'active':blockModalType=='data','host-modal':dataModalType=='host','user-modal':dataModalType=='user','player-modal':dataModalType=='player'}">
                 <div class="block player-block">
                     <div class="block-hd">
                         <table>
@@ -490,9 +500,10 @@
                         <p>单局最大胜利：{{curPlayer.maxWin}}</p>
                     </div>
                 </div>
-                <span class="cm-btn close-btn" @click="blockModal(false)">
+                <span class="cm-btn close-btn" @click="blockModal(false,false)">
                         <i class="icon"></i>
                  </span>
+                <div class="mask" @click="blockModal(false,false)"></div>
             </div>
             <!--start:琅琊豆效果-->
             <span class="coin-item" v-for="(item,index) in coinList" :key="index" :style="item.from"><i class="icon coin-icon"></i></span>
@@ -823,7 +834,8 @@
 
                 initiativeExitFlag:false,
 
-                blockModalType:'',//result,data
+                blockModalType:'',//result,data,setBet
+                dataModalType:'',//host,user,player
 
                 runningVoice:require('../../voice/running.mp3'),
                 runningAudio:null,
@@ -1236,8 +1248,101 @@
                 this.alertModal({html:'您已被踢出当前桌子'});
                 this.$router.go(-1);
             },
-            blockModal:function (value) {
+            blockModal:function (value,dataModalTypeValue) {
                 this.blockModalType=value;
+                this.dataModalType=dataModalTypeValue;
+            },
+            initGame:function () {
+                this.account=this.getAccountInfo();
+                console.log(' this.account:', this.account);
+                //
+                this.roomLevel=this.$route.query.roomLevel;
+                if(this.$route.params.type){
+                    this.type=this.$route.params.type;
+                }
+                //
+                this.getConfigData('赔率');
+                this.getConfigData(this.roomLevel+'配置');
+                //
+                this.originalPosition={x:0,y:0};
+                this.containerPosition=this.getPosition(document.getElementById('container'));
+                this.centerPosition=this.getPosition(document.getElementById('inside-layer-point'));
+                this.centerPosition.x=this.centerPosition.x-this.containerPosition.x;
+                this.centerPosition.y=this.centerPosition.y-this.containerPosition.y;
+                this.initdeskCoinList();
+
+                //
+                this.successAudio=this.initAudio('success-audio');
+                this.failAudio=this.initAudio('fail-audio');
+                this.collectionAudio=this.initAudio('collection-audio');
+                this.setBetAudio=this.initAudio('set-bet-audio');
+                this.gameAudio=this.initAudio('game-audio');
+                let voiceFlag=this.getVoiceFlag();
+                let runningAudios=document.getElementsByClassName('running-audio');
+                for(let i=0;i<runningAudios.length;i++){
+                    runningAudios[i].playbackRate=1.2;
+                    runningAudios[i].muted=!voiceFlag;
+                }
+                this.successAudio.setMuted(voiceFlag);
+                this.failAudio.setMuted(voiceFlag);
+                this.collectionAudio.setMuted(voiceFlag);
+                this.setBetAudio.setMuted(voiceFlag);
+                this.gameAudio.setMuted(voiceFlag);
+                bus.$on('refreshVoiceFlag', () => {
+                    voiceFlag=this.getVoiceFlag();
+                    this.successAudio.setMuted(voiceFlag);
+                    this.failAudio.setMuted(voiceFlag);
+                    this.collectionAudio.setMuted(voiceFlag);
+                    this.setBetAudio.setMuted(voiceFlag);
+                    this.gameAudio.setMuted(voiceFlag);
+                    for(let i=0;i<runningAudios.length;i++){
+                        runningAudios[i].muted=!voiceFlag;
+                    }
+                });
+
+                //
+                this.socketApi.setListener((e)=>{
+                    let resp=JSON.parse(e.data);
+                    /*      console.log('game:',resp);*/
+                    if(resp.respCode){
+                        if(resp.respCode=='2000'){
+                            let data={};
+                            try{
+                                data=JSON.parse(resp.respMsg);
+                            }catch (err){
+
+                            }
+                            try{
+                                data.data=JSON.parse(data.data);
+                            }catch (err){
+
+                            }
+                            if(data.api=='applyForBanker'){
+                                this.applyToHostCallback();
+                            }else if(data.api=='gamble'){
+                                this.setBetCallback();
+                            }else if(data.api=='exitRoom'){
+                                this.exitRoomCallback();
+                            }else if(data.api=='quitForBanker'){
+                                this.quitCallback();
+                            }else if(data.api=='kickPlayer'){
+                                this.kickPlayerCallback();
+                            }else if(data.api=='presetResult'){
+                                this.savePresetCallback();
+                            }
+                            if(resp.respMsg=='您已被踢出当前桌子'){
+                                this.beKickedCallback();
+                            }
+                        }else{
+                            Vue.operationFeedback({type:'warn',text:resp.respMsg});
+                        }
+                        console.log('gameHandle:',resp);
+                    }else if(resp.api=='deskFrame'){
+                        let data=JSON.parse(resp.data);
+                        this.gameRender(data);
+                        /* console.log('data:',data);*/
+                    }
+                });
             }
         },
         created (){
@@ -1249,98 +1354,7 @@
             }*/
         },
         mounted () {
-            this.account=this.getAccountInfo();
-            console.log(' this.account:', this.account);
-            //
-            this.roomLevel=this.$route.query.roomLevel;
-            if(this.$route.params.type){
-                this.type=this.$route.params.type;
-            }
-            //
-            this.getConfigData('赔率');
-            this.getConfigData(this.roomLevel+'配置');
-            //
-            this.originalPosition={x:0,y:0};
-            this.containerPosition=this.getPosition(document.getElementById('container'));
-            this.centerPosition=this.getPosition(document.getElementById('inside-layer-point'));
-            this.centerPosition.x=this.centerPosition.x-this.containerPosition.x;
-            this.centerPosition.y=this.centerPosition.y-this.containerPosition.y;
-            this.initdeskCoinList();
-
-            //
-            this.successAudio=this.initAudio('success-audio');
-            this.failAudio=this.initAudio('fail-audio');
-            this.collectionAudio=this.initAudio('collection-audio');
-            this.setBetAudio=this.initAudio('set-bet-audio');
-            this.gameAudio=this.initAudio('game-audio');
-            let voiceFlag=this.getVoiceFlag();
-            let runningAudios=document.getElementsByClassName('running-audio');
-            for(let i=0;i<runningAudios.length;i++){
-                runningAudios[i].playbackRate=1.2;
-                runningAudios[i].muted=!voiceFlag;
-            }
-            this.successAudio.setMuted(voiceFlag);
-            this.failAudio.setMuted(voiceFlag);
-            this.collectionAudio.setMuted(voiceFlag);
-            this.setBetAudio.setMuted(voiceFlag);
-            this.gameAudio.setMuted(voiceFlag);
-            bus.$on('refreshVoiceFlag', () => {
-                voiceFlag=this.getVoiceFlag();
-                this.successAudio.setMuted(voiceFlag);
-                this.failAudio.setMuted(voiceFlag);
-                this.collectionAudio.setMuted(voiceFlag);
-                this.setBetAudio.setMuted(voiceFlag);
-                this.gameAudio.setMuted(voiceFlag);
-                for(let i=0;i<runningAudios.length;i++){
-                    runningAudios[i].muted=!voiceFlag;
-                }
-            });
-
-
-            //
-            this.socketApi.setListener((e)=>{
-                let resp=JSON.parse(e.data);
-          /*      console.log('game:',resp);*/
-               if(resp.respCode){
-                   if(resp.respCode=='2000'){
-                       let data={};
-                       try{
-                           data=JSON.parse(resp.respMsg);
-                       }catch (err){
-
-                       }
-                       try{
-                           data.data=JSON.parse(data.data);
-                       }catch (err){
-
-                       }
-                       if(data.api=='applyForBanker'){
-                          this.applyToHostCallback();
-                       }else if(data.api=='gamble'){
-                           this.setBetCallback();
-                       }else if(data.api=='exitRoom'){
-                           this.exitRoomCallback();
-                       }else if(data.api=='quitForBanker'){
-                           this.quitCallback();
-                       }else if(data.api=='kickPlayer'){
-                           this.kickPlayerCallback();
-                       }else if(data.api=='presetResult'){
-                           this.savePresetCallback();
-                       }
-                       if(resp.respMsg=='您已被踢出当前桌子'){
-                           this.beKickedCallback();
-                       }
-                   }else{
-                       Vue.operationFeedback({type:'warn',text:resp.respMsg});
-                   }
-                   console.log('gameHandle:',resp);
-               }else if(resp.api=='deskFrame'){
-                   let data=JSON.parse(resp.data);
-                   this.gameRender(data);
-                  /* console.log('data:',data);*/
-               }
-            });
-
+            this.initGame();
             //临时测试
           /*  setTimeout(()=>{
                 this.runTurntable(1);
@@ -1352,12 +1366,16 @@
             console.log('containerPosition:',containerPosition);
             console.log('test:',{x:position.x-containerPosition.x,y:position.y-containerPosition.y});*/
         },
+        beforeRouteEnter(to,from,next){
+       /*     document.getElementById('header').style.display='none';*/
+            document.getElementById('footer').style.display='none';
+            Vue.routeCheck(to,from,next);
+        },
         beforeRouteLeave(to,from,next){
             this.exitRoom();
+          /*  document.getElementById('header').style.display='block';*/
+            document.getElementById('footer').style.display='block';
             next();
-        },
-        beforeRouteEnter(to,from,next){
-            Vue.routeCheck(to,from,next)
         },
     }
 </script>

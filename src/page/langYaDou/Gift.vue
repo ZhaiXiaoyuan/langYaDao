@@ -148,7 +148,7 @@
                     Vue.operationFeedback({type:'warn',text:'请输入受赠人ID或手机号码'});
                     return;
                 }
-                Vue.api.getUserInfo({apiParams:{id:this.form.keyword,type:this.form.keyword.length>10?'phone':'uuid'}}).then((resp)=>{
+                Vue.api.getUserInfo({apiParams:{id:this.form.keyword,type:this.form.keyword.length>10?'phone':'id'}}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
                         this.form.targetUser=data.user;

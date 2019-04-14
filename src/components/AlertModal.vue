@@ -1,5 +1,5 @@
 <template>
-    <el-dialog custom-class="alert-modal" :visible.sync="options.open" center :modal-append-to-body="false">
+    <el-dialog custom-class="alert-modal" :visible.sync="options.open" center :modal-append-to-body="false" :class="{'scroll-modal':options.type=='scroll'}">
         <div class="modal-header">
             <span class="title">{{options.title}}</span>
             <span class="cm-btn close-btn" @click="close()"></span>
@@ -8,7 +8,7 @@
         </div>
         <div class="modal-footer">
             <span class="cm-btn cancel-btn" @click="cancel()" v-if="options.type=='confirm'">{{options.no}}</span>
-            <span class="cm-btn handle-btn" @click="ok()">{{options.yes}}</span>
+            <span class="cm-btn handle-btn" @click="ok()" v-if="options.yes">{{options.yes}}</span>
         </div>
     </el-dialog>
 </template>
@@ -20,6 +20,7 @@
         background: url("../images/common/alert-modal-bg.png") no-repeat;
         width: 336px;
         height: 256px;
+        background-size: 100% 100%;
         font-family: 'hytangmeiren';
         box-shadow: none;
         .el-dialog__header{
@@ -83,6 +84,27 @@
             }
         }
     }
+    @media screen and(max-width: 1000px){
+        .alert-modal{
+         /*   width: 90% !important;*/
+        }
+        .scroll-modal{
+            .alert-modal{
+                margin-top:10vh !important;
+                background: url("../images/zodiac/m-alert-scroll-modal.png") no-repeat;
+                height: 6.96rem;
+                height: 8.9rem;
+                background-size: 100% 100%;
+                .modal-body{
+                    margin-top: 0.24rem;
+                    font-size: 0.28rem;
+                    text-align: left;
+                    height: 7.4rem;
+                    overflow-y: auto;
+                }
+            }
+        }
+    }
 </style>
 <script>
   import Vue from 'vue'
@@ -95,7 +117,7 @@
     props:{
       options:{
           open:true,
-          type:'alert',//alert,confirm
+          type:'alert',//alert,confirm,scroll
           title: '温馨提示', //提示标题
           html: '',   //提示内容
           yes: '确 定',
