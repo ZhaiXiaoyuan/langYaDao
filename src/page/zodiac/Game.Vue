@@ -39,9 +39,10 @@
                     <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
                     <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
                     <span class="cm-btn handle-btn apply-btn m-player-btn" v-if="type=='player'" @click="blockModal('data')">玩家信息</span>
-                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-result-modal-btn" v-if="type=='player'" @click="blockModal('result')"><span class="pc-text">战绩专区</span><span class="m-text">战绩区</span></span>
+                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-result-modal-btn" @click="blockModal('result')"><span class="pc-text">战绩专区</span><span class="m-text">战绩区</span></span>
                     <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
                     <span class="cm-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='player'" @click="blockModal('setBet')">竞猜区</span>
+                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='host'" @click="blockModal('setBet')">预设区</span>
                 </div>
                 <div class="sub-handle-btn-list">
                     <span class="cm-scale-btn handle-btn" @click="blockModal('data','player')">所有玩家</span>
@@ -351,11 +352,11 @@
                     </div>
                 </div>
             </div>
-            <div class="panel bet-panel m-set-bet-modal" :class="{'active':blockModalType=='setBet'}">
+            <div class="panel bet-panel m-set-bet-modal" :class="{'active':blockModalType=='setBet'||blockModalType=='preset'}">
                 <div class="block bet-block">
                     <div class="m-modal-btn close-btn" @click="blockModal(false,false)">游戏区</div>
                     <div class="block-hd">
-                        <p class="title">竞猜区</p>
+                        <p class="title">{{type=='player'?'竞猜区':'预设区'}}</p>
                     </div>
                     <div class="block-bd">
                         <div class="balance"><span class="pc-text">琅琊豆余额:</span>{{curPlayer.user.balance}}</div>
@@ -834,7 +835,7 @@
 
                 initiativeExitFlag:false,
 
-                blockModalType:'',//result,data,setBet
+                blockModalType:'preset',//result,data,setBet,preset
                 dataModalType:'',//host,user,player
 
                 runningVoice:require('../../voice/running.mp3'),
@@ -957,8 +958,8 @@
                 if(this.curHost.userId!=this.deskInfo.currentBankerId){
                     this.initData();
                 }
-                //
-                if(this.curHost.userId==curPlayer.userId){
+                //临时测试
+                if(true||this.curHost.userId==curPlayer.userId){
                     this.type='host';
                 }else{
                     this.type='player';
