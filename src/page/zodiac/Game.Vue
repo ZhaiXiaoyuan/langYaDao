@@ -1,12 +1,12 @@
 <template>
-    <div class="cm-page zodiac-game">
+    <div class="cm-page zodiac-game" @touchstart="initAsynVoice()">
         <div class="page-content" id="container">
             <!--<i class="icon game-logo-icon"></i>-->
             <div class="panel session-panel">
                 <div class="nav-block">
                     <span class="cm-btn btn exit-btn" v-if="type=='player'" @click="exitRoom(true)">退出房间</span>
                     <span class="cm-btn btn exit-btn" v-if="type=='host'" @click="quit(true)">退出房间</span>
-                    <span class="cm-btn btn home-btn" @click="fullScreen()">{{roomLevel}}</span>
+                    <span class="cm-btn btn home-btn" @click="loadVoiceFlag=true;">{{roomLevel}}</span>
                 </div>
                 <div class="block result-block block-modal" :class="{'active':blockModalType=='result'}">
                     <div class="block-hd"><p class="title">战绩专区</p></div>
@@ -38,7 +38,7 @@
                 <div class="handle-btn-list">
                     <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
                     <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
-                    <span class="cm-btn handle-btn apply-btn m-player-btn" v-if="type=='player'" @click="blockModal('data')">玩家信息</span>
+                    <span class="cm-btn handle-btn apply-btn m-player-btn" @click="blockModal('data')">玩家信息</span>
                     <span class="cm-btn handle-btn apply-btn m-modal-btn m-result-modal-btn" @click="blockModal('result')"><span class="pc-text">战绩专区</span><span class="m-text">战绩区</span></span>
                     <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
                     <span class="cm-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='player'" @click="blockModal('setBet')">竞猜区</span>
@@ -68,7 +68,7 @@
                                            <i class="point" id="target-point-1"></i>
                                            <i class="icon mouse-icon"></i>
                                        </div>
-                                        <audio id="running-audio-1" class="running-audio" :src="runningVoice">
+                                        <audio id="running-audio-1" v-if="loadVoiceFlag" class="running-audio" :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -78,7 +78,7 @@
                                             <i class="point" id="target-point-2"></i>
                                             <i class="icon cow-icon"></i>
                                         </div>
-                                        <audio id="running-audio-2" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-2" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -88,7 +88,7 @@
                                             <i class="point" id="target-point-3"></i>
                                             <i class="icon tiger-icon"></i>
                                         </div>
-                                        <audio id="running-audio-3" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-3" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -98,7 +98,7 @@
                                             <i class="point" id="target-point-4"></i>
                                             <i class="icon rabbit-icon"></i>
                                         </div>
-                                        <audio id="running-audio-4" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-4" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -108,7 +108,7 @@
                                             <i class="point" id="target-point-5"></i>
                                             <i class="icon dragon-icon"></i>
                                         </div>
-                                        <audio id="running-audio-5" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-5" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -118,7 +118,7 @@
                                             <i class="point" id="target-point-6"></i>
                                             <i class="icon snake-icon"></i>
                                         </div>
-                                        <audio id="running-audio-6" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-6" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -128,7 +128,7 @@
                                             <i class="point" id="target-point-7"></i>
                                             <i class="icon horse-icon"></i>
                                         </div>
-                                        <audio id="running-audio-7" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-7" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -138,7 +138,7 @@
                                             <i class="point" id="target-point-8"></i>
                                             <i class="icon sheep-icon"></i>
                                         </div>
-                                        <audio id="running-audio-8" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-8" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -148,7 +148,7 @@
                                             <i class="point" id="target-point-9"></i>
                                             <i class="icon monkey-icon"></i>
                                         </div>
-                                        <audio id="running-audio-9" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-9" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -158,7 +158,7 @@
                                             <i class="point" id="target-point-10"></i>
                                             <i class="icon chicken-icon"></i>
                                         </div>
-                                        <audio id="running-audio-10" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-10" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -168,7 +168,7 @@
                                             <i class="point" id="target-point-11"></i>
                                             <i class="icon dog-icon"></i>
                                         </div>
-                                        <audio id="running-audio-11" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-11" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -178,7 +178,7 @@
                                             <i class="point" id="target-point-12"></i>
                                             <i class="icon pig-icon"></i>
                                         </div>
-                                        <audio id="running-audio-12" class="running-audio"  :src="runningVoice">
+                                        <audio id="running-audio-12" v-if="loadVoiceFlag" class="running-audio"  :src="runningVoice">
                                             您的浏览器不支持 audio 标签。
                                         </audio>
                                     </div>
@@ -359,6 +359,10 @@
                         <p class="title">{{type=='player'?'竞猜区':'预设区'}}</p>
                     </div>
                     <div class="block-bd">
+                        <span class="m-set-bet-timer" v-if="version.mobile&&(type=='host'&&deskInfo.deskState=='bankerSetting')||(type=='player'&&deskInfo.deskState=='countdown')">
+                            {{timer}}s
+                            <span style="display: none">{{!timer&&blockModal(false,false)}}</span>
+                        </span>
                         <div class="balance"><span class="pc-text">琅琊豆余额:</span>{{curPlayer.user.balance}}</div>
                         <ul class="choice-list" v-if="type=='player'">
                             <li v-for="(item,index) in roomConfig.chipList" :key="index" class="cm-btn" :class="{'selected':selectedChip==item}" @click="selectChip(item)">{{item|numFormat}}</li>
@@ -550,16 +554,16 @@
         </el-dialog>
 
         <!--音频-->
-        <audio id="success-audio" :src="successVoice">
+        <audio id="success-audio" :src="successVoice" v-if="loadVoiceFlag">
             您的浏览器不支持 audio 标签。
         </audio>
-        <audio id="fail-audio" :src="failVoice">
+        <audio id="fail-audio" :src="failVoice" v-if="loadVoiceFlag">
             您的浏览器不支持 audio 标签。
         </audio>
-        <audio id="collection-audio" :src="collectionVoice">
+        <audio id="collection-audio" :src="collectionVoice" v-if="loadVoiceFlag">
             您的浏览器不支持 audio 标签。
         </audio>
-        <audio id="set-bet-audio" :src="setBetVoice">
+        <audio id="set-bet-audio" :src="setBetVoice"  v-if="loadVoiceFlag">
             您的浏览器不支持 audio 标签。
         </audio>
         <audio id="game-audio" :src="gameVoice" autoplay loop="true">
@@ -821,7 +825,7 @@
                 runningIndex:-1,
                 runningCount:-1,
                 long:0,
-                speed:200,
+                speed:80,
                 showResult:false,
                 showResultClass:'',
                 switchSession:false,
@@ -835,9 +839,13 @@
 
                 initiativeExitFlag:false,
 
-                blockModalType:'preset',//result,data,setBet,preset
+                blockModalType:'',//result,data,setBet,preset
                 dataModalType:'',//host,user,player
+                autoShowModal:false,
 
+                version:Vue.tools.browserVersions(),
+
+                loadVoiceFlag:false,
                 runningVoice:require('../../voice/running.mp3'),
                 runningAudio:null,
                 successVoice:require('../../voice/success.mp3'),
@@ -922,6 +930,7 @@
                         this.deskCoinList[i]=this.deskInfo.currentRountJettonStatistics[i+1];
                     };
                     this.loadLatestBalance=false;
+                    //
                 }
                 //
                 //
@@ -954,16 +963,26 @@
                         this.curPlayer=curPlayer;
                     }
                 }
+                if(this.curHost.userId==curPlayer.userId){
+                    this.type='host';
+                    if(!this.autoShowModal&&this.deskInfo.deskState=='bankerSetting'){
+                        this.blockModal('preset');
+                        this.speckText('请预设结果');
+                        this.autoShowModal=true;
+                    }
+                }else{
+                    this.type='player';
+                    if(!this.autoShowModal&&this.deskInfo.deskState=='countdown'){
+                        this.blockModal('setBet');
+                        this.speckText('请下注');
+                        this.autoShowModal=true;
+                    }
+                }
                 //擂主更换时重置相关数据
                 if(this.curHost.userId!=this.deskInfo.currentBankerId){
                     this.initData();
                 }
-                //临时测试
-                if(true||this.curHost.userId==curPlayer.userId){
-                    this.type='host';
-                }else{
-                    this.type='player';
-                }
+                //
                 this.curBetInfo= curPlayer.currentRountBetInfo;
                 if(this.loadLatestDataFlag){
                     curPlayer.roundRecord.forEach((item)=>{
@@ -982,6 +1001,7 @@
                 //
                 if(this.deskInfo.deskState=='settlement'){
                     this.loadLatestDataFlag=false;
+                    this.autoShowModal=false;
                     this.collectCoin();
                 }
                 //结算
@@ -1036,6 +1056,7 @@
             },
             applyToHostCallback:function () {
                 Vue.operationFeedback({type:'complete',text:'申请成功'});
+                //
             },
             selectChip:function (value) {
                 this.selectedChip=value;
@@ -1084,6 +1105,7 @@
             },
             savePresetCallback:function () {
                 Vue.operationFeedback({type:'complete',text:'设置成功'});
+                this.blockModal(false,false);
             },
             initData:function () {
                 this.curHost={ user:{}};
@@ -1121,7 +1143,7 @@
                     this.runningCount++;
                     this.runningIndex=this.runningCount%12+1;
                     if(this.runningCount<this.long){
-                        document.getElementById('running-audio-'+this.runningIndex).play();
+                        this.loadVoiceFlag&&document.getElementById('running-audio-'+this.runningIndex).play();
                         this.runTurntable();
                     }else{
                         this.runningCount=-1;
@@ -1133,9 +1155,9 @@
                             this.resultList.forEach((item,index)=>{
                                 if(item.id==this.curPlayer.userId){
                                     if(item.langyaRecord>0){
-                                        this.successAudio.play();
+                                        this.loadVoiceFlag&&this.successAudio.play();
                                     }else if(item.langyaRecord<0){
-                                        this.failAudio.play();
+                                        this.loadVoiceFlag&&this.failAudio.play();
                                     }
                                 }
                             })
@@ -1156,10 +1178,10 @@
                         },7000);
 
                     }
-                    if(this.runningCount>parseInt((1/12)*this.long)){
+                    if(this.runningCount>parseInt((1/15)*this.long)){
                         this.speed=80;
                     }if(this.runningCount>parseInt((11/12)*this.long)){
-                        this.speed=200;
+                        this.speed=400;
                     }else if(this.runningCount>=this.long){
 
                     }
@@ -1214,13 +1236,13 @@
                         item.from=item.to;
                     },200);
                     setTimeout(()=>{
-                        this.setBetAudio.play();
+                        this.loadVoiceFlag&&this.setBetAudio.play();
                     },800)
                 };
             },
             collectCoin:function () {
                 if(this.coinList.length>0){
-                    this.collectionAudio.play();
+                    this.loadVoiceFlag&&this.collectionAudio.play();
                 }
                 this.coinList.forEach((item)=>{
                     item.from=item.end;
@@ -1255,7 +1277,10 @@
             },
             initGame:function () {
                 this.account=this.getAccountInfo();
-                console.log(' this.account:', this.account);
+
+                //
+                this.gameAudio=this.initAudio('game-audio');
+                this.autoPlayAudio(this.gameAudio);
                 //
                 this.roomLevel=this.$route.query.roomLevel;
                 if(this.$route.params.type){
@@ -1271,35 +1296,7 @@
                 this.centerPosition.x=this.centerPosition.x-this.containerPosition.x;
                 this.centerPosition.y=this.centerPosition.y-this.containerPosition.y;
                 this.initdeskCoinList();
-
                 //
-                this.successAudio=this.initAudio('success-audio');
-                this.failAudio=this.initAudio('fail-audio');
-                this.collectionAudio=this.initAudio('collection-audio');
-                this.setBetAudio=this.initAudio('set-bet-audio');
-                this.gameAudio=this.initAudio('game-audio');
-                let voiceFlag=this.getVoiceFlag();
-                let runningAudios=document.getElementsByClassName('running-audio');
-                for(let i=0;i<runningAudios.length;i++){
-                    runningAudios[i].playbackRate=1.2;
-                    runningAudios[i].muted=!voiceFlag;
-                }
-                this.successAudio.setMuted(voiceFlag);
-                this.failAudio.setMuted(voiceFlag);
-                this.collectionAudio.setMuted(voiceFlag);
-                this.setBetAudio.setMuted(voiceFlag);
-                this.gameAudio.setMuted(voiceFlag);
-                bus.$on('refreshVoiceFlag', () => {
-                    voiceFlag=this.getVoiceFlag();
-                    this.successAudio.setMuted(voiceFlag);
-                    this.failAudio.setMuted(voiceFlag);
-                    this.collectionAudio.setMuted(voiceFlag);
-                    this.setBetAudio.setMuted(voiceFlag);
-                    this.gameAudio.setMuted(voiceFlag);
-                    for(let i=0;i<runningAudios.length;i++){
-                        runningAudios[i].muted=!voiceFlag;
-                    }
-                });
 
                 //
                 this.socketApi.setListener((e)=>{
@@ -1344,6 +1341,60 @@
                         /* console.log('data:',data);*/
                     }
                 });
+            },
+            initAsynVoice:function () {
+                if(this.loadVoiceFlag){
+                    return;
+                }
+                this.loadVoiceFlag=true;
+                setTimeout(()=>{
+                    this.successAudio=this.initAudio('success-audio');
+                    this.failAudio=this.initAudio('fail-audio');
+                    this.collectionAudio=this.initAudio('collection-audio');
+                    this.setBetAudio=this.initAudio('set-bet-audio');
+                    let voiceFlag=this.getVoiceFlag();
+                    let runningAudios=document.getElementsByClassName('running-audio');
+                    for(let i=0;i<runningAudios.length;i++){
+                        runningAudios[i].playbackRate=1.5;
+                        runningAudios[i].muted=!voiceFlag;
+                    }
+                    this.successAudio.setMuted(voiceFlag);
+                    this.failAudio.setMuted(voiceFlag);
+                    this.collectionAudio.setMuted(voiceFlag);
+                    this.setBetAudio.setMuted(voiceFlag);
+                 /*   this.gameAudio.setMuted(voiceFlag);*/
+                    bus.$on('refreshVoiceFlag', () => {
+                        voiceFlag=this.getVoiceFlag();
+                        this.successAudio.setMuted(voiceFlag);
+                        this.failAudio.setMuted(voiceFlag);
+                        this.collectionAudio.setMuted(voiceFlag);
+                        this.setBetAudio.setMuted(voiceFlag);
+                   /*     this.gameAudio.setMuted(voiceFlag);*/
+                        for(let i=0;i<runningAudios.length;i++){
+                            runningAudios[i].muted=!voiceFlag;
+                        }
+                    });
+                },1000);
+            },
+            autoPlayAudio:function (audio) {
+                let voiceFlag=this.getVoiceFlag();
+                audio.setMuted(voiceFlag);
+                bus.$on('refreshVoiceFlag', () => {
+                    voiceFlag=this.getVoiceFlag();
+                    audio.setMuted(voiceFlag);
+                });
+                if (window.WeixinJSBridge) {
+                    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                        audio.play();
+                    }, false);
+                } else {
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                            audio.play();
+                        });
+                    }, false);
+                }
+                audio.play();
             }
         },
         created (){
@@ -1366,6 +1417,8 @@
             console.log('position:',position);
             console.log('containerPosition:',containerPosition);
             console.log('test:',{x:position.x-containerPosition.x,y:position.y-containerPosition.y});*/
+         /*   alert(document.body.clientWidth);
+            alert(document.body.clientHeight);*/
         },
         beforeRouteEnter(to,from,next){
        /*     document.getElementById('header').style.display='none';*/

@@ -1,7 +1,7 @@
 <template>
     <div class="cm-page zodiac-hall">
         <div class="page-content">
-            <i class="icon logo-icon logo"></i>
+            <i class="icon logo-icon logo" id="test-btn" @click="test()"></i>
             <div class="carousel-block">
                 <!-- <div class="view-box">
                      <ul class="zodiac-list">
@@ -92,6 +92,7 @@
         <audio id="hall-audio" :src="hallVoice" autoplay loop="true">
             您的浏览器不支持 audio 标签。
         </audio>
+
     </div>
 </template>
 
@@ -153,6 +154,7 @@
                 hallVoice:require('../../voice/hall.mp3'),
                 hallAudio:null,
                 requesting:false,
+
             }
         },
         methods: {
@@ -247,6 +249,20 @@
                     yes:null,
                     type:'scroll',
                 });
+            },
+            autoPlayAudio:function (audio) {
+                if (window.WeixinJSBridge) {
+                    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                        audio.play();
+                    }, false);
+                } else {
+                    document.addEventListener("WeixinJSBridgeReady", function () {
+                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                            audio.play();
+                        });
+                    }, false);
+                }
+                audio.play();
             }
         },
         created (){
@@ -293,13 +309,16 @@
             bus.$on('refreshVoiceFlag', () => {
                 this.hallAudio.setMuted(this.getVoiceFlag());
             });
+            this.autoPlayAudio(this.hallAudio);
             //
             this.getRoomData();
             this.requestInterval=setInterval(()=>{
                 this.getRoomData();
                 },2000);
             //
+            this.speckText('德玛西亚');
           /*  this.descModal()*/
+
         },
         beforeDestroy(){
             clearInterval(this.requestInterval);

@@ -4,7 +4,7 @@
     justify-content: center;
     background: url("../images/zodiac/game-bg.jpg") no-repeat center;
     background-size: cover;
-    min-height: 100%;
+    height: 100%;
     padding-top: 20px;
     user-select: none;
     font-family: 'hytangmeiren';
@@ -64,6 +64,9 @@
             .entrance-btn{
                 background: url("../images/zodiac/handle-btn-2.png");
                 text-shadow: #013200 0.05em 0.12em 0.01em;
+            }
+            .m-set-bet-modal-btn{
+                display: none;
             }
         }
         .sub-handle-btn-list{
@@ -1036,12 +1039,18 @@
             background: url("../images/zodiac/bet-block-bg.png") no-repeat;
             width: 296px;
             height: 631px;
+            .close-btn{
+                display: none;
+            }
             .block-bd{
                 margin-top: 5px;
                 height: 89%;
                 width: 100%;
                 padding: 0px 10px;
                 overflow: auto;
+                .m-set-bet-timer{
+                    display: none;
+                }
             }
             .balance{
                 background: url("../images/zodiac/balance-item-bg.png") no-repeat;
@@ -1560,6 +1569,7 @@
         position: absolute;
         top:0px;
         left: -115%;
+        z-index: 30;
         transition: left 0.3s;
         .close-btn{
             position: absolute;
@@ -1667,6 +1677,686 @@
         100% {transform:translate(-333px, 522px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
     }html::after { content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel); position: absolute; left: -999em; }
 }
+
+.m-turntable-panel(@size,@top:1){
+    .turntable-panel{
+        position:absolute;
+        z-index: 0;
+        margin: 0rem auto;
+        width: 473px*@size;
+        height: 514px*@size;
+        top:-0.4rem*@top;
+        left: 0rem;
+        right: 0rem;
+        bottom: 0rem;
+        margin: auto;
+        .table-block{
+            position: relative;
+            background: url("../images/zodiac/turntable-bg.png") no-repeat;
+            width: 473px*@size;
+            height: 514px*@size;
+            background-size: 100% 100%;
+            /* border: 1px solid red;*/
+            .block-bd{
+                position: absolute;
+                width: 454px*@size;
+                height: 454px*@size;
+                top: 51px*@size;
+                left: 10px*@size;
+            }
+            .layers{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                .line{
+                    display: none;
+                    position: absolute;
+                    z-index: 100;
+                    top:0px;
+                    right: 0px;
+                    left:0px;
+                    bottom: 0px;
+                    width: 1px;
+                    height: 100%;
+                    background: red;
+                    margin: auto;
+                }
+                .line-2{
+                    transform:rotate(30deg);
+                }
+                .line-3{
+                    transform:rotate(60deg);
+                }
+                .line-4{
+                    transform:rotate(90deg);
+                }
+                .line-5{
+                    transform:rotate(120deg);
+                }
+                .line-6{
+                    transform:rotate(150deg);
+                }
+                .point{
+                    opacity: 0;
+                    position: absolute;
+                    z-index: 1000;
+                    top:0px;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    margin: auto;
+                    width: 4px;
+                    height: 4px;
+                    background: blue;
+                    border-radius: 50%;
+                }
+
+            }
+            .outside-layer{
+                position: absolute;
+                width: 453px*@size;
+                height: 453px*@size;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .item{
+                    position: absolute;
+                    background: url("../images/zodiac/outside-item-bg.png") no-repeat;
+                    width: 108px*@size;
+                    height: 70px*@size;
+                    background-size: 100% 100%;
+                    .item-content{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .current-mask{
+                        opacity: 0;
+                        position: absolute;
+                        top:0px;
+                        left: 0px;
+                        z-index: 0;
+                        background: url("../images/zodiac/current-outside-item.png") no-repeat;
+                        width: 108px*@size;
+                        height: 70px*@size;
+                        background-size: 100%;
+                    }
+                    .icon{
+                        z-index: 2;
+                    }
+                    /* &.current{
+                         .current-mask{
+                             opacity: 1;
+                         }
+                     }*/
+                }
+                .item-1{
+                    top: 1px*@size;
+                    left: 172px*@size;
+                    .icon{
+                        width: 40px*@size;
+                        height: 58px*@size;
+                    }
+                }
+                .item-2{
+                    top: 27px*@size;
+                    left: 267px*@size;
+                    transform:rotate(30deg);
+                    .icon{
+                        width: 52px*@size;
+                        height: 47px*@size;
+                        transform:rotate(-30deg);
+                    }
+                }
+                .item-3{
+                    top: 96px*@size;
+                    left: 336px*@size;
+                    transform:rotate(60deg);
+                    .icon{
+                        width: 46px*@size;
+                        height: 55px*@size;
+                        transform:rotate(-60deg);
+                    }
+                }
+                .item-4{
+                    top: 191px*@size;
+                    left: 361px*@size;
+                    transform:rotate(90deg);
+                    .icon{
+                        width: 49px*@size;
+                        height: 58px*@size;
+                        transform:rotate(-90deg);
+                    }
+                }
+                .item-5{
+                    bottom: 97px*@size;
+                    left: 336px*@size;
+                    transform:rotate(120deg);
+                    .icon{
+                        width: 57px*@size;
+                        height: 59px*@size;
+                        transform:rotate(-120deg);
+                    }
+                }
+                .item-6{
+                    bottom: 28px*@size;
+                    left: 267px*@size;
+                    transform:rotate(150deg);
+                    .icon{
+                        width: 38px*@size;
+                        height: 54px*@size;
+                        transform:rotate(-150deg);
+                    }
+                }
+                .item-7{
+                    bottom: 2px*@size;
+                    left: 173px*@size;
+                    transform:rotate(180deg);
+                    .icon{
+                        width: 48px*@size;
+                        height: 59px*@size;
+                        transform:rotate(-180deg);
+                    }
+                }
+                .item-8{
+                    bottom: 27px*@size;
+                    right: 268px*@size;
+                    transform:rotate(210deg);
+                    .icon{
+                        width: 50px*@size;
+                        height: 59px*@size;
+                        transform:rotate(-210deg);
+                    }
+                }
+                .item-9{
+                    bottom: 97px*@size;
+                    right: 338px*@size;
+                    transform:rotate(240deg);
+                    .icon{
+                        width: 51px*@size;
+                        height: 46px*@size;
+                        transform:rotate(-240deg);
+                    }
+                }
+                .item-10{
+                    top: 191px*@size;
+                    right: 363px*@size;
+                    transform:rotate(270deg);
+                    .icon{
+                        width: 52px*@size;
+                        height: 58px*@size;
+                        transform:rotate(-270deg);
+                    }
+                }
+                .item-11{
+                    top: 96px*@size;
+                    right: 338px*@size;
+                    transform:rotate(300deg);
+                    .icon{
+                        width: 52px*@size;
+                        height: 53px*@size;
+                        transform:rotate(-300deg);
+                    }
+                }
+                .item-12{
+                    top: 26px*@size;
+                    right: 268px*@size;
+                    transform:rotate(330deg);
+                    .icon{
+                        width: 49px*@size;
+                        height: 49px*@size;
+                        transform:rotate(-330deg);
+                    }
+                }
+            }
+            .middle-layer{
+                position: absolute;
+                width: 310px*@size;
+                height: 310px*@size;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .item{
+                    position: absolute;
+                    background: url("../images/zodiac/middle-item-bg.png") no-repeat;
+                    width: 211px*@size;
+                    height: 96px*@size;
+                    background-size: 100% 100%;
+                    .item-content{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .current-mask{
+                        opacity: 0;
+                        position: absolute;
+                        top:0px;
+                        left: 0px;
+                        z-index: 0;
+                        background: url("../images/zodiac/current-middle-item.png") no-repeat;
+                        width: 211px*@size;
+                        height: 96px*@size;
+                        background-size: 100%;
+                    }
+                    .icon{
+                        z-index: 2;
+                    }
+                    .name{
+                        position: absolute;
+                        z-index: 1;
+                        font-size: 16px*@size;
+                        color: #fff;
+                        font-family: 'hytangmeiren';
+                        text-shadow: -2px 0 #037b00, 0 2px #037b00,
+                        2px 0 #037b00, 0 -2px #037b00;
+                    }
+                    /* &.current{
+                         .current-mask{
+                             opacity: 1;
+                         }
+                     }*/
+                }
+                .item-1{
+                    top: 0px;
+                    left: 48px*@size;
+                    .icon{
+                        position: relative;
+                        top:-8px*@size;
+                    }
+                    .name{
+                        top: 40px*@size;
+                        left: 51px*@size;
+                    }
+                }
+                .item-2{
+                    top: 106px*@size;
+                    left: 155px*@size;
+                    transform:rotate(90deg);
+                    .icon{
+                        transform:rotate(-90deg);
+                        position: relative;
+                        bottom: 10px*@size;
+                        right: 10px*@size;
+                    }
+                    .name{
+                        transform:rotate(-90deg);
+                        top: 30px*@size;
+                        left: 115px*@size;
+                    }
+                }
+                .item-3{
+                    bottom: 0px*@size;
+                    left: 48px*@size;
+                    transform:rotate(180deg);
+                    .icon{
+                        transform:rotate(-180deg);
+                        position: relative;
+                        bottom: 6px*@size;
+                    }
+                    .name{
+                        transform:rotate(-180deg);
+                        bottom: 31px*@size;
+                        left: 51px*@size;
+                    }
+                }
+                .item-4{
+                    top: 106px*@size;
+                    right: 155px*@size;
+                    transform:rotate(270deg);
+                    .icon{
+                        transform:rotate(-270deg);
+                        position: relative;
+                        bottom: 6px*@size;
+                        left: 10px*@size;
+                    }
+                    .name{
+                        transform:rotate(-270deg);
+                        bottom: 42px*@size;
+                        left: 64px*@size;
+                    }
+                }
+            }
+            .inside-layer{
+                position: absolute;
+                width: 152px*@size;
+                height: 152px*@size;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                .item{
+                    position: absolute;
+                    background: url("../images/zodiac/inside-item-bg.png") no-repeat;
+                    width: 36px*@size;
+                    height: 23px*@size;
+                    background-size: 100% 100%;
+                    .item-content{
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .current-mask{
+                        opacity: 0;
+                        position: absolute;
+                        top:0px;
+                        left: 0px;
+                        z-index: 0;
+                        background: url("../images/zodiac/current-inside-item.png") no-repeat;
+                        width: 36px*@size;
+                        height: 23px*@size;
+                        background-size: 100%;
+                    }
+                    .icon{
+                        z-index: 2;
+                    }
+                    .name{
+                        position: relative;
+                        top:-2px*@size;
+                        z-index: 1;
+                        font-size: 16px*@size;
+                        color: #fff;
+                        font-family: 'hytangmeiren';
+                        text-shadow: -1px 0 #a63900, 0 1px #a63900,
+                        1px 0 #a63900, 0 -1px #a63900;
+                    }
+                    /* &.current{
+                         .current-mask{
+                             opacity: 1;
+                         }
+                     }*/
+                }
+                .item-1{
+                    top: 1px*@size;
+                    left: 57.5px*@size;
+                }
+                .item-2{
+                    top: 9.5px*@size;
+                    left: 88.5px*@size;
+                    transform:rotate(30deg);
+                }
+                .item-3{
+                    top: 33px*@size;
+                    left: 112px*@size;
+                    transform:rotate(60deg);
+                }
+                .item-4{
+                    top: 64px*@size;
+                    left: 120px*@size;
+                    transform:rotate(90deg);
+                }
+                .item-5{
+                    bottom: 32px*@size;
+                    left: 112px*@size;
+                    transform:rotate(120deg);
+                }
+                .item-6{
+                    bottom: 9.5px*@size;
+                    left: 88.5px*@size;
+                    transform:rotate(150deg);
+                }
+                .item-7{
+                    bottom: 1px*@size;
+                    left: 57.5px*@size;
+                    transform:rotate(180deg);
+                }
+                .item-8{
+                    bottom: 9.5px*@size;
+                    right: 88.5px*@size;
+                    transform:rotate(210deg);
+                }
+                .item-9{
+                    bottom: 32px*@size;
+                    right: 112px*@size;
+                    transform:rotate(240deg);
+                }
+                .item-10{
+                    top: 64px*@size;
+                    right: 120px*@size;
+                    transform:rotate(270deg);
+                }
+                .item-11{
+                    top: 32px*@size;
+                    right: 111px*@size;
+                    transform:rotate(300deg);
+                }
+                .item-12{
+                    top: 9px*@size;
+                    right: 88px*@size;
+                    transform:rotate(330deg);
+                }
+            }
+            .tips-layer{
+                position: absolute;
+                z-index: 10;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
+                width: 450px*@size;
+                height: 148px*@size;
+                background-size: 100%;
+                text-align: center;
+                font-family: 'hytangmeiren';
+                text-shadow: -3px 0 #225599, 0 3px #225599,
+                3px 0 #225599, 0 -3px #225599;
+                color: #fefeff;
+                padding-top: 15px*@size;
+                .index{
+                    font-size: 50px*@size;
+                }
+                .time{
+                    color: #fff000;
+                    font-size: 26px*@size;
+                    span{
+                        color: #fefeff;
+                    }
+                }
+            }
+            .timer-layer{
+                position: absolute;
+                width: 96px*@size;
+                height: 96px*@size;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                font-family: 'hytangmeiren';
+                font-size: 24px*@size;
+                text-shadow: -1px 0 #225599, 0 1px #225599,
+                1px 0 #225599, 0 -1px #225599;
+                line-height: 25px*@size;
+                .index{
+                    color: #fff;
+                }
+                .time{
+                    color: #fff000;
+                }
+                .waiting{
+                    font-size: 18px*@size;
+                }
+            }
+            .result-layer{
+                position: absolute;
+                z-index: 10;
+                width: 339px*@size;
+                height: 339px*@size;
+                top:0px;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                margin: auto;
+                .layer-bd{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+                @keyframes circle-ani
+                {
+                    0% {transform: scale(1)}
+                    50% {transform: scale(0.7)}
+                    100% {transform: scale(1)}
+                }
+                @keyframes light-ani
+                {
+                    0% {transform: rotate(0deg)}
+                    50% {transform: rotate(360deg)}
+                    100% {transform: rotate(720deg)}
+                }
+                .radiation-icon{
+                    position: absolute;
+                    z-index: 1;
+                    top:0px;
+                    left: 0px;
+                    background: url("../images/zodiac/radiation-icon.png") no-repeat;
+                    width: 339px*@size;
+                    height: 339px*@size;
+                    background-size: 100%;
+                    animation:light-ani 20s infinite;
+                }
+                .fuzzy-icon{
+                    position: absolute;
+                    z-index: 2;
+                    top:0px;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    margin: auto;
+                    background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
+                    width: 358px*@size;
+                    height: 358px*@size;
+                    background-size: 100%;
+                    animation:circle-ani 3s infinite;
+                }
+                .zodiac-icon{
+                    position: absolute;
+                    z-index: 3;
+                    top:0px;
+                    left: 0px;
+                    bottom: 0px;
+                    right: 0px;
+                    margin: auto;
+                }
+                .result-items{
+                    position: absolute;
+                    z-index: 4;
+                    left: 0px;
+                    bottom: 58px*@size;
+                    width: 100%;
+                    height: 58px*@size;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+                    .item{
+                        position: relative;
+                        overflow: hidden;
+                        &+.item{
+                            margin-left: 10px*@size;
+                        }
+                    }
+                    .middle-result-item{
+                        background: url("../images/zodiac/middle-result-bg.png") no-repeat;
+                        width: 58px*@size;
+                        height: 58px*@size;
+                        background-size: 100%;
+                        .icon{
+                            position: absolute;
+                            top:4px*@size;
+                            right: 4px*@size;
+                        }
+                        .name{
+                            position: absolute;
+                            z-index: 1;
+                            font-size: 18px*@size;
+                            color: #fff;
+                            font-family: 'hytangmeiren';
+                            text-shadow: -2px 0 #037b00, 0 2px #037b00,
+                            2px 0 #037b00, 0 -2px #037b00;
+                            left: 6px*@size;
+                            bottom: 6px*@size;
+                        }
+                    }
+                    .outside-result-item{
+                        background: url("../images/zodiac/outside-result-bg.png") no-repeat;
+                        width: 50px*@size;
+                        height: 36px*@size;
+                        background-size: 100% 100%;
+                        line-height: 32px*@size;
+                        text-align: center;
+                        .name{
+                            margin-top: -2px*@size;
+                            font-size: 18px*@size;
+                            color: #fff;
+                            font-family: 'hytangmeiren';
+                            text-shadow: -2px 0 #00569e, 0 2px #00569e,
+                            2px 0 #00569e, 0 -2px #00569e;
+                        }
+                    }
+                    .inside-result-item{
+                        background: url("../images/zodiac/inside-result-bg.png") no-repeat;
+                        width: 42px*@size;
+                        height: 36px*@size;
+                        background-size: 100% 100%;
+                        line-height: 32px*@size;
+                        text-align: center;
+                        .name{
+                            font-size: 20px*@size;
+                            color: #fff;
+                            font-family: 'hytangmeiren';
+                            text-shadow: -2px 0 #a63900, 0 2px #a63900,
+                            2px 0 #a63900, 0 -2px #a63900;
+                        }
+                    }
+                }
+            }
+            &.show-result{
+                .item{
+                    &.current{
+                        .current-mask{
+                            opacity: 1 !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and(max-width: 1000px){
     .zodiac-game{
         display: block;
@@ -1677,7 +2367,7 @@
         .page-content{
             width: 100%;
             height: 100%;
-            padding-bottom: 2rem;
+            padding-bottom: 0rem;
          /*   .game-logo-icon{
                 position: absolute;
                 top:0.1rem;
@@ -1689,7 +2379,6 @@
                 background-size: 100% 100%;
             }*/
         }
-        @size:0.7;
         .turtle-icon{
             background: url("../images/zodiac/m-turtle-icon.png") no-repeat;
             width: 0.86rem;
@@ -1714,677 +2403,8 @@
             height: 0.93rem;
             background-size: 100%;
         }
-        .turntable-panel{
-            position: relative;
-            z-index: 0;
-            margin: 0rem auto;
-            padding-top: 1.1rem;
-            .table-block{
-                position: relative;
-                background: url("../images/zodiac/turntable-bg.png") no-repeat;
-                width: 473px*@size;
-                height: 514px*@size;
-                background-size: 100% 100%;
-                /* border: 1px solid red;*/
-                .block-bd{
-                    position: absolute;
-                    width: 454px*@size;
-                    height: 454px*@size;
-                    top: 51px*@size;
-                    left: 10px*@size;
-                }
-                .layers{
-                    position: relative;
-                    width: 100%;
-                    height: 100%;
-                    .line{
-                        display: none;
-                        position: absolute;
-                        z-index: 100;
-                        top:0px;
-                        right: 0px;
-                        left:0px;
-                        bottom: 0px;
-                        width: 1px;
-                        height: 100%;
-                        background: red;
-                        margin: auto;
-                    }
-                    .line-2{
-                        transform:rotate(30deg);
-                    }
-                    .line-3{
-                        transform:rotate(60deg);
-                    }
-                    .line-4{
-                        transform:rotate(90deg);
-                    }
-                    .line-5{
-                        transform:rotate(120deg);
-                    }
-                    .line-6{
-                        transform:rotate(150deg);
-                    }
-                    .point{
-                        opacity: 0;
-                        position: absolute;
-                        z-index: 1000;
-                        top:0px;
-                        left: 0px;
-                        right: 0px;
-                        bottom: 0px;
-                        margin: auto;
-                        width: 4px;
-                        height: 4px;
-                        background: blue;
-                        border-radius: 50%;
-                    }
-
-                }
-                .outside-layer{
-                    position: absolute;
-                    width: 453px*@size;
-                    height: 453px*@size;
-                    top:0px;
-                    left: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    margin: auto;
-                    .layer-bd{
-                        position: relative;
-                        width: 100%;
-                        height: 100%;
-                    }
-                    .item{
-                        position: absolute;
-                        background: url("../images/zodiac/outside-item-bg.png") no-repeat;
-                        width: 108px*@size;
-                        height: 70px*@size;
-                        background-size: 100% 100%;
-                        .item-content{
-                            position: relative;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 100%;
-                            height: 100%;
-                        }
-                        .current-mask{
-                            opacity: 0;
-                            position: absolute;
-                            top:0px;
-                            left: 0px;
-                            z-index: 0;
-                            background: url("../images/zodiac/current-outside-item.png") no-repeat;
-                            width: 108px*@size;
-                            height: 70px*@size;
-                            background-size: 100%;
-                        }
-                        .icon{
-                            z-index: 2;
-                        }
-                        /* &.current{
-                             .current-mask{
-                                 opacity: 1;
-                             }
-                         }*/
-                    }
-                    .item-1{
-                        top: 1px*@size;
-                        left: 172px*@size;
-                        .icon{
-                            width: 40px*@size;
-                            height: 58px*@size;
-                        }
-                    }
-                    .item-2{
-                        top: 27px*@size;
-                        left: 267px*@size;
-                        transform:rotate(30deg);
-                        .icon{
-                            width: 52px*@size;
-                            height: 47px*@size;
-                            transform:rotate(-30deg);
-                        }
-                    }
-                    .item-3{
-                        top: 96px*@size;
-                        left: 336px*@size;
-                        transform:rotate(60deg);
-                        .icon{
-                            width: 46px*@size;
-                            height: 55px*@size;
-                            transform:rotate(-60deg);
-                        }
-                    }
-                    .item-4{
-                        top: 191px*@size;
-                        left: 361px*@size;
-                        transform:rotate(90deg);
-                        .icon{
-                            width: 49px*@size;
-                            height: 58px*@size;
-                            transform:rotate(-90deg);
-                        }
-                    }
-                    .item-5{
-                        bottom: 97px*@size;
-                        left: 336px*@size;
-                        transform:rotate(120deg);
-                        .icon{
-                            width: 57px*@size;
-                            height: 59px*@size;
-                            transform:rotate(-120deg);
-                        }
-                    }
-                    .item-6{
-                        bottom: 28px*@size;
-                        left: 267px*@size;
-                        transform:rotate(150deg);
-                        .icon{
-                            width: 38px*@size;
-                            height: 54px*@size;
-                            transform:rotate(-150deg);
-                        }
-                    }
-                    .item-7{
-                        bottom: 2px*@size;
-                        left: 173px*@size;
-                        transform:rotate(180deg);
-                        .icon{
-                            width: 48px*@size;
-                            height: 59px*@size;
-                            transform:rotate(-180deg);
-                        }
-                    }
-                    .item-8{
-                        bottom: 27px*@size;
-                        right: 268px*@size;
-                        transform:rotate(210deg);
-                        .icon{
-                            width: 50px*@size;
-                            height: 59px*@size;
-                            transform:rotate(-210deg);
-                        }
-                    }
-                    .item-9{
-                        bottom: 97px*@size;
-                        right: 338px*@size;
-                        transform:rotate(240deg);
-                        .icon{
-                            width: 51px*@size;
-                            height: 46px*@size;
-                            transform:rotate(-240deg);
-                        }
-                    }
-                    .item-10{
-                        top: 191px*@size;
-                        right: 363px*@size;
-                        transform:rotate(270deg);
-                        .icon{
-                            width: 52px*@size;
-                            height: 58px*@size;
-                            transform:rotate(-270deg);
-                        }
-                    }
-                    .item-11{
-                        top: 96px*@size;
-                        right: 338px*@size;
-                        transform:rotate(300deg);
-                        .icon{
-                            width: 52px*@size;
-                            height: 53px*@size;
-                            transform:rotate(-300deg);
-                        }
-                    }
-                    .item-12{
-                        top: 26px*@size;
-                        right: 268px*@size;
-                        transform:rotate(330deg);
-                        .icon{
-                            width: 49px*@size;
-                            height: 49px*@size;
-                            transform:rotate(-330deg);
-                        }
-                    }
-                }
-                .middle-layer{
-                    position: absolute;
-                    width: 310px*@size;
-                    height: 310px*@size;
-                    top:0px;
-                    left: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    margin: auto;
-                    .layer-bd{
-                        position: relative;
-                        width: 100%;
-                        height: 100%;
-                    }
-                    .item{
-                        position: absolute;
-                        background: url("../images/zodiac/middle-item-bg.png") no-repeat;
-                        width: 211px*@size;
-                        height: 96px*@size;
-                        background-size: 100% 100%;
-                        .item-content{
-                            position: relative;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 100%;
-                            height: 100%;
-                        }
-                        .current-mask{
-                            opacity: 0;
-                            position: absolute;
-                            top:0px;
-                            left: 0px;
-                            z-index: 0;
-                            background: url("../images/zodiac/current-middle-item.png") no-repeat;
-                            width: 211px*@size;
-                            height: 96px*@size;
-                            background-size: 100%;
-                        }
-                        .icon{
-                            z-index: 2;
-                        }
-                        .name{
-                            position: absolute;
-                            z-index: 1;
-                            font-size: 16px*@size;
-                            color: #fff;
-                            font-family: 'hytangmeiren';
-                            text-shadow: -2px 0 #037b00, 0 2px #037b00,
-                            2px 0 #037b00, 0 -2px #037b00;
-                        }
-                        /* &.current{
-                             .current-mask{
-                                 opacity: 1;
-                             }
-                         }*/
-                    }
-                    .item-1{
-                        top: 0px;
-                        left: 48px*@size;
-                        .icon{
-                            position: relative;
-                            top:-8px*@size;
-                        }
-                        .name{
-                            top: 40px*@size;
-                            left: 51px*@size;
-                        }
-                    }
-                    .item-2{
-                        top: 106px*@size;
-                        left: 155px*@size;
-                        transform:rotate(90deg);
-                        .icon{
-                            transform:rotate(-90deg);
-                            position: relative;
-                            bottom: 10px*@size;
-                            right: 10px*@size;
-                        }
-                        .name{
-                            transform:rotate(-90deg);
-                            top: 30px*@size;
-                            left: 115px*@size;
-                        }
-                    }
-                    .item-3{
-                        bottom: 0px*@size;
-                        left: 48px*@size;
-                        transform:rotate(180deg);
-                        .icon{
-                            transform:rotate(-180deg);
-                            position: relative;
-                            bottom: 6px*@size;
-                        }
-                        .name{
-                            transform:rotate(-180deg);
-                            bottom: 31px*@size;
-                            left: 51px*@size;
-                        }
-                    }
-                    .item-4{
-                        top: 106px*@size;
-                        right: 155px*@size;
-                        transform:rotate(270deg);
-                        .icon{
-                            transform:rotate(-270deg);
-                            position: relative;
-                            bottom: 6px*@size;
-                            left: 10px*@size;
-                        }
-                        .name{
-                            transform:rotate(-270deg);
-                            bottom: 42px*@size;
-                            left: 64px*@size;
-                        }
-                    }
-                }
-                .inside-layer{
-                    position: absolute;
-                    width: 152px*@size;
-                    height: 152px*@size;
-                    top:0px;
-                    left: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    margin: auto;
-                    .layer-bd{
-                        position: relative;
-                        width: 100%;
-                        height: 100%;
-                    }
-                    .item{
-                        position: absolute;
-                        background: url("../images/zodiac/inside-item-bg.png") no-repeat;
-                        width: 36px*@size;
-                        height: 23px*@size;
-                        background-size: 100% 100%;
-                        .item-content{
-                            position: relative;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 100%;
-                            height: 100%;
-                        }
-                        .current-mask{
-                            opacity: 0;
-                            position: absolute;
-                            top:0px;
-                            left: 0px;
-                            z-index: 0;
-                            background: url("../images/zodiac/current-inside-item.png") no-repeat;
-                            width: 36px*@size;
-                            height: 23px*@size;
-                            background-size: 100%;
-                        }
-                        .icon{
-                            z-index: 2;
-                        }
-                        .name{
-                            position: relative;
-                            top:-2px*@size;
-                            z-index: 1;
-                            font-size: 16px*@size;
-                            color: #fff;
-                            font-family: 'hytangmeiren';
-                            text-shadow: -1px 0 #a63900, 0 1px #a63900,
-                            1px 0 #a63900, 0 -1px #a63900;
-                        }
-                        /* &.current{
-                             .current-mask{
-                                 opacity: 1;
-                             }
-                         }*/
-                    }
-                    .item-1{
-                        top: 1px*@size;
-                        left: 57.5px*@size;
-                    }
-                    .item-2{
-                        top: 9.5px*@size;
-                        left: 88.5px*@size;
-                        transform:rotate(30deg);
-                    }
-                    .item-3{
-                        top: 33px*@size;
-                        left: 112px*@size;
-                        transform:rotate(60deg);
-                    }
-                    .item-4{
-                        top: 64px*@size;
-                        left: 120px*@size;
-                        transform:rotate(90deg);
-                    }
-                    .item-5{
-                        bottom: 32px*@size;
-                        left: 112px*@size;
-                        transform:rotate(120deg);
-                    }
-                    .item-6{
-                        bottom: 9.5px*@size;
-                        left: 88.5px*@size;
-                        transform:rotate(150deg);
-                    }
-                    .item-7{
-                        bottom: 1px*@size;
-                        left: 57.5px*@size;
-                        transform:rotate(180deg);
-                    }
-                    .item-8{
-                        bottom: 9.5px*@size;
-                        right: 88.5px*@size;
-                        transform:rotate(210deg);
-                    }
-                    .item-9{
-                        bottom: 32px*@size;
-                        right: 112px*@size;
-                        transform:rotate(240deg);
-                    }
-                    .item-10{
-                        top: 64px*@size;
-                        right: 120px*@size;
-                        transform:rotate(270deg);
-                    }
-                    .item-11{
-                        top: 32px*@size;
-                        right: 111px*@size;
-                        transform:rotate(300deg);
-                    }
-                    .item-12{
-                        top: 9px*@size;
-                        right: 88px*@size;
-                        transform:rotate(330deg);
-                    }
-                }
-                .tips-layer{
-                    position: absolute;
-                    z-index: 10;
-                    top:0px;
-                    left: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    margin: auto;
-                    background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
-                    width: 450px*@size;
-                    height: 148px*@size;
-                    background-size: 100%;
-                    text-align: center;
-                    font-family: 'hytangmeiren';
-                    text-shadow: -3px 0 #225599, 0 3px #225599,
-                    3px 0 #225599, 0 -3px #225599;
-                    color: #fefeff;
-                    padding-top: 15px*@size;
-                    .index{
-                        font-size: 50px*@size;
-                    }
-                    .time{
-                        color: #fff000;
-                        font-size: 26px*@size;
-                        span{
-                            color: #fefeff;
-                        }
-                    }
-                }
-                .timer-layer{
-                    position: absolute;
-                    width: 96px*@size;
-                    height: 96px*@size;
-                    top:0px;
-                    left: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    margin: auto;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    text-align: center;
-                    font-family: 'hytangmeiren';
-                    font-size: 24px*@size;
-                    text-shadow: -1px 0 #225599, 0 1px #225599,
-                    1px 0 #225599, 0 -1px #225599;
-                    line-height: 25px*@size;
-                    .index{
-                        color: #fff;
-                    }
-                    .time{
-                        color: #fff000;
-                    }
-                    .waiting{
-                        font-size: 18px*@size;
-                    }
-                }
-                .result-layer{
-                    position: absolute;
-                    z-index: 10;
-                    width: 339px*@size;
-                    height: 339px*@size;
-                    top:0px;
-                    left: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    margin: auto;
-                    .layer-bd{
-                        position: relative;
-                        width: 100%;
-                        height: 100%;
-                    }
-                    @keyframes circle-ani
-                    {
-                        0% {transform: scale(1)}
-                        50% {transform: scale(0.7)}
-                        100% {transform: scale(1)}
-                    }
-                    @keyframes light-ani
-                    {
-                        0% {transform: rotate(0deg)}
-                        50% {transform: rotate(360deg)}
-                        100% {transform: rotate(720deg)}
-                    }
-                    .radiation-icon{
-                        position: absolute;
-                        z-index: 1;
-                        top:0px;
-                        left: 0px;
-                        background: url("../images/zodiac/radiation-icon.png") no-repeat;
-                        width: 339px*@size;
-                        height: 339px*@size;
-                        background-size: 100%;
-                        animation:light-ani 20s infinite;
-                    }
-                    .fuzzy-icon{
-                        position: absolute;
-                        z-index: 2;
-                        top:0px;
-                        left: 0px;
-                        right: 0px;
-                        bottom: 0px;
-                        margin: auto;
-                        background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
-                        width: 358px*@size;
-                        height: 358px*@size;
-                        background-size: 100%;
-                        animation:circle-ani 3s infinite;
-                    }
-                    .zodiac-icon{
-                        position: absolute;
-                        z-index: 3;
-                        top:0px;
-                        left: 0px;
-                        bottom: 0px;
-                        right: 0px;
-                        margin: auto;
-                    }
-                    .result-items{
-                        position: absolute;
-                        z-index: 4;
-                        left: 0px;
-                        bottom: 58px*@size;
-                        width: 100%;
-                        height: 58px*@size;
-                        display: flex;
-                        align-items: flex-end;
-                        justify-content: center;
-                        .item{
-                            position: relative;
-                            overflow: hidden;
-                            &+.item{
-                                margin-left: 10px*@size;
-                            }
-                        }
-                        .middle-result-item{
-                            background: url("../images/zodiac/middle-result-bg.png") no-repeat;
-                            width: 58px*@size;
-                            height: 58px*@size;
-                            background-size: 100%;
-                            .icon{
-                                position: absolute;
-                                top:4px*@size;
-                                right: 4px*@size;
-                            }
-                            .name{
-                                position: absolute;
-                                z-index: 1;
-                                font-size: 18px*@size;
-                                color: #fff;
-                                font-family: 'hytangmeiren';
-                                text-shadow: -2px 0 #037b00, 0 2px #037b00,
-                                2px 0 #037b00, 0 -2px #037b00;
-                                left: 6px*@size;
-                                bottom: 6px*@size;
-                            }
-                        }
-                        .outside-result-item{
-                            background: url("../images/zodiac/outside-result-bg.png") no-repeat;
-                            width: 50px*@size;
-                            height: 36px*@size;
-                            background-size: 100% 100%;
-                            line-height: 32px*@size;
-                            text-align: center;
-                            .name{
-                                margin-top: -2px*@size;
-                                font-size: 18px*@size;
-                                color: #fff;
-                                font-family: 'hytangmeiren';
-                                text-shadow: -2px 0 #00569e, 0 2px #00569e,
-                                2px 0 #00569e, 0 -2px #00569e;
-                            }
-                        }
-                        .inside-result-item{
-                            background: url("../images/zodiac/inside-result-bg.png") no-repeat;
-                            width: 42px*@size;
-                            height: 36px*@size;
-                            background-size: 100% 100%;
-                            line-height: 32px*@size;
-                            text-align: center;
-                            .name{
-                                font-size: 20px*@size;
-                                color: #fff;
-                                font-family: 'hytangmeiren';
-                                text-shadow: -2px 0 #a63900, 0 2px #a63900,
-                                2px 0 #a63900, 0 -2px #a63900;
-                            }
-                        }
-                    }
-                }
-                &.show-result{
-                    .item{
-                        &.current{
-                            .current-mask{
-                                opacity: 1 !important;
-                            }
-                        }
-                    }
-                }
-            }
-        }
         .m-modal-btn{
+            display: inline-block;
             position: absolute;
             bottom: 1.4rem;
             width: 1.64rem;
@@ -2396,7 +2416,7 @@
         }
         .session-panel{
             position: absolute;
-            z-index: 1;
+            z-index: 20;
             width: 100%;
             height: 100%;
             .nav-block{
@@ -2406,23 +2426,23 @@
                 display: block;
                 .btn{
                     display: inline-block;
-                    font-size: 20px*@size;
+                    font-size: 14px;
                     color: #fff;
                     font-family: 'hytangmeiren';
                     text-align: center;
-                    line-height: 39px*@size;
+                    line-height: 27.3px;
                     text-shadow: #4aaeec 0.1em 0.15em 0.1em;
                 }
                 .exit-btn{
-                    width: 114px*@size;
-                    height: 48px*@size;
+                    width: 79.8px;
+                    height: 33.6px;
                     background-size: 100% 100%;
                 }
                 .home-btn{
                     margin-left: 0rem;
-                    width: 124px*@size;
-                    height: 48px*@size;
-                    padding-left: 25px*@size;
+                    width: 85.8px;
+                    height: 33.6px;
+                    padding-left: 17.5px;
                 }
             }
             .handle-btn-list{
@@ -2430,7 +2450,7 @@
                 position: absolute;
                 width: 100%;
                 left: 0rem;
-                bottom: 0.6rem;
+                bottom: 0.3rem;
                 display: flex;
                 padding: 0rem 0.4rem;
                 .handle-btn{
@@ -2460,7 +2480,7 @@
                 }
                 .m-modal-btn{
                     position: absolute;
-                    bottom: 1.4rem;
+                    bottom: 1.3rem;
                     width: 1.64rem;
                     height: 0.74rem;
                     font-size: 0.32rem;
@@ -2509,7 +2529,7 @@
                 }
             }
         }
-
+        .m-turntable-panel(0.7);
         .block{
             .block-hd{
                 height: 0.64rem;
@@ -2539,6 +2559,7 @@
                         width: 3.6rem;
                         height: 2.09rem;
                         .label{
+                            top:0.06rem;
                             background-size: 100% 100%;
                             width: 1.47rem;
                             height: 0.48rem;
@@ -2546,21 +2567,21 @@
                             line-height: 0.34rem;
                         }
                         .result{
-                            margin: 12px auto 0px auto;
+                            margin: 0.16rem auto 0px auto;
                             background: url("../images/zodiac/result-bg.png");
-                            width: 187px;
-                            height: 42px;
+                            width: 3.6rem;
+                            height: 0.8rem;
                             background-size: 100% 100%;
-                            font-size: 20px;
+                            font-size: 0.32rem;
                             color: #fff;
                             font-family: 'hytangmeiren';
                             text-align: center;
-                            line-height: 32px;
+                            line-height: 0.64rem;
                             text-shadow: -2px 0 #046da4, 0 2px #046da4,
                             2px 0 #046da4, 0 -2px #046da4;
                         }
                         .score{
-                            margin-top: 2px;
+                            margin-top: 0rem;
                             font-family: 'hytangmeiren';
                             font-size: 0.28rem;
                             color: #1085d6;
@@ -2585,7 +2606,6 @@
         }
         .block-modal{
             position: absolute;
-            z-index: 10;
             top:0rem;
             left: -100%;
             transition: left 0.6s;
@@ -2691,12 +2711,29 @@
                     height: 100%;
                     overflow: hidden;
                     margin: 0rem auto;
+                    .m-set-bet-timer{
+                        display: inline-block !important;
+                        position: absolute;
+                        z-index: 1;
+                        left: 0rem;
+                        right: 0rem;
+                        top:0.16rem;
+                        margin: auto;
+                        color: #F56C6C;
+                        font-size: 0.4rem;
+                        width: 0.88rem;
+                        height: 0.88rem;
+                        text-align: center;
+                        line-height: 0.7rem;
+                        /*     background: rgba(0,0,0,0.7);
+                             border-radius: 50%;*/
+                    }
                     .balance{
                      /*   display: flex;
                         align-items: center;*/
                         position: absolute;
                         top:0.14rem;
-                        right: 0.3rem;
+                        right: 0.2rem;
                         background: url("../images/zodiac/m-balance-bg.png") no-repeat;
                         width: 3.18rem;
                         height: 0.76rem;
@@ -2771,6 +2808,7 @@
                 }
             }
             .m-modal-btn{
+                display: inline-block;
                 position: absolute;
                 bottom: 1.4rem;
                 width: 1.64rem;
@@ -2781,6 +2819,7 @@
                 text-shadow: #ec9000 0.05em 0.1em 0.01em;
             }
             .close-btn{
+                display: inline-block !important;
                 top:0.2rem;
                 left: 0rem;
                 background: url("../images/zodiac/m-left-show-modal-btn.png");
@@ -2792,5 +2831,42 @@
                 right: 0rem;
             }
         }
+        .result-modal{
+            .el-dialog{
+                margin-top: 10vh !important;
+                width: 95% !important;
+                .modal-body{
+                    background: url("../images/zodiac/result-modal-body.png") no-repeat;
+                    width: 100%;
+                    height: 5.12rem;
+                    background-size: 100% 100%;
+                    .result-list{
+                        margin: 0px auto;
+                        height: 100%;
+                        border-radius: 30px;
+                        padding: 2px 15px 5px 15px;
+                        .list-hd{
+                            padding: 0px 5px 0px 0px;
+                        }
+                        .list-bd{
+                            height: 81.5%;
+                            overflow: auto;
+                            border-radius: 25px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and(min-width: 375px)and(min-height: 600px){
+    .zodiac-game{
+        .m-turntable-panel(0.78);
+    }
+}
+
+@media screen and(min-width: 380px)and(min-height: 600px){
+    .zodiac-game{
+        .m-turntable-panel(0.85,2);
     }
 }

@@ -375,7 +375,7 @@
                 bus.$emit('refreshSafeAccount');
                 this.account={};
                 Vue.operationFeedback({type:'complete',text:'退出成功'});
-                this.$router.push({name:'home'});
+                this.$router.push({path:'/'});
             },
             getList:function () {
                 let params={

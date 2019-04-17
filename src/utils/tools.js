@@ -182,6 +182,7 @@ export default {
           },
         initAudio:function (id) {
               let audio=document.getElementById(id);
+          /*  console.log('test:',audio);*/
               function play() {
                   audio.play();
               }
@@ -272,6 +273,21 @@ export default {
                 weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
                 qq: u.match(/\sQQ/i) == " qq" //是否QQ
             };
+        },
+        speckText:function (str) {
+        /*    if(!this.getVoiceFlag()){
+                return;
+            }*/
+           /* if(navigator.onLine){
+                var url = "http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=" + encodeURI(str);        // baidu
+                var n = new Audio(url);
+                n.src = url;
+                n.play();
+            }else if('speechSynthesis' in window) {
+                var msg = new SpeechSynthesisUtterance(str);
+                msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == 'Google 普通话（中国大陆）'; })[2];
+                speechSynthesis.speak(msg);
+            }*/
         }
       }
 
