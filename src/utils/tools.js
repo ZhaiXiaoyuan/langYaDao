@@ -203,10 +203,15 @@ export default {
         },
         safeLoginCheck:function (path,next) {
             let safeAccount=this.getSafeAccounInfo();
+            let account=this.getAccountInfo();
             if(path.indexOf('coin')>-1&&!safeAccount.isLogin){
-                Vue.safeLogin({ok:()=>{
-                    next();
-                }});
+                if(account&&!account.phone){
+                    Vue.operationFeedback({type:'warn',text:'您还没绑定手机号，请前往个人中心绑定。'})
+                }else{
+                    Vue.safeLogin({ok:()=>{
+                        next();
+                    }});
+                }
             }else{
                 next();
             }
