@@ -23,6 +23,7 @@
                     <div class="pwd-input">
                         <div class="pwd-input-item">
                             <ul class="input-bg"><li v-for="(item) in 6"></li></ul>
+                           <!-- <input type="password" style="display: none;" />-->
                             <input type="text" v-model="form.password" maxlength="6" autocomplete="off" onfocus="this.type='password'">
                         </div>
                     </div>
@@ -43,7 +44,7 @@
                     </div>
                 </div>
                 <div class="handle">
-                    <el-button class="handle-btn" :class="{'cm-disabled':!form.rePassword||form.rePassword.length<6}" type="primary" @click="save(4)">下一步</el-button>
+                    <el-button class="handle-btn" :class="{'cm-disabled':!form.rePassword||form.rePassword.length<6}" type="primary" @click="save()">下一步</el-button>
                 </div>
             </div>
             <div class="step-4" v-if="step==4">
@@ -68,11 +69,12 @@
     props:{
       options:{
           open:true,
-          type:'normal',//normal、safeBox
+          type:'',//normal、safeBox、bindPhone
       }
     },
     data: function () {
       return {
+          account:{},
           typeText:'',
           form:{
               phone:'',
@@ -101,12 +103,14 @@
                 bizId:this.phoneCodeData.bizId
             }
           if(this.options.type=='normal'){
+              let fb=Vue.operationFeedback({text:'保存中...'});
               Vue.api.updateUserPassword({apiParams:params}).then((resp)=>{
                   if(resp.respCode=='2000'){
+                      fb.setOptions({type:'complete',text:'密码修改成功'});
                       this.setStep(4);
                       this.close();
                   }else{
-                      Vue.operationFeedback({type:"warn",text:resp.respMsg});
+                      fb.setOptions({type:"warn",text:resp.respMsg});
                   }
               });
           }else if(this.options.type=='safeBox'){
@@ -119,6 +123,29 @@
                       },1000);
                   }else{
                       Vue.operationFeedback({type:"warn",text:resp.respMsg});
+                  }
+              });
+          }else if(this.options.type=='bindPhone'){
+              let params={
+                  ...this.form,
+                  phoneNumber:this.form.phone,
+                  verifyCode:this.form.code,
+                  password:this.form.password,
+                  bizId:this.phoneCodeData.bizId
+              }
+              let fb=Vue.operationFeedback({text:'绑定中...'});
+              Vue.api.updateUserPhone({apiParams:params}).then((resp)=>{
+                  if(resp.respCode=='2000'){
+                      this.account=Vue.getAccountInfo();
+                      this.account.phone=this.form.phone;
+                      this.$cookie.set('account',JSON.stringify(this.account),7);
+                      bus.$emit('refreshAccount');
+                      this.options.ok&&this.options.ok();
+                      fb.setOptions({type:'complete',text:'绑定成功'});
+                      this.setStep(4);
+                      this.close();
+                  }else{
+                      fb.setOptions({type:"warn",text:resp.respMsg});
                   }
               });
           }
@@ -156,6 +183,7 @@
     },
     mounted: function () {
         //
+        this.options.type=this.options.type?this.options.type:'normal';
         if(this.options.type=='normal'){
             this.typeText='';
         }else if(this.options.type=='safeBox'){

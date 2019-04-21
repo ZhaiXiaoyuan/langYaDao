@@ -71,7 +71,8 @@
           }
           Vue.api.safeBoxLogin({apiParams:params}).then((resp)=>{
               if(resp.respCode=='2000'){
-                  let data=JSON.parse(resp.respMsg);
+                 /* let data=JSON.parse(resp.respMsg);*/
+                  let data={isLogin:true};
                   this.$cookie.set('safeAccount',JSON.stringify(data),7);
                   bus.$emit('refreshSafeAccount');
                   //

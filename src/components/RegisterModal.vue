@@ -26,7 +26,7 @@
                     <span class="label">绑定微信：</span>
                     <div class="value" v-if="!wetchatInfo.id">
                         <div class="img-box">
-                            <qrcode :value="qrCodeDomain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_userinfo'" tag="img" :options="{ width: 110 }"></qrcode>
+                            <qrcode :value="qrCodeDomain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_userinfo&redirectUrl='+redirectUrl" tag="img" :options="{ width: 110 }"></qrcode>
                         </div>
                         <p class="tips">{{version.weixin?'长按识别二维码':'打开微信扫一扫'}}</p>
                     </div>
@@ -68,6 +68,7 @@
           wetchatInfo:{},
           getWetchatInfoInterval:null,
           version:Vue.tools.browserVersions(),
+          redirectUrl:encodeURI(window.location.origin+'/scanTips'),
       }
     },
     computed: {},
@@ -163,8 +164,6 @@
             },3000);
         }
 
-        //临时测试
-        console.log('test:',this.version);
     },
     beforeDestroy:function () {
         clearInterval(this.getWetchatInfoInterval);

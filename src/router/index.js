@@ -5,6 +5,11 @@ Vue.use(Router);
 
 const routes= [
     {
+        path: '*',
+     /*   name:'404',*/
+        component: resolve => require(['../page/tips/404.vue'], resolve),
+    },
+    {
         path: '/',
         name:'home',
         component: resolve => require(['../page/Home.vue'], resolve),
@@ -64,14 +69,15 @@ const routes= [
         component: resolve => require(['../page/activity/Draw.vue'], resolve)
     },
     {
-        path: '/scanTips',
+        path: '/scanTips/:type?',
         name:'scanTips',
         component: resolve => require(['../page/tips/ScanTips.vue'], resolve)
     },
 ]
 const router= new Router({
     routes:routes,
-    /*  mode: 'history',*/
+    mode: 'history',
+    base:'/web'
     /* scrollBehavior: function (to, from, savedPosition) {
      return savedPosition || { x: 0, y: 0 }
      }*/

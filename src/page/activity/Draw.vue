@@ -177,7 +177,7 @@
                 });
             },
             getUserInfo:function () {
-                Vue.api.getUserInfo({apiParams:{id:this.account.phone,type:'phone'}}).then((resp)=>{
+                Vue.api.getUserInfo({apiParams:{id:this.account.id,type:'id'}}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
                         this.account={...this.account,...data.user};

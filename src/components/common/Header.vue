@@ -21,10 +21,10 @@
                                 您收到来自{{msg.buyerName}}（{{msg.giftMessage.buyer}}）的礼物 {{msg.giftName}}×{{msg.giftMessage.count}} ，点击消息到我的礼物查收
                             </div>
                         </li>
-                        <li v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true});showMenu=!showMenu;">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true});showMenu=!showMenu;">登录</span></li>
+                        <li class="account-btn" v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true});showMenu=!showMenu;">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true});showMenu=!showMenu;">登录</span></li>
                         <li class="account-info" v-if="account.id">
                             <div class="wrap" @click="go({name:'userInfo',params:{type:'user'}})">
-                                <img :src="account.headPic?basicConfig.imgBasicUrl+account.headPic:defaultAvatar" alt="">
+                                <img :src="account.headPic?account.headPic:defaultAvatar" alt="">
                                 <span tag="span">{{account.name}}</span>
                                 <span class="cmb-tn logout-btn" @click="logout();showMenu=!showMenu;">退出</span>
                             </div>
@@ -88,11 +88,11 @@
             position: relative;
             float: right;
             display: inline-block;
-            height: 100%;
+            height: 60px;
             >li{
                 display: inline-block;
                 height: 100%;
-                line-height: 60px;
+                line-height: 56px;
                 margin-left: 12px;
                 font-size: 14px;
                 color: #000;
@@ -148,11 +148,19 @@
                         left: 0px;
                         bottom: 0px;
                         margin: auto;
+                        border-radius: 50%;
                     }
                     .logout-btn{
                         margin-left: 5px;
                         text-decoration: underline;
                     }
+                }
+                &.account-btn{
+                    position: relative;
+                    top:1px;
+                    font-size: 18px;
+                    color: #0facff;
+                    font-family: 'hytangmeiren';
                 }
             }
             &:before{
@@ -237,6 +245,7 @@
                 .fun-nav-list{
                     float: none;
                     width: 100%;
+                    height: 1.2rem;
                     >li{
                         display: block;
                         height: auto;
@@ -395,6 +404,8 @@
                         }else{
                             this.msg={};
                         }
+                    }else if(resp.respCode=='4001'){
+                        clearInterval(this.getMsgInterval);
                     }
                 });
             },
@@ -415,18 +426,19 @@
                     this.getList();
                 },5000);
             }else{
-                /*刷新用户信息*/
-                bus.$on('refreshAccount', () => {
-                    this.account=Vue.getAccountInfo();
-                    clearInterval(this.getMsgInterval);
-                    console.log('dddd:',this.getMsgInterval);
-                    if(this.account.id&&!this.getMsgInterval){
-                        this.getMsgInterval=setInterval(()=>{
-                            this.getList();
-                        },5000);
-                    }
-                });
+
             }
+            /*刷新用户信息*/
+            bus.$on('refreshAccount', () => {
+                this.account=Vue.getAccountInfo();
+                clearInterval(this.getMsgInterval);
+                console.log('dddd:',this.getMsgInterval);
+                if(this.account.id&&!this.getMsgInterval){
+                    this.getMsgInterval=setInterval(()=>{
+                        this.getList();
+                    },5000);
+                }
+            });
         },
         beforeDestroy:function () {
             clearInterval(this.getMsgInterval);

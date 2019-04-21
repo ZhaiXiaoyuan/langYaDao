@@ -43,13 +43,21 @@ export default {
         let res = await Vue.http.post(options.url, options.params,);
         let body={};
         if(typeof res.body == 'string'){
-            body= JSON.parse(res.body);
+            try{
+                body= JSON.parse(res.body);
+            }catch(e){
+
+            }
         }else{
             body=res.body;
+        }
+        if(body.respCode=='4001'){
+            Vue.tools.clearAccount();
         }
         return body
       }
     }
+
 
     /**/
     //临时测试
@@ -110,6 +118,22 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/user/safeBoxLogin',
+                params: params
+            });
+        },
+        //改绑手机
+        updateUserPhone:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/updateUserPhone',
+                params: params
+            });
+        },
+        //改绑微信
+        updateUserOpenId:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/user/updateUserOpenId',
                 params: params
             });
         },
@@ -290,11 +314,11 @@ export default {
                 params: params
             });
         },
-        //微信授权
-        getWeixinCode:function (params) {
+        //微信登录
+        weixinLogin:function (params) {
             return Vue.http.ajax({
-                method: 'get',
-                url: basicUrl+'/weixin/getWeixinCode?state='+params.state+'&scope='+params.scope,
+                method: 'post',
+                url: basicUrl+'/user/weixinLogin',
                 params: params
             });
         },

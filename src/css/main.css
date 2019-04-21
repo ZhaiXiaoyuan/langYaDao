@@ -623,7 +623,7 @@ body {
     padding: 0.3rem 0.2rem 0.3rem 0.2rem;
   }
   .register-modal .el-dialog .el-dialog__body {
-    padding: 0rem 0.3rem 0rem 0.3rem;
+    padding: 0rem 0.2rem 0rem 0.2rem;
   }
   .register-modal .el-dialog .modal-body {
     padding-top: 0.2rem;
@@ -652,7 +652,14 @@ body {
     margin-top: 0.1rem;
   }
   .register-modal .el-dialog .form .submit-btn {
+    margin-top: 0.3rem;
+  }
+  .register-modal .el-dialog .form .switch {
     margin-top: 0.4rem;
+  }
+  .register-modal .el-dialog .form .switch .switch-btn {
+    padding: 0rem 0.12rem;
+    font-size: 0.28rem;
   }
   .login-modal .el-dialog {
     margin-top: 10vh !important;
@@ -1675,7 +1682,7 @@ body {
   background: url("../images/zodiac/waiting-icon.png") no-repeat;
   width: 120px;
   height: 46px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .result-block .block-bd .session-list li + li {
   margin-top: 8px;
@@ -1690,7 +1697,7 @@ body {
   background: url("../images/zodiac/coin-icon.png") no-repeat;
   width: 24px;
   height: 21px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .coin-item {
   position: absolute;
@@ -1710,121 +1717,121 @@ body {
   background: url("../images/zodiac/mouse-icon.png") no-repeat;
   width: 128px;
   height: 185px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .cow-icon {
   background: url("../images/zodiac/cow-icon.png") no-repeat;
   width: 221px;
   height: 197px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .tiger-icon {
   background: url("../images/zodiac/tiger-icon.png") no-repeat;
   width: 183px;
   height: 213px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .rabbit-icon {
   background: url("../images/zodiac/rabbit-icon.png") no-repeat;
   width: 186px;
   height: 223px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .dragon-icon {
   background: url("../images/zodiac/dragon-icon.png") no-repeat;
   width: 192px;
   height: 198px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .snake-icon {
   background: url("../images/zodiac/snake-icon.png") no-repeat;
   width: 153px;
   height: 220px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .horse-icon {
   background: url("../images/zodiac/horse-icon.png") no-repeat;
   width: 161px;
   height: 195px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .sheep-icon {
   background: url("../images/zodiac/sheep-icon.png") no-repeat;
   width: 173px;
   height: 206px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .monkey-icon {
   background: url("../images/zodiac/monkey-icon.png") no-repeat;
   width: 204px;
   height: 185px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .chicken-icon {
   background: url("../images/zodiac/chicken-icon.png") no-repeat;
   width: 181px;
   height: 200px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .dog-icon {
   background: url("../images/zodiac/dog-icon.png") no-repeat;
   width: 189px;
   height: 192px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .pig-icon {
   background: url("../images/zodiac/pig-icon.png") no-repeat;
   width: 171px;
   height: 171px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .turtle-icon {
   background: url("../images/zodiac/turtle-icon.png") no-repeat;
   width: 62px;
   height: 64px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .kirin-icon {
   background: url("../images/zodiac/kirin-icon.png") no-repeat;
   width: 83px;
   height: 62px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .phoenix-icon {
   background: url("../images/zodiac/phoenix-icon.png") no-repeat;
   width: 105px;
   height: 76px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .pixiu-icon {
   background: url("../images/zodiac/pixiu-icon.png") no-repeat;
   width: 75px;
   height: 66px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .turtle-min-icon {
   background: url("../images/zodiac/turtle-min-icon.png") no-repeat;
   width: 43px;
   height: 41px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .kirin-min-icon {
   background: url("../images/zodiac/kirin-min-icon.png") no-repeat;
   width: 50px;
   height: 37px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .phoenix-min-icon {
   background: url("../images/zodiac/phoenix-min-icon.png") no-repeat;
   width: 50px;
   height: 43px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .pixiu-min-icon {
   background: url("../images/zodiac/pixiu-min-icon.png") no-repeat;
   width: 45px;
   height: 45px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .turntable-panel {
   position: relative;
@@ -1954,7 +1961,7 @@ body {
   background: url("../images/zodiac/current-outside-item.png") no-repeat;
   width: 140.4px;
   height: 91px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .turntable-panel .table-block .outside-layer .item .icon {
   z-index: 2;
@@ -2174,7 +2181,7 @@ body {
   background: url("../images/zodiac/current-middle-item.png") no-repeat;
   width: 274.3px;
   height: 124.8px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .turntable-panel .table-block .middle-layer .item .icon {
   z-index: 2;
@@ -2317,7 +2324,7 @@ body {
   background: url("../images/zodiac/current-inside-item.png") no-repeat;
   width: 46.8px;
   height: 29.9px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .turntable-panel .table-block .inside-layer .item .icon {
   z-index: 2;
@@ -2423,7 +2430,7 @@ body {
   background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
   width: 585px;
   height: 192.4px;
-  background-size: 100%;
+  background-size: 100% 100%;
   text-align: center;
   font-family: 'hytangmeiren';
   text-shadow: -3px 0 #225599, 0 3px #225599, 3px 0 #225599, 0 -3px #225599;
@@ -2556,7 +2563,7 @@ body {
   background: url("../images/zodiac/radiation-icon.png") no-repeat;
   width: 440.7px;
   height: 440.7px;
-  background-size: 100%;
+  background-size: 100% 100%;
   -webkit-animation: light-ani 20s infinite;
           animation: light-ani 20s infinite;
 }
@@ -2571,7 +2578,7 @@ body {
   background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
   width: 465.4px;
   height: 465.4px;
-  background-size: 100%;
+  background-size: 100% 100%;
   -webkit-animation: circle-ani 3s infinite;
           animation: circle-ani 3s infinite;
 }
@@ -2615,7 +2622,7 @@ body {
   background: url("../images/zodiac/middle-result-bg.png") no-repeat;
   width: 75.4px;
   height: 75.4px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .turntable-panel .table-block .result-layer .result-items .middle-result-item .icon {
   position: absolute;
@@ -2709,7 +2716,7 @@ body {
   background: url("../images/zodiac/choice.png") no-repeat;
   width: 74px;
   height: 32px;
-  background-size: 100%;
+  background-size: 100% 100%;
   margin: 2px 5px;
   color: #fff;
   font-family: 'hytangmeiren';
@@ -2739,7 +2746,7 @@ body {
   background: url("../images/zodiac/outside-option-item-bg.png") no-repeat;
   width: 82px;
   height: 56px;
-  background-size: 100%;
+  background-size: 100% 100%;
   overflow: hidden;
   margin: 0.5px 3px;
   text-align: left;
@@ -2962,7 +2969,7 @@ body {
   font-family: 'hytangmeiren';
   text-align: center;
   line-height: 42px;
-  background-size: 100%;
+  background-size: 100% 100%;
   text-shadow: #9557f7 0.05em 0.12em 0.01em;
 }
 .zodiac-game .data-panel {
@@ -3017,7 +3024,7 @@ body {
   background: url("../images/zodiac/player-block-bg.png") no-repeat;
   width: 256px;
   height: 274px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .data-panel .player-block .block-hd {
   padding: 0px 5px;
@@ -3033,7 +3040,7 @@ body {
   background: url("../images/zodiac/host-block-bg.png") no-repeat;
   width: 256px;
   height: 202px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .data-panel .host-block .block-bd {
   margin: 0px auto;
@@ -3052,7 +3059,7 @@ body {
   background: url("../images/zodiac/personal-block-bg.png") no-repeat;
   width: 256px;
   height: 142px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .data-panel .personal-block .block-bd {
   font-family: 'hytangmeiren';
@@ -3084,7 +3091,7 @@ body {
   background: url("../images/zodiac/result-modal-header.png") no-repeat;
   width: 291px;
   height: 71px;
-  background-size: 100%;
+  background-size: 100% 100%;
   text-align: center;
   line-height: 39px;
   color: #fff;
@@ -3099,7 +3106,7 @@ body {
   background: url("../images/zodiac/close-btn.png") no-repeat;
   width: 36px;
   height: 36px;
-  background-size: 100%;
+  background-size: 100% 100%;
 }
 .zodiac-game .result-modal .el-dialog .modal-body {
   background: url("../images/zodiac/result-modal-body.png") no-repeat;
@@ -3165,7 +3172,7 @@ body {
   background: url("../images/zodiac/result-modal-handle-btn.png") no-repeat;
   width: 124px;
   height: 38px;
-  background-size: 100%;
+  background-size: 100% 100%;
   color: #e28000;
   font-size: 18px;
   line-height: 28px;
@@ -3762,25 +3769,25 @@ body {
     background: url("../images/zodiac/m-turtle-icon.png") no-repeat;
     width: 0.86rem;
     height: 0.89rem;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .kirin-icon {
     background: url("../images/zodiac/m-kirin-icon.png") no-repeat;
     width: 1.15rem;
     height: 0.87rem;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .phoenix-icon {
     background: url("../images/zodiac/m-phoenix-icon.png") no-repeat;
     width: 1.66rem;
     height: 1.19rem;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .pixiu-icon {
     background: url("../images/zodiac/m-pixiu-icon.png") no-repeat;
     width: 1.06rem;
     height: 0.93rem;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .m-modal-btn {
     display: inline-block;
@@ -4048,7 +4055,7 @@ body {
     background: url("../images/zodiac/current-outside-item.png") no-repeat;
     width: 75.6px;
     height: 49px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .outside-layer .item .icon {
     z-index: 2;
@@ -4268,7 +4275,7 @@ body {
     background: url("../images/zodiac/current-middle-item.png") no-repeat;
     width: 147.7px;
     height: 67.2px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .middle-layer .item .icon {
     z-index: 2;
@@ -4411,7 +4418,7 @@ body {
     background: url("../images/zodiac/current-inside-item.png") no-repeat;
     width: 25.2px;
     height: 16.1px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .inside-layer .item .icon {
     z-index: 2;
@@ -4517,7 +4524,7 @@ body {
     background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
     width: 315px;
     height: 103.6px;
-    background-size: 100%;
+    background-size: 100% 100%;
     text-align: center;
     font-family: 'hytangmeiren';
     text-shadow: -3px 0 #225599, 0 3px #225599, 3px 0 #225599, 0 -3px #225599;
@@ -4650,7 +4657,7 @@ body {
     background: url("../images/zodiac/radiation-icon.png") no-repeat;
     width: 237.3px;
     height: 237.3px;
-    background-size: 100%;
+    background-size: 100% 100%;
     -webkit-animation: light-ani 20s infinite;
             animation: light-ani 20s infinite;
   }
@@ -4665,7 +4672,7 @@ body {
     background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
     width: 250.6px;
     height: 250.6px;
-    background-size: 100%;
+    background-size: 100% 100%;
     -webkit-animation: circle-ani 3s infinite;
             animation: circle-ani 3s infinite;
   }
@@ -4709,7 +4716,7 @@ body {
     background: url("../images/zodiac/middle-result-bg.png") no-repeat;
     width: 40.6px;
     height: 40.6px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .result-layer .result-items .middle-result-item .icon {
     position: absolute;
@@ -4824,7 +4831,7 @@ body {
     background: url("../images/zodiac/waiting-icon.png") no-repeat;
     width: 1.92rem;
     height: 0.73rem;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .result-block .block-bd .session-list li + li {
     margin-top: 8px;
@@ -5076,7 +5083,7 @@ body {
     border-radius: 25px;
   }
 }
-@media screen and (min-width: 375px) and (min-height: 600px) {
+@media screen and (min-width: 375px) and (max-width: 1000px) and (min-height: 600px) {
   .zodiac-game .turntable-panel {
     position: absolute;
     z-index: 0;
@@ -5214,7 +5221,7 @@ body {
     background: url("../images/zodiac/current-outside-item.png") no-repeat;
     width: 84.24px;
     height: 54.6px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .outside-layer .item .icon {
     z-index: 2;
@@ -5434,7 +5441,7 @@ body {
     background: url("../images/zodiac/current-middle-item.png") no-repeat;
     width: 164.58px;
     height: 74.88px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .middle-layer .item .icon {
     z-index: 2;
@@ -5577,7 +5584,7 @@ body {
     background: url("../images/zodiac/current-inside-item.png") no-repeat;
     width: 28.08px;
     height: 17.94px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .inside-layer .item .icon {
     z-index: 2;
@@ -5683,7 +5690,7 @@ body {
     background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
     width: 351px;
     height: 115.44px;
-    background-size: 100%;
+    background-size: 100% 100%;
     text-align: center;
     font-family: 'hytangmeiren';
     text-shadow: -3px 0 #225599, 0 3px #225599, 3px 0 #225599, 0 -3px #225599;
@@ -5816,7 +5823,7 @@ body {
     background: url("../images/zodiac/radiation-icon.png") no-repeat;
     width: 264.42px;
     height: 264.42px;
-    background-size: 100%;
+    background-size: 100% 100%;
     -webkit-animation: light-ani 20s infinite;
             animation: light-ani 20s infinite;
   }
@@ -5831,7 +5838,7 @@ body {
     background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
     width: 279.24px;
     height: 279.24px;
-    background-size: 100%;
+    background-size: 100% 100%;
     -webkit-animation: circle-ani 3s infinite;
             animation: circle-ani 3s infinite;
   }
@@ -5875,7 +5882,7 @@ body {
     background: url("../images/zodiac/middle-result-bg.png") no-repeat;
     width: 45.24px;
     height: 45.24px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .result-layer .result-items .middle-result-item .icon {
     position: absolute;
@@ -5925,7 +5932,7 @@ body {
     opacity: 1 !important;
   }
 }
-@media screen and (min-width: 380px) and (min-height: 600px) {
+@media screen and (min-width: 380px) and (max-width: 1000px) and (min-height: 600px) {
   .zodiac-game .turntable-panel {
     position: absolute;
     z-index: 0;
@@ -6063,7 +6070,7 @@ body {
     background: url("../images/zodiac/current-outside-item.png") no-repeat;
     width: 91.8px;
     height: 59.5px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .outside-layer .item .icon {
     z-index: 2;
@@ -6283,7 +6290,7 @@ body {
     background: url("../images/zodiac/current-middle-item.png") no-repeat;
     width: 179.35px;
     height: 81.6px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .middle-layer .item .icon {
     z-index: 2;
@@ -6426,7 +6433,7 @@ body {
     background: url("../images/zodiac/current-inside-item.png") no-repeat;
     width: 30.6px;
     height: 19.55px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .inside-layer .item .icon {
     z-index: 2;
@@ -6532,7 +6539,7 @@ body {
     background: url("../images/zodiac/tips-layer-bg.png") no-repeat;
     width: 382.5px;
     height: 125.8px;
-    background-size: 100%;
+    background-size: 100% 100%;
     text-align: center;
     font-family: 'hytangmeiren';
     text-shadow: -3px 0 #225599, 0 3px #225599, 3px 0 #225599, 0 -3px #225599;
@@ -6665,7 +6672,7 @@ body {
     background: url("../images/zodiac/radiation-icon.png") no-repeat;
     width: 288.15px;
     height: 288.15px;
-    background-size: 100%;
+    background-size: 100% 100%;
     -webkit-animation: light-ani 20s infinite;
             animation: light-ani 20s infinite;
   }
@@ -6680,7 +6687,7 @@ body {
     background: url("../images/zodiac/fuzzy-icon.png") no-repeat;
     width: 304.3px;
     height: 304.3px;
-    background-size: 100%;
+    background-size: 100% 100%;
     -webkit-animation: circle-ani 3s infinite;
             animation: circle-ani 3s infinite;
   }
@@ -6724,7 +6731,7 @@ body {
     background: url("../images/zodiac/middle-result-bg.png") no-repeat;
     width: 49.3px;
     height: 49.3px;
-    background-size: 100%;
+    background-size: 100% 100%;
   }
   .zodiac-game .turntable-panel .table-block .result-layer .result-items .middle-result-item .icon {
     position: absolute;

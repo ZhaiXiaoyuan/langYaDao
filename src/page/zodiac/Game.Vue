@@ -6,7 +6,7 @@
                 <div class="nav-block">
                     <span class="cm-btn btn exit-btn" v-if="type=='player'" @click="exitRoom(true)">退出房间</span>
                     <span class="cm-btn btn exit-btn" v-if="type=='host'" @click="quit(true)">退出房间</span>
-                    <span class="cm-btn btn home-btn" @click="loadVoiceFlag=true;">{{roomLevel}}</span>
+                    <span class="cm-btn btn home-btn">{{roomLevel}}</span>
                 </div>
                 <div class="block result-block block-modal" :class="{'active':blockModalType=='result'}">
                     <div class="block-hd"><p class="title">战绩专区</p></div>
@@ -566,6 +566,12 @@
         <audio id="set-bet-audio" :src="setBetVoice"  v-if="loadVoiceFlag">
             您的浏览器不支持 audio 标签。
         </audio>
+        <audio id="preset-tips-audio" :src="presetTipsVoice" v-if="loadVoiceFlag">
+            您的浏览器不支持 audio 标签。
+        </audio>
+        <audio id="set-bet-tips-audio" :src="setBetTipsVoice" v-if="loadVoiceFlag">
+            您的浏览器不支持 audio 标签。
+        </audio>
         <audio id="game-audio" :src="gameVoice" autoplay loop="true">
             您的浏览器不支持 audio 标签。
         </audio>
@@ -858,6 +864,11 @@
                 setBetAudio:null,
                 gameVoice:require('../../voice/game.mp3'),
                 gameAudio:null,
+                presetTipsVoice:require('../../voice/preset-tips.mp3'),
+                presetTipsAudio:null,
+                setBetTipsVoice:require('../../voice/set-bet-tips.mp3'),
+                setBetTipsAudio:null,
+                runningAudios:[],
 
                 defaultAvatar:require('../../images/common/default-avatar.png'),
             }
@@ -967,14 +978,14 @@
                     this.type='host';
                     if(!this.autoShowModal&&this.deskInfo.deskState=='bankerSetting'){
                         this.blockModal('preset');
-                        this.speckText('请预设结果');
+                        this.presetTipsAudio&&this.presetTipsAudio.play();
                         this.autoShowModal=true;
                     }
                 }else{
                     this.type='player';
                     if(!this.autoShowModal&&this.deskInfo.deskState=='countdown'){
                         this.blockModal('setBet');
-                        this.speckText('请下注');
+                        this.setBetTipsAudio&&this.setBetTipsAudio.play();
                         this.autoShowModal=true;
                     }
                 }
@@ -1280,7 +1291,22 @@
 
                 //
                 this.gameAudio=this.initAudio('game-audio');
-                this.autoPlayAudio(this.gameAudio);
+                this.gameAudio.setVolume(0.7);
+                let voiceFlag=this.getVoiceFlag();
+                this.gameAudio.setMuted(voiceFlag);
+
+                if(!this.version.mobile){
+                    //自动初始化异步操作的音频
+                    this.initAsynVoice();
+                }else if(this.version.weixin){
+                    //微信端音频自动播放
+                    this.autoPlayAudio(this.gameAudio);
+                }
+                bus.$on('refreshVoiceFlag', () => {
+                    voiceFlag=this.getVoiceFlag();
+                    this.gameAudio.setMuted(voiceFlag);
+                    this.aysnVoiceFlagHandle(voiceFlag);
+                });
                 //
                 this.roomLevel=this.$route.query.roomLevel;
                 if(this.$route.params.type){
@@ -1352,37 +1378,30 @@
                     this.failAudio=this.initAudio('fail-audio');
                     this.collectionAudio=this.initAudio('collection-audio');
                     this.setBetAudio=this.initAudio('set-bet-audio');
-                    let voiceFlag=this.getVoiceFlag();
-                    let runningAudios=document.getElementsByClassName('running-audio');
-                    for(let i=0;i<runningAudios.length;i++){
-                        runningAudios[i].playbackRate=1.5;
-                        runningAudios[i].muted=!voiceFlag;
+                    this.presetTipsAudio=this.initAudio('preset-tips-audio');
+                    this.setBetTipsAudio=this.initAudio('set-bet-tips-audio');
+                    this.runningAudios=document.getElementsByClassName('running-audio');
+                    for(let i=0;i<this.runningAudios.length;i++){
+                        this.runningAudios[i].playbackRate=1.5;
                     }
-                    this.successAudio.setMuted(voiceFlag);
-                    this.failAudio.setMuted(voiceFlag);
-                    this.collectionAudio.setMuted(voiceFlag);
-                    this.setBetAudio.setMuted(voiceFlag);
-                 /*   this.gameAudio.setMuted(voiceFlag);*/
-                    bus.$on('refreshVoiceFlag', () => {
-                        voiceFlag=this.getVoiceFlag();
-                        this.successAudio.setMuted(voiceFlag);
-                        this.failAudio.setMuted(voiceFlag);
-                        this.collectionAudio.setMuted(voiceFlag);
-                        this.setBetAudio.setMuted(voiceFlag);
-                   /*     this.gameAudio.setMuted(voiceFlag);*/
-                        for(let i=0;i<runningAudios.length;i++){
-                            runningAudios[i].muted=!voiceFlag;
-                        }
-                    });
-                },1000);
+                    this.aysnVoiceFlagHandle(this.getVoiceFlag());
+                },1000)
+            },
+            aysnVoiceFlagHandle:function (flag) {
+                if(!this.loadVoiceFlag){
+                    return;
+                }
+                this.successAudio.setMuted(flag);
+                this.failAudio.setMuted(flag);
+                this.collectionAudio.setMuted(flag);
+                this.setBetAudio.setMuted(flag);
+                this.presetTipsAudio.setMuted(flag);
+                this.setBetTipsAudio.setMuted(flag);
+                for(let i=0;i<this.runningAudios.length;i++){
+                    this.runningAudios[i].muted=!flag;
+                }
             },
             autoPlayAudio:function (audio) {
-                let voiceFlag=this.getVoiceFlag();
-                audio.setMuted(voiceFlag);
-                bus.$on('refreshVoiceFlag', () => {
-                    voiceFlag=this.getVoiceFlag();
-                    audio.setMuted(voiceFlag);
-                });
                 if (window.WeixinJSBridge) {
                     WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                         audio.play();

@@ -5,6 +5,7 @@
 import Vue from 'vue'
 import router from '../router'
 import md5 from 'js-md5'
+import bus from '../components/common/bus';
 
 export default {
     install: function (Vue, options) {
@@ -195,11 +196,14 @@ export default {
               function setMuted(flag) {
                   audio.muted=!flag
               }
-              return{play,pause,setSpeed,setMuted}
+              function setVolume (value) {
+                  audio.volume = value;
+              }
+              return{play,pause,setSpeed,setMuted,setVolume}
         },
         safeLoginCheck:function (path,next) {
             let safeAccount=this.getSafeAccounInfo();
-            if(path.indexOf('coin')>-1&&!safeAccount.token){
+            if(path.indexOf('coin')>-1&&!safeAccount.isLogin){
                 Vue.safeLogin({ok:()=>{
                     next();
                 }});
@@ -216,6 +220,16 @@ export default {
                 }});
             }else{
                 this.safeLoginCheck(path,next);
+            }
+        },
+        clearAccount:function () {
+            let account=this.getAccountInfo();
+            if(account){
+                Vue.cookie.set('account','');
+                bus.$emit('refreshAccount');
+                Vue.cookie.set('safeAccount','');
+                bus.$emit('refreshSafeAccount');
+                router.push({path:'/'});
             }
         },
         weixinCheck:function () {

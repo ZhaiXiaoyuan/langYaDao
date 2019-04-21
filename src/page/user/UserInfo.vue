@@ -18,12 +18,16 @@
            </div>
            <div class="info-row">
                <span class="label">注册手机：</span>
-               <div class="value">{{form.phone}}</div>
+               <div class="value">
+                   <span>{{form.phone}}</span>
+                   <span class="cm-btn link-btn" v-if="!form.phone" @click="bindPhone()">去绑定</span>
+                   <span class="cm-btn link-btn" v-if="form.phone" @click="bindPhone()">（改绑）</span>
+               </div>
            </div>
            <div class="info-row">
                <span class="label">绑定微信：</span>
-               <div class="value" v-if="account.wechatBind=='false'">未绑定<span class="cm-btn link-btn">（去绑定）</span></div>
-               <div class="value" v-if="account.wechatBind!='false'">已绑定</div>
+               <div class="value" v-if="account.wechatBind=='false'">未绑定<span class="cm-btn link-btn" v-if="!version.mobile||(version.mobile&&version.weixin)">（去绑定）</span></div>
+               <div class="value" v-if="account.wechatBind!='false'">已绑定<span class="cm-btn link-btn" @click="wechatAccountHandle('UNBIND')" v-if="form.phone&&(!version.mobile||(version.mobile&&version.weixin))">（解绑）</span></div>
            </div>
            <div class="info-row">
                <span class="label">个性签名：</span>
@@ -54,11 +58,12 @@
                 account:{},
                 form:{},
                 vipInfo:{},
+                version:Vue.tools.browserVersions(),
             }
         },
         methods: {
             getUserInfo:function () {
-                Vue.api.getUserInfo({apiParams:{id:this.account.phone,type:'phone'}}).then((resp)=>{
+                Vue.api.getUserInfo({apiParams:{id:this.account.id,type:'id'}}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
                         this.account={...this.account,...data.user,wechatBind:data.wechatBind};
@@ -104,10 +109,43 @@
                     }
                 });
             },
+            bindPhone:function () {
+                this.forget({type:'bindPhone',ok:()=>{
+                    this.getUserInfo();
+                }});
+            },
+            //UNBIND:解绑
+            wechatAccountHandle:function (type) {
+                if(type=='UNBIND'){
+                    this.$confirm('确定解绑该微信？', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warn '
+                    }).then(() => {
+                        let params={
+                            openId:type
+                        }
+                        let fb=Vue.operationFeedback({text:'解绑中...'});
+                        Vue.api.updateUserOpenId({apiParams:params}).then((resp)=>{
+                            if(resp.respCode=='2000'){
+                                this.account.wechatBind='false';
+                                this.$cookie.set('account',JSON.stringify(this.account),7);
+                                bus.$emit('refreshAccount');
+                                fb.setOptions({type:'complete',text:'解绑成功'});
+                            }else{
+                                fb.setOptions({type:"warn",text:resp.respMsg});
+                            }
+                        });
+                    }).catch(() => {
+
+                    });
+                }
+            }
         },
         mounted () {
             //
             this.account=Vue.getAccountInfo();
+            console.log('test:',this.account);
             //
             this.getUserInfo();
         },
