@@ -160,6 +160,7 @@
                   this.$cookie.set('account',JSON.stringify(data.user),7);
                   bus.$emit('refreshAccount');
                   fb.setOptions({type:"complete",text:'登录成功'});
+                  //
                   this.options.ok&&this.options.ok();
                   //
                   this.close();

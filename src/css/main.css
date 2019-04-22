@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 * {
   box-sizing: border-box;
@@ -452,6 +453,12 @@ body {
 .forget-modal .el-dialog .modal-body .handle .handle-btn {
   padding-left: 20px;
   padding-right: 20px;
+}
+.forget-modal .el-dialog .modal-body .step-1 .bind-tips {
+  padding-bottom: 10px;
+  text-align: center;
+  color: #F56C6C;
+  font-size: 14px;
 }
 .forget-modal .el-dialog .modal-body .step-1 .form {
   width: 95%;
@@ -3883,7 +3890,7 @@ body {
     display: none;
   }
   .zodiac-game .session-panel .handle-btn-list .m-result-modal-btn {
-    left: 0rem;
+    left: -0.04rem;
     background: url("../images/zodiac/m-left-show-modal-btn.png") no-repeat;
     background-size: 100% 100%;
     padding-left: 0.16rem;
@@ -3891,7 +3898,7 @@ body {
   .zodiac-game .session-panel .handle-btn-list .m-set-bet-modal-btn {
     background: url("../images/zodiac/m-right-show-modal-btn.png") no-repeat;
     background-size: 100% 100%;
-    right: 0rem;
+    right: -0.04rem;
     padding-right: 0.16rem;
   }
   .zodiac-game .session-panel .sub-handle-btn-list {
@@ -4938,7 +4945,7 @@ body {
   .zodiac-game .m-set-bet-modal .bet-block .block-bd {
     background: url("../images/zodiac/m-set-bet-block-bd-bg.png") no-repeat;
     background-size: 100% 100%;
-    width: 5.92rem;
+    width: 6.2rem;
     height: 100%;
     overflow: hidden;
     margin: 0rem auto;

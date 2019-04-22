@@ -36,13 +36,13 @@
                     </span>
                 </div>
                 <div class="handle-btn-list">
-                    <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
-                    <span class="cm-btn handle-btn apply-btn m-apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
-                    <span class="cm-btn handle-btn apply-btn m-player-btn" @click="blockModal('data')">玩家信息</span>
-                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-result-modal-btn" @click="blockModal('result')"><span class="pc-text">战绩专区</span><span class="m-text">战绩区</span></span>
-                    <span class="cm-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
-                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='player'" @click="blockModal('setBet')">竞猜区</span>
-                    <span class="cm-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='host'" @click="blockModal('setBet')">预设区</span>
+                    <span class="cm-btn cm-scale-btn handle-btn apply-btn m-apply-btn" v-if="type=='player'" @click="applyToHost()">申请成为擂主</span>
+                    <span class="cm-btn cm-scale-btn handle-btn apply-btn m-apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
+                    <span class="cm-btn cm-scale-btn handle-btn apply-btn m-player-btn" @click="blockModal('data')">玩家信息</span>
+                    <span class="cm-btn cm-scale-btn handle-btn apply-btn m-modal-btn m-result-modal-btn" @click="blockModal('result')"><span class="pc-text">战绩专区</span><span class="m-text">战绩区</span></span>
+                    <span class="cm-btn cm-scale-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
+                    <span class="cm-btn cm-scale-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='player'" @click="blockModal('setBet')">竞猜区</span>
+                    <span class="cm-btn cm-scale-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='host'" @click="blockModal('setBet')">预设区</span>
                 </div>
                 <div class="sub-handle-btn-list">
                     <span class="cm-scale-btn handle-btn" @click="blockModal('data','player')">所有玩家</span>
@@ -831,7 +831,7 @@
                 runningIndex:-1,
                 runningCount:-1,
                 long:0,
-                speed:80,
+                speed:70,
                 showResult:false,
                 showResultClass:'',
                 switchSession:false,
@@ -1154,7 +1154,7 @@
                     this.runningCount++;
                     this.runningIndex=this.runningCount%12+1;
                     if(this.runningCount<this.long){
-                        this.loadVoiceFlag&&document.getElementById('running-audio-'+this.runningIndex).play();
+                      /*  this.runningAudios[this.runningIndex-1]&&this.runningAudios[this.runningIndex-1].play();*/
                         this.runTurntable();
                     }else{
                         this.runningCount=-1;
@@ -1163,6 +1163,7 @@
                             this.showResultClass='animated bounceIn';
                             this.loadLatestDataFlag=true;
                             this.loadLatestBalance=true;
+                            this.speed=70;
                             this.resultList.forEach((item,index)=>{
                                 if(item.id==this.curPlayer.userId){
                                     if(item.langyaRecord>0){
@@ -1189,12 +1190,12 @@
                         },7000);
 
                     }
-                    if(this.runningCount>parseInt((1/15)*this.long)){
+                  /*  console.log('this.runningCount:',this.runningCount,' speed:',this.speed);*/
+                   /* if(this.runningCount>parseInt((1/15)*this.long)){
                         this.speed=80;
-                    }if(this.runningCount>parseInt((11/12)*this.long)){
+                    }*/
+                    if(this.runningCount>parseInt((11/12)*this.long)){
                         this.speed=400;
-                    }else if(this.runningCount>=this.long){
-
                     }
                 },this.speed);
             },
@@ -1381,6 +1382,7 @@
                     this.presetTipsAudio=this.initAudio('preset-tips-audio');
                     this.setBetTipsAudio=this.initAudio('set-bet-tips-audio');
                     this.runningAudios=document.getElementsByClassName('running-audio');
+                    console.log('this.runningAudios:',this.runningAudios.length);
                     for(let i=0;i<this.runningAudios.length;i++){
                         this.runningAudios[i].playbackRate=1.5;
                     }

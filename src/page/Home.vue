@@ -121,7 +121,7 @@
             this.getGameList();
 
         /*    this.safeLogin({});*/
-         /*   this.forget({});*/
+        /*    this.forget({type:'bindPhone'});*/
           /*  this.safeBoxLogin({});*/
          /*   this.alertModal({});*/
         /*    Vue.registerModal({open:true});*/

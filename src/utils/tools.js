@@ -206,7 +206,9 @@ export default {
             let account=this.getAccountInfo();
             if(path.indexOf('coin')>-1&&!safeAccount.isLogin){
                 if(account&&!account.phone){
-                    Vue.operationFeedback({type:'warn',text:'您还没绑定手机号，请前往个人中心绑定。'})
+                   /* Vue.operationFeedback({type:'warn',text:'您还没绑定手机号，为了账号安全请先绑定手机。'});*/
+                    Vue.forget({type:'bindPhone',ok:()=>{}});
+                   /* router.push({path:'/center/user/userInfo/bindPhone'});*/
                 }else{
                     Vue.safeLogin({ok:()=>{
                         next();
@@ -237,15 +239,35 @@ export default {
                 router.push({path:'/'});
             }
         },
-        weixinCheck:function () {
+        weixinCheck:function (to,from,next,ok) {
             let version=this.browserVersions();
             if(version.mobile&&version.weixin){
                 let randomId=new Date().getTime()+Math.random();
                 let account=this.getAccountInfo();
                 if(!account.peymentOpenId){
-                    localStorage.setItem('randomId',randomId);
-                    window.location.href=Vue.appConfig.domain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_base';
+                    let randomId=localStorage.getItem('randomId');
+                    if(randomId){
+                        localStorage.removeItem('randomId');
+                        Vue.api.getOpenIdInfo({apiParams:{"state":randomId}}).then((resp)=>{
+                            if(resp.respCode=='2000'){
+                                let data=JSON.parse(resp.respMsg);
+                                let account=this.getAccountInfo();
+                                account.peymentOpenId=data.openId;
+                                Vue.cookie.set('account',JSON.stringify(account),7);
+                            }else{
+                            }
+                            ok();
+                        });
+                    }else{
+                        localStorage.setItem('randomId',randomId);
+                        /*  window.location.href=Vue.appConfig.domain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_base&redirectUrl='+encodeURI(window.location.origin+'/scanTips');*/
+                        window.location.href=Vue.appConfig.domain+'/weixin/getWeixinCode?state='+randomId+'&scope=snsapi_base&redirectUrl='+encodeURI(window.location.href);
+                    }
+                }else{
+                    ok();
                 }
+            }else{
+                ok();
             }
         },
         getVoiceFlag:function () {

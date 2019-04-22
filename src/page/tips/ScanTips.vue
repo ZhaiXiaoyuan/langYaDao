@@ -74,7 +74,7 @@
                         this.account=this.getAccountInfo();
                         this.account.peymentOpenId=data.openId;
                         this.$cookie.set('account',JSON.stringify(this.account),7);
-                        WeixinJSBridge.call("closeWindow");
+                        this.$router.go(-1);
                     }else{
 
                     }});

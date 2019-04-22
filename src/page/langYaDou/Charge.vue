@@ -145,6 +145,7 @@
                         if(data.state=='notPay'){
                             this.orderStatusListener();
                         }else if(data.state=='success'){
+                            this.order={};
                             this.handling=false;
                             Vue.operationFeedback({type:'complete',text:'支付成功'});
                         }else{
@@ -193,8 +194,9 @@
             clearTimeout(this.orderListener);
         },
         beforeRouteEnter(to,from,next){
-            Vue.routeCheck(to,from,next);
-            Vue.weixinCheck();
+            Vue.weixinCheck(to,from,next,()=>{
+                Vue.routeCheck(to,from,next);
+            });
         },
     }
 </script>

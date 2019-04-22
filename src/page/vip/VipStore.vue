@@ -209,8 +209,9 @@
             this.getList();
         },
         beforeRouteEnter(to,from,next){
-            Vue.routeCheck(to,from,next);
-            Vue.weixinCheck();
+            Vue.weixinCheck(to,from,next,()=>{
+                Vue.routeCheck(to,from,next);
+            });
         },
         destroyed(){
             clearTimeout(this.orderListener);

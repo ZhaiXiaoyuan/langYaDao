@@ -18,15 +18,21 @@
            </div>
            <div class="info-row">
                <span class="label">注册手机：</span>
-               <div class="value">
+               <div class="value" v-if="form.phone">
                    <span>{{form.phone}}</span>
-                   <span class="cm-btn link-btn" v-if="!form.phone" @click="bindPhone()">去绑定</span>
-                   <span class="cm-btn link-btn" v-if="form.phone" @click="bindPhone()">（改绑）</span>
+                 <!--  <span class="cm-btn link-btn" @click="bindPhone()">（改绑）</span>-->
+               </div>
+               <div class="value" v-if="!form.phone">
+                   <span>未绑定</span>
+                   <span class="cm-btn link-btn" v-if="!form.phone" @click="bindPhone()">（去绑定）</span>
                </div>
            </div>
            <div class="info-row">
                <span class="label">绑定微信：</span>
-               <div class="value" v-if="account.wechatBind=='false'">未绑定<span class="cm-btn link-btn" v-if="!version.mobile||(version.mobile&&version.weixin)">（去绑定）</span></div>
+               <div class="value" v-if="account.wechatBind=='false'">
+                   未绑定
+                <!--   <span class="cm-btn link-btn" v-if="!version.mobile||(version.mobile&&version.weixin)">（去绑定）</span>-->
+               </div>
                <div class="value" v-if="account.wechatBind!='false'">已绑定<span class="cm-btn link-btn" @click="wechatAccountHandle('UNBIND')" v-if="form.phone&&(!version.mobile||(version.mobile&&version.weixin))">（解绑）</span></div>
            </div>
            <div class="info-row">
@@ -59,6 +65,7 @@
                 form:{},
                 vipInfo:{},
                 version:Vue.tools.browserVersions(),
+                handleType:'',//bindPhone
             }
         },
         methods: {
@@ -110,7 +117,7 @@
                 });
             },
             bindPhone:function () {
-                this.forget({type:'bindPhone',ok:()=>{
+                this.forget({type:this.account.phone?'changePhone':'bindPhone',ok:()=>{
                     this.getUserInfo();
                 }});
             },
@@ -146,6 +153,11 @@
             //
             this.account=Vue.getAccountInfo();
             console.log('test:',this.account);
+            //
+            this.handleType=this.$route.params.handleType;
+            if(this.handleType=='bindPhone'){
+                this.bindPhone();
+            }
             //
             this.getUserInfo();
         },

@@ -20,7 +20,7 @@ const routes= [
         component: resolve => require(['../page/user/Center.vue'], resolve),
         children:[
             {
-                path: 'userInfo',
+                path: 'userInfo/:handleType?',
                 name:'userInfo',
                 component: resolve => require(['../page/user/UserInfo.vue'], resolve)
             },
@@ -96,25 +96,11 @@ function safeLoginCheck(path,next) {
         next();
     }
 }*/
+
 /*router.beforeEach((to, from,next) => {
     let name=to.name;
     let path=to.path;
     let toPath=from.path;
-    console.log('path:',path);
-    console.log('toPath',toPath);
-    let account=Vue.getAccountInfo();
-    if(noLoginPage.indexOf(name)==-1){
-        if(!account.id){
-            Vue.loginModal({open:true,ok:()=>{
-                safeLoginCheck(path,next);
-            }});
-        }else{
-            safeLoginCheck(path,next);
-        }
-    }else{
-        next();
-    }
-   /!* next();*!/
 })*/
 
 //
