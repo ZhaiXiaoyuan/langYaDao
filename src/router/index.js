@@ -64,6 +64,11 @@ const routes= [
         ]
     },
     {
+        path: '/manor',
+        name:'manor',
+        component: resolve => require(['../page/manor/Manor.vue'], resolve),
+    },
+    {
         path: '/draw',
         name:'draw',
         component: resolve => require(['../page/activity/Draw.vue'], resolve)
