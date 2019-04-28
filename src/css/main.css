@@ -2720,7 +2720,7 @@ body {
 }
 .zodiac-game .bet-panel .bet-block .choice-list > li {
   display: inline-block;
-  background: url("../images/zodiac/choice.png") no-repeat;
+  background: url("../images/zodiac/choice6.png") no-repeat;
   width: 74px;
   height: 32px;
   background-size: 100% 100%;
@@ -2729,9 +2729,28 @@ body {
   font-family: 'hytangmeiren';
   font-size: 16px;
   line-height: 26px;
+  /*  transition: all 0.2s;*/
+}
+.zodiac-game .bet-panel .bet-block .choice-list > li:nth-child(1) {
+  background: url("../images/zodiac/choice1.png") no-repeat;
+}
+.zodiac-game .bet-panel .bet-block .choice-list > li:nth-child(2) {
+  background: url("../images/zodiac/choice2.png") no-repeat;
+}
+.zodiac-game .bet-panel .bet-block .choice-list > li:nth-child(3) {
+  background: url("../images/zodiac/choice3.png") no-repeat;
+}
+.zodiac-game .bet-panel .bet-block .choice-list > li:nth-child(4) {
+  background: url("../images/zodiac/choice4.png") no-repeat;
+}
+.zodiac-game .bet-panel .bet-block .choice-list > li:nth-child(5) {
+  background: url("../images/zodiac/choice5.png") no-repeat;
 }
 .zodiac-game .bet-panel .bet-block .choice-list > li.selected {
-  background: url("../images/zodiac/choice-selected.png") no-repeat;
+  /*background: url("../images/zodiac/choice1.png") no-repeat;*/
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
 }
 .zodiac-game .bet-panel .bet-block .area .area-hd {
   text-align: center;

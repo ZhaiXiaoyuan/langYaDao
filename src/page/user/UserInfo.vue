@@ -155,9 +155,9 @@
             console.log('test:',this.account);
             //
             this.handleType=this.$route.params.handleType;
-            if(this.handleType=='bindPhone'){
+         /*   if(this.handleType=='bindPhone'){
                 this.bindPhone();
-            }
+            }*/
             //
             this.getUserInfo();
         },

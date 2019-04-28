@@ -168,15 +168,16 @@
               Vue.operationFeedback({type:'warn',text:'请输入验证码'});
               return;
           }
-          //临时测试
-          this.phoneCodeData.bizId='whosyourdaddy';
-          Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
+        /*  this.phoneCodeData.bizId='whosyourdaddy';*/
+        /*  Vue.api.verifySms({apiParams:{bizId:this.phoneCodeData?this.phoneCodeData.bizId:'',phoneNumber:this.form.phone,verifyCode:this.form.code}}).then((resp)=>{
               if(resp.respCode=='2000'){
                   this.setStep(2);
               }else{
                   Vue.operationFeedback({type:'warn',text:resp.respMsg});
               }
-          });
+          });*/
+
+          this.setStep(2);
       },
     },
     created: function () {
