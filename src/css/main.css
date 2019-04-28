@@ -8728,6 +8728,7 @@ body {
       -ms-user-select: none;
           user-select: none;
   font-family: 'hytangmeiren';
+  overflow: hidden;
 }
 .manor-game .manor-logo-icon {
   position: absolute;
@@ -8757,8 +8758,8 @@ body {
 .manor-game .level-modal .modal-body {
   display: inline-block;
   background: url("../images/manor/select-level-modal-bg.png") no-repeat;
-  width: 361px;
-  height: 520.5px;
+  width: 337.38317757px;
+  height: 486.44859813px;
   background-size: 100% 100%;
 }
 .manor-game .level-modal .modal-body .level-list {
@@ -8767,10 +8768,10 @@ body {
 .manor-game .level-modal .modal-body .level-list > li {
   display: inline-block;
   margin: 5px;
-  width: 138px;
-  height: 106.5px;
+  width: 128.97196262px;
+  height: 99.53271028px;
   font-size: 16px;
-  padding-top: 45px;
+  padding-top: 40px;
   line-height: 22px;
 }
 .manor-game .level-modal .modal-body .level-list > li .strong {
@@ -8787,12 +8788,18 @@ body {
   color: #e5e5e5;
 }
 .manor-game .level-modal .modal-body .level-list > li:nth-child(3) {
+  position: relative;
+  left: -1px;
   background: url("../images/manor/gold-choice-bg.png") no-repeat;
+  width: 129.43925234px;
   background-size: 100% 100%;
   color: #fff2d2;
 }
 .manor-game .level-modal .modal-body .level-list > li:nth-child(4) {
+  position: relative;
+  left: -5px;
   background: url("../images/manor/diamond-choice-bg.png") no-repeat;
+  width: 134.11214953px;
   background-size: 100% 100%;
   color: #dfe5ff;
 }
@@ -8800,7 +8807,7 @@ body {
   margin-top: 57px;
   width: 100%;
   height: 158px;
-  padding: 28px 20px 18px 25px;
+  padding: 18px 20px 18px 25px;
 }
 .manor-game .level-modal .modal-body .rule-block ::-webkit-scrollbar {
   /*滚动条整体样式*/
@@ -8829,5 +8836,5 @@ body {
   text-align: left;
   line-height: 20px;
   overflow: auto;
-  padding-top: 2px;
+  padding-top: 0px;
 }
