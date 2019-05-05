@@ -142,7 +142,7 @@
                                     this.onBridgeReady();
                                 }
                             }else{
-
+                                window.location.href=this.order.mweb_url;
                             }
                         }else{
                             fb.setOptions({type:"complete",text:'订单生成成功，请扫码支付'});
