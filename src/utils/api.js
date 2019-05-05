@@ -63,6 +63,7 @@ export default {
     //临时测试
       let basicUrl=Vue.appConfig.domain;
       let basicUrl2=Vue.appConfig.domain2;
+      let basicUrl3=Vue.appConfig.domain3;
 
     Vue.api={
         //注册
@@ -319,6 +320,14 @@ export default {
             return Vue.http.ajax({
                 method: 'post',
                 url: basicUrl+'/user/weixinLogin',
+                params: params
+            });
+        },
+        //获取神兽等级列表
+        getAnimalLevelList:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl+'/pasture/getAnimalList',
                 params: params
             });
         },

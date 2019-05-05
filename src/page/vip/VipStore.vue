@@ -121,6 +121,7 @@
                     vipTypeId:this.curEntry.id,
                     userId: this.account.id,
                     amount: this.selectedAmount*100,
+                    payChannel:'weixin',//"zhifubao", "weixin"
                     type:type,//H5\JSAPI\Native
                     openId:type=='JSAPI'?this.account.peymentOpenId:'',//当type为JSAPI时必填
                 }

@@ -3,6 +3,31 @@
         <div class="page-content">
             <div class="cm-btn cm-scale-btn return-btn"></div>
             <i class="icon manor-logo-icon"></i>
+            <div class="display-panel">
+                <div class="panel-bd">
+                    <div class="egg-block gold">
+                        <div class="block-bd">
+                            <i class="icon outside-light-icon"></i>
+                            <i class="icon container-icon"></i>
+                            <i class="icon inside-light-icon"></i>
+                            <i class="icon egg-icon"></i>
+                        </div>
+                    </div>
+                    <div class="animal-block">
+                        <div class="block-bd">
+                            <i class="icon white-light-icon"></i>
+                            <i class="icon red-light-icon"></i>
+                            <i class="icon tree-icon left-tree"></i>
+                            <i class="icon tree-icon right-tree"></i>
+                            <div class="floor"></div>
+                        </div>
+                    </div>
+                    <div class="tool-block">
+                        <div class="cm-btn handle-btn feed-btn"></div>
+                        <div class="cm-btn handle-btn sell-btn"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="level-modal" v-if="levelModalFlag">
@@ -48,7 +73,7 @@
         data: function(){
             return {
                 account:{},
-                levelModalFlag:true,
+                levelModalFlag:false,
             }
         },
         methods: {
