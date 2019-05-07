@@ -8748,8 +8748,279 @@ body {
   height: 37px;
   background-size: 100% 100%;
 }
+.manor-game .display-panel {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+.manor-game .display-panel .panel-bd {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block {
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+  bottom: 50px;
+  width: 100px;
+  height: 100px;
+}
+.manor-game .display-panel .panel-bd .egg-block .block-bd {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block .outside-light-icon {
+  display: none;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 12px;
+  margin: auto;
+  width: 94.5px;
+  height: 68.5px;
+}
+.manor-game .display-panel .panel-bd .egg-block .container-icon {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  width: 61px;
+  height: 58.5px;
+}
+.manor-game .display-panel .panel-bd .egg-block .inside-light-icon {
+  display: none;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 5px;
+  margin: auto;
+  width: 70.5px;
+  height: 55px;
+}
+.manor-game .display-panel .panel-bd .egg-block .egg-icon {
+  display: none;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 12px;
+  margin: auto;
+  width: 51px;
+  height: 69.5px;
+  /*   &:hover{
+                        transform: scale(1.2);
+                    }*/
+}
+.manor-game .display-panel .panel-bd .egg-block .egg-icon:active {
+  -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+          transform: scale(0.96);
+}
+.manor-game .display-panel .panel-bd .egg-block.bronze .outside-light-icon {
+  background: url("../images/manor/copper-egg-outside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.bronze .container-icon {
+  background: url("../images/manor/copper-egg-container-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.bronze .inside-light-icon {
+  background: url("../images/manor/copper-egg-inside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.bronze .egg-icon {
+  background: url("../images/manor/copper-egg-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.silver .outside-light-icon {
+  background: url("../images/manor/silver-egg-outside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.silver .container-icon {
+  background: url("../images/manor/silver-egg-container-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.silver .inside-light-icon {
+  background: url("../images/manor/silver-egg-inside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.silver .egg-icon {
+  background: url("../images/manor/silver-egg-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.gold .outside-light-icon {
+  background: url("../images/manor/gold-egg-outside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.gold .container-icon {
+  background: url("../images/manor/gold-egg-container-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.gold .inside-light-icon {
+  background: url("../images/manor/gold-egg-inside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.gold .egg-icon {
+  background: url("../images/manor/gold-egg-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.diamond .outside-light-icon {
+  background: url("../images/manor/diamond-egg-outside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.diamond .container-icon {
+  background: url("../images/manor/diamond-egg-container-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.diamond .inside-light-icon {
+  background: url("../images/manor/diamond-egg-inside-light-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.diamond .egg-icon {
+  background: url("../images/manor/diamond-egg-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .egg-block.has .outside-light-icon {
+  display: inline-block;
+}
+.manor-game .display-panel .panel-bd .egg-block.has .inside-light-icon {
+  display: inline-block;
+}
+.manor-game .display-panel .panel-bd .egg-block.has .egg-icon {
+  display: inline-block;
+}
+.manor-game .display-panel .panel-bd .animal-block {
+  position: absolute;
+  left: 25px;
+  right: 0px;
+  bottom: 45px;
+  margin: auto;
+  width: 220.5px;
+  height: 300px;
+}
+.manor-game .display-panel .panel-bd .animal-block .block-bd {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.manor-game .display-panel .panel-bd .animal-block .white-light-icon {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  background: url("../images/manor/white-light-icon.png") no-repeat;
+  width: 222.5px;
+  height: 200px;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .animal-block .red-light-icon {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  background: url("../images/manor/red-light-icon.png") no-repeat;
+  width: 222.5px;
+  height: 181.5px;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .animal-block .tree-icon {
+  position: absolute;
+  z-index: 5;
+  bottom: 12px;
+  background: url("../images/manor/tree-icon.png") no-repeat;
+  width: 33.5px;
+  height: 40.5px;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .animal-block .left-tree {
+  left: 15px;
+}
+.manor-game .display-panel .panel-bd .animal-block .right-tree {
+  right: 15px;
+}
+.manor-game .display-panel .panel-bd .animal-block .floor {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  background: url("../images/manor/floor-icon.png") no-repeat;
+  width: 220.5px;
+  height: 79px;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .animal-block .animal-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  z-index: 2;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+}
+.manor-game .display-panel .panel-bd .animal-block .animal {
+  display: inline-block;
+}
+.manor-game .display-panel .panel-bd .animal-block .turtle-animal.left {
+  background: url("../images/manor/gif/bronze-turtle-left.gif") no-repeat;
+  width: 170px;
+  height: 170px;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .animal-block .turtle-animal.right {
+  background: url("../images/manor/gif/bronze-turtle-right.gif") no-repeat;
+  width: 170px;
+  height: 170px;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .tool-block {
+  position: absolute;
+  right: 2px;
+  bottom: 30px;
+  width: 70px;
+  text-align: center;
+}
+.manor-game .display-panel .panel-bd .tool-block .handle-btn {
+  display: inline-block;
+}
+.manor-game .display-panel .panel-bd .tool-block .handle-btn + .handle-btn {
+  margin-top: 20px;
+}
+.manor-game .display-panel .panel-bd .tool-block .handle-btn:active {
+  -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+          transform: scale(0.96);
+}
+.manor-game .display-panel .panel-bd .tool-block .feed-btn {
+  background: url("../images/manor/feed-btn-icon.png") no-repeat;
+  width: 70.5px;
+  height: 68.5px;
+  background-size: 100% 100%;
+}
+.manor-game .display-panel .panel-bd .tool-block .sell-btn {
+  background: url("../images/manor/sale-btn-icon.png") no-repeat;
+  width: 60px;
+  height: 67px;
+  background-size: 100% 100%;
+}
 .manor-game .level-modal {
   position: absolute;
+  z-index: 10;
   top: 55px;
   left: 0px;
   width: 100%;
@@ -8764,6 +9035,7 @@ body {
 }
 .manor-game .level-modal .modal-body .level-list {
   padding-top: 72px;
+  min-height: 280px;
 }
 .manor-game .level-modal .modal-body .level-list > li {
   display: inline-block;
@@ -8773,6 +9045,7 @@ body {
   font-size: 16px;
   padding-top: 40px;
   line-height: 22px;
+  cursor: pointer;
 }
 .manor-game .level-modal .modal-body .level-list > li .strong {
   color: #fff100;
@@ -8802,6 +9075,11 @@ body {
   width: 134.11214953px;
   background-size: 100% 100%;
   color: #dfe5ff;
+}
+.manor-game .level-modal .modal-body .level-list > li:active {
+  -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+          transform: scale(0.96);
 }
 .manor-game .level-modal .modal-body .rule-block {
   margin-top: 57px;
@@ -8837,4 +9115,338 @@ body {
   line-height: 20px;
   overflow: auto;
   padding-top: 0px;
+}
+.manor-game .turtle-icon {
+  width: 69.75px;
+  height: 72.25px;
+}
+.manor-game .pixiu-icon {
+  width: 104px;
+  height: 69px;
+}
+.manor-game .kirin-icon {
+  width: 98.5px;
+  height: 59.25px;
+}
+.manor-game .phoenix-icon {
+  width: 102px;
+  height: 73.75px;
+}
+.manor-game .bronze-turtle-icon {
+  background: url("../images/manor/bronze-turtle-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .bronze-pixiu-icon {
+  background: url("../images/manor/bronze-pixiu-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .bronze-kirin-icon {
+  background: url("../images/manor/bronze-kirin-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .bronze-phoenix-icon {
+  background: url("../images/manor/bronze-phoenix-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .silver-turtle-icon {
+  background: url("../images/manor/silver-turtle-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .silver-pixiu-icon {
+  background: url("../images/manor/silver-pixiu-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .silver-kirin-icon {
+  background: url("../images/manor/silver-kirin-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .silver-phoenix-icon {
+  background: url("../images/manor/silver-phoenix-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .gold-turtle-icon {
+  background: url("../images/manor/gold-turtle-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .gold-pixiu-icon {
+  background: url("../images/manor/gold-pixiu-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .gold-kirin-icon {
+  background: url("../images/manor/gold-kirin-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .gold-phoenix-icon {
+  background: url("../images/manor/gold-phoenix-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .diamond-turtle-icon {
+  background: url("../images/manor/diamond-turtle-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .diamond-pixiu-icon {
+  background: url("../images/manor/diamond-pixiu-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .diamond-kirin-icon {
+  background: url("../images/manor/diamond-kirin-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .diamond-phoenix-icon {
+  background: url("../images/manor/diamond-phoenix-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .pic-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: url("../images/manor/phoenix-item-bg.png") no-repeat;
+  width: 120px;
+  height: 81px;
+  background-size: 100% 100%;
+  overflow: auto;
+}
+.manor-game .select-animal-modal {
+  position: absolute;
+  z-index: 10;
+  top: 55px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+}
+.manor-game .select-animal-modal .modal-content {
+  margin: 0px auto;
+  background: url("../images/manor/select-beast-modal-bg.png") no-repeat;
+  width: 333.17757009px;
+  height: 491.12149533px;
+  background-size: 100% 100%;
+}
+.manor-game .select-animal-modal .modal-header {
+  padding-top: 12px;
+  color: #fee6c5;
+  line-height: normal;
+}
+.manor-game .select-animal-modal .modal-header .title {
+  font-size: 24px;
+  background-image: -webkit-gradient(linear, 0 0, 0 78%, from(#ffffff), to(#ffee92));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.manor-game .select-animal-modal .modal-header .info {
+  position: relative;
+  top: -2px;
+  font-size: 14px;
+}
+.manor-game .select-animal-modal .modal-body .item-list {
+  text-align: center;
+  width: 100%;
+  padding-top: 18px;
+  padding-left: 3px;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li {
+  position: relative;
+  display: inline-block;
+  background: url("../images/manor/row-bg.png") no-repeat;
+  width: 276.63551402px;
+  height: 86.44859813px;
+  background-size: 100% 100%;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-hd {
+  padding-left: 30px;
+  padding-top: 3px;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-hd .name-icon {
+  width: 52.5px;
+  height: 28.5px;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-hd .turtle-name-icon {
+  background: url("../images/manor/turtle-name-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-hd .pixiu-name-icon {
+  background: url("../images/manor/pixiu-name-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-hd .kirin-name-icon {
+  background: url("../images/manor/kirin-name-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-hd .phoenix-name-icon {
+  background: url("../images/manor/phoenix-name-icon.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-bd {
+  padding: 8px 10px;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-bd .handle-btn {
+  float: right;
+  background: url("../images/manor/row-btn.png") no-repeat;
+  width: 85.51401869px;
+  height: 36.44859813px;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.manor-game .select-animal-modal .modal-body .item-list > li .item-bd .handle-btn:active {
+  -webkit-transform: scale(0.96);
+      -ms-transform: scale(0.96);
+          transform: scale(0.96);
+}
+.manor-game .select-animal-modal .modal-body .item-list > li + li {
+  margin-top: 8px;
+}
+.manor-game .dialog-modal {
+  background: red;
+  border-radius: 8px;
+  background: url("../images/manor/cm-modal-bg.png") no-repeat;
+  width: 340px !important;
+  height: 277.5px;
+  background-size: 100% 100%;
+  font-family: 'hytangmeiren';
+  box-shadow: none;
+}
+.manor-game .dialog-modal .el-dialog__header {
+  display: none;
+}
+.manor-game .dialog-modal .el-dialog__body {
+  padding: 0px;
+}
+.manor-game .dialog-modal .modal-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 40px;
+}
+.manor-game .dialog-modal .modal-header .adopt-title-icon {
+  background: url("../images/manor/adopt-title-icon.png") no-repeat;
+  width: 104px;
+  height: 29.5px;
+  background-size: 100% 100%;
+}
+.manor-game .dialog-modal .modal-header .feed-title-icon {
+  background: url("../images/manor/feed-title-icon.png") no-repeat;
+  width: 103px;
+  height: 29.5px;
+  background-size: 100% 100%;
+}
+.manor-game .dialog-modal .modal-header .sell-title-icon {
+  background: url("../images/manor/sell-title-icon.png") no-repeat;
+  width: 102.5px;
+  height: 29.5px;
+  background-size: 100% 100%;
+}
+.manor-game .dialog-modal .modal-header .title {
+  position: relative;
+  top: 8px;
+}
+.manor-game .dialog-modal .modal-header .close-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: inline-block;
+  background: url("../images/manor/cm-modal-close-btn.png") no-repeat;
+  width: 33px;
+  height: 33px;
+  background-size: 100% 100%;
+}
+.manor-game .dialog-modal .modal-body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 155px;
+  padding: 20px 20px 0px 20px;
+  text-align: center;
+}
+.manor-game .dialog-modal .modal-body .strong {
+  color: #eb6100;
+}
+.manor-game .dialog-modal .modal-body .text {
+  font-size: 20px;
+  color: #29750f;
+}
+.manor-game .dialog-modal .modal-body .tips-icon {
+  margin-bottom: 5px;
+}
+.manor-game .dialog-modal .modal-body .fail-icon {
+  display: inline-block;
+  background: url("../images/manor/warn-icon.png") no-repeat;
+  width: 39px;
+  height: 35px;
+  background-size: 100% 100%;
+}
+.manor-game .dialog-modal .modal-body .success-icon {
+  display: inline-block;
+  background: url("../images/manor/success-icon.png") no-repeat;
+  width: 68px;
+  height: 68px;
+  background-size: 100% 100%;
+}
+.manor-game .dialog-modal .modal-body .tips {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #eb6100;
+}
+.manor-game .dialog-modal .modal-body .animal-info {
+  margin-top: 8px;
+}
+.manor-game .dialog-modal .modal-body .animal-info .pic-box {
+  position: relative;
+  margin: 0px auto;
+}
+.manor-game .dialog-modal .modal-body .animal-info .price {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #29750f;
+}
+.manor-game .dialog-modal .modal-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+.manor-game .dialog-modal .modal-footer .handle-btn {
+  display: inline-block;
+  width: 127px;
+  height: 48px;
+}
+.manor-game .dialog-modal .modal-footer .handle-btn + .handle-btn {
+  margin-left: 20px;
+}
+.manor-game .dialog-modal .modal-footer .cancel-btn {
+  background: url("../images/manor/cm-modal-cancel-btn.png") no-repeat;
+  background-size: 100% 100%;
+}
+.manor-game .dialog-modal .modal-footer .ok-btn {
+  background: url("../images/manor/cm-modal-sure-btn.png") no-repeat;
+  background-size: 100% 100%;
 }

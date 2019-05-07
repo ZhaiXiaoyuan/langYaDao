@@ -26,17 +26,17 @@
                 <div class="info-row">
                     <span>支付方式：</span>
                     <ul class="pay-type-list">
-                        <li class="active">
+                        <li :class="{'active':payType=='weixin'}" @click="setPayType('weixin')">
                             <div class="item-bd"><i class="icon wechat-icon"></i></div>
                             <div class="item-ft">微信支付</div>
                         </li>
-                        <!--      <li>
-                                  <div class="item-bd"><i class="icon ali-icon"></i></div>
-                                  <div class="item-ft">支付宝支付</div>
-                              </li>-->
+                        <li :class="{'active':payType=='zhifubao'}" v-if="version.mobile&&!version.weixin"  @click="setPayType('zhifubao')">
+                            <div class="item-bd"><i class="icon ali-icon"></i></div>
+                            <div class="item-ft">支付宝支付</div>
+                        </li>
                     </ul>
                 </div>
-                <div class="info-row qrcode-info" v-if="order.code_url">
+                <div class="info-row qrcode-info" v-if="order&&order.code_url">
                     <div class="qrcode-item">
                         <div class="img-box">
                             <qrcode :value="order.code_url" :options="{ width: 180 }"></qrcode>
@@ -44,6 +44,7 @@
                         <p class="tips">请打开微信扫一扫进行支付</p>
                     </div>
                 </div>
+                <div class="info-row alipay-info" v-if="payType=='zhifubao'&&order" v-html="order"></div>
                 <div  class="handle">
                     <el-button type="primary" class="handle-btn" :class="{'cm-disabled':handling}" @click="createOrder()">确定</el-button>
                 </div>
@@ -75,7 +76,8 @@
                 },
                 entryList:[],
                 curEntry:{},
-                order:{},
+                payType:'weixin',//"zhifubao", "weixin"
+                order:null,
                 orderListener:null,
                 version:Vue.tools.browserVersions(),
                 requesting:false,
@@ -113,6 +115,8 @@
                 if(this.version.mobile){
                     if(this.version.weixin){
                         type='JSAPI';
+                    }else if(this.payType=='zhifubao'){
+                        type='phoneWeb';
                     }else{
                         type='H5';
                     }
@@ -121,29 +125,42 @@
                     vipTypeId:this.curEntry.id,
                     userId: this.account.id,
                     amount: this.selectedAmount*100,
-                    payChannel:'weixin',//"zhifubao", "weixin"
+                    payChannel:this.payType,//"zhifubao", "weixin"
                     type:type,//H5\JSAPI\Native
                     openId:type=='JSAPI'?this.account.peymentOpenId:'',//当type为JSAPI时必填
+                    zhifubaoRedirect:this.payType=='zhifubao'?encodeURI(window.location.href+'?tipsType=alipaySuccess'):'',//当支付渠道payType是支付宝时必填、如果跳转不到的话完成后就会调回支付宝的某页面
                 }
                 let fb=Vue.operationFeedback({text:'订单生成中...'});
                 Vue.api.addVipOrder({apiParams:params}).then((resp)=>{
                     if(resp.respCode=='2000'){
-                        this.order=JSON.parse(resp.respMsg);
+                        if(this.payType=='zhifubao'){
+                            this.order=resp.respMsg;
+                        }else{
+                            this.order=JSON.parse(resp.respMsg);
+                        }
                         if(this.version.mobile){
                             fb.setOptions({type:"complete",text:'订单生成成功',delayForDelete:0});
-                            if(this.version.weixin){
-                                if (typeof WeixinJSBridge == "undefined"){
-                                    if( document.addEventListener ){
-                                        document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
-                                    }else if (document.attachEvent){
-                                        document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
-                                        document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
+                            if(this.payType=='weixin'){
+                                if(this.version.weixin){
+                                    if (typeof WeixinJSBridge == "undefined"){
+                                        if( document.addEventListener ){
+                                            document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
+                                        }else if (document.attachEvent){
+                                            document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
+                                            document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
+                                        }
+                                    }else{
+                                        this.onBridgeReady();
                                     }
                                 }else{
-                                    this.onBridgeReady();
+                                    window.location.href=this.order.mweb_url;
                                 }
-                            }else{
-                                window.location.href=this.order.mweb_url;
+                            }else if(this.payType=='zhifubao'){
+                                this.handling=false;
+                                setTimeout(()=>{
+                                    let form=document.getElementsByName('punchout_form');
+                                    form[0].submit();
+                                },200)
                             }
                         }else{
                             fb.setOptions({type:"complete",text:'订单生成成功，请扫码支付'});
@@ -167,6 +184,7 @@
                         if(data.state=='notPay'){
                             this.orderStatusListener();
                         }else if(data.state=='success'){
+                            this.order=null;
                             this.handling=false;
                             this.curEntry={};
                             Vue.operationFeedback({type:'complete',text:'支付成功'});
@@ -183,6 +201,7 @@
                 },3000);
             },
             onBridgeReady:function () {
+                let that=this;
                 WeixinJSBridge.invoke('getBrandWCPayRequest', {
                     "appId": this.order.appId,
                     "timeStamp": this.order.timeStamp,
@@ -199,8 +218,11 @@
                     }else if ( errMsg == "get_brand_wcpay_request:cancel") {
                         /*Vue.operationFeedback({type:'warn',text:''});*/
                     }
-                    this.handling=false;
+                    that.handling=false;
                 });
+            },
+            setPayType:function (value) {
+                this.payType=value;
             }
         },
         mounted () {

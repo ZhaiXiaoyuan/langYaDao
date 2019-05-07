@@ -52,6 +52,7 @@
                     height: 100%;
                 }
                 .outside-light-icon{
+                    display: none;
                     position: absolute;
                     left: 0px;
                     right: 0px;
@@ -70,6 +71,7 @@
                     height: 117px/@size;
                 }
                 .inside-light-icon{
+                    display: none;
                     position: absolute;
                     left: 0px;
                     right: 0px;
@@ -79,6 +81,7 @@
                     height: 110px/@size;
                 }
                 .egg-icon{
+                    display: none;
                     position: absolute;
                     left: 0px;
                     right: 0px;
@@ -86,28 +89,34 @@
                     margin: auto;
                     width: 102px/@size;
                     height: 139px/@size;
+                 /*   &:hover{
+                        transform: scale(1.2);
+                    }*/
+                    &:active{
+                        transform: scale(0.96);
+                    }
                 }
-                &.silver{
+                &.bronze{
                     .outside-light-icon{
-                        background: url("../images/manor/silver-outside-light-icon.png") no-repeat;
+                        background: url("../images/manor/copper-egg-outside-light-icon.png") no-repeat;
                         background-size: 100% 100%;
                     }
                     .container-icon{
-                        background: url("../images/manor/silver-egg-container-icon.png") no-repeat;
+                        background: url("../images/manor/copper-egg-container-icon.png") no-repeat;
                         background-size: 100% 100%;
                     }
                     .inside-light-icon{
-                        background: url("../images/manor/silver-inside-light-icon.png") no-repeat;
+                        background: url("../images/manor/copper-egg-inside-light-icon.png") no-repeat;
                         background-size: 100% 100%;
                     }
                     .egg-icon{
-                        background: url("../images/manor/silver-egg-icon.png") no-repeat;
+                        background: url("../images/manor/copper-egg-icon.png") no-repeat;
                         background-size: 100% 100%;
                     }
                 }
                 &.silver{
                     .outside-light-icon{
-                        background: url("../images/manor/silver-outside-light-icon.png") no-repeat;
+                        background: url("../images/manor/silver-egg-outside-light-icon.png") no-repeat;
                         background-size: 100% 100%;
                     }
                     .container-icon{
@@ -115,7 +124,7 @@
                         background-size: 100% 100%;
                     }
                     .inside-light-icon{
-                        background: url("../images/manor/silver-inside-light-icon.png") no-repeat;
+                        background: url("../images/manor/silver-egg-inside-light-icon.png") no-repeat;
                         background-size: 100% 100%;
                     }
                     .egg-icon{
@@ -133,12 +142,41 @@
                         background-size: 100% 100%;
                     }
                     .inside-light-icon{
-                        background: url("../images/manor/gold-egg-inside-icon.png") no-repeat;
+                        background: url("../images/manor/gold-egg-inside-light-icon.png") no-repeat;
                         background-size: 100% 100%;
                     }
                     .egg-icon{
                         background: url("../images/manor/gold-egg-icon.png") no-repeat;
                         background-size: 100% 100%;
+                    }
+                }
+                &.diamond{
+                    .outside-light-icon{
+                        background: url("../images/manor/diamond-egg-outside-light-icon.png") no-repeat;
+                        background-size: 100% 100%;
+                    }
+                    .container-icon{
+                        background: url("../images/manor/diamond-egg-container-icon.png") no-repeat;
+                        background-size: 100% 100%;
+                    }
+                    .inside-light-icon{
+                        background: url("../images/manor/diamond-egg-inside-light-icon.png") no-repeat;
+                        background-size: 100% 100%;
+                    }
+                    .egg-icon{
+                        background: url("../images/manor/diamond-egg-icon.png") no-repeat;
+                        background-size: 100% 100%;
+                    }
+                }
+                &.has{
+                    .outside-light-icon{
+                        display: inline-block;
+                    }
+                    .inside-light-icon{
+                        display: inline-block;
+                    }
+                    .egg-icon{
+                        display: inline-block;
                     }
                 }
             }
@@ -175,7 +213,7 @@
                 }
                 .tree-icon{
                     position: absolute;
-                    z-index: 1;
+                    z-index: 5;
                     bottom: 12px;
                     background: url("../images/manor/tree-icon.png") no-repeat;
                     width: 67px/@size;
@@ -199,6 +237,37 @@
                     height: 158px/@size;
                     background-size: 100% 100%;
                 }
+                .animal-box{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: absolute;
+                    z-index: 2;
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    margin: auto;
+                    width: 400px/@size;
+                    height: 400px/@size;
+                }
+                .animal{
+                    display: inline-block;
+                }
+                .turtle-animal{
+                    &.left{
+                        background: url("../images/manor/gif/bronze-turtle-left.gif") no-repeat;
+                        width: 340px/@size;
+                        height: 340px/@size;
+                        background-size: 100% 100%;
+                    }
+                    &.right{
+                        background: url("../images/manor/gif/bronze-turtle-right.gif") no-repeat;
+                        width: 340px/@size;
+                        height: 340px/@size;
+                        background-size: 100% 100%;
+                    }
+                }
+
             }
             .tool-block{
                 position: absolute;
@@ -210,6 +279,9 @@
                     display: inline-block;
                     &+.handle-btn{
                         margin-top: 20px;
+                    }
+                    &:active{
+                        transform: scale(0.96);
                     }
                 }
                 .feed-btn{
@@ -229,6 +301,7 @@
     }
     .level-modal{
         position: absolute;
+        z-index: 10;
         top:55px;
         left: 0px;
         width: 100%;
@@ -242,6 +315,7 @@
             background-size: 100% 100%;
             .level-list{
                 padding-top: 72px;
+                min-height: 280px;
                 >li{
                     display: inline-block;
                     margin: 5px;
@@ -250,6 +324,7 @@
                     font-size: 16px;
                     padding-top: 40px;
                     line-height: 22px;
+                    cursor: pointer;
                     .strong{
                         color: #fff100;
                     }
@@ -278,6 +353,9 @@
                         width: 287px/@size;
                         background-size: 100% 100%;
                         color: #dfe5ff;
+                    }
+                    &:active{
+                        transform: scale(0.96);
                     }
                 }
             }
@@ -311,6 +389,319 @@
                     overflow: auto;
                     padding-top: 0px;
                 }
+            }
+        }
+    }
+    @animalIconSize:4;
+    .turtle-icon{
+        width: 279px/@animalIconSize;
+        height: 289px/@animalIconSize;
+    }
+    .pixiu-icon{
+        width: 416px/@animalIconSize;
+        height: 276px/@animalIconSize;
+    }
+    .kirin-icon{
+        width: 394px/@animalIconSize;
+        height: 237px/@animalIconSize;
+    }
+    .phoenix-icon{
+        width: 408px/@animalIconSize;
+        height: 295px/@animalIconSize;
+    }
+    //
+    .bronze-turtle-icon{
+        background: url("../images/manor/bronze-turtle-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .bronze-pixiu-icon{
+        background: url("../images/manor/bronze-pixiu-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .bronze-kirin-icon{
+        background: url("../images/manor/bronze-kirin-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .bronze-phoenix-icon{
+        background: url("../images/manor/bronze-phoenix-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    //
+    .silver-turtle-icon{
+        background: url("../images/manor/silver-turtle-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .silver-pixiu-icon{
+        background: url("../images/manor/silver-pixiu-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .silver-kirin-icon{
+        background: url("../images/manor/silver-kirin-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .silver-phoenix-icon{
+        background: url("../images/manor/silver-phoenix-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    //
+    .gold-turtle-icon{
+        background: url("../images/manor/gold-turtle-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .gold-pixiu-icon{
+        background: url("../images/manor/gold-pixiu-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .gold-kirin-icon{
+        background: url("../images/manor/gold-kirin-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .gold-phoenix-icon{
+        background: url("../images/manor/gold-phoenix-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    //
+    .diamond-turtle-icon{
+        background: url("../images/manor/diamond-turtle-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .diamond-pixiu-icon{
+        background: url("../images/manor/diamond-pixiu-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .diamond-kirin-icon{
+        background: url("../images/manor/diamond-kirin-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .diamond-phoenix-icon{
+        background: url("../images/manor/diamond-phoenix-icon.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .pic-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top:3px;
+        left: 3px;
+        background: url("../images/manor/phoenix-item-bg.png") no-repeat;
+        width: 240px/@size;
+        height: 162px/@size;
+        background-size: 100% 100%;
+        overflow: auto;
+    }
+    .select-animal-modal{
+        position: absolute;
+        z-index: 10;
+        top:55px;
+        left: 0px;
+        width: 100%;
+        text-align: center;
+        @size:2.14;
+        .modal-content{
+            margin: 0px auto;
+            background: url("../images/manor/select-beast-modal-bg.png") no-repeat;
+            width: 713px/@size;
+            height: 1051px/@size;
+            background-size: 100% 100%;
+        }
+        .modal-header{
+            padding-top: 12px;
+            color: #fee6c5;
+            line-height: normal;
+            .title{
+                font-size: 24px;
+                background-image: -webkit-gradient(linear, 0 0, 0 78%, from(rgba(255,255,255, 1)), to(rgba(255, 238, 146, 1)));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .info{
+                position: relative;
+                top:-2px;
+                font-size: 14px;
+            }
+        }
+        .modal-body{
+            .item-list{
+                text-align: center;
+                width: 100%;
+                padding-top: 18px;
+                padding-left: 3px;
+                >li{
+                    position: relative;
+                    display: inline-block;
+                    background: url("../images/manor/row-bg.png") no-repeat;
+                    width: 592px/@size;
+                    height: 185px/@size;
+                    background-size: 100% 100%;
+                    .item-hd{
+                        padding-left: 30px;
+                        padding-top: 3px;
+                        .name-icon{
+                            width: 105px/2;
+                            height: 57px/2;
+                        }
+                        .turtle-name-icon{
+                            background: url("../images/manor/turtle-name-icon.png") no-repeat;
+                            background-size: 100% 100%;
+                        }
+                        .pixiu-name-icon{
+                            background: url("../images/manor/pixiu-name-icon.png") no-repeat;
+                            background-size: 100% 100%;
+                        }
+                        .kirin-name-icon{
+                            background: url("../images/manor/kirin-name-icon.png") no-repeat;
+                            background-size: 100% 100%;
+                        }
+                        .phoenix-name-icon{
+                            background: url("../images/manor/phoenix-name-icon.png") no-repeat;
+                            background-size: 100% 100%;
+                        }
+                    }
+                    .item-bd{
+                        padding: 8px 10px;
+                        .handle-btn{
+                            float: right;
+                            background: url("../images/manor/row-btn.png") no-repeat;
+                            width: 183px/@size;
+                            height: 78px/@size;
+                            background-size: 100% 100%;
+                            cursor: pointer;
+                            &:active{
+                                transform: scale(0.96);
+                            }
+                        }
+                    }
+                    &+li{
+                        margin-top: 8px;
+                    }
+                }
+            }
+        }
+    }
+    .dialog-modal{
+        background: red;
+        border-radius: 8px;
+        background: url("../images/manor/cm-modal-bg.png") no-repeat;
+        width: 680px/@size !important;
+        height: 555px/@size;
+        background-size: 100% 100%;
+        font-family: 'hytangmeiren';
+        box-shadow: none;
+        .el-dialog__header{
+            display: none;
+        }
+        .el-dialog__body{
+            padding: 0px;
+        }
+        .modal-header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            height: 40px;
+            .adopt-title-icon{
+                background: url("../images/manor/adopt-title-icon.png") no-repeat;
+                width: 208px/@size;
+                height: 59px/@size;
+                background-size: 100% 100%;
+            }
+            .feed-title-icon{
+                background: url("../images/manor/feed-title-icon.png") no-repeat;
+                width: 206px/@size;
+                height: 59px/@size;
+                background-size: 100% 100%;
+            }
+            .sell-title-icon{
+                background: url("../images/manor/sell-title-icon.png") no-repeat;
+                width: 205px/@size;
+                height: 59px/@size;
+                background-size: 100% 100%;
+            }
+            .title{
+                position: relative;
+                top:8px;
+            }
+            .close-btn{
+                position: absolute;
+                top:-8px;
+                right: -8px;
+                display: inline-block;
+                background: url("../images/manor/cm-modal-close-btn.png") no-repeat;
+                width: 66px/@size;
+                height: 66px/@size;
+                background-size: 100% 100%;
+            }
+        }
+        .modal-body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 155px;
+            padding: 20px 20px 0px 20px;
+            text-align: center;
+            .strong{
+             color: #eb6100;
+            }
+            .text{
+                font-size: 20px;
+                color: #29750f;
+            }
+            .tips-icon{
+                margin-bottom: 5px;
+            }
+            .fail-icon{
+                display: inline-block;
+                background: url("../images/manor/warn-icon.png") no-repeat;
+                width: 78px/@size;
+                height: 70px/@size;
+                background-size: 100% 100%;
+            }
+            .success-icon{
+                display: inline-block;
+                background: url("../images/manor/success-icon.png") no-repeat;
+                width: 136px/@size;
+                height: 136px/@size;
+                background-size: 100% 100%;
+            }
+            .tips{
+                margin-top: 10px;
+                font-size: 16px;
+                color: #eb6100;
+            }
+            .animal-info{
+                margin-top: 8px;
+                .pic-box{
+                    position: relative;
+                    margin: 0px auto;
+                }
+                .price{
+                    margin-top: 5px;
+                    font-size: 16px;
+                    color: #29750f;
+                }
+            }
+        }
+        .modal-footer{
+            margin-top: 10px;
+            text-align: center;
+            .handle-btn{
+                display: inline-block;
+                width: 254px/@size;
+                height: 96px/@size;
+                &+.handle-btn{
+                    margin-left: 20px;
+                }
+            }
+            .cancel-btn{
+                background: url("../images/manor/cm-modal-cancel-btn.png") no-repeat;
+                background-size: 100% 100%;
+            }
+            .ok-btn{
+                background: url("../images/manor/cm-modal-sure-btn.png") no-repeat;
+                background-size: 100% 100%;
             }
         }
     }

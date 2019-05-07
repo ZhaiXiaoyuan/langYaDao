@@ -12,9 +12,9 @@ export default {
     Vue.http.interceptors.push((request, next)  =>{
 
       next((response) => {
-        //对于有作登录状态的接口你，未未登录时跳转到登录页
-        if(response.status==401){
-         /* router.push({name:''});*/
+        //登录状态拦截
+        if(response.body.respCode=='4003'){
+            Vue.tools.clearAccount();
         }
         return response
       });
@@ -50,9 +50,6 @@ export default {
             }
         }else{
             body=res.body;
-        }
-        if(body.respCode=='4001'){
-            Vue.tools.clearAccount();
         }
         return body
       }
@@ -327,7 +324,47 @@ export default {
         getAnimalLevelList:function (params) {
             return Vue.http.ajax({
                 method: 'post',
-                url: basicUrl+'/pasture/getAnimalList',
+                url: basicUrl3+'/pasture/getAnimalList',
+                params: params
+            });
+        },
+        //获取用户神兽状况
+        getUserAnimalInfo:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl3+'/pasture/getUserAnimalInfo',
+                params: params
+            });
+        },
+        //购买神兽
+        addUserAnimal:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl3+'/pasture/addUserAnimal',
+                params: params
+            });
+        },
+        //喂养神兽
+        feedUserAnimal:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl3+'/pasture/feedUserAnimal',
+                params: params
+            });
+        },
+        //卖神兽
+        removeUserAnimal:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl3+'/pasture/removeUserAnimal',
+                params: params
+            });
+        },
+        //售卖神蛋
+        sellEgg:function (params) {
+            return Vue.http.ajax({
+                method: 'post',
+                url: basicUrl3+'/pasture/sellEgg',
                 params: params
             });
         },
