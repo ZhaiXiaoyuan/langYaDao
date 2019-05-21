@@ -183,7 +183,6 @@ export default {
           },
         initAudio:function (id) {
               let audio=document.getElementById(id);
-          /*  console.log('test:',audio);*/
               function play() {
                   audio.play();
               }

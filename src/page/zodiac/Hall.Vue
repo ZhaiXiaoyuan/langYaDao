@@ -316,7 +316,7 @@
                 this.getRoomData();
                 },2000);
             //
-            this.speckText('德玛西亚');
+        /*    this.speckText('德玛西亚');*/
           /*  this.descModal()*/
 
         },
