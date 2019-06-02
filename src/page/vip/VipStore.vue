@@ -111,14 +111,22 @@
                     return;
                 }
                 this.handling=true;
-                let type='Native';
-                if(this.version.mobile){
-                    if(this.version.weixin){
-                        type='JSAPI';
-                    }else if(this.payType=='zhifubao'){
+                let type='';
+                if(this.payType=='weixin'){
+                    if(this.version.mobile){
+                        if(this.version.weixin){
+                            type='JSAPI';
+                        }else{
+                            type='H5';
+                        }
+                    }else{
+                        type='Native';
+                    }
+                }else if(this.payType=='zhifubao'){
+                    if(this.version.mobile){
                         type='phoneWeb';
                     }else{
-                        type='H5';
+                        type='pcWeb';
                     }
                 }
                 let params={
@@ -163,8 +171,16 @@
                                 },200)
                             }
                         }else{
-                            fb.setOptions({type:"complete",text:'订单生成成功，请扫码支付'});
-                            this.checkOrderStatus();
+                            if(this.payType=='zhifubao'){
+                                this.handling=false;
+                                setTimeout(()=>{
+                                    let form=document.getElementsByName('punchout_form');
+                                    form[0].submit();
+                                },200)
+                            }else{
+                                fb.setOptions({type:"complete",text:'订单生成成功，请扫码支付'});
+                                this.checkOrderStatus();
+                            }
                         }
                     }else{
                         this.handling=false;

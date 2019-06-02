@@ -1,7 +1,7 @@
 <template>
-    <div class="cm-page manor-game">
-        <div class="page-content">
-            <div class="cm-btn cm-scale-btn return-btn"></div>
+    <div class="cm-page manor-game" :class="{'pc-page':!version.mobile&&displayType!='modal'}">
+        <div class="">
+            <div class="cm-btn cm-scale-btn return-btn" @click="back()"></div>
             <i class="icon manor-logo-icon"></i>
             <div class="display-panel" v-if="displayFlag&&curAnimal">
                 <div class="panel-bd">
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <el-dialog custom-class="dialog-modal" :visible.sync="dialogModalFlag" center :modal-append-to-body="false" >
+        <el-dialog custom-class="dialog-modal" :visible.sync="dialogModalFlag" center :modal-append-to-body="false" top="30vh">
             <div class="modal-content" v-if="dialogModalType=='adopt'">
                 <div class="modal-header">
                     <span class="icon adopt-title-icon title"></span>
@@ -160,8 +160,14 @@
         components:{
 
         },
+        props:{
+            options:{
+              closeCallback:null,
+            }
+        },
         data: function(){
             return {
+                displayType:'',//modal
                 justEntry:false,
                 account:{},
                 levelModalFlag:false,
@@ -179,6 +185,8 @@
                 dialogModalType:'',//adopt、tips、feed、sell
                 dialogModalStep:1,
                 dialogModalTips:'',
+                version:Vue.tools.browserVersions(),
+                monitorInterval:null,
             }
         },
         methods: {
@@ -205,10 +213,9 @@
                 });
             },
             animalMonitor:function () {
-                setTimeout(()=>{
-                    this.getUserAnimalInfo();
-                    this.animalMonitor();
-                },5000);
+                this.monitorInterval=setInterval(()=>{
+                        this.getUserAnimalInfo();
+                    },8000);
             },
             getLevelList:function () {
                 Vue.api.getAnimalLevelList({apiParams:{}}).then((resp)=>{
@@ -281,7 +288,6 @@
                 Vue.api.removeUserAnimal({apiParams:params}).then((resp)=>{
                     if(resp.respCode=='2000'){
                         this.setDialogModalStep(3);
-
                     }else if(resp.respCode=='4001'){
                         this.dialogModalTips=resp.respMsg;
                         this.setDialogModalStep(2);
@@ -324,7 +330,7 @@
                 let fb=Vue.operationFeedback({text:'操作中...'});
                 Vue.api.sellEgg({apiParams:params}).then((resp)=>{
                     if(resp.respCode=='2000'){
-                        this.curAnimal.curAnimal='false';
+                        this.curAnimal.hasEgg='false';
                         fb.setOptions({type:'complete',text:'售卖成功'});
                     }else{
                         fb.setOptions({type:'warn',text:'售卖失败，'+resp.respMsg});
@@ -350,12 +356,20 @@
                     return type==item.level;
                 }).langyaCoinPrice;
                 return price;
+            },
+            back:function () {
+                this.options&&this.options.closeCallback&&this.options.closeCallback();
+                this.$router.go(-1);
             }
         },
         created(){
 
         },
         mounted () {
+            if(this.$route.params.displayType){
+                this.displayType=this.$route.params.displayType
+            }
+            console.log('this.displayType:',this.displayType);
             //
             this.account=this.getAccountInfo();
             //
@@ -371,7 +385,10 @@
             Vue.routeCheck(to,from,next);
         },
         beforeRouteLeave(to,from,next){
-            document.getElementById('footer').style.display='block';
+            clearInterval(this.monitorInterval);
+            if(this.displayType!='modal'){
+                document.getElementById('footer').style.display='block';
+            }
             next();
         },
     }

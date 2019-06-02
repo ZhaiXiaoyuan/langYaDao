@@ -181,7 +181,7 @@
                     if(resp.respCode=='2000'){
                         let data=JSON.parse(resp.respMsg);
                         this.account={...this.account,...data.user};
-                        console.log('this.account:',this.account);
+                       /* console.log('this.account:',this.account);*/
                     }
                 });
             },

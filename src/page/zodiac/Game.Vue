@@ -40,7 +40,7 @@
                     <span class="cm-btn cm-scale-btn handle-btn apply-btn m-apply-btn" v-if="type=='host'" @click="quit()">中途退出</span>
                     <span class="cm-btn cm-scale-btn handle-btn apply-btn m-player-btn" @click="blockModal('data')">玩家信息</span>
                     <span class="cm-btn cm-scale-btn handle-btn apply-btn m-modal-btn m-result-modal-btn" @click="blockModal('result')"><span class="pc-text">战绩专区</span><span class="m-text">战绩区</span></span>
-                    <span class="cm-btn cm-scale-btn handle-btn entrance-btn" @click="alertModal({html:'游戏开发中，敬请期待'})">我的庄园</span>
+                    <span class="cm-btn cm-scale-btn handle-btn entrance-btn" @click="manorModal()">我的庄园</span>
                     <span class="cm-btn cm-scale-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='player'" @click="blockModal('setBet')">竞猜区</span>
                     <span class="cm-btn cm-scale-btn handle-btn apply-btn m-modal-btn m-set-bet-modal-btn" v-if="type=='host'" @click="blockModal('setBet')">预设区</span>
                 </div>
@@ -553,6 +553,12 @@
             </div>
         </el-dialog>
 
+        <!--我的庄园弹窗-->
+        <div class="manor-modal" :class="{'active':manorModalFlag}">
+            <span class="cm-btn close-btn" @click="manorModal()"><i class="icon"></i></span>
+            <router-view :options="manorModalOptions" :show="true"></router-view>
+        </div>
+
         <!--音频-->
         <audio id="success-audio" :src="successVoice" v-if="loadVoiceFlag">
             您的浏览器不支持 audio 标签。
@@ -584,14 +590,11 @@
 <script>
     import Vue from 'vue'
     import bus from '../../components/common/bus'
-    import 'swiper/dist/css/swiper.css'
-
-    import { swiper, swiperSlide } from 'vue-awesome-swiper'
+    import Manor from '../manor/Manor.vue'
 
     export default {
         components:{
-            swiper,
-            swiperSlide
+            Manor
         },
         data: function(){
             return {
@@ -871,6 +874,13 @@
                 runningAudios:[],
 
                 defaultAvatar:require('../../images/common/default-avatar.png'),
+
+                manorModalFlag:false,
+                manorModalOptions:{
+                    closeCallback:()=>{
+                        this.manorModalFlag=false;
+                    }
+                },
             }
         },
         methods: {
@@ -1416,6 +1426,17 @@
                     }, false);
                 }
                 audio.play();
+            },
+            /*我的庄园模块*/
+            manorModal:function () {
+                this.manorModalFlag=!this.manorModalFlag;
+                if(this.manorModalFlag){
+                    this.$router.push({name:'manor',params:{displayType:'modal'},query:{roomLevel:this.roomLevel}});
+                }else{
+                    setTimeout(()=>{
+                        this.$router.go(-1);
+                    },500);
+                }
             }
         },
         created (){
@@ -1427,7 +1448,15 @@
             }*/
         },
         mounted () {
+            //
             this.initGame();
+            //
+            console.log('test:',this.$route.name);
+            if(this.$route.name=='manor'){
+                this.manorModalFlag=true;
+            }else{
+                this.manorModalFlag=false;
+            }
             //临时测试
           /*  setTimeout(()=>{
                 this.runTurntable(1);

@@ -1694,7 +1694,51 @@
         100% {transform:translate(-333px, 522px) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);}
     }html::after { content: url(https://ga-beacon.appspot.com/UA-42910121-1/stylie?pixel); position: absolute; left: -999em; }
 }
-
+.manor-modal{
+    position: fixed;
+    z-index: 200;
+    width: 375px;
+    height: 667px;
+    background: #fff;
+    border-radius: 5px;
+    left:-100%;
+    top:0px;
+    bottom: 0px;
+    margin: auto;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    transition: left 0.3s;
+    .close-btn{
+        position: absolute;
+        top:0px;
+        bottom: 0px;
+        right: -35px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #588b06;
+        width: 40px;
+        height: 40px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        .icon{
+            background: url("../images/zodiac/block-modal-white-close-btn.png") no-repeat;
+            width: 20px;
+            height: 20px;
+            background-size: 100% 100%;
+            transition: transfom 0.3s;
+        }
+    }
+    .manor-game{
+        border-radius: 5px;
+        .return-btn{
+            display: none;
+        }
+    }
+    &.active{
+        left: 10px;
+    }
+}
 .m-turntable-panel(@size,@top:1){
     .turntable-panel{
         position:absolute;
@@ -2873,6 +2917,32 @@
                     }
                 }
             }
+        }
+    }
+    .manor-modal{
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        left: auto;
+        right: -100%;
+        top:0px;
+        bottom: 0px;
+        margin: auto;
+        box-shadow: none;
+        transition: right 0.3s;
+        padding-top: 1.2rem;
+        .close-btn{
+            display: none;
+        }
+        .manor-game{
+            border-radius: 0px;
+            .return-btn{
+                display: inline-block;
+            }
+        }
+        &.active{
+            left: auto;
+            right: 0px;
         }
     }
 }

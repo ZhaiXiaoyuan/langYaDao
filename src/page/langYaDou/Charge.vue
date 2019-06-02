@@ -20,7 +20,7 @@
                                 <div class="item-bd"><i class="icon wechat-icon"></i></div>
                                 <div class="item-ft">微信支付</div>
                             </li>
-                            <li :class="{'active':payType=='zhifubao'}" v-if="version.mobile&&!version.weixin"  @click="setPayType('zhifubao')">
+                            <li :class="{'active':payType=='zhifubao'}" v-if="!version.weixin"  @click="setPayType('zhifubao')">
                                 <div class="item-bd"><i class="icon ali-icon"></i></div>
                                 <div class="item-ft">支付宝支付</div>
                             </li>
@@ -34,7 +34,15 @@
                             <p class="tips">请打开微信扫一扫进行支付，支付成功后请到保险箱页面查看余额</p>
                         </div>
                     </div>
-                    <div class="info-row alipay-info" v-if="payType=='zhifubao'&&order" v-html="order"></div>
+                    <div class="info-row alipay-info" v-if="payType=='zhifubao'&&order">
+                        <div v-if="version.mobile" v-html="order"></div>
+                        <div v-if="!version.mobile" v-html="order">
+                            <div class="img-box">
+                                <qrcode :value="order.code_url" :options="{ width: 180 }"></qrcode>
+                            </div>
+                            <p class="tips">请打开支付宝扫一扫进行支付，支付成功后请到保险箱页面查看余额</p>
+                        </div>
+                    </div>
                     <div  class="handle">
                         <el-button type="primary" class="handle-btn" :class="{'cm-disabled':handling}" @click="createOrder()">确定</el-button>
                     </div>
@@ -91,21 +99,29 @@
                     return;
                 }
                 this.handling=true;
-                let type='Native';
-                if(this.version.mobile){
-                    if(this.version.weixin){
-                        type='JSAPI';
-                    }else if(this.payType=='zhifubao'){
-                        type='phoneWeb';
+                let type='';
+                if(this.payType=='weixin'){
+                    if(this.version.mobile){
+                        if(this.version.weixin){
+                            type='JSAPI';
+                        }else{
+                            type='H5';
+                        }
                     }else{
-                        type='H5';
+                        type='Native';
+                    }
+                }else if(this.payType=='zhifubao'){
+                    if(this.version.mobile){
+                       type='phoneWeb';
+                    }else{
+                        type='pcWeb';
                     }
                 }
                 let params={
                     userId: this.account.id,
                     amount: this.selectedAmount*100,
                     payChannel:this.payType,//"zhifubao", "weixin"
-                    type:type,//如果是微信的话：H5\JSAPI\Native 支付宝：phoneWeb
+                    type:type,//如果是微信的话：H5\JSAPI\Native 支付宝："APP","phoneWeb","pcWeb"
                     openId:type=='JSAPI'?this.account.peymentOpenId:'',//当type为JSAPI时必填
                     zhifubaoRedirect:this.payType=='zhifubao'?encodeURI(window.location.href+'?tipsType=alipaySuccess'):'',//当支付渠道payType是支付宝时必填、如果跳转不到的话完成后就会调回支付宝的某页面
                 }
@@ -142,8 +158,16 @@
                                 },200)
                             }
                         }else{
-                            fb.setOptions({type:"complete",text:'订单生成成功，请扫码支付'});
-                            this.checkOrderStatus();
+                            if(this.payType=='zhifubao'){
+                                this.handling=false;
+                                setTimeout(()=>{
+                                    let form=document.getElementsByName('punchout_form');
+                                    form[0].submit();
+                                },200)
+                            }else{
+                                fb.setOptions({type:"complete",text:'订单生成成功，请扫码支付'});
+                                this.checkOrderStatus();
+                            }
                         }
                     }else{
                         this.handling=false;

@@ -432,7 +432,6 @@
             bus.$on('refreshAccount', () => {
                 this.account=Vue.getAccountInfo();
                 clearInterval(this.getMsgInterval);
-                console.log('dddd:',this.getMsgInterval);
                 if(this.account.id&&!this.getMsgInterval){
                     this.getMsgInterval=setInterval(()=>{
                         this.getList();
