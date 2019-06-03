@@ -11,6 +11,10 @@
     font-family: 'hytangmeiren';
     overflow: hidden;
     @size:2;
+    .resources-to-load{
+        position: absolute;
+        opacity: 0;
+    }
     .content-calculate(@size){
         .manor-logo-icon{
             position: absolute;
@@ -53,15 +57,35 @@
                         width: 100%;
                         height: 100%;
                     }
+                    @keyframes outside-light-ani
+                    {
+                      /*  0% {transform: rotate(0deg)}
+                        50% {transform: rotate(180deg)}
+                        100% {transform: rotate(360deg)}*/
+
+                        0% {
+                            transform: scale(0.8);
+                            opacity: 0.5;
+                        }
+                        50% {
+                            transform: scale(1);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: scale(0.8);
+                            opacity: 0.5;
+                        }
+                    }
                     .outside-light-icon{
                         display: none;
                         position: absolute;
                         left: 0px;
                         right: 0px;
-                        bottom: 12px;
+                        bottom: 10px;
                         margin: auto;
                         width: 189px/@size;
                         height: 137px/@size;
+                        animation:outside-light-ani 5s infinite;
                     }
                     .container-icon{
                         position: absolute;
@@ -195,7 +219,20 @@
                         width: 100%;
                         height: 100%;
                     }
+                    @keyframes white-light-ani
+                    {
+                        0%{
+                            opacity: 0.2;
+                        }
+                        50%{
+                            opacity: 1;
+                        }
+                        100%{
+                            opacity: 0.2;
+                        }
+                    }
                     .white-light-icon{
+                        display: none;
                         position: absolute;
                         left: 0px;
                         bottom: 0px;
@@ -203,8 +240,22 @@
                         width: 445px/@size;
                         height: 400px/@size;
                         background-size: 100% 100%;
+                        animation:white-light-ani 5s infinite;
+                    }
+                    @keyframes red-light-ani
+                    {
+                        0%{
+                            opacity: 0.2;
+                        }
+                        50%{
+                            opacity: 1;
+                        }
+                        100%{
+                            opacity:0.1;
+                        }
                     }
                     .red-light-icon{
+                        display: none;
                         position: absolute;
                         left: 0px;
                         bottom: 0px;
@@ -212,6 +263,7 @@
                         width: 445px/@size;
                         height: 363px/@size;
                         background-size: 100% 100%;
+                        animation:red-light-ani 5s infinite;
                     }
                     .tree-icon{
                         position: absolute;
@@ -269,7 +321,15 @@
                             background-size: 100% 100%;
                         }
                     }
+                    &.active{
+                        .white-light-icon{
+                            display: inline-block;
+                        }
+                        .red-light-icon{
+                            display: inline-block;
+                        }
 
+                    }
                 }
                 .tool-block{
                     position: absolute;
@@ -499,7 +559,12 @@
         z-index: 10;
         top:55px;
         left: 0px;
+        bottom: 0px;
+        margin: auto;
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
         @size:2.14;
         .modal-content{

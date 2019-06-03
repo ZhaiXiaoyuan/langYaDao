@@ -1,34 +1,33 @@
 <template>
     <div class="cm-page manor-game" :class="{'pc-page':!version.mobile&&displayType!='modal'}">
-        <div class="">
-            <div class="cm-btn cm-scale-btn return-btn" @click="back()"></div>
-            <i class="icon manor-logo-icon"></i>
-            <div class="display-panel" v-if="displayFlag&&curAnimal">
-                <div class="panel-bd">
-                    <div class="egg-block" :class="[curAnimal.animalId,curAnimal.hasEgg=='true'?'has':'']">
-                        <div class="block-bd">
-                            <i class="icon outside-light-icon"></i>
-                            <i class="icon container-icon"></i>
-                            <i class="icon inside-light-icon"></i>
-                            <i class="icon egg-icon" @click="sellEgg()"></i>
+        <div class="cm-btn cm-scale-btn return-btn" @click="back()"></div>
+        <i class="icon manor-logo-icon"></i>
+        <div class="display-panel" v-if="displayFlag&&curAnimal">
+            <div class="panel-bd">
+                <div class="egg-block" :class="[curAnimal.animalId,curAnimal.hasEgg=='true'?'has':'']">
+                    <div class="block-bd">
+                        <i class="icon container-icon"></i>
+                        <i class="icon outside-light-icon"></i>
+                        <i class="icon inside-light-icon"></i>
+                        <i class="icon egg-icon" @click="sellEgg()"></i>
+                    </div>
+                </div>
+                <div class="animal-block" :class="{'active':curAnimal}">
+                    <div class="block-bd">
+                        <i class="icon white-light-icon" v-if="curAnimal"></i>
+                        <i class="icon red-light-icon" v-if="curAnimal"></i>
+                        <div class="animal-box">
+                            <i class="animal turtle-animal left resources-to-load"></i>
+                            <i class="animal turtle-animal" :class="[animalPost]"></i>
                         </div>
+                        <i class="icon tree-icon left-tree"></i>
+                        <i class="icon tree-icon right-tree"></i>
+                        <div class="floor"></div>
                     </div>
-                    <div class="animal-block">
-                        <div class="block-bd">
-                            <i class="icon white-light-icon" v-if="curAnimal"></i>
-                            <i class="icon red-light-icon" v-if="curAnimal"></i>
-                            <div class="animal-box">
-                                <i class="animal turtle-animal" :class="[animalPost]"></i>
-                            </div>
-                            <i class="icon tree-icon left-tree"></i>
-                            <i class="icon tree-icon right-tree"></i>
-                            <div class="floor"></div>
-                        </div>
-                    </div>
-                    <div class="tool-block">
-                        <div class="cm-btn handle-btn feed-btn" :class="{'cm-disabled':!curAnimal}" @click="openDialogModal('feed')"></div>
-                        <div class="cm-btn handle-btn sell-btn" :class="{'cm-disabled':!curAnimal}" @click="openDialogModal('sell')"></div>
-                    </div>
+                </div>
+                <div class="tool-block">
+                    <div class="cm-btn handle-btn feed-btn" :class="{'cm-disabled':!curAnimal}" @click="openDialogModal('feed')"></div>
+                    <div class="cm-btn handle-btn sell-btn" :class="{'cm-disabled':!curAnimal}" @click="openDialogModal('sell')"></div>
                 </div>
             </div>
         </div>
@@ -137,7 +136,7 @@
                     </div>
                     <div v-if="dialogModalStep==3">
                         <i class="icon tips-icon success-icon"></i>
-                        <p class="text">卖出成功！</p>
+                        <p class="text">卖出成功，{{findPrice(curAnimal.animalId)}}琅琊豆已到账流动余额。</p>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -215,7 +214,7 @@
             animalMonitor:function () {
                 this.monitorInterval=setInterval(()=>{
                         this.getUserAnimalInfo();
-                    },8000);
+                    },3000);
             },
             getLevelList:function () {
                 Vue.api.getAnimalLevelList({apiParams:{}}).then((resp)=>{
