@@ -54,16 +54,24 @@
     }
     .content-panel{
         margin-top: 20px;
+        overflow: hidden;
+        .left-part{
+            float: left;
+        }
+        .right-part{
+            float: right;
+            width: 252px;
+        }
     }
     .block{
         background: #fff;
         border-radius: 10px;
         .block-hd{
-            padding: 10px;
+            padding: 15px 10px;
             display: flex;
             align-items: center;
             .title{
-                margin-left: 8px;
+                margin-left: 10px;
                 font-size: 18px;
                 color: #000;
                 font-weight: bold;
@@ -123,11 +131,17 @@
         }
     }
     .vertical-block{
-        float: right;
+        float: none;
         display: inline-block;
         width: 252px;
+        .line-icon{
+            display: inline-block;
+            width: 5px;
+            height: 24px;
+            background: @mainOrange;
+        }
         .block-bd{
-            padding: 10px 20px 20px 20px;
+            padding: 10px 20px 30px 20px;
         }
         .draw-item{
             text-align: center;
@@ -147,6 +161,30 @@
                 text-align: center;
                 font-size: 12px;
                 color: #fff;
+            }
+        }
+        &+.vertical-block{
+            margin-top: 20px;
+        }
+    }
+    .game-center-block{
+        .download-btn-list{
+            >li{
+                .icon{
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                }
+                a{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: @mainBlue;
+                    height: 48px;
+                    border-radius: 24px;
+                    color: #fff;
+                    font-size: 16px;
+                }
             }
         }
     }
@@ -211,6 +249,12 @@
         }
         .content-panel{
             margin-top: 0.2rem;
+            .left-part{
+                width: 100%;
+            }
+            .right-part{
+                width: 100%;
+            }
         }
         .horizontal-block{
             display: block;
@@ -266,6 +310,9 @@
             margin: 0.2rem auto 0rem auto;
             .block-bd{
                 padding: 0.2rem 0.3rem 0.4rem 0.3rem;
+            }
+            &+.vertical-block{
+                margin-top: 10px;
             }
         }
         .tool-panel{

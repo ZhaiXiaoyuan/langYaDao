@@ -9,50 +9,72 @@
                 </el-carousel>
             </div>
             <div class="cm-container content-panel">
-                <div class="block horizontal-block">
-                    <div class="block-hd">
-                        <i class="icon game-icon"></i>
-                        <span class="title">琅琊岛游戏</span>
-                    </div>
-                    <div class="block-bd">
-                        <ul class="item-list">
-                            <li v-for="(item,index) in gameList" :key="index">
-                                <a :href="item.gameUrl">
+                <div class="left-part">
+                    <div class="block horizontal-block">
+                        <div class="block-hd">
+                            <i class="icon game-icon"></i>
+                            <span class="title">琅琊岛游戏</span>
+                        </div>
+                        <div class="block-bd">
+                            <ul class="item-list">
+                                <li v-for="(item,index) in gameList" :key="index">
+                                    <a :href="item.gameUrl">
+                                        <div class="cover">
+                                            <img :src="basicConfig.imgBasicUrl+item.gamePic" alt="">
+                                        </div>
+                                        <h3>{{item.gameName}}</h3>
+                                    </a>
+                                </li>
+                                <li class="waiting-item">
                                     <div class="cover">
-                                        <img :src="basicConfig.imgBasicUrl+item.gamePic" alt="">
+                                        <div class="icon-wrap">
+                                            <i class="icon hourglass-icon"></i>
+                                            <p>敬请期待</p>
+                                        </div>
                                     </div>
-                                    <h3>{{item.gameName}}</h3>
-                                </a>
-                            </li>
-                            <li class="waiting-item">
-                                <div class="cover">
-                                   <div class="icon-wrap">
-                                       <i class="icon hourglass-icon"></i>
-                                       <p>敬请期待</p>
-                                   </div>
-                                </div>
-                                <h3>更多游戏敬请期待</h3>
-                            </li>
-                        </ul>
+                                    <h3>更多游戏敬请期待</h3>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="block vertical-block">
-                    <div class="block-hd">
-                        <i class="icon gift-icon"></i>
-                        <span class="title">欢乐大转盘</span>
-                        <span class="sub-title">（积分赢好礼）</span>
+                <div class="right-part">
+                    <div class="block vertical-block game-center-block">
+                        <div class="block-hd">
+                            <i class="icon line-icon"></i>
+                            <span class="title">琅琊游戏中心</span>
+                            <!--<span class="sub-title"></span>-->
+                        </div>
+                        <div class="block-bd">
+                            <ul class="download-btn-list">
+                                <li>
+                                    <a href="http://www.langyagame.com/web/GamePlaza.exe" target="_blank">
+                                        <i class="icon download-icon"></i>
+                                        <span>PC客户端下载</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="block-bd">
-                        <router-link tag='div' :to="{ path: '/draw'}" class="draw-item">
-                            <div class="cm-btn draw-btn"></div>
-                            <p class="score" v-if="account.id">您的积分余额：{{account.bonus}}</p>
-                            <p class="score" v-if="!account.id">马上前往</p>
-                        </router-link>
+                    <div class="block vertical-block">
+                        <div class="block-hd">
+                          <!--  <i class="icon gift-icon"></i>-->
+                            <i class="icon line-icon"></i>
+                            <span class="title">欢乐大转盘</span>
+                            <span class="sub-title">（积分赢好礼）</span>
+                        </div>
+                        <div class="block-bd">
+                            <router-link tag='div' :to="{ path: '/draw'}" class="draw-item">
+                                <div class="cm-btn draw-btn"></div>
+                                <p class="score" v-if="account.id">您的积分余额：{{account.bonus}}</p>
+                                <p class="score" v-if="!account.id">马上前往</p>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
-                <div class="more-tips">
-                    -&nbsp;精彩内容即将上线，请耐心等候&nbsp;-
-                </div>
+            </div>
+            <div class="more-tips">
+                -&nbsp;精彩内容即将上线，请耐心等候&nbsp;-
             </div>
             <div class="tool-panel">
                 <ul class="btn-list">

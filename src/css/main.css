@@ -195,6 +195,12 @@ body {
   height: 26px;
   background-size: 100% 100%;
 }
+.download-icon {
+  background: url("../images/common/download-icon.png") no-repeat;
+  width: 32px;
+  height: 32px;
+  background-size: 100% 100%;
+}
 .cm-btn {
   cursor: pointer;
   -webkit-user-select: none;
@@ -803,13 +809,21 @@ body {
 }
 .home .content-panel {
   margin-top: 20px;
+  overflow: hidden;
+}
+.home .content-panel .left-part {
+  float: left;
+}
+.home .content-panel .right-part {
+  float: right;
+  width: 252px;
 }
 .home .block {
   background: #fff;
   border-radius: 10px;
 }
 .home .block .block-hd {
-  padding: 10px;
+  padding: 15px 10px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -820,7 +834,7 @@ body {
           align-items: center;
 }
 .home .block .block-hd .title {
-  margin-left: 8px;
+  margin-left: 10px;
   font-size: 18px;
   color: #000;
   font-weight: bold;
@@ -887,12 +901,18 @@ body {
   color: #bcbcbc;
 }
 .home .vertical-block {
-  float: right;
+  float: none;
   display: inline-block;
   width: 252px;
 }
+.home .vertical-block .line-icon {
+  display: inline-block;
+  width: 5px;
+  height: 24px;
+  background: #ffa800;
+}
 .home .vertical-block .block-bd {
-  padding: 10px 20px 20px 20px;
+  padding: 10px 20px 30px 20px;
 }
 .home .vertical-block .draw-item {
   text-align: center;
@@ -913,6 +933,33 @@ body {
   text-align: center;
   font-size: 12px;
   color: #fff;
+}
+.home .vertical-block + .vertical-block {
+  margin-top: 20px;
+}
+.home .game-center-block .download-btn-list > li .icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.home .game-center-block .download-btn-list > li a {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #0facff;
+  height: 48px;
+  border-radius: 24px;
+  color: #fff;
+  font-size: 16px;
 }
 .home .more-tips {
   padding: 25px 0px;
@@ -975,6 +1022,12 @@ body {
   }
   .home .content-panel {
     margin-top: 0.2rem;
+  }
+  .home .content-panel .left-part {
+    width: 100%;
+  }
+  .home .content-panel .right-part {
+    width: 100%;
   }
   .home .horizontal-block {
     display: block;
@@ -1048,6 +1101,9 @@ body {
   }
   .home .vertical-block .block-bd {
     padding: 0.2rem 0.3rem 0.4rem 0.3rem;
+  }
+  .home .vertical-block + .vertical-block {
+    margin-top: 10px;
   }
   .home .tool-panel {
     right: 0rem;
