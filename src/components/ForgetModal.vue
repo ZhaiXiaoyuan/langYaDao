@@ -189,7 +189,7 @@
         if(this.options.type=='normal'){
             this.typeText='';
         }else if(this.options.type=='safeBox'){
-            this.typeText='琅琊豆中心';
+            this.typeText='充值中心';
         }
     }
   };

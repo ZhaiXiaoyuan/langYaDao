@@ -5,7 +5,7 @@
             <div class="nav-panel">
                 <div class="panel-bd">
                     <ul class="nav-list">
-                        <li class="cm-btn" @click="go({name:'home'})" :class="{'active':page=='home'}"><span>琅琊岛</span></li>
+                        <li class="cm-btn" @click="go({name:'home'})" :class="{'active':page=='home'}"><span>31ENT</span></li>
                      <!--   <li class="cm-btn"><span>琅琊谷</span></li>
                         <li class="cm-btn"><span>琅琊村</span></li>
                         <li class="cm-btn"><span>琅琊秀</span></li>-->
@@ -215,8 +215,8 @@
             height: 1.2rem;
             padding: 0rem 0.2rem;
             .logo-icon{
-                width: 2.235rem;
-                height: 0.57rem;
+                width: 2.3rem;
+                height: 0.59rem;
             }
 
             .menu-btn{
@@ -387,7 +387,8 @@
                 this.$router.push({path:'/'});
             },
             getList:function () {
-                let params={
+                //临时测试
+                /*let params={
                     userId:this.account.id,
                     state:'notExchanged',
                     userType:'gainer',
@@ -407,7 +408,7 @@
                     }else if(resp.respCode=='4001'){
                         clearInterval(this.getMsgInterval);
                     }
-                });
+                });*/
             },
             goToMsgDetail:function () {
                 this.msgBlockFlag=false;

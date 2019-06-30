@@ -13,7 +13,7 @@
                     <div class="block horizontal-block">
                         <div class="block-hd">
                             <i class="icon game-icon"></i>
-                            <span class="title">琅琊岛游戏</span>
+                            <span class="title">31ENT游戏</span>
                         </div>
                         <div class="block-bd">
                             <ul class="item-list">
@@ -42,13 +42,33 @@
                     <div class="block vertical-block game-center-block">
                         <div class="block-hd">
                             <i class="icon line-icon"></i>
-                            <span class="title">琅琊游戏中心</span>
+                            <span class="title">游戏中心</span>
                             <!--<span class="sub-title"></span>-->
                         </div>
                         <div class="block-bd">
-                            <ul class="download-btn-list">
+                            <div class="info-row flex-row">
+                                <a class="item btn-item" href="http://wpa.qq.com/msgrd?v=3&uin=992311113&site=qq&menu=yes" target="_blank">
+                                    <div class="icon-wrap">
+                                        <i class="icon customer-service-icon"></i>
+                                    </div>
+                                    <p class="text">QQ客服</p>
+                                </a>
+                                <div class="item qrcode">
+                                    <img :src="wechatQrcode" alt="">
+                                    <p class="text">扫码关注微信公众号</p>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                              <!--  <a class="text-item" href="tencent://message/?uin=992311113&Site=http://vps.shuidazhe.com&Menu=yes" target="_blank">
+                                    <span class="label">QQ客服：</span><span class="value">992311113</span>
+                                </a>-->
+                                <a class="text-item" tel="0579-82311113">
+                                    <span class="label">客服电话：</span><span class="value">0579-82311113</span>
+                                </a>
+                            </div>
+                            <ul class="info-row download-btn-list" v-if="!bVersion.mobile">
                                 <li>
-                                    <a href="http://www.langyagame.com/web/GamePlaza.exe" target="_blank">
+                                    <a href="http://www.31ent.com/web/31ENTGame安装包.exe" target="_blank">
                                         <i class="icon download-icon"></i>
                                         <span>PC客户端下载</span>
                                     </a>
@@ -78,7 +98,7 @@
             </div>
             <div class="tool-panel">
                 <ul class="btn-list">
-                    <li class="cm-btn"><i class="icon service-icon"></i></li>
+                    <li class="cm-btn"><a href="http://wpa.qq.com/msgrd?v=3&uin=992311113&site=qq&menu=yes" target="_blank"><i class="icon service-icon"></i></a></li>
                     <li class="cm-btn" @click="goAnchor('#header')"><i class="icon to-top-icon"></i></li>
                 </ul>
             </div>
@@ -102,6 +122,8 @@
                 account:{},
                 bannerList:[],
                 gameList:[],
+                wechatQrcode:require('../images/home/wechat-qrcode.jpg'),
+                bVersion:Vue.tools.browserVersions(),
             }
         },
         methods: {

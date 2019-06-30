@@ -53,7 +53,7 @@
                             <el-input-number v-model="form.count" :min="1" :max="1000" label=""  @blur="blurAdjust($event)"></el-input-number>
                         </el-form-item>
                         <el-form-item label="消耗：">
-                           <span class="num">{{coinCount}}</span><span>琅琊豆</span>
+                           <span class="num">{{coinCount}}</span><span>游戏币</span>
                         </el-form-item>
                     </el-form>
                 </div>

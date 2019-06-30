@@ -155,8 +155,8 @@ body {
 }
 .logo-icon {
   background: url("../images/common/logo-icon.png") no-repeat;
-  width: 149px;
-  height: 38px;
+  width: 144px;
+  height: 37px;
   background-size: 100% 100%;
 }
 .vip-icon {
@@ -199,6 +199,12 @@ body {
   background: url("../images/common/download-icon.png") no-repeat;
   width: 32px;
   height: 32px;
+  background-size: 100% 100%;
+}
+.customer-service-icon {
+  background: url("../images/common/customer-service-icon.png") no-repeat;
+  width: 48px;
+  height: 48px;
   background-size: 100% 100%;
 }
 .cm-btn {
@@ -327,8 +333,8 @@ body {
   display: block;
   margin: 0px auto 20px auto;
   background: url("../images/common/logo-md-icon.png") no-repeat;
-  width: 121px;
-  height: 121px;
+  width: 120px;
+  height: 40px;
   background-size: 100% 100%;
 }
 .register-modal .el-dialog .form {
@@ -642,8 +648,8 @@ body {
     padding-top: 0.2rem;
   }
   .register-modal .el-dialog .logo-md-icon {
-    width: 2rem;
-    height: 2rem;
+    width: 2.4rem;
+    height: 0.8rem;
     margin: 0.2rem auto;
   }
   .register-modal .el-dialog .form {
@@ -912,7 +918,7 @@ body {
   background: #ffa800;
 }
 .home .vertical-block .block-bd {
-  padding: 10px 20px 30px 20px;
+  padding: 5px 20px 28px 20px;
 }
 .home .vertical-block .draw-item {
   text-align: center;
@@ -937,9 +943,96 @@ body {
 .home .vertical-block + .vertical-block {
   margin-top: 20px;
 }
+.home .game-center-block .flex-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+.home .game-center-block .flex-row .item {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+.home .game-center-block .info-row .btn-item {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.home .game-center-block .info-row .btn-item .icon-wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fafafa;
+  border: 1px solid #eaeaea;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.home .game-center-block .info-row .btn-item .icon-wrap .icon {
+  width: 44px;
+  height: 44px;
+}
+.home .game-center-block .info-row .btn-item .text {
+  margin-top: 5px;
+}
+.home .game-center-block .info-row .btn-item:hover .icon-wrap {
+  background: #fff;
+}
+.home .game-center-block .info-row .btn-item:hover .text {
+  color: #ffa800;
+}
+.home .game-center-block .info-row .text-item {
+  display: block;
+  text-align: center;
+}
+.home .game-center-block .info-row .text-item .label {
+  color: #666;
+  font-size: 12px;
+}
+.home .game-center-block .info-row .text-item .value {
+  font-size: 18px;
+  color: #ffa800;
+}
+.home .game-center-block .info-row .qrcode {
+  text-align: center;
+  margin-left: auto;
+}
+.home .game-center-block .info-row .qrcode img {
+  width: 110px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+}
+.home .game-center-block .info-row .qrcode .text {
+  color: #666;
+  font-size: 12px;
+}
+.home .game-center-block .info-row + .info-row {
+  margin-top: 15px;
+}
+.home .game-center-block .download-btn-list {
+  display: block;
+}
 .home .game-center-block .download-btn-list > li .icon {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   margin-right: 10px;
 }
 .home .game-center-block .download-btn-list > li a {
@@ -956,10 +1049,10 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   background: #0facff;
-  height: 48px;
-  border-radius: 24px;
+  height: 44px;
+  border-radius: 22px;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
 }
 .home .more-tips {
   padding: 25px 0px;
@@ -1105,6 +1198,33 @@ body {
   .home .vertical-block + .vertical-block {
     margin-top: 10px;
   }
+  .home .game-center-block .flex-row {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .home .game-center-block .info-row .text-item {
+    position: relative;
+    left: -0.16rem;
+    display: block;
+    text-align: center;
+  }
+  .home .game-center-block .info-row .text-item .value {
+    position: relative;
+    top: 2px;
+    font-size: 20px;
+  }
+  .home .game-center-block .info-row .qrcode {
+    text-align: center;
+    margin-left: 0.8rem;
+  }
+  .home .game-center-block .info-row .qrcode img {
+    width: 130px;
+  }
+  .home .game-center-block .info-row + .info-row {
+    margin-top: 15px;
+  }
   .home .tool-panel {
     right: 0rem;
     bottom: 1rem;
@@ -1129,12 +1249,12 @@ body {
 }
 .zodiac-hall .page-content .logo-icon {
   background: url("../images/zodiac/logo-icon.png") no-repeat;
-  width: 424px;
+  width: 210px;
   height: 97px;
   background-size: 100% 100%;
 }
 .zodiac-hall .page-content .logo {
-  margin: 24px 0px 0px 254px;
+  margin: 30px 0px 0px 360px;
 }
 .zodiac-hall .page-content .panel {
   overflow: hidden;
@@ -1179,7 +1299,7 @@ body {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 25px 0px 0px 160px;
+  margin: 10px 0px 0px 160px;
   background: url("../images/zodiac/zodiac-carousel-bg.png") no-repeat;
   width: 627px;
   height: 125px;
@@ -1371,10 +1491,10 @@ body {
   }
   .zodiac-hall .page-content .logo-icon {
     background: url("../images/zodiac/m-logo-icon.png") no-repeat;
-    width: 4.71rem;
+    width: 2.36rem;
     height: 1.07rem;
     background-size: 100% 100%;
-    margin: 0rem 0rem 0rem 0.3rem;
+    margin: 0rem 0rem 0rem 1.5rem;
   }
   .zodiac-hall .page-content .carousel-block {
     display: -webkit-box;

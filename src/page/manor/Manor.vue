@@ -42,7 +42,7 @@
                 </ul>
                 <div class="rule-block">
                     <div class="block-bd">
-                        领养神兽需向平台支付相应价值的琅琊豆，当不希望继续喂养领养的神兽时，平台将按原价值向玩家回购改神兽，喂养神兽饲料24小时后，神兽将会产蛋，平台会根据不同等级收成蛋的价值向玩家收购。
+                        领养神兽需向平台支付相应价值的游戏币，当不希望继续喂养领养的神兽时，平台将按原价值向玩家回购改神兽，喂养神兽饲料24小时后，神兽将会产蛋，平台会根据不同等级收成蛋的价值向玩家收购。
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <p class="title">请选择要领养的神兽</p>
-                    <p class="info">（{{curLevel.name}}别&nbsp;&nbsp;价值{{curLevel.langyaCoinPrice|numFormat}}琅琊豆）</p>
+                    <p class="info">（{{curLevel.name}}别&nbsp;&nbsp;价值{{curLevel.langyaCoinPrice|numFormat}}游戏币）</p>
                 </div>
                 <div class="modal-body">
                     <ul class="item-list">
@@ -79,7 +79,7 @@
                 <div class="modal-body">
                     <div v-if="dialogModalStep==1">
                         <p class="text">
-                            确定支付<span class="strong">{{curLevel.langyaCoinPrice}}琅琊豆</span>领养{{curLevel.name}}{{selectedAnimal.name}}神兽？
+                            确定支付<span class="strong">{{curLevel.langyaCoinPrice}}游戏币</span>领养{{curLevel.name}}{{selectedAnimal.name}}神兽？
                         </p>
                     </div>
                     <div v-if="dialogModalStep==2">
@@ -126,7 +126,7 @@
                             <div class="pic-box">
                                 <i class="icon animal-icon" :class="curAnimal.animalName+'-icon '+curAnimal.animalId+'-'+curAnimal.animalName+'-icon'"></i>
                             </div>
-                            <p class="price">（售价<span class="strong">{{findPrice(curAnimal.animalId)}}</span>琅琊豆）</p>
+                            <p class="price">（售价<span class="strong">{{findPrice(curAnimal.animalId)}}</span>游戏币）</p>
                         </div>
                     </div>
                     <div v-if="dialogModalStep==2">
@@ -136,7 +136,7 @@
                     </div>
                     <div v-if="dialogModalStep==3">
                         <i class="icon tips-icon success-icon"></i>
-                        <p class="text">卖出成功，{{findPrice(curAnimal.animalId)}}琅琊豆已到账流动余额。</p>
+                        <p class="text">卖出成功，{{findPrice(curAnimal.animalId)}}游戏币已到账流动余额。</p>
                     </div>
                 </div>
                 <div class="modal-footer">

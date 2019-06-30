@@ -141,7 +141,7 @@
             background: @mainOrange;
         }
         .block-bd{
-            padding: 10px 20px 30px 20px;
+            padding: 5px 20px 28px 20px;
         }
         .draw-item{
             text-align: center;
@@ -168,11 +168,81 @@
         }
     }
     .game-center-block{
+        .flex-row{
+            display: flex;
+            align-items: flex-end;
+            .item{
+                flex-shrink: 0;
+            }
+        }
+        .info-row{
+            .btn-item{
+                text-align: center;
+                font-size: 12px;
+                color: #666;
+                transition: all 0.3s;
+                .icon-wrap{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    background: #fafafa;
+                    border: 1px solid #eaeaea;
+                    transition: all 0.3s;
+                    .icon{
+                        width: 44px;
+                        height: 44px;
+                    }
+                }
+                .text{
+                    margin-top: 5px;
+                }
+                &:hover{
+                    .icon-wrap{
+                        background: #fff;
+                    }
+                    .text{
+                       color: #ffa800;
+                    }
+                }
+            }
+            .text-item{
+                display: block;
+                text-align: center;
+                .label{
+                    color: #666;
+                    font-size: 12px;
+                }
+                .value{
+                    font-size: 18px;
+                    color: #ffa800;
+                }
+            }
+            .qrcode{
+                text-align: center;
+                margin-left: auto;
+                img{
+                    width: 110px;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 5px;
+                }
+                .text{
+                    color: #666;
+                    font-size: 12px;
+                }
+            }
+            &+.info-row{
+                margin-top: 15px;
+            }
+        }
         .download-btn-list{
+            display: block;
             >li{
                 .icon{
-                    width: 30px;
-                    height: 30px;
+                    width: 24px;
+                    height: 24px;
                     margin-right: 10px;
                 }
                 a{
@@ -180,10 +250,10 @@
                     align-items: center;
                     justify-content: center;
                     background: @mainBlue;
-                    height: 48px;
-                    border-radius: 24px;
+                    height: 44px;
+                    border-radius: 22px;
                     color: #fff;
-                    font-size: 16px;
+                    font-size: 15px;
                 }
             }
         }
@@ -313,6 +383,35 @@
             }
             &+.vertical-block{
                 margin-top: 10px;
+            }
+        }
+        .game-center-block{
+            .flex-row{
+                justify-content: center;
+
+            }
+            .info-row{
+                .text-item{
+                    position: relative;
+                    left: -0.16rem;
+                    display: block;
+                    text-align: center;
+                    .value{
+                        position: relative;
+                        top:2px;
+                        font-size: 20px;
+                    }
+                }
+                .qrcode{
+                    text-align: center;
+                    margin-left: 0.8rem;
+                    img{
+                        width:130px;
+                    }
+                }
+                &+.info-row{
+                    margin-top: 15px;
+                }
             }
         }
         .tool-panel{

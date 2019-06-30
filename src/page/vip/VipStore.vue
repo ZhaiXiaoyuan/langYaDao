@@ -8,8 +8,8 @@
                 <div class="info">
                     <p class="title">{{item.vipName}}</p>
                     <div class="desc">
-                        <p v-if="item.giftLangyaCoinState=='enable'">购买即送琅琊豆{{item.giftLangyaCoin}}颗</p>
-                        <p v-if="item.dailyGiftLangyaCoinState=='enable'">每天赠送琅琊豆{{item.dailyGiftLangyaCoin}}颗</p>
+                        <p v-if="item.giftLangyaCoinState=='enable'">购买即送{{item.giftLangyaCoin}}个游戏币</p>
+                        <p v-if="item.dailyGiftLangyaCoinState=='enable'">每天赠送{{item.dailyGiftLangyaCoin}}个游戏币</p>
                         <p v-if="item.kick=='enable'">可踢低级别会员</p>
                     </div>
                     <p class="price">

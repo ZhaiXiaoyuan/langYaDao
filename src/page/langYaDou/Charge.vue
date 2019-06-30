@@ -11,7 +11,7 @@
                     <li class="cm-btn" v-for="(item,index) in optionsList" :key="index" :class="{'active':selectedAmount==item}" @click="selectAmount(item)">{{item}}元</li>
                 </ul>
                 <div class="payment-info">
-                    <p class="info-row">您将获得：<span class="num">{{coinCount}}</span>琅琊豆</p>
+                    <p class="info-row">您将获得：<span class="num">{{coinCount}}</span>游戏币</p>
                     <p class="info-row">您应支付：<span class="num">{{selectedAmount}}</span>元</p>
                     <div class="info-row">
                         <span>支付方式：</span>

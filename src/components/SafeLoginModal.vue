@@ -4,8 +4,8 @@
             <div class="step-1" v-if="options.step==1">
                 <i class="icon el-icon-warning"></i>
                 <div class="tips">
-                    <p>检测到您首次进入琅琊豆中心</p>
-                    <p>请先设定琅琊豆中心密码</p>
+                    <p>检测到您首次进入31ENT中心</p>
+                    <p>请先设定31ENT中心密码</p>
                 </div>
                 <div class="handle">
                     <el-button class="handle-btn" type="primary"  @click="toSetPwd()">确定</el-button>
@@ -13,7 +13,7 @@
             </div>
             <div class="step-2" v-if="options.step==2">
                 <div class="form">
-                    <p class="title">访问琅琊豆中心请输入密码</p>
+                    <p class="title">访问31ENT中心请输入密码</p>
                     <div class="pwd-input">
                         <div class="pwd-input-item">
                             <ul class="input-bg"><li v-for="(item) in 6"></li></ul>

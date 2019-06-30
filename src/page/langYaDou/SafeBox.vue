@@ -3,19 +3,19 @@
         <div class="balance-panel">
             <div class="balance-item total-balance-item">
                 <p class="title">总资产：</p>
-                <p class="value"><span class="num">{{account.balance+account.safeBoxBalance}}</span><span class="unit">琅琊豆</span></p>
+                <p class="value"><span class="num">{{account.balance+account.safeBoxBalance}}</span><span class="unit">游戏币</span></p>
             </div>
             <div class="items-wrap">
                 <div class="balance-item liquidity-balance-item">
                     <p class="title">流动余额：</p>
-                    <p class="value"><span class="num">{{account.balance}}</span><span class="unit">琅琊豆</span></p>
+                    <p class="value"><span class="num">{{account.balance}}</span><span class="unit">游戏币</span></p>
                     <div class="handle">
                         <router-link tag="span" :to="{ path: '/center/coin/charge'}" class="cm-btn btn">充值</router-link>
                     </div>
                 </div>
                 <div class="balance-item safety-balance-item">
                     <p class="title">保险箱余额：</p>
-                    <p class="value"><span class="num">{{account.safeBoxBalance}}</span><span class="unit">琅琊豆</span></p>
+                    <p class="value"><span class="num">{{account.safeBoxBalance}}</span><span class="unit">游戏币</span></p>
                     <div class="handle">
                         <span class="cm-btn btn solid-btn" @click="openConvertModal('in')">从余额转入</span>
                         <span class="cm-btn btn" @click="openConvertModal('out')">转出到余额</span>
@@ -73,18 +73,18 @@
             <div class="modal-body">
                 <el-form ref="form" :model="form" label-width="90px" v-if="convertModalType=='in'">
                     <el-form-item label="流动余额：">
-                        <span class="num">{{account.balance}}</span><span>琅琊豆</span>
+                        <span class="num">{{account.balance}}</span><span>游戏币</span>
                     </el-form-item>
                     <el-form-item label="转入数额：">
-                        <el-input v-model="form.count" class="input-item" @blur="blurAdjust($event)"></el-input><span>琅琊豆</span>
+                        <el-input v-model="form.count" class="input-item" @blur="blurAdjust($event)"></el-input><span>游戏币</span>
                     </el-form-item>
                 </el-form>
                 <el-form ref="form" :model="form" label-width="100px" v-if="convertModalType=='out'">
                     <el-form-item label="保险箱余额：">
-                        <span class="num">{{account.safeBoxBalance}}</span><span>琅琊豆</span>
+                        <span class="num">{{account.safeBoxBalance}}</span><span>游戏币</span>
                     </el-form-item>
                     <el-form-item label="转入数额：">
-                        <el-input v-model="form.count" class="input-item" @blur="blurAdjust($event)"></el-input><span>琅琊豆</span>
+                        <el-input v-model="form.count" class="input-item" @blur="blurAdjust($event)"></el-input><span>游戏币</span>
                     </el-form-item>
                 </el-form>
             </div>
@@ -208,7 +208,7 @@
             exchange:function (item) {
                 let list=[];
                 if(item){
-                    this.$confirm('确定将\"'+item.giftName+'×'+item.giftMessage.count+'\"兑换为琅琊豆？兑换得到的琅琊豆将自动转入保险箱内。', '提示', {
+                    this.$confirm('确定将\"'+item.giftName+'×'+item.giftMessage.count+'\"兑换为游戏币？兑换得到的游戏币将自动转入保险箱内。', '提示', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
                         type: 'info '
@@ -231,7 +231,7 @@
                             let data=JSON.parse(resp.respMsg);
                             let giftList=typeof data.giftMessageList=='string'?JSON.parse(data.giftMessageList):data.giftMessageList;
                             if(giftList.length>0){
-                                this.$confirm('确定将全部礼物兑换为琅琊豆？兑换得到的琅琊豆将自动转入保险箱内。', '提示', {
+                                this.$confirm('确定将全部礼物兑换为游戏币？兑换得到的游戏币将自动转入保险箱内。', '提示', {
                                     confirmButtonText: '确定',
                                     cancelButtonText: '取消',
                                     type: 'info '

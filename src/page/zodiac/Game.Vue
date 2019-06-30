@@ -363,7 +363,7 @@
                             {{timer}}s
                             <span style="display: none">{{!timer&&blockModal(false,false)}}</span>
                         </span>
-                        <div class="balance"><span class="pc-text">琅琊豆余额:</span>{{curPlayer.user.balance}}</div>
+                        <div class="balance"><span class="pc-text">游戏币余额:</span>{{curPlayer.user.balance}}</div>
                         <ul class="choice-list" v-if="type=='player'">
                             <li v-for="(item,index) in roomConfig.chipList" :key="index" class="cm-btn" :class="{'selected':selectedChip==item}" @click="selectChip(item)">{{item|numFormat}}</li>
                         </ul>
@@ -510,10 +510,10 @@
                  </span>
                 <div class="mask" @click="blockModal(false,false)"></div>
             </div>
-            <!--start:琅琊豆效果-->
+            <!--start:游戏币效果-->
             <span class="coin-item" v-for="(item,index) in coinList" :key="index" :style="item.from"><i class="icon coin-icon"></i></span>
         </div>
-        <!--end:琅琊豆效果-->
+        <!--end:游戏币效果-->
         <!--结果弹窗-->
         <el-dialog class="result-modal" title="" :visible.sync="resultModalFlag" center top="25vh" :modal-append-to-body="false">
             <div class="modal-header">
@@ -529,7 +529,7 @@
                                 <td class="type">身份</td>
                                 <td class="name">昵称</td>
                                 <td class="score">积分</td>
-                                <td class="count">琅琊豆</td>
+                                <td class="count">游戏币</td>
                             </tr>
                             </thead>
                         </table>

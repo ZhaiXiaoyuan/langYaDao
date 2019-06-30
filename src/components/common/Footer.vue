@@ -2,6 +2,11 @@
     <div class="footer" id="footer">
         <p>© 2019 金华市盛赢网络科技有限公司 版权所有</p>
         <p>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+        <p class="certificate-list">
+            <a class="certificate-item" href="http://si.trustutn.org/info?sn=702190624038280195790&certType=1" target="_blank">
+                <img :src="shuiDiCertificateImg"/>
+            </a>
+        </p>
     </div>
 </template>
 <script>
@@ -9,7 +14,7 @@
     export default {
         data() {
             return {
-
+                shuiDiCertificateImg:require('../../images/common/certificate-icon.png'),
             }
         },
         computed:{
@@ -25,7 +30,7 @@
 </script>
 <style lang="less" rel="stylesheet/less" scoped>
     .footer{
-        padding: 20px 10px;
+        padding: 15px 10px;
     /*    position: absolute;
         left: 0px;
         bottom: 0px;*/
@@ -36,6 +41,13 @@
         color: #666;
         p+p{
             margin-top: 10px;
+        }
+        .certificate-list{
+            .certificate-item{
+                img{
+                    max-height: 32px;
+                }
+            }
         }
     }
     @media screen and(max-width: 1000px){
