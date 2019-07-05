@@ -1431,7 +1431,7 @@
             manorModal:function () {
                 this.manorModalFlag=!this.manorModalFlag;
                 if(this.manorModalFlag){
-                    this.$router.push({name:'manor',params:{displayType:'modal'},query:{roomLevel:this.roomLevel}});
+                    this.$router.push({name:'zodiacManor',params:{displayType:'modal'},query:{roomLevel:this.roomLevel}});
                 }else{
                     setTimeout(()=>{
                         this.$router.go(-1);

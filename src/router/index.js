@@ -62,8 +62,8 @@ const routes= [
                 component: resolve => require(['../page/zodiac/Game.vue'], resolve),
                 children:[
                     {
-                        path: 'manor/:displayType?',
-                        name:'manor',
+                        path: 'zodiacManor/:displayType?',
+                        name:'zodiacManor',
                         component: resolve => require(['../page/manor/Manor.vue'], resolve),
                     },
                 ]

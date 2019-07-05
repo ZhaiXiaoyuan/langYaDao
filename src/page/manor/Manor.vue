@@ -2,6 +2,8 @@
     <div class="cm-page manor-game" :class="{'pc-page':!version.mobile&&displayType!='modal'}">
         <div class="cm-btn cm-scale-btn return-btn" @click="back()"></div>
         <i class="icon manor-logo-icon"></i>
+
+
         <div class="display-panel" v-if="displayFlag&&curAnimal">
             <div class="panel-bd">
                 <div class="egg-block" :class="[curAnimal.animalId,curAnimal.hasEgg=='true'?'has':'']">
@@ -14,11 +16,13 @@
                 </div>
                 <div class="animal-block" :class="{'active':curAnimal}">
                     <div class="block-bd">
+                        <!--start:gif资源加载-->
+                      <!--  <i class="animal bronze-turtle-animal resources-to-load"></i>-->
+                        <!--end:gif资源加载-->
                         <i class="icon white-light-icon" v-if="curAnimal"></i>
                         <i class="icon red-light-icon" v-if="curAnimal"></i>
                         <div class="animal-box">
-                            <i class="animal turtle-animal left resources-to-load"></i>
-                            <i class="animal turtle-animal" :class="[animalPost]"></i>
+                            <i class="animal" :class="[curAnimal.animalId+'-'+curAnimal.animalName+'-animal',animalPost]"></i>
                         </div>
                         <i class="icon tree-icon left-tree"></i>
                         <i class="icon tree-icon right-tree"></i>
@@ -36,8 +40,8 @@
             <div class="modal-body">
                 <ul class="level-list">
                     <li v-for="(item,index) in levelList" :key="index" @click="selectLevel(item)">
-                        <p>神兽：{{item.langyaCoinPrice|numFormat}}豆</p>
-                        <p>收成：<span class="strong">{{item.eggPrice|numFormat}}</span>豆</p>
+                        <p>神兽：{{item.langyaCoinPrice|numFormat}}币</p>
+                        <p>收成：<span class="strong">{{item.eggPrice|numFormat}}</span>币</p>
                     </li>
                 </ul>
                 <div class="rule-block">
@@ -286,6 +290,7 @@
                 };
                 Vue.api.removeUserAnimal({apiParams:params}).then((resp)=>{
                     if(resp.respCode=='2000'){
+                        this.justEntry=false;
                         this.setDialogModalStep(3);
                     }else if(resp.respCode=='4001'){
                         this.dialogModalTips=resp.respMsg;
