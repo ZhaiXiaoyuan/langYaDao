@@ -31,22 +31,22 @@
                         <ul class="room-list">
                             <li class="level1" @click="enterRoom('初级房')">
                                 <p class="title">{{juniorRoom.name}}</p>
-                                <p class="limit">入场条件：{{juniorRoom.进入门槛}}游戏币以上</p>
+                                <p class="limit">入场条件：{{juniorRoom.进入门槛|numFormat}}游戏币以上</p>
                                 <p class="count">{{juniorRoom.curCount}}/{{juniorRoom.桌子数*11}}人</p>
                             </li>
                             <li class="level2"  @click="enterRoom('中级房')">
                                 <p class="title">{{middleRoom.name}}</p>
-                                <p class="limit">入场条件：{{middleRoom.进入门槛}}游戏币以上</p>
+                                <p class="limit">入场条件：{{middleRoom.进入门槛|numFormat}}游戏币以上</p>
                                 <p class="count">{{middleRoom.curCount}}/{{middleRoom.桌子数*11}}人</p>
                             </li>
                             <li class="level3"  @click="enterRoom('高级房')">
                                 <p class="title">{{advanceRoom.name}}</p>
-                                <p class="limit">入场条件：{{advanceRoom.进入门槛}}游戏币以上</p>
+                                <p class="limit">入场条件：{{advanceRoom.进入门槛|numFormat}}游戏币以上</p>
                                 <p class="count">{{advanceRoom.curCount}}/{{advanceRoom.桌子数*11}}人</p>
                             </li>
                             <li class="level4"  @click="enterRoom('大师房')">
                                 <p class="title">{{masterRoom.name}}</p>
-                                <p class="limit">入场条件：{{masterRoom.进入门槛}}游戏币以上</p>
+                                <p class="limit">入场条件：{{masterRoom.进入门槛|numFormat}}游戏币以上</p>
                                 <p class="count">{{masterRoom.curCount}}/{{masterRoom.桌子数*11}}人</p>
                             </li>
                         </ul>

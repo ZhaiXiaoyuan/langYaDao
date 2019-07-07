@@ -30,7 +30,7 @@
                             <div class="item-bd"><i class="icon wechat-icon"></i></div>
                             <div class="item-ft">微信支付</div>
                         </li>
-                        <li :class="{'active':payType=='zhifubao'}" v-if="version.mobile&&!version.weixin"  @click="setPayType('zhifubao')">
+                        <li :class="{'active':payType=='zhifubao'}" v-if="!version.weixin"  @click="setPayType('zhifubao')">
                             <div class="item-bd"><i class="icon ali-icon"></i></div>
                             <div class="item-ft">支付宝支付</div>
                         </li>

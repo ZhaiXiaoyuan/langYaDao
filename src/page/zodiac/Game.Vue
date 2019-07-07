@@ -1247,6 +1247,7 @@
 
                 //
                 let count=Math.ceil((fromPositionObj?fromPositionObj.increment:this.selectedChip)/this.roomConfig.chipList[0])*1;
+                count=count>50?50:count;
                 /*console.log('******count:'+count+'*****');*/
                 for(let i=0;i<count;i++){
                     let xRandom=this.randomNum(rMin,rMax);

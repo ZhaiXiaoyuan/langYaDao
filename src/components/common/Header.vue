@@ -5,7 +5,7 @@
             <div class="nav-panel">
                 <div class="panel-bd">
                     <ul class="nav-list">
-                        <li class="cm-btn" @click="go({name:'home'})" :class="{'active':page=='home'}"><span>31ENT</span></li>
+                       <!-- <li class="cm-btn" @click="go({name:'home'})" :class="{'active':page=='home'}"><span>首页</span></li>-->
                      <!--   <li class="cm-btn"><span>琅琊谷</span></li>
                         <li class="cm-btn"><span>琅琊村</span></li>
                         <li class="cm-btn"><span>琅琊秀</span></li>-->
@@ -76,11 +76,19 @@
                 font-size: 16px;
                 color: #000;
                 span{
-                    padding: 20px 15px;
+                    display: inline-block;
+                    height: 30px;
+                    line-height: 30px;
+                    padding: 0px 20px;
+                    border-radius: 15px;
                 }
                 &.active{
-                    color: #fff;
-                    background: url("../../images/common/nav-active-icon.png") no-repeat center;
+                   span{
+                       color: #fff;
+                     /*  background: url("../../images/common/nav-active-icon.png") no-repeat center;
+                       background-size: 100% 100%;*/
+                       background: #0facff;
+                   }
                 }
             }
         }
