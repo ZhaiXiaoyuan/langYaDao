@@ -395,8 +395,7 @@
                 this.$router.push({path:'/'});
             },
             getList:function () {
-                //临时测试
-                /*let params={
+                let params={
                     userId:this.account.id,
                     state:'notExchanged',
                     userType:'gainer',
@@ -416,7 +415,7 @@
                     }else if(resp.respCode=='4001'){
                         clearInterval(this.getMsgInterval);
                     }
-                });*/
+                });
             },
             goToMsgDetail:function () {
                 this.msgBlockFlag=false;
@@ -429,14 +428,15 @@
             //
             this.page=this.$route.name;
             //
-            if(this.account.id){
+            //临时测试
+           /* if(this.account.id){
                 clearInterval(this.getMsgInterval);
                 this.getMsgInterval=setInterval(()=>{
                     this.getList();
                 },5000);
             }else{
 
-            }
+            }*/
             /*刷新用户信息*/
             bus.$on('refreshAccount', () => {
                 this.account=Vue.getAccountInfo();

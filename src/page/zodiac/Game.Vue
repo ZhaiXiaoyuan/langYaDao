@@ -54,12 +54,36 @@
                 <div class="table-block" :class="{'show-result':deskInfo.deskState=='betweenRound'}">
                     <div class="block-bd">
                         <div class="layers">
-                            <div class="line"></div>
-                            <div class="line line-2"></div>
-                            <div class="line line-3"></div>
-                            <div class="line line-4"></div>
-                            <div class="line line-5"></div>
-                            <div class="line line-6"></div>
+                            <div class="line">
+                               <div class="line-content">
+                                   <span class="line-outside-item"></span>
+                               </div>
+                            </div>
+                            <div class="line line-2">
+                                <div class="line-content">
+                                    <span class="line-outside-item"></span>
+                                </div>
+                            </div>
+                            <div class="line line-3">
+                                <div class="line-content">
+                                    <span class="line-outside-item"></span>
+                                </div>
+                            </div>
+                            <div class="line line-4">
+                                <div class="line-content">
+                                    <span class="line-outside-item"></span>
+                                </div>
+                            </div>
+                            <div class="line line-5">
+                                <div class="line-content">
+                                    <span class="line-outside-item"></span>
+                                </div>
+                            </div>
+                            <div class="line line-6">
+                                <div class="line-content">
+                                    <span class="line-outside-item"></span>
+                                </div>
+                            </div>
                             <div class="outside-layer">
                                 <div class="layer-bd">
                                     <div class="item item-1" :class="{'current':runningIndex==1}">
@@ -1452,7 +1476,7 @@
             //
             this.initGame();
             //
-            console.log('test:',this.$route.name);
+          /*  console.log('test:',this.$route.name);*/
             if(this.$route.name=='manor'){
                 this.manorModalFlag=true;
             }else{

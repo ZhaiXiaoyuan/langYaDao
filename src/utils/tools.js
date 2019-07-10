@@ -279,7 +279,7 @@ export default {
         },
           /*锚点*/
         goAnchor:function (selector) {
-            console.log('test:',document.querySelector(selector).offsetTop);
+           /* console.log('test:',document.querySelector(selector).offsetTop);*/
             document.querySelector("#page-content").scrollTop = document.querySelector(selector).offsetTop;
         },
         blurAdjust:function (e) {
