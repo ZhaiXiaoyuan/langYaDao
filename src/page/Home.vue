@@ -54,7 +54,9 @@
                                     <p class="text">QQ客服</p>
                                 </a>
                                 <div class="item qrcode">
-                                    <img :src="wechatQrcode" alt="">
+                                    <div class="img-wrap">
+                                        <img :src="wechatQrcode" alt="">
+                                    </div>
                                     <p class="text">扫码关注微信公众号</p>
                                 </div>
                             </div>
@@ -66,14 +68,25 @@
                                     <span class="label">客服电话：</span><span class="value">0579-82311113</span>
                                 </a>
                             </div>
-                            <ul class="info-row download-btn-list" v-if="!bVersion.mobile">
+                            <div class="info-row flex-row">
+                                <a class="item down-load-btn" href="http://www.31ent.com/web/GamePlazaFull.exe" target="_blank">
+                                    <span>PC客户端下载</span>
+                                </a>
+                                <div class="item qrcode">
+                                    <div class="img-wrap padding">
+                                        <img :src="appQrcode" alt="">
+                                    </div>
+                                    <p class="text">扫码下载手机客户端</p>
+                                </div>
+                            </div>
+                          <!--  <ul class="info-row download-btn-list" v-if="!bVersion.mobile">
                                 <li>
                                     <a href="http://www.31ent.com/web/31ENTGame安装包.exe" target="_blank">
                                         <i class="icon download-icon"></i>
                                         <span>PC客户端下载</span>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                     <div class="block vertical-block">
@@ -123,6 +136,7 @@
                 bannerList:[],
                 gameList:[],
                 wechatQrcode:require('../images/home/wechat-qrcode.jpg'),
+                appQrcode:require('../images/home/app-qrcode.png'),
                 bVersion:Vue.tools.browserVersions(),
             }
         },
