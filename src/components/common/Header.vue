@@ -223,8 +223,8 @@
             height: 1.2rem;
             padding: 0rem 0.2rem;
             .logo-icon{
-                width: 2.3rem;
-                height: 0.59rem;
+              /*  width: 1.83rem;
+                height: 0.79rem;*/
             }
 
             .menu-btn{
