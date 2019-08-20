@@ -17,8 +17,10 @@
                         <li @click="go({name:'charge',params:{type:'coin'}})" :class="{'active':page=='charge'}"><span>充值中心</span></li>
                         <li :class="{'new':msg.giftMessage}">
                             <span @click="msgBlockFlag=!msgBlockFlag">消息</span>
-                            <div class="msg-block" v-if="msgBlockFlag&&msg.giftMessage" @click="goToMsgDetail()">
-                                您收到来自{{msg.buyerName}}（{{msg.giftMessage.buyer}}）的礼物 {{msg.giftName}}×{{msg.giftMessage.count}} ，点击消息到我的礼物查收
+                            <div class="msg-block" v-if="msgBlockFlag" @click="goToMsgDetail()">
+                                <p v-if="msg.giftMessage">
+                                    您收到来自{{msg.buyerName}}（{{msg.giftMessage.buyer}}）的礼物 {{msg.giftName}}×{{msg.giftMessage.count}} ，点击消息到我的礼物查收
+                                </p>
                             </div>
                         </li>
                         <li class="account-btn" v-if="!account.id"><span class="cm-btn" @click="registerModal({open:true});showMenu=!showMenu;">注册</span><span class="gap">/</span><span class="cm-btn" @click="loginModal({open:true});showMenu=!showMenu;">登录</span></li>
@@ -98,6 +100,7 @@
             display: inline-block;
             height: 60px;
             >li{
+                position: relative;
                 display: inline-block;
                 height: 100%;
                 line-height: 56px;

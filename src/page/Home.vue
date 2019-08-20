@@ -69,9 +69,9 @@
                                 </a>
                             </div>
                             <div class="info-row flex-row">
-                                <a class="item down-load-btn" href="http://www.31ent.com/web/31ENTGame.exe" target="_blank">
+                              <!--  <a class="item down-load-btn" href="http://www.31ent.com/web/31ENTGame.exe" target="_blank">
                                     <span>PC客户端下载</span>
-                                </a>
+                                </a>-->
                                 <div class="item qrcode">
                                     <div class="img-wrap padding">
                                         <img :src="appQrcode" alt="">

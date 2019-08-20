@@ -203,13 +203,19 @@ export default {
         safeLoginCheck:function (path,next) {
             let safeAccount=this.getSafeAccounInfo();
             let account=this.getAccountInfo();
+            console.log('account:',account);
             if(path.indexOf('coin')>-1&&!safeAccount.isLogin){
                 if(account&&!account.phone){
                     let version=this.browserVersions();
-                    if(version.mobile&&version.weixin){
-                        /* Vue.operationFeedback({type:'warn',text:'您还没绑定手机号，为了账号安全请先绑定手机。'});*/
+                    console.log('version:',version);
+                    if(version.mobile){
+                        if(version.weixin){
+                            /* Vue.operationFeedback({type:'warn',text:'您还没绑定手机号，为了账号安全请先绑定手机。'});*/
+                            Vue.forget({type:'bindPhone',ok:()=>{}});
+                            /* router.push({path:'/center/user/userInfo/bindPhone'});*/
+                        }
+                    }else{
                         Vue.forget({type:'bindPhone',ok:()=>{}});
-                        /* router.push({path:'/center/user/userInfo/bindPhone'});*/
                     }
                 }else{
                     Vue.safeLogin({ok:()=>{
