@@ -6,11 +6,11 @@ export default {
         //临时测试
         isDev=false;
         Vue.appConfig={
-            domain:isDev?'http://api.linqi.tech':'https://www.31ent.com',
-            domain2:isDev?'http://api.linqi.tech:8600':'https://www.31ent.com:8600',
-            domain3:isDev?'http://api.linqi.tech:8602':'https://www.31ent.com:8602',
-            game:isDev?'http://api.linqi.tech:8602':'wss://www.31ent.com:8600',
-            fileDomain:isDev?'http://api.linqi.tech':'https://www.31ent.com',
+            domain:isDev?'http://api.linqi.tech':'http://47.103.75.74',
+            domain2:isDev?'http://api.linqi.tech:8600':'http://47.103.75.74:8600',
+            domain3:isDev?'http://api.linqi.tech:8602':'http://47.103.75.74:8602',
+            game:isDev?'http://api.linqi.tech:8602':'wss://47.103.75.74:8600',
+            fileDomain:isDev?'http://api.linqi.tech':'http://47.103.75.74',
         }
     },
 }
